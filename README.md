@@ -103,6 +103,9 @@ $this is a legitimate Javascript variable.
 * Explain Ajax in as much detail as possible.
 * What are the advantages and disadvantages of using Ajax?
 * Explain Cross-Origin Resource Sharing (CORS)
+```
+CORS is a mechanism that allows you to work around the same-orign policy implemented by browsers. By enabling CORS on your server, you sepcify what other servers can have access to your resources. Therefore, your server would respond to requests with a Access-Control-Allow-Origin header to let the browser know if the requested resource is accessible to those origins.
+```
 * Explain how JSONP works
 ```
 JSONP stands for JSON with Padding, yet another poorly named term in the programming field. It is a technique to address the same domain policy implemented in the browser land, which relies on <script> tags to bypass the restriction.
