@@ -68,7 +68,7 @@ These are the things you should know as a web developer.
 #### Javascript
 
 * In JavaScript, what's the difference between this, $(this) and $this?
-
+```
 ‘this’ is a Javascript keyword. The value of ‘this’ varies depending on how a function is invoked. Mainly there are four different patterns.
 
 - when invoked as a function, ‘this’ refers to the window object. 
@@ -81,7 +81,7 @@ In ES6, an arrow function does not create its own 'this' context, so 'this' has 
 $(this) is not a legitimate Javascript variable. In jQuery library, however, it means to construct a jQuery object so can call jQuery methods on the object.
 
 $this is a legitimate Javascript variable.
-
+```
 * Explain event delegation
 * Explain how `this` works in JavaScript
 * Explain how prototypal inheritance works
@@ -102,11 +102,11 @@ $this is a legitimate Javascript variable.
 * Explain Ajax in as much detail as possible.
 * What are the advantages and disadvantages of using Ajax?
 * Explain Cross-Origin Resource Sharing (CORS)
-
+```
 CORS is a mechanism that allows you to work around the same-orign policy implemented by browsers. By enabling CORS on your server, you sepcify what other servers can have access to your resources. Therefore, your server would respond to requests with a Access-Control-Allow-Origin header to let the browser know if the requested resource is accessible to those origins.
-
+```
 * Explain how JSONP works
-
+```
 JSONP stands for JSON with Padding, yet another poorly named term in the programming field. It is a technique to address the same domain policy implemented in the browser land, which relies on <script> tags to bypass the restriction.
 
 Say inn a JSONP enabled server, you send a request http://www.example.net/sample.aspx?callback=mycallback to it, it then will return a result wrapped in the callback function you specified.
@@ -118,7 +118,7 @@ So, in your program, you can define the callback function to handle the response
 mycallback = (data) => {
   alert(data.foo);
 };
-
+```
 * Have you ever used JavaScript templating?
   * If so, what libraries have you used?
 * Explain "hoisting".
