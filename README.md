@@ -42,6 +42,15 @@ ID is unique while you can have multiple classes with the same name in a documen
 Resetting destroys all the built-in styling while normalizing just tries to make built-in styling consistent across browsers. Choosing one over the other depends on what you want to achieve, but most of the time normalizing should be the one to go with.
 ```
 * Describe Floats and how they work.
+```
+When you apply float to an element, it basically pulls it out from the normal document flow so it gets on top of the flow. Since a floated element does not stay in the document flow, a container will not detect its existence, which leads to the classic 'zero height' container issue. To solve this, what we need is a clearfix hack.
+
+.clear:after {
+    clear: both;
+    content: "";
+    display: table;
+}
+```
 * Describe z-index and how stacking context is formed.
 * Describe BFC(Block Formatting Context) and how it works.
 * What are the various clearing techniques and which is appropriate for what context?
