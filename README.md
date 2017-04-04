@@ -38,6 +38,9 @@ DOCTYPEs are required for legacy reasons. When omitted, browsers tend to use a d
 ID is unique while you can have multiple classes with the same name in a document.
 ```
 * What's the difference between "resetting" and "normalizing" CSS? Which would you choose, and why?
+```
+Resetting destroys all the built-in styling while normalizing just tries to make built-in styling consistent across browsers. Choosing one over the other depends on what you want to achieve, but most of the time normalizing should be the one to go with.
+```
 * Describe Floats and how they work.
 * Describe z-index and how stacking context is formed.
 * Describe BFC(Block Formatting Context) and how it works.
