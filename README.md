@@ -197,7 +197,16 @@ var foo = 10 + '20';
 add(2, 5); // 7
 add(2)(5); // 7
 ```
-
+```
+function add(num1, num2) {
+	if(arguments.length === 1) {
+		return function(num2) {
+			return num1 + num2;
+		}
+	}
+	return num1 + num2;
+}
+```
 *Question: What value is returned from the following statement?*
 ```javascript
 "i'm a lasagna hog".split("").reverse().join("");
