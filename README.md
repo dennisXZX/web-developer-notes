@@ -191,6 +191,11 @@ duplicate([1,2,3,4,5]); // [1,2,3,4,5,1,2,3,4,5]
 ```javascript
 var foo = 10 + '20';
 ```
+```
+foo is a string with a value of '1020'. 
+
+This is because when you try to concatenate a number with a string, the number will be automatically converted into a string before concatenation.
+```
 
 *Question: How would you make this work?*
 ```javascript
@@ -207,14 +212,25 @@ function add(num1, num2) {
 	return num1 + num2;
 }
 ```
+
 *Question: What value is returned from the following statement?*
 ```javascript
 "i'm a lasagna hog".split("").reverse().join("");
+```
+```
+After the method chain, the returned value is 'goh angasal a m'i'. 
+
+First the string is split into an array of characters because the split() function is called passing an empty string as parameter. After that, the array is reversed then joined together.
 ```
 
 *Question: What is the value of `window.foo`?*
 ```javascript
 ( window.foo || ( window.foo = "bar" ) );
+```
+```
+The value of window.foo is 'bar'.
+
+This expression first evaluates the left hand side of the || operator, which is a property retrival expression that produces an undefined value. Then it evaluates the right hand side, which is an assignment expression that assigns a string 'bar' to window object's foo property.
 ```
 
 *Question: What is the outcome of the two alerts below?*
