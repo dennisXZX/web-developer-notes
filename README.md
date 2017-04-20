@@ -31,6 +31,9 @@ These are the things you should know as a web developer.
 #### CSS
 
 * What is the difference between classes and IDs in CSS?
+```
+ID is unique while you can have multiple classes in a document.
+```
 * What's the difference between "resetting" and "normalizing" CSS? Which would you choose, and why?
 * Describe Floats and how they work.
 * Describe z-index and how stacking context is formed.
