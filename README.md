@@ -32,7 +32,7 @@ These are the things you should know as a web developer.
 
 * What is the difference between classes and IDs in CSS?
 ```
-ID is unique while you can have multiple classes in a document.
+ID is unique while you can have multiple classes with the same name in a document.
 ```
 * What's the difference between "resetting" and "normalizing" CSS? Which would you choose, and why?
 * Describe Floats and how they work.
