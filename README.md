@@ -245,7 +245,9 @@ var foo = "Hello";
 })();
 alert(foo + bar);
 ```
-
+```
+It will alert "Hello World", then throws a reference error because there is no bar varialbe defined in the global scope.
+```
 *Question: What is the value of `foo.length`?*
 ```javascript
 var foo = [];
