@@ -248,6 +248,7 @@ alert(foo + bar);
 ```
 It will alert "Hello World", then throws a reference error because there is no bar varialbe defined in the global scope.
 ```
+
 *Question: What is the value of `foo.length`?*
 ```javascript
 var foo = [];
@@ -257,12 +258,19 @@ foo.push(2);
 ```
 foo.length is 2 as we call push() twice in the above code, so there are two items in the foo array.
 ```
+
 *Question: What is the value of `foo.x`?*
 ```javascript
 var foo = {n: 1};
 var bar = foo;
 foo.x = foo = {n: 2};
 ```
+```
+This one is really tricky. The answer is 'undefined'. Here is why:
+
+In "foo.x = foo = {n: 2};", foo.x is first evaluated to 'undefined' since there is no x property in the object that foo refers. This is because left hand side of an assignment expression is evaluated first. So the whole expression is evaluated as it is "foo.x = (foo = {n: 2});"
+```
+
 *Question: What does the following code print?*
 ```javascript
 console.log('one');
