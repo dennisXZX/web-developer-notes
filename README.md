@@ -279,3 +279,12 @@ setTimeout(function() {
 }, 0);
 console.log('three');
 ```
+```
+The answer is:
+
+one
+three
+two
+
+This is because setTimeout() is asynchronous while console.log() is synchronous. setTimeout() schedules something to happen in the future while not blocking the normal flow of the program.
+```
