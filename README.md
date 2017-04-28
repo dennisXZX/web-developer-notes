@@ -79,7 +79,7 @@ ID is unique while you can have multiple classes with the same name in a documen
 - when invoked as a constructor function, ‘this’ refers to the object instance created by the constructor.
 - when invoked by using call() and apply() method, ‘this’ refers to the object passed in as the first parameter.
 
-In ES6, an arrow function does not create its own 'this' context, so 'this' has its original meaning from the enclosing context.
+In ES6, an arrow function does not create its own context, so 'this' has its original meaning from the enclosing context.
 
 $(this) is not a legitimate Javascript variable. In jQuery library, however, it means to construct a jQuery object so can call jQuery methods on the object.
 
@@ -87,6 +87,18 @@ $this is a legitimate Javascript variable.
 ```
 * Explain event delegation
 * Explain how `this` works in JavaScript
+```
+The value of 'this' is determined by how a function is called.
+
+There are usually four ways of calling a function.
+
+1. When called as a function, 'this' refers to the global object, which is the window object in a browser environment,
+2. When called as a method, 'this' refers to the object the object that invokes the method.
+3. When called as a constructor function, 'this' refers to the instance it creates.
+4. When called via call() or apply(), 'this' refers to the first parameter passed into those functions.
+
+In ES6, an arrow function does not create its own context, so 'this' refers to the enclosing context.
+```
 * Explain how prototypal inheritance works
 * What do you think of AMD vs CommonJS?
 * Explain why the following doesn't work as an IIFE: `function foo(){ }();`.
