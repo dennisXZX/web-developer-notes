@@ -137,6 +137,9 @@ mycallback = (data) => {
 * Have you ever used JavaScript templating?
   * If so, what libraries have you used?
 * Explain "hoisting".
+```
+When you declare a variable or a function, it will be hoisted to the top of the scope (global scope or function scope). So you can use the variable or call the function even before its declaration.
+```
 * Describe event bubbling.
 * What's the difference between an "attribute" and a "property"?
 * Why is extending built-in JavaScript objects not a good idea?
