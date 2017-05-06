@@ -52,6 +52,9 @@ When you apply float to an element, it basically pulls it out from the normal do
 }
 ```
 * Describe z-index and how stacking context is formed.
+```
+z-index property specifies the z-order of a positioned element. When elements overlap, z-order determines which one covers the other. An element with a larger z-index stacks over one with a lower z-index.
+```
 * Describe BFC(Block Formatting Context) and how it works.
 * What are the various clearing techniques and which is appropriate for what context?
 * Explain CSS sprites, and how you would implement them on a page or site.
