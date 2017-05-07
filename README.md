@@ -121,6 +121,12 @@ In ES6, an arrow function does not create its own context, so 'this' refers to t
 * What do you think of AMD vs CommonJS?
 * Explain why the following doesn't work as an IIFE: `function foo(){ }();`.
   * What needs to be changed to properly make it an IIFE?
+  ```
+  Because it will be treated as a function declaration instead of a function expression. To make this IIFE works, you need to 
+  wrap it with a bracket.
+  
+  (function foo(){})() or (function foo(){}())
+  ```
 * What's the difference between a variable that is: `null`, `undefined` or undeclared?
   * How would you go about checking for any of these states?
 * What is a closure, and how/why would you use one?
