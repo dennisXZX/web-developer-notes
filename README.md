@@ -129,6 +129,15 @@ In ES6, an arrow function does not create its own context, so 'this' refers to t
   ```
 * What's the difference between a variable that is: `null`, `undefined` or undeclared?
   * How would you go about checking for any of these states?
+  ```
+  'undeclared' means a variable is not declared with var, let or const keyword - a = 0;
+  'undefined' represents a varible is declared but not assigned - var b;
+  'null' represents an intentional absense of value - var c = null;
+
+  You can use strict equality comparison '===' to check the above states.
+
+  if (value === undefined) || (value === null)
+  ```
 * What is a closure, and how/why would you use one?
 * What's a typical use case for anonymous functions?
 * How do you organize your code? (module pattern, classical inheritance?)
