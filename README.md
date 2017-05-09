@@ -139,6 +139,11 @@ In ES6, an arrow function does not create its own context, so 'this' refers to t
   if (value === undefined) || (value === null)
   ```
 * What is a closure, and how/why would you use one?
+```
+Closure is when a function can remember and access its lexical scope even when it's invoked outside its lexical scope.
+
+Closure can be used to protect private variables or internal functions, for example, it can be used in pattern like module.
+```
 * What's a typical use case for anonymous functions?
 * How do you organize your code? (module pattern, classical inheritance?)
 * What's the difference between host objects and native objects?
