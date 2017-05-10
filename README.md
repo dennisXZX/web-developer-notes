@@ -145,6 +145,9 @@ Closure is when a function can remember and access its lexical scope even when i
 Closure can be used to protect private variables or internal functions, for example, it can be used in pattern like module.
 ```
 * What's a typical use case for anonymous functions?
+```
+Anonymous function can be used in callback function, as it is called by a function instead of by you, so it can go without a function name. Another typical usage of anonymous function is Inmediately Invoked Function Expression, as it is invoked the moment defined, so a function name is not necessary. 
+```
 * How do you organize your code? (module pattern, classical inheritance?)
 * What's the difference between host objects and native objects?
 * Difference between: `function Person(){}`, `var person = Person()`, and `var person = new Person()`?
