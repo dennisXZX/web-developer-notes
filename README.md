@@ -150,6 +150,9 @@ Anonymous function can be used in callback function, as it is called by a functi
 ```
 * How do you organize your code? (module pattern, classical inheritance?)
 * What's the difference between host objects and native objects?
+```
+Host objects are the objects given to you by the environment. Javascript can run on different environments, such as on a browser or a server. Native objects are the objects given to you by Javascript. You will get the same native objects no matter where you run your Javascript code, but host objects will be different depending on the running environment.
+```
 * Difference between: `function Person(){}`, `var person = Person()`, and `var person = new Person()`?
 * What's the difference between `.call` and `.apply`?
 * Explain `Function.prototype.bind`.
