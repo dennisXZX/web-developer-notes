@@ -154,6 +154,11 @@ Anonymous function can be used in callback function, as it is called by a functi
 Host objects are the objects given to you by the environment. Javascript can run on different environments, such as on a browser or a server. Native objects are the objects given to you by Javascript. You will get the same native objects no matter where you run your Javascript code, but host objects will be different depending on the running environment.
 ```
 * Difference between: `function Person(){}`, `var person = Person()`, and `var person = new Person()`?
+```
+function Person(){} declares a constructor function.
+var person = Person() declares a person variable which holds the return value of Person().
+var person = new Person() declares a person variable which holds an instance of the Person object.
+```
 * What's the difference between `.call` and `.apply`?
 * Explain `Function.prototype.bind`.
 * When would you use `document.write()`?
