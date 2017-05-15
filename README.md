@@ -160,6 +160,9 @@ var person = Person() declares a person variable which holds the return value of
 var person = new Person() declares a person variable which holds an instance of the Person object.
 ```
 * What's the difference between `.call` and `.apply`?
+```
+Both call() and apply() can be used to alter the 'this' context of a function. The difference between them is the parameters they accept. call() accepts parameters one by one explicitly, while apply() accepts an array as its parameter.
+```
 * Explain `Function.prototype.bind`.
 * When would you use `document.write()`?
 * What's the difference between feature detection, feature inference, and using the UA string?
