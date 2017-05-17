@@ -126,6 +126,9 @@ In Javascript, function is nothing but object, and each object has a 'prototype'
 For detailed explanation about Javascript inheritance, I have previously written [a blog post](https://dennisboys.github.io/How-Prototypes-Work/ "How Prototypes Work") about it.
 ```
 * What do you think of AMD vs CommonJS?
+```
+Both AMD and CommonJS are specifications on how modules and their dependencies should be declared in Javascript applications. AMD is better suited for client side while CommonJS is designed mainly for server side.
+```
 * Explain why the following doesn't work as an IIFE: `function foo(){ }();`.
   * What needs to be changed to properly make it an IIFE?
   ```
