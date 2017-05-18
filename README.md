@@ -174,6 +174,9 @@ var person = new Person() declares a person variable which holds an instance of 
 Both call() and apply() can be used to alter the 'this' context of a function. The difference between them is the parameters they accept. call() accepts parameters one by one explicitly, while apply() accepts an array as its parameter.
 ```
 * Explain `Function.prototype.bind`.
+```
+Function.prototype.bind is a function defined in the prototype object of Function constructor, which means all instances of Function can access to bind via prototypal inheritance. The bind function accepts a context as a parameter and returns a function that binds the context to its this keyword.
+```
 * When would you use `document.write()`?
 * What's the difference between feature detection, feature inference, and using the UA string?
 * Explain Ajax in as much detail as possible.
