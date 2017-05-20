@@ -201,6 +201,9 @@ mycallback = (data) => {
 ```
 * Have you ever used JavaScript templating?
   * If so, what libraries have you used?
+  ```
+  I know of Handlebars and used EJS before. EJS is a simple light-weight templating language that goes well with Express framework.
+  ```
 * Explain "hoisting".
 ```
 When you declare a variable or a function, it will be hoisted to the top of the scope (global scope or function scope). So you can use the variable or call the function even before its declaration.
