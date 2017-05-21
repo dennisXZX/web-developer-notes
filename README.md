@@ -210,6 +210,16 @@ When you declare a variable or a function, it will be hoisted to the top of the 
 ```
 * Describe event bubbling.
 * What's the difference between an "attribute" and a "property"?
+```
+In Javascript, an object can has as many properties as you want. For example, the following object has two properties, name and age.
+
+let obj = {
+  name: 'Dennis',
+  age: 34
+}
+
+Each property of an object has a few built-in attributes, such as configurable, enumerable and writable...etc. Most of the time you don't want to touch these attributes but in special occasions, you can alter these attributes by calling __Object.defineProperties()__ method.
+```
 * Why is extending built-in JavaScript objects not a good idea?
 * Difference between document load event and document DOMContentLoaded event?
 * What is the difference between `==` and `===`?
