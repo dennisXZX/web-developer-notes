@@ -223,6 +223,9 @@ Each property of an object has a few built-in attributes, such as configurable, 
 * Why is extending built-in JavaScript objects not a good idea?
 * Difference between document load event and document DOMContentLoaded event?
 * What is the difference between `==` and `===`?
+```
+The equality operator == will do a type conversion before comparing the two values, while the strictly equality operator === will just compare two values without doing any type conversion. It is highly recommended to use === in development to minimize any risks of unwanted type conversions.
+```
 * Explain the same-origin policy with regards to JavaScript.
 * Make this work:
 ```javascript
