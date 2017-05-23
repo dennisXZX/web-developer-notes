@@ -221,6 +221,9 @@ let obj = {
 Each property of an object has a few built-in attributes, such as configurable, enumerable and writable...etc. Most of the time you don't want to touch these attributes but in special occasions, you can alter these attributes by calling __Object.defineProperties()__ method.
 ```
 * Why is extending built-in JavaScript objects not a good idea?
+```
+Because when you extend a built-in Javascript object, you change its behavior and that poses a risk to other coders. People who use Javascript native objects would expect they behave the same every where. Therefore, you might inject some surprised moments into their lives by extending built-in objects. 
+```
 * Difference between document load event and document DOMContentLoaded event?
 * What is the difference between `==` and `===`?
 ```
