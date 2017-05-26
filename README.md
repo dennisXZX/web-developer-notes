@@ -122,9 +122,8 @@ In ES6, an arrow function does not create its own context, so 'this' refers to t
 Though Javascript has introduced a new 'class' keyword in ES6, but, under the hood, it still achieves inheritance through prototype.
 
 In Javascript, function is nothing but object, and each object has a 'prototype' object attached to it. Everything in the 'prototype' object is inherited by the instances of that object.
-
-For detailed explanation about Javascript inheritance, I have previously written [a blog post](https://dennisboys.github.io/How-Prototypes-Work/ "How Prototypes Work") about it.
 ```
+For detailed explanation about Javascript inheritance, I have previously written [a blog post](https://dennisboys.github.io/How-Prototypes-Work/ "How Prototypes Work") about it.
 * What do you think of AMD vs CommonJS?
 ```
 Both AMD and CommonJS are specifications on how modules and their dependencies should be declared in Javascript applications. AMD is better suited for client side while CommonJS is designed mainly for server side.
@@ -209,6 +208,14 @@ mycallback = (data) => {
 When you declare a variable or a function, it will be hoisted to the top of the scope (global scope or function scope). So you can use the variable or call the function even before its declaration.
 ```
 * Describe event bubbling.
+```
+To put it simply, when an event happens on an element, it first runs the handlers on it, then on its parent, then all the way up on other ancestors.
+
+When an event happens, it is possible to capture where exactly it happens by accessing the event.target property. It is important to note event.target is not equal to "this", which refers to an element that registers the triggered event handler.
+
+You can use event.stopPropagation() to stop the bubbling, but normally there is no need to do so.
+```
+[Here is an article that clearly explains the bubbling concept](http://javascript.info/bubbling-and-capturing "How Bubbling Works")
 * What's the difference between an "attribute" and a "property"?
 ```
 In Javascript, an object can has as many properties as you want. For example, the following object has two properties, name and age.
