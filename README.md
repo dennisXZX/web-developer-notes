@@ -120,7 +120,7 @@ Both AMD and CommonJS are specifications on how modules and their dependencies s
 
 #### Explain why the following doesn't work as an IIFE: `function foo(){ }();`.
 
-Because it will be treated as a function declaration instead of a function expression. To make this IIFE works, you need to wrap it with a bracket.
+Because it will be treated as a function declaration instead of a function expression. To make this IIFE works, you need to wrap the function with a bracket.
 
 ```  
 (function foo(){})() or (function foo(){}())
@@ -128,9 +128,18 @@ Because it will be treated as a function declaration instead of a function expre
 
 #### What's the difference between a variable that is: `null`, `undefined` or undeclared? How would you go about checking for any of these states?
 
-'undeclared' means a variable is not declared with var, let or const keyword - a = 0;
-'undefined' represents a varible is declared but not assigned - var b;
-'null' represents an intentional absense of value - var c = null;
+- 'undeclared' means a variable is not declared with var, let or const keyword
+```
+a = 0;
+```
+- 'undefined' represents a varible declared but not assigned
+```
+var b;
+```
+- 'null' represents an intentional absense of a value
+```
+var c = null;
+```
 
 You can use strict equality comparison '===' to check the above states.
 
@@ -155,9 +164,9 @@ Host objects are the objects given to you by the environment. Javascript can run
 
 #### Difference between: `function Person(){}`, `var person = Person()`, and `var person = new Person()`?
 
-function Person(){} declares a constructor function.
-var person = Person() declares a person variable which holds the return value of Person().
-var person = new Person() declares a person variable which holds an instance of the Person object.
+- function Person(){} declares a constructor function.
+- var person = Person() declares a person variable which holds the return value of Person().
+- var person = new Person() declares a person variable which holds an instance of the Person object.
 
 #### What's the difference between `.call` and `.apply`?
 
@@ -199,28 +208,30 @@ I know of Handlebars and used EJS before. EJS is a simple light-weight templatin
   
 #### Explain "hoisting".
 
-When you declare a variable or a function, it will be hoisted to the top of the scope (global scope or function scope). So you can use the variable or call the function even before its declaration.
+To put it simply, when you declare a variable or a function, it will be hoisted (magically) to the top of the scope (global scope or function scope). So you can use the variable or call the function even before its declaration. 
+
+But the above statement glosses over a lot of details. The 'hoisting' is actually caused by the way how Javascript engines works. Javascript code interpretation is performed in two phases. During the first phase, the interpreter processes variable and function declarations and put them in memory. This phrase is commonly known as 'hoisting'. In phase two, Javascript engine starts to execute the code.
 
 #### Describe event bubbling.
 
 To put it simply, when an event happens on an element, it first runs the handlers on it, then on its parent, then all the way up on other ancestors.
 
-When an event happens, it is possible to capture where exactly it happens by accessing the event.target property. It is important to note event.target is not equal to "this", which refers to an element that registers the triggered event handler.
+When an event happens, it is possible to capture where exactly it happens by accessing the `event.target` property. It is important to note `event.target` is not equal to `this`, which refers to an element that registers the triggered event handler.
 
-You can use event.stopPropagation() to stop the bubbling, but normally there is no need to do so.
+You can use `event.stopPropagation()` to stop the bubbling, but normally there is no need to do so.
 
 [Here is an article that clearly explains the bubbling concept](http://javascript.info/bubbling-and-capturing "How Bubbling Works")
 
 #### What's the difference between an "attribute" and a "property"?
 
 In Javascript, an object can has as many properties as you want. For example, the following object has two properties, name and age.
-
+```
 let obj = {
   name: 'Dennis',
   age: 34
 }
-
-Each property of an object has a few built-in attributes, such as configurable, enumerable and writable...etc. Most of the time you don't want to touch these attributes but in special occasions, you can alter these attributes by calling __Object.defineProperties()__ method.
+```
+Each property of an object has a few built-in attributes, such as `configurable`, `enumerable` and `writable`, etc. Most of the time you don't want to touch these attributes but in special occasions, you can alter these attributes by calling `Object.defineProperties()` method.
 
 #### Why is extending built-in JavaScript objects not a good idea?
 
@@ -301,9 +312,12 @@ This is because when you try to concatenate a number with a string, the number w
 
 #### How would you make this work?
 
+```
 add(2, 5); // 7
 add(2)(5); // 7
-
+```
+```
+// answer
 function add(num1, num2) {
   if(arguments.length === 1) {
     return function(num2) {
@@ -312,48 +326,50 @@ function add(num1, num2) {
   }
   return num1 + num2;
 }
-
+```
 #### What value is returned from the following statement?
-
+```
 "i'm a lasagna hog".split("").reverse().join("");
-
+```
 After the method chain, the returned value is 'goh angasal a m'i'. 
 
 First the string is split into an array of characters because the split() function is called passing an empty string as parameter. After that, the array is reversed then joined together.
 
 #### What is the value of `window.foo`?
-
+```
 ( window.foo || ( window.foo = "bar" ) );
-
+```
 The value of window.foo is 'bar'.
 
 This expression first evaluates the left hand side of the || operator, which is a property retrival expression that produces an undefined value. Then it evaluates the right hand side, which is an assignment expression that assigns a string 'bar' to window object's foo property.
 
 #### What is the outcome of the two alerts below?
-
+```
 var foo = "Hello";
+
 (function() {
   var bar = " World";
   alert(foo + bar);
 })();
-alert(foo + bar);
 
+alert(foo + bar);
+```
 It will alert "Hello World", then throws a reference error because there is no bar varialbe defined in the global scope.
 
 #### What is the value of `foo.length`?
-
+```
 var foo = [];
 foo.push(1);
 foo.push(2);
-
+```
 foo.length is 2 as we call push() twice in the above code, so there are two items in the foo array.
 
 #### What is the value of `foo.x`?
-
+```
 var foo = {n: 1};
 var bar = foo;
 foo.x = foo = {n: 2};
-
+```
 This one is really tricky. The answer is 'undefined'. Here is why:
 
 In "foo.x = foo = {n: 2};", foo.x is first evaluated to 'undefined' since there is no x property in the object that foo refers. This is because left hand side of an assignment expression is evaluated first. So the whole expression is evaluated as it is "foo.x = (foo = {n: 2});"
