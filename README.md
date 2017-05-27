@@ -360,11 +360,13 @@ In "foo.x = foo = {n: 2};", foo.x is first evaluated to 'undefined' since there 
 
 #### What does the following code print?
 
+```
 console.log('one');
 setTimeout(function() {
   console.log('two');
 }, 0);
 console.log('three');
+```
 
 The answer is:
 
