@@ -100,6 +100,9 @@ $(this) is not a legitimate Javascript variable. In jQuery library, however, it 
 $this is a legitimate Javascript variable.
 
 #### Explain event delegation
+
+The concept behind this fancy term is actually quite simple. Event delegation simply means you can attach an event listener to a parent element, then events happen in its children will also trigger the event thanks to the event bubbling or event propagation.
+
 #### Explain how `this` works in JavaScript
 
 The value of 'this' is determined by how a function is called.
@@ -218,7 +221,7 @@ To put it simply, when you declare a variable or a function, it will be hoisted 
 
 But the above statement glosses over a lot of details. The 'hoisting' is actually caused by the way how Javascript engines works. Javascript code interpretation is performed in two phases. During the first phase, the interpreter processes variable and function declarations and put them in memory. This phrase is commonly known as 'hoisting'. In phase two, Javascript engine starts to execute the code.
 
-#### Describe event bubbling.
+#### Describe event bubbling (event propagation).
 
 To put it simply, when an event happens on an element, it first runs the handlers on it, then on its parent, then all the way up on other ancestors.
 
