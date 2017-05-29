@@ -247,6 +247,9 @@ Each property of an object has a few built-in attributes, such as `configurable`
 Because when you extend a built-in Javascript object, you change its behavior and that poses a risk to other coders. People who use Javascript native objects would expect they behave the same every where. Therefore, you might inject some surprised moments into their lives by extending built-in objects. 
 
 #### Difference between document load event and document DOMContentLoaded event?
+
+The DOMContentLoaded event is triggered when all the HTML document has been completedly loaded. The document load event, on the other hand, is triggered when all the HTML document and its resources (images, styles, etc) have been fully loaded. Therefore, DOMContentLoaded event is triggered before the document load event.
+
 #### What is the difference between `==` and `===`?
 
 The equality operator == will do a type conversion before comparing the two values, while the strictly equality operator === will just compare two values without doing any type conversion. It is highly recommended to use === in development to minimize any risks of unwanted type conversions.
