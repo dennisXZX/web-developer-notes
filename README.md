@@ -93,7 +93,7 @@ z-index property specifies the z-order of a positioned element. When elements ov
 - when invoked as a constructor function, ‘this’ refers to the object instance created by the constructor.
 - when invoked by using call() and apply() method, ‘this’ refers to the object passed in as the first parameter.
 
-In ES6, an arrow function does not create its own scope, so 'this' has its original meaning from the enclosing scope.
+In ES6, an arrow function does not create its own context, so 'this' has its original context from the enclosing scope.
 
 $(this) is not a legitimate Javascript variable. In jQuery library, however, it means to construct a jQuery object so you can call jQuery methods on the object.
 
@@ -114,7 +114,28 @@ There are usually four ways of calling a function.
 3. When called as a constructor function, 'this' refers to the instance it creates.
 4. When called via call() or apply(), 'this' refers to the first parameter passed into those functions.
 
-In ES6, an arrow function does not create its own context, so 'this' refers to the enclosing context.
+In ES6, an arrow function does not create its own context, so 'this' inherits the function context from the context in which it was created.
+
+Try to understand the following example.
+
+```
+function Ninja() {
+  this.whoAmI = () => this;
+}
+
+var ninja1 = new Ninja();
+
+var ninja2 = {
+  whoAmI: ninja1.whoAmI
+};
+
+// pass
+assert(ninja1.whoAmI() === ninja1, "ninja1 here?");
+
+// fail, ninja2.whoAmI() should be equal to ninja1
+// because ninja2.whoAmI refers to ninja1.whoAMI, the context of 'this' is defined when a new Ninja object ninja1 is created, so 'this' will always refer to ninja1.
+assert(ninja2.whoAmI() === ninja2, "ninja2 here?");
+```
 
 #### Explain how prototypal inheritance works
 
@@ -123,6 +144,7 @@ Though Javascript has introduced a new 'class' keyword in ES6, but, under the ho
 In Javascript, function is nothing but object, and each object has a 'prototype' object attached to it. Everything in the 'prototype' object is inherited by the instances of that object.
 
 For detailed explanation about Javascript inheritance, I have previously written [a blog post](https://dennisboys.github.io/How-Prototypes-Work/ "How Prototypes Work") about it.
+
 #### What do you think of AMD vs CommonJS?
 
 Both AMD and CommonJS are specifications on how modules and their dependencies should be declared in Javascript applications. AMD is better suited for client side while CommonJS is designed mainly for server side.
@@ -167,6 +189,9 @@ Closure can be used to protect private variables or internal functions, for exam
 Anonymous function can be used in callback function, as it is called by a function instead of by you, so it can go without a function name. Another typical usage of anonymous function is Inmediately Invoked Function Expression, as it is invoked the moment defined, so a function name is not necessary. 
 
 #### How do you organize your code? (module pattern, classical inheritance?)
+
+Now I have turned to ES6 modules to organize my code.
+
 #### What's the difference between host objects and native objects?
 
 Host objects are the objects given to you by the environment. Javascript can run on different environments, such as on a browser or a server. Native objects are the objects given to you by Javascript. You will get the same native objects no matter where you run your Javascript code, but host objects will be different depending on the running environment.
@@ -186,7 +211,13 @@ Both call() and apply() can be used to alter the 'this' context of a function. T
 Function.prototype.bind is a function defined in the prototype object of Function constructor, which means all instances of Function can access to bind via prototypal inheritance. The bind function accepts a context as a parameter and returns a function that binds the context to its this keyword.
 
 #### When would you use `document.write()`?
+
+In no situation I find myself have a need for document.write().
+
 #### What's the difference between feature detection, feature inference, and using the UA string?
+
+
+
 #### Explain Ajax in as much detail as possible.
 #### What are the advantages and disadvantages of using Ajax?
 #### Explain Cross-Origin Resource Sharing (CORS)
