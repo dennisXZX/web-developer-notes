@@ -163,11 +163,11 @@ Because it will be treated as a function declaration instead of a function expre
 ```
 a = 0;
 ```
-- 'undefined' represents a varible declared but not assigned
+- 'undefined' represents a variable declared but not assigned
 ```
 var b;
 ```
-- 'null' represents an intentional absense of a value
+- 'null' represents an intentional absence of a value
 ```
 var c = null;
 ```
@@ -304,7 +304,7 @@ Because when you extend a built-in Javascript object, you change its behavior an
 
 #### Difference between document load event and document DOMContentLoaded event?
 
-The DOMContentLoaded event is triggered when all the HTML document has been completedly loaded. The document load event, on the other hand, is triggered when all the HTML document and its resources (images, styles, etc) have been fully loaded. Therefore, DOMContentLoaded event is triggered before the document load event.
+The DOMContentLoaded event is triggered when all the HTML document has been completely loaded. The document load event, on the other hand, is triggered when all the HTML document and its resources (images, styles, etc) have been fully loaded. Therefore, DOMContentLoaded event is triggered before the document load event.
 
 #### What is the difference between `==` and `===`?
 
@@ -409,7 +409,7 @@ First the string is split into an array of characters because the split() functi
 ```
 The value of window.foo is 'bar'.
 
-This expression first evaluates the left hand side of the || operator, which is a property retrival expression that produces an undefined value. Then it evaluates the right hand side, which is an assignment expression that assigns a string 'bar' to window object's foo property.
+This expression first evaluates the left hand side of the || operator, which is a property retrieval expression that produces an undefined value. Then it evaluates the right hand side, which is an assignment expression that assigns a string 'bar' to window object's foo property.
 
 #### What is the outcome of the two alerts below?
 ```
@@ -422,7 +422,7 @@ var foo = "Hello";
 
 alert(foo + bar);
 ```
-It will alert "Hello World", then throws a reference error because there is no bar varialbe defined in the global scope.
+It will alert "Hello World", then throws a reference error because there is no bar variable defined in the global scope.
 
 #### What is the value of `foo.length`?
 ```
