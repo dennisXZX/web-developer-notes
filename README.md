@@ -245,6 +245,19 @@ The process of execution of AJAX looks something like the following:
 4. The response is handled by Javascript in the browser to perform appropriate actions.
 
 #### What are the advantages and disadvantages of using Ajax?
+
+Advantages: 
+
+1. User experience is much better as no full page reload is required.
+2. Save bandwidth because only part of the page is dynamically updated.
+
+Disadvantages:
+
+1. No browser history is registered for the new state, so it's impossible to use Back and Forward button to navigate between various states of the page.
+2. User cannot bookmark a specific state of the web page.
+3. Data loaded through AJAX won't be indexed by search engines.
+4. The page breaks with Javascript disabled.
+
 #### Explain Cross-Origin Resource Sharing (CORS)
 
 CORS is a mechanism that allows you to work around the same-orign policy implemented by browsers. By enabling CORS on your server, you sepcify what other servers can have access to your resources. Therefore, your server would respond to requests with an Access-Control-Allow-Origin header to let the browser know if the requested resource is accessible to those origins.
