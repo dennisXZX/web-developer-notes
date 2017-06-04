@@ -328,8 +328,15 @@ The equality operator == will do a type conversion before comparing the two valu
 The same-origin policy restricts how a script loaded from one origin can interact with a resource from another origin. Two pages have the same origin if the protocol, port (if one is specified), and host are the same for both pages. To bypass the same-origin policy, we have to use [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS).
 
 #### Make this work:
-javascript
 duplicate([1,2,3,4,5]); // [1,2,3,4,5,1,2,3,4,5]
+
+Use the ES6 spread operator to achieve the duplication.
+
+```
+function duplicate(arr) {
+    return [...arr, ...arr];
+}
+```
 
 #### Why is it called a Ternary expression, what does the word "Ternary" indicate?
 
