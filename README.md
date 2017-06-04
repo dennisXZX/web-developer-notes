@@ -231,16 +231,29 @@ UA string is short for User Agent string, which is a string each browser sends a
 Luckily, you can use [Modernizr](https://modernizr.com/) library to do feature detection easily.
 
 #### Explain Ajax in as much detail as possible.
+
+Simply put, AJAX is the use of JavaScript to send and receive using HTTP without refreshing a web page. It is used to make the browsing experience smoother by dynamically updating the content on a web page.
+
+The process of execution of AJAX looks something like the following:
+
+1. A user interaction in a browser triggers an event, such as a button click. 
+
+2. An XMLHttpRequest object is created by Javascript and sent to a web server.
+
+3. The server sends back a response after processing the request from the browser.
+
+4. The response is handled by Javascript in the browser to perform appropriate actions.
+
 #### What are the advantages and disadvantages of using Ajax?
 #### Explain Cross-Origin Resource Sharing (CORS)
 
-CORS is a mechanism that allows you to work around the same-orign policy implemented by browsers. By enabling CORS on your server, you sepcify what other servers can have access to your resources. Therefore, your server would respond to requests with a Access-Control-Allow-Origin header to let the browser know if the requested resource is accessible to those origins.
+CORS is a mechanism that allows you to work around the same-orign policy implemented by browsers. By enabling CORS on your server, you sepcify what other servers can have access to your resources. Therefore, your server would respond to requests with an Access-Control-Allow-Origin header to let the browser know if the requested resource is accessible to those origins.
 
 #### Explain how JSONP works
 
-JSONP stands for JSON with Padding, yet another poorly named term in the programming field. It is a technique to address the same domain policy implemented in the browser land, which relies on <script> tags to bypass the restriction.
+JSONP stands for JSON with Padding, yet another poorly named term in the programming field. It is a technique to address the same domain policy implemented in the browser land, which relies on `<script>` tags to bypass the restriction.
 
-Say inn a JSONP enabled server, you send a request http://www.example.net/sample.aspx?callback=mycallback to it, it then will return a result wrapped in the callback function you specified.
+Say in a JSONP enabled server, you send a request http://www.example.net/sample.aspx?callback=mycallback to it, it will then return a result wrapped in the callback function you specified.
 
 ```
 mycallback({ foo: "happy coder" });
