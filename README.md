@@ -324,11 +324,17 @@ The DOMContentLoaded event is triggered when all the HTML document has been comp
 The equality operator == will do a type conversion before comparing the two values, while the strictly equality operator === will just compare two values without doing any type conversion. It is highly recommended to use === in development to minimize any risks of unwanted type conversions.
 
 #### Explain the same-origin policy with regards to JavaScript.
+
+The same-origin policy restricts how a script loaded from one origin can interact with a resource from another origin. Two pages have the same origin if the protocol, port (if one is specified), and host are the same for both pages. To bypass the same-origin policy, we have to use [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS).
+
 #### Make this work:
 javascript
 duplicate([1,2,3,4,5]); // [1,2,3,4,5,1,2,3,4,5]
 
 #### Why is it called a Ternary expression, what does the word "Ternary" indicate?
+
+
+
 #### What is `"use strict";`? what are the advantages and disadvantages to using it?
 #### Create a for loop that iterates up to `100` while outputting **"fizz"** at multiples of `3`, **"buzz"** at multiples of `5` and **"fizzbuzz"** at multiples of `3` and `5`
 #### Why is it, in general, a good idea to leave the global scope of a website as-is and never touch it?
