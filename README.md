@@ -216,7 +216,19 @@ In no situation I find myself have a need for document.write().
 
 #### What's the difference between feature detection, feature inference, and using the UA string?
 
+Feature detection is a way of determining if a feature exists in certain browsers.
 
+```
+if (navigator.geolocation) {
+ 
+}
+```
+
+Feature inference is to assume whether a browser has certain features based on the testing results of another feature. This practice is always frowned upon as it attempts to use multiple features after validating the presence of only one feature. This might lead to unforeseen issues in the future.
+
+UA string is short for User Agent string, which is a string each browser sends and can be accessed via navigator.userAgent. This string contains information of the browser environment you are targeting.
+
+Luckily, you can use [Modernizr](https://modernizr.com/) library to do feature detection easily.
 
 #### Explain Ajax in as much detail as possible.
 #### What are the advantages and disadvantages of using Ajax?
