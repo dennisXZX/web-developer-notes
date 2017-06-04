@@ -340,9 +340,12 @@ function duplicate(arr) {
 
 #### Why is it called a Ternary expression, what does the word "Ternary" indicate?
 
-
+Ternary expression is just a shortcut for if statement. The name ternary indicates it needs three parameters.
 
 #### What is `"use strict";`? what are the advantages and disadvantages to using it?
+
+'use strict' is used to enable strict mode for Javascript. Basically it is used to elimiate some Javascript quirks. For example, in strict mode, the 'this' keyword in a function invocation refers to `undefined` instead of global window object. Also, the implicit `arguments` parameter in a function does not alias declared function parameters anymore.
+
 #### Create a for loop that iterates up to `100` while outputting **"fizz"** at multiples of `3`, **"buzz"** at multiples of `5` and **"fizzbuzz"** at multiples of `3` and `5`
 #### Why is it, in general, a good idea to leave the global scope of a website as-is and never touch it?
 #### Why would you use something like the `load` event? Does this event have disadvantages? Do you know any alternatives, and why would you use those?
