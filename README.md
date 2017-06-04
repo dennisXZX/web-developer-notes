@@ -347,7 +347,32 @@ Ternary expression is just a shortcut for if statement. The name ternary indicat
 'use strict' is used to enable strict mode for Javascript. Basically it is used to elimiate some Javascript quirks. For example, in strict mode, the 'this' keyword in a function invocation refers to `undefined` instead of global window object. Also, the implicit `arguments` parameter in a function does not alias declared function parameters anymore.
 
 #### Create a for loop that iterates up to `100` while outputting **"fizz"** at multiples of `3`, **"buzz"** at multiples of `5` and **"fizzbuzz"** at multiples of `3` and `5`
+
+```
+function fizzbuzz() {
+    for (let i=1; i<100; i++) {
+        if (i % 3 && i % 5 == 0) {
+            console.log(i + ': fizzbuzz');            
+        } else {
+            if (i % 3 == 0) {
+                console.log(i + ': fizz');
+            }
+            if (i % 5 == 0) {
+                console.log(i + ': buzz');
+            }
+        }
+    }
+}
+```
+
 #### Why is it, in general, a good idea to leave the global scope of a website as-is and never touch it?
+
+1. Hard to maintain if you put code in the global scope.
+2. Any function can change a global variable at any point in the program.
+3. Namespace clashes may happen in the global scope.
+
+So it is a best pratice to keep the global scope as clean as you can.
+
 #### Why would you use something like the `load` event? Does this event have disadvantages? Do you know any alternatives, and why would you use those?
 #### Explain what a single page app is and how to make one SEO-friendly.
 #### What is the extent of your experience with Promises and/or their polyfills?
@@ -393,9 +418,9 @@ Ternary expression is just a shortcut for if statement. The name ternary indicat
 
 ### Database
 
-### Relational
+#### Relational
 
-### NOSQL
+#### NOSQL
 
 ### Coding
 
