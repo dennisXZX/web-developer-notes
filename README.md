@@ -1,4 +1,4 @@
-These are the things you should know as a web developer.
+Notes to be a better web developer. Keep coding, keep smiling!
 
 ## Table of Contents
 
@@ -404,7 +404,7 @@ So it is a best pratice to keep the global scope as clean as you can.
 
 ### Relational
 
-### NOSQL
+### NoSQL
 
 ## Coding
 
