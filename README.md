@@ -29,7 +29,7 @@ Here are few important things that need to be considered in making a website acc
 
 ### CSS
 
-### How to create a drop caps effect?
+#### How to create a drop caps effect?
 
 The drop caps effect is achieved using the `:first-letter` pseudo class. Basically what you need to do is to select the first letter and make it huge and floated to the left.
 
@@ -46,9 +46,17 @@ p:first-child:first-letter {
 }
 ```
 
-### How to create a triangle?
+#### How to create a triangle?
 
-### How to create a parallax scrolling effect?
+The triangle effect is achieved by using the border property. Below is a series of steps to help you remember this trick.
+
+1. Image a box element with 4 thick borders.
+2. Notice how the borders meet each other at angles.
+3. Make the box element's height and width to zero, now only the four borders are visible.
+4. Make three of the borders transparent in color.
+5. Hooray, this is how a triangle is made in CSS!
+
+#### How to create a parallax scrolling effect?
 
 #### What is the difference between classes and IDs in CSS?
 
