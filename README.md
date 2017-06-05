@@ -29,6 +29,27 @@ Here are few important things that need to be considered in making a website acc
 
 ### CSS
 
+### How to create a drop caps effect?
+
+The drop caps effect is achieved using the `:first-letter` pseudo class. Basically what you need to do is to select the first letter and make it huge and floated to the left.
+
+```
+p:first-child:first-letter {
+  color: #903;
+  float: left;
+  font-family: Georgia;
+  font-size: 75px;
+  line-height: 60px;
+  padding-top: 4px;
+  padding-right: 8px;
+  padding-left: 3px;
+}
+```
+
+### How to create a triangle?
+
+### How to create a parallax scrolling effect?
+
 #### What is the difference between classes and IDs in CSS?
 
 ID is unique while you can have multiple classes with the same name in a document.
