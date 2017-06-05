@@ -58,6 +58,27 @@ The triangle effect is achieved by using the border property. Below is a series 
 
 #### How to create a parallax scrolling effect?
 
+The key to parallax scrolling effect is to set a background image `background-attachment: fixed`.
+
+1. Create a background image container.
+2. Apply the following class to the container. 
+
+```
+.parallax {
+    /* The image used */
+    background-image: url("1.jpg");
+			
+    /* Set a specific height */
+    min-height: 500px; 
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+```
+
 #### What is the difference between classes and IDs in CSS?
 
 ID is unique while you can have multiple classes with the same name in a document.
