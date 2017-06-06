@@ -269,9 +269,9 @@ Luckily, you can use [Modernizr](https://modernizr.com/) library to do feature d
 
 #### Explain Ajax in as much detail as possible.
 
-Simply put, AJAX is the use of JavaScript to send and receive using HTTP without refreshing a web page. It is used to make the browsing experience smoother by dynamically updating the content on a web page.
+Simply put, Ajax is the use of JavaScript to send and receive data using HTTP without refreshing a web page. It is used to make the browsing experience smoother by dynamically updating the content on a web page.
 
-The process of execution of AJAX looks something like the following:
+The process of execution of Ajax looks something like the following:
 
 1. A user interaction in a browser triggers an event, such as a button click. 
 
@@ -290,10 +290,10 @@ Advantages:
 
 Disadvantages:
 
-1. No browser history is registered for the new state, so it's impossible to use Back and Forward button to navigate between various states of the page.
-2. User cannot bookmark a specific state of the web page.
-3. Data loaded through AJAX won't be indexed by search engines.
-4. The page breaks with Javascript disabled.
+1. No browser history is registered for the new state, so it's impossible to use Back and Forward button to navigate between various states of a page.
+2. User cannot bookmark a specific state of a web page.
+3. Data loaded through AJjax won't be indexed by search engines.
+4. The page breaks with Javascript is disabled.
 
 #### Explain Cross-Origin Resource Sharing (CORS)
 
@@ -303,16 +303,19 @@ CORS is a mechanism that allows you to work around the same-orign policy impleme
 
 JSONP stands for JSON with Padding, yet another poorly named term in the programming field. It is a technique to address the same domain policy implemented in the browser land, which relies on `<script>` tags to bypass the restriction.
 
-Say in a JSONP enabled server, you send a request http://www.example.net/sample.aspx?callback=mycallback to it, it will then return a result wrapped in the callback function you specified.
+Say you send a request http://www.example.net/sample.aspx?callback=mycallback to a JSONP enabled server, it will then return a result wrapped in the callback function you specified. Normally the word 'callback' is used as a string query to tell the server it is a JSONP request.
 
+Without JSONP, the returned result would be a run-of-the-mill JSON format.
+```
+{ foo: "happy coder" }
+```
+With JSONP, the returned result would be wrapped in a function.
 ```
 mycallback({ foo: "happy coder" });
 ```
-
-So, in your program, you can define the callback function to handle the response:
-
+So, in your program, you can define a callback function name 'mycallback' to handle the response:
 ```
-mycallback = (data) => {
+mycallback = function(data) {
   alert(data.foo);
 };
 ```
