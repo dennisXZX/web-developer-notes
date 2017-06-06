@@ -320,15 +320,15 @@ mycallback = function(data) {
 };
 ```
 
-#### Have you ever used JavaScript templating? If so, what libraries have you used?
+#### Have you ever used JavaScript templating?
   
-I know of Handlebars and used EJS before. EJS is a simple light-weight templating language that goes well with Express framework.
+I used EJS before. EJS is a simple light-weight templating language that goes well with Express framework. Lodash library also has provided a convenient template feature.
   
 #### Explain "hoisting".
 
-To put it simply, when you declare a variable or a function, it will be hoisted (magically) to the top of the scope (global scope or function scope). So you can use the variable or call the function even before its declaration. 
+To put it simply, when you declare a variable or a function, it will be hoisted (magically) to the top of the scope (global scope or function scope). So you can use the variable or call the function even before its declaration. It is important to note that the hoisting applies only to function declaration, not function expression.
 
-But the above statement glosses over a lot of details. The 'hoisting' is actually caused by the way how Javascript engines works. Javascript code interpretation is performed in two phases. During the first phase, the interpreter processes variable and function declarations and put them in memory. This phrase is commonly known as 'hoisting'. In phase two, Javascript engine starts to execute the code.
+But the above statement glosses over a lot of details. The 'hoisting' is actually caused by the way how Javascript engines works. Javascript code interpretation is performed in two phases. During the first phase, the interpreter parses variable and function declarations and put them in memory. This phrase is commonly known as 'hoisting'. In phase two, Javascript engine starts to execute the code. Since variable and function declarations have already be placed in memory in the parsing phrase, that is why we can invoke them in our code before their declarations.
 
 #### Describe event bubbling (event propagation).
 
@@ -342,14 +342,14 @@ You can use `event.stopPropagation()` to stop the bubbling, but normally there i
 
 #### What's the difference between an "attribute" and a "property"?
 
-In Javascript, an object can has as many properties as you want. For example, the following object has two properties, name and age.
+In Javascript, an object can have as many properties as you want. For example, the following object has two properties, name and age.
 ```
 let obj = {
   name: 'Dennis',
   age: 34
 }
 ```
-Each property of an object has a few built-in attributes, such as `configurable`, `enumerable` and `writable`, etc. Most of the time you don't want to touch these attributes but in special occasions, you can alter these attributes by calling `Object.defineProperties()` method.
+Each property of an object has a few built-in attributes, such as `configurable`, `enumerable` and `writable`, etc. Most of the time you don't want to touch these attributes, but in special occasions, you can alter these attributes by calling `Object.defineProperties()` method.
 
 #### Why is extending built-in JavaScript objects not a good idea?
 
@@ -384,7 +384,7 @@ Ternary expression is just a shortcut for if statement. The name ternary indicat
 
 #### What is `"use strict";`? what are the advantages and disadvantages to using it?
 
-'use strict' is used to enable strict mode for Javascript. Basically it is used to elimiate some Javascript quirks. For example, in strict mode, the 'this' keyword in a function invocation refers to `undefined` instead of global window object. Also, the implicit `arguments` parameter in a function does not alias declared function parameters anymore.
+'use strict' is used to enable strict mode for Javascript. Basically it is used to elimiate some Javascript quirks. For example, in strict mode, the 'this' keyword in a function invocation refers to `undefined` instead of a global `window` object. Also, the implicit `arguments` parameter in a function does not alias declared function parameters anymore.
 
 #### Create a for loop that iterates up to `100` while outputting **"fizz"** at multiples of `3`, **"buzz"** at multiples of `5` and **"fizzbuzz"** at multiples of `3` and `5`
 
@@ -466,7 +466,7 @@ First the string is split into an array of characters because the split() functi
 ```
 The value of window.foo is 'bar'.
 
-This expression first evaluates the left hand side of the || operator, which is a property retrieval expression that produces an undefined value. Then it evaluates the right hand side, which is an assignment expression that assigns a string 'bar' to window object's foo property.
+This expression first evaluates the left hand side of the || operator, which is a property retrieval expression that produces an `undefined` value. Then it evaluates the right hand side, which is an assignment expression that assigns a string 'bar' to window object's foo property.
 
 #### What is the outcome of the two alerts below?
 ```
