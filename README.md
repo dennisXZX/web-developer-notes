@@ -27,6 +27,21 @@ Here are few important things that need to be considered in making a website acc
 - Ensure that all content can be accessed by keyboard.
 - Use ARIA roles to enhance the semantics of your website.
 
+#### What is microformats?
+
+Microformats is a way to extend HTML markup by introducing some standardized class names for information they contain. Below is a hCard 
+
+```
+<p class="h-card">
+  <img class="u-photo" src="http://example.org/photo.png" alt="" />
+  <a class="p-name u-url" href="http://example.org">Joe Bloggs</a>
+  <a class="u-email" href="mailto:joebloggs@example.com">joebloggs@example.com</a>, 
+  <span class="p-street-address">17 Austerstræti</span>
+  <span class="p-locality">Reykjavík</span>
+  <span class="p-country-name">Iceland</span>
+</p>
+```
+
 ## CSS
 
 #### How to create a drop caps effect?
@@ -52,8 +67,8 @@ The triangle effect is achieved by using the border property. Below is a series 
 
 1. Image a box element with 4 thick borders.
 2. Notice how the borders meet each other at angles.
-3. Make the box element's height and width to zero, now only the four borders are visible.
-4. Make three of the borders transparent in color.
+3. Make the box element's height and width to zero, so only the four borders are visible now.
+4. Make three of the borders transparent in color, so only one border in the shape of a triangle left.
 5. Hooray, this is how a triangle is made in CSS!
 
 #### How to create a parallax scrolling effect?
@@ -81,7 +96,7 @@ The key to parallax scrolling effect is to set a background image `background-at
 
 #### What is the difference between classes and IDs in CSS?
 
-ID is unique while you can have multiple classes with the same name in a document.
+Most of us know that ID is unique while you can have multiple classes with the same name in a document. But there is a special feature for ID, which can act as an anchor. If you have a URL like dennisxiao.com#github, the browser will attempt to reach the section with an ID of 'github'.
 
 #### What's the difference between "resetting" and "normalizing" CSS? Which would you choose, and why?
 
@@ -109,7 +124,7 @@ z-index property specifies the z-order of a positioned element. When elements ov
 
 ‘this’ is a Javascript keyword. The value of ‘this’ varies depending on how a function is invoked. Mainly there are four different patterns.
 
-- when invoked as a function, ‘this’ refers to the window object. 
+- when invoked as a function, ‘this’ refers to the window object in non-strict mode, or `undefined` in strict mode. 
 - when invoked as a method, ‘this’ refers to the object that calls the method.
 - when invoked as a constructor function, ‘this’ refers to the object instance created by the constructor.
 - when invoked by using call() and apply() method, ‘this’ refers to the object passed in as the first parameter.
@@ -128,19 +143,20 @@ The concept behind this fancy term is actually quite simple. Event delegation si
 
 The value of 'this' is determined by how a function is called.
 
-There are usually four ways of calling a function.
+There are usually four ways of calling a function in Javascript.
 
-1. When called as a function, 'this' refers to the global object, which is the window object in a browser environment,
-2. When called as a method, 'this' refers to the object the object that invokes the method.
-3. When called as a constructor function, 'this' refers to the instance it creates.
+1. When called as a function, 'this' refers to the global object, which is the window object in a browser environment (non-strict mode), or `undefined` (strict mode).
+2. When called as a method, 'this' refers to the object that invokes the method.
+3. When called as a constructor function, 'this' refers to the instance created by the constructor function.
 4. When called via call() or apply(), 'this' refers to the first parameter passed into those functions.
 
 In ES6, an arrow function does not create its own context, so 'this' inherits the function context from the context in which it was created.
 
-Try to understand the following example.
+Take a look at this example to understand how arrow function affects the value of 'this'.
 
 ```
 function Ninja() {
+  // the value of 'this' is defined when a new Ninja object is created 
   this.whoAmI = () => this;
 }
 
@@ -168,11 +184,11 @@ For detailed explanation about Javascript inheritance, I have previously written
 
 #### What do you think of AMD vs CommonJS?
 
-Both AMD and CommonJS are specifications on how modules and their dependencies should be declared in Javascript applications. AMD is better suited for client side while CommonJS is designed mainly for server side.
+Both AMD and CommonJS are specifications on how modules and their dependencies should be declared in Javascript applications. AMD loads modules asynchronously while CommonJS works synchronously.
 
 #### Explain why the following doesn't work as an IIFE: `function foo(){ }();`.
 
-Because it will be treated as a function declaration instead of a function expression. To make this IIFE works, you need to wrap the function with a bracket.
+Because it will be treated as a function declaration instead of a function expression. Any statement begins with a 'function' keyword will be treated by the Javascript parser as a function declaration. To make this IIFE works, you need to wrap the function with a bracket.
 
 ```  
 (function foo(){})() or (function foo(){}())
@@ -193,7 +209,7 @@ var b;
 var c = null;
 ```
 
-You can use strict equality comparison '===' to check the above states.
+You can use strict equality comparison operator '===' to check the above states.
 
 ```
 if (value === undefined) || (value === null)
@@ -203,11 +219,11 @@ if (value === undefined) || (value === null)
 
 Closure is when a function can remember and access its lexical scope even when it's invoked outside its lexical scope.
 
-Closure can be used to protect private variables or internal functions, for example, it can be used in pattern like module.
+Closure is everywhere. It can be used to protect private variables or internal functions, for example, it can be used in pattern like module. Also, when you are using a callback function, chances are you have already run into closure.
 
 #### What's a typical use case for anonymous functions?
 
-Anonymous function can be used in callback function, as it is called by a function instead of by you, so it can go without a function name. Another typical usage of anonymous function is Inmediately Invoked Function Expression, as it is invoked the moment defined, so a function name is not necessary. 
+Anonymous function can be used in callback function, as it is called by a function instead of by you, so it can go without a function name. Another typical usage of anonymous function is Inmediately Invoked Function Expression (IIFE), as it is invoked the moment defined, so a function name is not necessary. 
 
 #### How do you organize your code? (module pattern, classical inheritance?)
 
@@ -220,20 +236,20 @@ Host objects are the objects given to you by the environment. Javascript can run
 #### Difference between: `function Person(){}`, `var person = Person()`, and `var person = new Person()`?
 
 - function Person(){} declares a constructor function.
-- var person = Person() declares a person variable which holds the return value of Person().
+- var person = Person() declares a person variable which holds the value returned from calling Person().
 - var person = new Person() declares a person variable which holds an instance of the Person object.
 
 #### What's the difference between `.call` and `.apply`?
 
-Both call() and apply() can be used to alter the 'this' context of a function. The difference between them is the parameters they accept. call() accepts parameters one by one explicitly, while apply() accepts an array as its parameter.
+Both call() and apply() can be used to alter the 'this' context of a function. The difference between them is how they accept parameters. call() accepts parameters one by one explicitly, while apply() accepts an array as its parameter.
 
 #### Explain `Function.prototype.bind`.
 
-Function.prototype.bind is a function defined in the prototype object of Function constructor, which means all instances of Function can access to bind via prototypal inheritance. The bind function accepts a context as a parameter and returns a function that binds the context to its this keyword.
+Function.prototype.bind is a function defined in the prototype object of Function constructor, which means all instances of Function can access to bind() via prototypal inheritance. The bind function accepts a context as a parameter and returns a function that binds the context to its 'this' keyword. The 'this' context cannot be changed after the binding.
 
 #### When would you use `document.write()`?
 
-In no situation I find myself have a need for document.write().
+In no situation I find myself have a need for document.write(). It was used in the past to inject third party script into a web page, but this approach has been frowned upon due to the performance issue caused.
 
 #### What's the difference between feature detection, feature inference, and using the UA string?
 
@@ -241,11 +257,11 @@ Feature detection is a way of determining if a feature exists in certain browser
 
 ```
 if (navigator.geolocation) {
- 
+  // do something with geolocation
 }
 ```
 
-Feature inference is to assume whether a browser has certain features based on the testing results of another feature. This practice is always frowned upon as it attempts to use multiple features after validating the presence of only one feature. This might lead to unforeseen issues in the future.
+Feature inference is to assume whether a browser has certain features based on the testing results of another feature. This practice is always frowned upon as it attempts to use multiple features after validating the presence of only one. This might lead to unforeseen issues in the future.
 
 UA string is short for User Agent string, which is a string each browser sends and can be accessed via navigator.userAgent. This string contains information of the browser environment you are targeting.
 
