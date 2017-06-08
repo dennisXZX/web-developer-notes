@@ -35,3 +35,9 @@ echo "x" <=> "x"; // outputs 0
 echo "x" <=> "y"; // outputs -1
 echo "y" <=> "x"; // outputs 1
 ```
+One common scenario is to use `<=>` in a callback function in sort() to simplify the code.
+```
+sort($friends, function($a, $b) {
+  return $a['lastName'] <=> $b['lastName'];
+}
+```
