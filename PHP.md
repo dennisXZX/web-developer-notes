@@ -41,3 +41,13 @@ sort($friends, function($a, $b) {
   return $a['lastName'] <=> $b['lastName'];
 }
 ```
+
+#### What's the difference between include() and require()?
+
+These two functions can be used to include files on the server.
+
+- include() attempts to continue processing even if file is missing
+- require() stops processing if the external file is not available
+- include_once() and require_once() prevent the file from beling included more than once
+
+
