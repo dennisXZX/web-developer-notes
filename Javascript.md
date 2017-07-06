@@ -1,5 +1,21 @@
 ## Javascript
 
+#### How to access a global object in all environments?
+
+By returning `this` inside a function, `this` should always point to the global object.
+```
+const global = (function() {
+  return this;
+})();
+```
+
+#### How to declare variables in single var/let/const pattern?
+```
+let a = 1,
+    b = 2,
+    sum = a + b
+```
+
 #### In JavaScript, what's the difference between this, $(this) and $this?
 
 ‘this’ is a Javascript keyword. The value of ‘this’ varies depending on how a function is invoked. Mainly there are four different patterns.
