@@ -1,9 +1,27 @@
 ## Coding
 
+#### What is the output of this for loop?
+```
+let i, 
+		myarray = [1, 2, 3];
+
+for(i = myarray.length; i--;) {
+	console.log(myarray[i])
+}
+```
+The output is 3, 2, 1. This for loop may seems weird at first glance. Let's dig a bit deeper into the structure of a for loop. A for loop consists of 4 parts, where initialExpression, condition and incrementExpression are optional.
+
+for ([initialExpression]; [condition]; [incrementExpression])
+  statement
+
+So the above for loop omits the incrementExpression and uses condition to achieve the decrement. The variable i is 3 initially but when it enters the for loop the first time it becomes 2. So the first output value is actually myarray[2], which is 3.
+
+It is not recommended to use this for loop structure to achieve micro performance optimization as it is not easily recognized, unless in performance-critical operations.
+
 #### What is the value of `foo`?
-
+```
 var foo = 10 + '20';
-
+```
 foo is a string with a value of '1020'. 
 
 This is because when you try to concatenate a number with a string, the number will be automatically converted into a string before concatenation.
