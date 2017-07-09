@@ -1,5 +1,17 @@
 ## Javascript
 
+#### How to check if a value is an array before ECMAScript 5?
+
+Array.isArray() is introduced in ECMAScript 5 to determine if a value is an array. Before that, we have to rely on the method of `toString()` to find out the answer.
+
+```
+if (typeof Array.isArray === "undefined") {
+  Array.isArray = function(arg) {
+    return Object.prototype.toString.call(arg) === "[object Array]";
+  };
+}
+```
+
 #### How to enforce a function is always called as a constructor?
 
 The following self-invoking constructor pattern can ensure a function is always called as a constructor.
