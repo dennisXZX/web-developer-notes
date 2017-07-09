@@ -1,5 +1,11 @@
 ## Javascript
 
+#### What happen under the hood when you invoke a constructor function with a 'new' keyword?
+
+- An empty object is created and referenced by `this` variable, which inherits the prototype object of the function.
+- Properties and methods are added to the empty object.
+- The newly created object is returned at the end implicitly (if no other object is return explicitly).
+
 #### How to access a global object in all environments?
 
 By returning `this` inside a function, `this` should always point to the global object.
