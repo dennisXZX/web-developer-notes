@@ -1,5 +1,22 @@
 ## Javascript
 
+#### How to enforce a function is always called as a constructor?
+
+The following self-invoking constructor pattern can ensure a function is always called as a constructor.
+```
+function Person() {
+  // check whether this is an instance of your constructor
+  if (!(this instanceof Person)) {
+    return new Person();
+  }
+  this.name = "Dennis";
+}
+
+Person.prototype.sayName = function() {
+  return this.name;
+}
+```
+
 #### What happen under the hood when you invoke a constructor function with a 'new' keyword?
 
 - An empty object is created and referenced by `this` variable, which inherits the prototype object of the function.
