@@ -1,5 +1,14 @@
 ## CSS
 
+#### How to style children elements when hover on a parent?
+
+This can achieve by using the `:hover` selector.
+```
+.parent-element:hover .child-element {
+  color: #3ec7de;
+}
+```
+
 #### How to create a drop caps effect?
 
 The drop caps effect is achieved using the `:first-letter` pseudo class. Basically what you need to do is to select the first letter and make it huge and floated to the left.
