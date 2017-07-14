@@ -1,9 +1,23 @@
 ## Coding
 
+#### Convert an array into an object
+
+```
+// Convert the following array into an object with the given format
+let arr = [1, 1, 1, 2, 2, 3, 3];
+
+let obj = {
+  {"1": 3},
+  {"2": 2},
+  {"3": 2}
+}
+```
+
+
 #### What is the output of this for loop?
 ```
 let i, 
-		myarray = [1, 2, 3];
+    myarray = [1, 2, 3];
 
 for(i = myarray.length; i--;) {
 	console.log(myarray[i])
