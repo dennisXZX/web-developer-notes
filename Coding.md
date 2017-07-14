@@ -1,18 +1,41 @@
 ## Coding
 
-#### Convert an array into an object
+#### Convert arr to newArr
 
 ```
-// Convert the following array into an object with the given format
+// original format
 let arr = [1, 1, 1, 2, 2, 3, 3];
 
-let obj = {
+// target format
+let newArr = [
   {"1": 3},
   {"2": 2},
   {"3": 2}
-}
+]
 ```
 
+Solution 1:
+
+```
+// reduce to an obj { '1': 3, '2': 2, '3': 2 }
+let obj = arr.reduce((acc, cur) => {
+	if (!acc[cur]) {
+		acc[cur] = 1;
+	} else {
+		acc[cur] += 1;
+	}
+	return acc;
+}, {});
+
+let newArr = [];
+
+// loop through obj and create a new object for each key/value pair and push it to a new array
+for (let key in obj) {
+	let newObj = {};
+	newObj[key] = obj[key];
+	newArr.push(newObj);
+}
+```
 
 #### What is the output of this for loop?
 ```
