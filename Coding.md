@@ -29,7 +29,7 @@ let obj = arr.reduce((acc, cur) => {
 
 let newArr = [];
 
-// loop through obj and create a new object for each key/value pair and push it to a new array
+// loop through obj and create a new object for each key/value pair and push it to newArr
 for (let key in obj) {
 	let newObj = {};
 	newObj[key] = obj[key];
