@@ -1,5 +1,12 @@
 ## Javascript
 
+#### What's the difference between for-in and for-of operator? What are the benefits of using for-of over forEach()?
+
+The for-in operator is used to iterate over keys of objects.
+The for-of operator is used to iterate over values of arrays.
+
+The benefits of for-of over forEach() is that we can use `break`, `continue`, and `return` in the loop while we are not allowed to do that in a forEach() call. All in all, the ES6 for-of operator introduces more flexibility when iterating over an array.
+
 #### How to check if a value is an array before ECMAScript 5?
 
 Array.isArray() is introduced in ECMAScript 5 to determine if a value is an array. Before that, we have to rely on the method of `toString()` to find out the answer.
