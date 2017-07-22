@@ -326,20 +326,43 @@ Ternary expression is just a shortcut for if statement. The name ternary indicat
 
 #### Create a for loop that iterates up to `100` while outputting **"fizz"** at multiples of `3`, **"buzz"** at multiples of `5` and **"fizzbuzz"** at multiples of `3` and `5`
 
+Non-function solution
 ```
 function fizzbuzz() {
-    for (let i=1; i<100; i++) {
-        if (i % 3 && i % 5 == 0) {
-            console.log(i + ': fizzbuzz');            
-        } else {
-            if (i % 3 == 0) {
-                console.log(i + ': fizz');
-            }
-            if (i % 5 == 0) {
-                console.log(i + ': buzz');
-            }
-        }
+  for (let i=0; i< 101; i++) {
+    const isFizz = i % 3 === 0,
+          isBuzz = i % 5 === 0;
+
+    let result = '';
+
+    if (isFizz === 0 && isBuzz === 0) {
+      result = 'FizzBuzz';
+    } else if (isFizz === 0) {
+      result = 'Fizz';
+    } else if (isBuzz === 0) {
+      result = 'Buzz';
+    } else {
+      result = i;
     }
+
+    console.log(result);
+  }
+}
+```
+
+Functional solution
+```
+for (let i=0; i< 101; i++) {
+	const isFizz = i % 3 === 0,
+				isBuzz = i % 5 === 0;
+
+	const result = 
+		isFizz && isBuzz ? 'FizzBuzz'
+			: isFizz ? 'Fizz'
+				: isBuzz ? 'Fuzz'
+					: i;
+
+	console.log(result);
 }
 ```
 
