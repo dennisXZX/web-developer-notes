@@ -1,13 +1,30 @@
 ## Javascript
 
-#### What's the difference between for-in and for-of operator? What are the benefits of using for-of over forEach()?
+#### How to take advantage of function properties?
+
+Function properties is usually used in memorization pattern, caching the results of a function.
+
+```
+let myFunc = function(param) {
+  // if there is no cache in the function, calculate the result
+  if (!myFunc[param]) {
+    let result = 0;
+    // expensive operation
+    // result = operation result
+    myFunc[param] = result;
+  }
+  return myFunc[param];
+};
+```
+
+#### What are the differences between for-in and for-of operator. What are the benefits of using for-of over forEach?
 
 The for-in operator is used to iterate over keys of objects.
 The for-of operator is used to iterate over values of arrays or other iterables (Map, Set, String or DOM collection).
 
-The benefits of for-of over forEach() is that we can use `break`, `continue`, and `return` in the loop while we are not allowed to do that in a forEach() call. All in all, the ES6 for-of operator introduces more flexibility when iterating over an array.
+The benefits of for-of over forEach() is that we can use `break`, `continue`, and `return` in the loop which are not allowed to do in a forEach() call. All in all, the ES6 for-of operator introduces more flexibility when iterating over an array.
 
-#### How to check if a value is an array before ECMAScript 5?
+#### How to check if a value is an array before ECMAScript 5
 
 Array.isArray() is introduced in ECMAScript 5 to determine if a value is an array. Before that, we have to rely on the method of `toString()` to find out the answer.
 
