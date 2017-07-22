@@ -1,6 +1,26 @@
 ## Javascript
 
-#### How to take advantage of function properties?
+#### How to clean up the signature of a function that accepts a large number of parameters?
+
+Sometimes we need to pass a large number of parameters to a function, which is inconvenient and error-prone.
+```
+function addPerson(first, last, dob, gender, address) {}
+```
+We can simplify that by introducing a configuraton object.
+```
+// wrap all parameters into a configuration object
+function addPerson(config) {}
+
+const config = {
+  username: 'dennisboys',
+  first: 'dennis',
+  last: 'xiao'
+}
+
+addPerson(config);
+```
+
+#### How to take advantage of function properties to cache computed results?
 
 Function properties is usually used in memorization pattern, caching the results of a function.
 
