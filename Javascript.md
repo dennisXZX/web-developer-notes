@@ -329,7 +329,7 @@ Use the ES6 spread operator to achieve the duplication.
 
 ```
 function duplicate(arr) {
-    return [...arr, ...arr];
+  return [...arr, ...arr];
 }
 ```
 
@@ -345,39 +345,39 @@ Ternary expression is just a shortcut for if statement. The name ternary indicat
 
 Non-function solution
 ```
- for (let i=0; i< 101; i++) {
-    const isFizz = i % 3 === 0,
-          isBuzz = i % 5 === 0;
+for (let i=0; i< 101; i++) {
+  const isFizz = i % 3 === 0,
+        isBuzz = i % 5 === 0;
 
-    let result = '';
+  let result = '';
 
-    if (isFizz === 0 && isBuzz === 0) {
-      result = 'FizzBuzz';
-    } else if (isFizz === 0) {
-      result = 'Fizz';
-    } else if (isBuzz === 0) {
-      result = 'Buzz';
-    } else {
-      result = i;
-    }
+  if (isFizz === 0 && isBuzz === 0) {
+    result = 'FizzBuzz';
+  } else if (isFizz === 0) {
+    result = 'Fizz';
+  } else if (isBuzz === 0) {
+    result = 'Buzz';
+  } else {
+    result = i;
+  }
 
-    console.log(result);
- }
+  console.log(result);
+}
 ```
 
 Functional solution using the ternary operator
 ```
 for (let i=0; i< 101; i++) {
-	const isFizz = i % 3 === 0,
-	      isBuzz = i % 5 === 0;
+  const isFizz = i % 3 === 0,
+        isBuzz = i % 5 === 0;
 
-	const result = 
-		isFizz && isBuzz ? 'FizzBuzz'
-			: isFizz ? 'Fizz'
-				: isBuzz ? 'Fuzz'
-					: i;
+  const result = 
+    isFizz && isBuzz ? 'FizzBuzz'
+      : isFizz ? 'Fizz'
+        : isBuzz ? 'Fuzz'
+          : i;
 
-	console.log(result);
+  console.log(result);
 }
 ```
 
