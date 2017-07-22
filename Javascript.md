@@ -328,8 +328,7 @@ Ternary expression is just a shortcut for if statement. The name ternary indicat
 
 Non-function solution
 ```
-function fizzbuzz() {
-  for (let i=0; i< 101; i++) {
+ for (let i=0; i< 101; i++) {
     const isFizz = i % 3 === 0,
           isBuzz = i % 5 === 0;
 
@@ -346,15 +345,14 @@ function fizzbuzz() {
     }
 
     console.log(result);
-  }
-}
+ }
 ```
 
 Functional solution
 ```
 for (let i=0; i< 101; i++) {
 	const isFizz = i % 3 === 0,
-				isBuzz = i % 5 === 0;
+	      isBuzz = i % 5 === 0;
 
 	const result = 
 		isFizz && isBuzz ? 'FizzBuzz'
