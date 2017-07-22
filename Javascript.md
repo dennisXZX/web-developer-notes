@@ -348,7 +348,7 @@ Non-function solution
  }
 ```
 
-Functional solution
+Functional solution using the ternary operator
 ```
 for (let i=0; i< 101; i++) {
 	const isFizz = i % 3 === 0,
