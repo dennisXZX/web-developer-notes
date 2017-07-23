@@ -69,15 +69,26 @@ This is because when you try to concatenate a number with a string, the number w
 add(2, 5); // 7
 add(2)(5); // 7
 ```
+Solution 1
 ```
-// answer
 function add(num1, num2) {
-  if(arguments.length === 1) {
-    return function(num2) {
-      return num1 + num2;
-    }
+  if (arguments.length === 1) {
+    return function(newNum2) {
+      return num1 + newNum2;
+    };
   }
   return num1 + num2;
+}
+```
+Solution 2
+```
+function add(x, y) {
+	if (typeof y === 'undefined') {
+		return function (newy) {
+			return x + newy;
+		};
+	}
+	return x + y;
 }
 ```
 #### What value is returned from the following statement?
