@@ -82,13 +82,13 @@ function add(num1, num2) {
 ```
 Solution 2
 ```
-function add(x, y) {
-	if (typeof y === 'undefined') {
-		return function (newy) {
-			return x + newy;
+function add(num1, num2) {
+	if (typeof num2 === 'undefined') {
+		return function (newNum2) {
+			return x + newNum2;
 		};
 	}
-	return x + y;
+	return num1 + num2;
 }
 ```
 #### What value is returned from the following statement?
