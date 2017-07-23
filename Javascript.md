@@ -102,7 +102,7 @@ let a = 1,
 - when invoked as a function, ‘this’ refers to the window object in non-strict mode, or `undefined` in strict mode. 
 - when invoked as a method, ‘this’ refers to the object that calls the method.
 - when invoked as a constructor function, ‘this’ refers to the object instance created by the constructor.
-- when invoked by using call() and apply() method, ‘this’ refers to the object passed in as the first parameter.
+- when invoked by using call() and apply() method, ‘this’ refers to the object passed in as the first parameter. If the first parameter is `null`, 'this' would point to the global object.
 
 In ES6, an arrow function does not create its own context, so 'this' has its original context from the enclosing scope.
 
@@ -123,7 +123,7 @@ There are usually four ways of calling a function in Javascript.
 1. When called as a function, 'this' refers to the global object, which is the window object in a browser environment (non-strict mode), or `undefined` (strict mode).
 2. When called as a method, 'this' refers to the object that invokes the method.
 3. When called as a constructor function, 'this' refers to the instance created by the constructor function.
-4. When called via call() or apply(), 'this' refers to the first parameter passed into those functions.
+4. When called via call() or apply(), 'this' refers to the first parameter passed into those functions. If the first parameter is `null`, then 'this' would point to the global object.
 
 In ES6, an arrow function does not create its own context, so 'this' inherits the function context from the context in which it was created.
 
