@@ -1,5 +1,15 @@
 ## CSS
 
+#### How to add animation to box-shadow?
+
+.card {
+    box-shadow: 0 0 2px 0 rgba(119, 119, 119, 0.3);
+    transition: box-shadow 0.5s; // transition property is the key for animation
+}
+.card:hover {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
 #### How to style children elements when hover on a parent?
 
 This can achieve by using the `:hover` selector.
