@@ -1,5 +1,31 @@
 ## Javascript
 
+#### How to enforce a maximum arity (number of passed parameters) for a function?
+
+The ES6 rest operator is a handy way to handle parameters, which completely replaces the use of `arguments` array-like object.
+
+Solution 1
+```
+function max(...values) {
+    if (values.length > 3) {
+        throw Error('max 3 parameters')
+    }
+    
+    let [a, b, c] = values;
+    return Math.max(a, b, c);
+}
+```
+
+Solution 2
+```
+function max(a, b, c, ...shouldBeEmpty) {
+    if (shouldBeEmpty.length > 0)
+        throw Error('max 3 parameters allowed!');
+ 
+    return Math.max(a, b, c);
+};
+```
+
 #### How to clean up the signature of a function that accepts a large number of parameters?
 
 Sometimes we need to pass a large number of parameters to a function, which is inconvenient and error-prone.
