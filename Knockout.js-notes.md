@@ -1,4 +1,4 @@
-# Knockout.js-notes
+# Knockout.js
 
 ## Observables
 
