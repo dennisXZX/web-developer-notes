@@ -1,0 +1,99 @@
+# Knockout.js-notes
+
+## Observables
+
+Dynamically display the number of items.
+```
+There are <span data-bind="text: myItems().length"></span> items
+```
+
+Enable or disable a button according to the length of an array.
+```
+<button data-bind="enable: myItems().length < 5">Add</button>
+```
+
+The `ko.applyBindings` is used to bind view to view model. The second parameter is used to define which part of the document you want to search for data-bind attributes. This is useful when you want to bind multiple view models to the different regions of a page.
+```
+ko.applyBindings(myViewModel, document.getElementById('someElementId'));
+```
+
+Read an observale's value.
+```
+const myViewModel = function() {
+    this.personName = ko.observable('Bob');
+    this.personAge = ko.observable(123);
+};
+
+myViewModel.personName();
+```
+
+Write an observable's value.
+```
+myViewModel.personName('Dennis');
+// this method chain will write both personName and personAge observables
+myViewModel.personName('Mary').personAge(50);
+```
+
+Create an observable array.
+```
+const myViewModel = function(){
+  // itemToAdd is bound to an input in the view
+  this.itemToAdd = ko.observable("");
+  this.myObservableArray = ko.observableArray([
+    { name: "Bungle", type: "Bear" },
+    { name: "George", type: "Hippo" },
+    { name: "Zippy", type: "Unknown" }
+  ]);
+  this.addItem = () => {
+    this.myObservableArray.push(this.itemToAdd());
+  };
+};
+```
+The observable array has most of the built-in native array functions and a couple of more provided by Knockout.js.
+
+You can use pure computed observables to utilize the performance gain provided by Knockout.js. One thing to note is that ko.pureComputed() can only get observable values but not set them.
+```
+this.fullName = ko.pureComputed(() => {
+    return this.firstName() + " " + this.lastName();
+});
+```
+
+## Bindings
+
+#### Express if/else conditional statement in Knockout
+
+Console log inside a Knockout template.
+```
+<div data-bind="text: console.log(amount_option)"></div>
+```
+
+There is no if/else statement in Knockout, but we can achieve that with a trick.
+
+```
+<!-- ko ifnot: activityItem.shortDescription -->
+	<p data-bind="text: activityItem.name"></p>
+<!-- /ko -->
+<!-- ko if: activityItem.shortDescription -->
+	<p data-bind="text: activityItem.shortDescription"></p>
+<!-- /ko -->
+```
+
+The difference between `visible` binding and `if` binding is that `visible` binding use CSS to toggle the element's visiblity, while `if` physically adds or removes the markup in the DOM.
+
+The `css` binding adds or removes one or more named CSS classes to the associated DOM element.
+
+The `style` binding adds or removes one or more style values to the associated DOM element.
+
+The `attr` binding provides a generic way to set the value of any attribute for the associated DOM element.
+
+The difference between `textInput` and `value` binding is `textInput` provides immediate updates to the view model while `value` only updates your view model when user moves focus out of the text box. In addition, `textInput` provides better browser quirks handling.
+
+## Components
+
+Register a component so the view model can be accessed in the template.
+```
+ko.components.register('ei-accommodation-search-page', {
+	viewModel: AccommodationSearchPage,
+	template: Template
+});
+```
