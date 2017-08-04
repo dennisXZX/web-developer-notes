@@ -2,20 +2,17 @@
 
 ## Observables
 
-Dynamically display the number of items.
+#### Dynamically display the number of items.
 ```
 There are <span data-bind="text: myItems().length"></span> items
 ```
 
-Enable or disable a button according to the length of an array.
+#### Enable or disable a button according to the length of an array.
 ```
 <button data-bind="enable: myItems().length < 5">Add</button>
 ```
 
-The `ko.applyBindings` is used to bind view to view model. The second parameter is used to define which part of the document you want to search for data-bind attributes. This is useful when you want to bind multiple view models to the different regions of a page.
-```
-ko.applyBindings(myViewModel, document.getElementById('someElementId'));
-```
+#### Read and write an observable
 
 Read an observale's value.
 ```
@@ -59,6 +56,23 @@ this.fullName = ko.pureComputed(() => {
 ```
 
 ## Bindings
+
+#### Bind the view model to a specific part of DOM
+
+The `ko.applyBindings` is used to bind view to view model. The second parameter is used to define which part of the document you want to search for data-bind attributes. This is useful when you want to bind multiple view models to the different regions of a page.
+```
+ko.applyBindings(myViewModel, document.getElementById('someElementId'));
+```
+
+#### Binding context
+
+There are some useful binding context.
+
+- `$root` refers to the main view model object in the root context, usually the object that was passed to ko.applyBindings().
+
+- If you’re within the context of a particular component template, then `$component` refers to the viewmodel for that component.
+
+- `$parent` refers to the view model object in the immediate parent context. 
 
 #### Express if/else conditional statement in Knockout
 
