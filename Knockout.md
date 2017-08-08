@@ -55,6 +55,16 @@ this.fullName = ko.pureComputed(() => {
 });
 ```
 
+#### Subscribe to an observable to monitor changes
+
+The subscribe function accepts three parameters: `callback` is the function that is called whenever the notification happens, `target` (optional) defines the value of this in the callback function, and `event` (optional; default is "change") is the name of the event to receive notification for.
+
+```
+myViewModel.personName.subscribe((newValue) => {
+    alert("The person's new name is " + newValue);
+}, target, event);
+```
+
 ## Bindings
 
 #### Bind the view model to a specific part of DOM
