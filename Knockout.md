@@ -2,6 +2,15 @@
 
 ## Observables
 
+#### The right-most properties don't require ()
+
+```
+// people observable array is not the right-most property so it has to be called
+<div data-bind="text: people().length"></div>
+// people observable array is the right-most so no parentheses are required
+<div data-bind="foreach: people"></div>
+```
+
 #### Dynamically display the number of items.
 ```
 There are <span data-bind="text: myItems().length"></span> items
