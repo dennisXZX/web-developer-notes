@@ -2,21 +2,23 @@
 
 ## Observables
 
-#### The right-most properties don't require ()
+#### The right-most properties don't require () in HTML declarative data binding
 
 ```
 // people observable array is not the right-most property so it has to be called
 <div data-bind="text: people().length"></div>
+<div data-bind="text: address().city"></div>
+
 // people observable array is the right-most so no parentheses are required
 <div data-bind="foreach: people"></div>
 ```
 
-#### Dynamically display the number of items.
+#### Dynamically display the number of items
 ```
 There are <span data-bind="text: myItems().length"></span> items
 ```
 
-#### Enable or disable a button according to the length of an array.
+#### Enable or disable a button according to the length of an array
 ```
 <button data-bind="enable: myItems().length < 5">Add</button>
 ```
@@ -30,26 +32,29 @@ const myViewModel = function() {
     this.personAge = ko.observable(123);
 };
 
-myViewModel.personName();
+let name = myViewModel.personName();
 ```
 
 Write an observable's value.
 ```
 myViewModel.personName('Dennis');
+
 // this method chain will write both personName and personAge observables
 myViewModel.personName('Mary').personAge(50);
 ```
 
 Create an observable array.
 ```
-const myViewModel = function(){
+const myViewModel = function() {
   // itemToAdd is bound to an input in the view
   this.itemToAdd = ko.observable("");
+	
   this.myObservableArray = ko.observableArray([
     { name: "Bungle", type: "Bear" },
     { name: "George", type: "Hippo" },
     { name: "Zippy", type: "Unknown" }
   ]);
+	
   this.addItem = () => {
     this.myObservableArray.push(this.itemToAdd());
   };
