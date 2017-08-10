@@ -2,6 +2,16 @@
 
 ## Observables
 
+#### Observable array only tracks which objects are in the array, not their state
+
+```
+// notice the object in the observable array is just plain object, not observable. Therefore, any change to these objects will not be notified to the observable array. The observable array is notified when any object is added to it or gremoved from it.
+this.products = ko.observableArray([
+	{ model: 'Taylor', price: 134 },
+	{ model: 'King', price: 234 },	
+]);
+```
+
 #### The right-most properties don't require () in HTML declarative data binding
 
 ```
