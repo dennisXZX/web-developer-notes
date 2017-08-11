@@ -7,7 +7,7 @@ class Person {
   // declare a const variable
   const AVG_LIFE_SPAN = 79;
   
-	// declare public variables
+  // declare public variables
   public $firstName;
   public $lastName;
 
