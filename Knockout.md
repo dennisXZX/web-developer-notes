@@ -128,13 +128,53 @@ There is no if/else statement in Knockout, but we can achieve that with a trick.
 
 The difference between `visible` binding and `if` binding is that `visible` binding use CSS to toggle the element's visiblity, while `if` physically adds or removes the markup in the DOM.
 
+#### value binding
+
+There are a couple of `valueUpdate` properties that can be added to value binding to change how event is detected.
+
+```
+// most frequently used valueUpdate properties are 'keyup', 'keypress' and 'afterkeydown'
+<input type="text" data-bind="value: price, valueUpdate: 'afterkeydown'" />
+```
+
+The difference between `textInput` and `value` binding is `textInput` provides immediate updates to the view model while `value` only updates your view model when user moves focus out of the text box. In addition, `textInput` provides better browser quirks handling.
+
+#### css binding
 The `css` binding adds or removes one or more named CSS classes to the associated DOM element.
+
+#### style binding
 
 The `style` binding adds or removes one or more style values to the associated DOM element.
 
+#### attr binding
+
 The `attr` binding provides a generic way to set the value of any attribute for the associated DOM element.
 
-The difference between `textInput` and `value` binding is `textInput` provides immediate updates to the view model while `value` only updates your view model when user moves focus out of the text box. In addition, `textInput` provides better browser quirks handling.
+#### options binding
+
+The `options` binding controls what options should appear in a drop-down list. If the array provided to the options binding is an array of arbitrary JavaScript objects, then `optionsText` and `optionsValue` parameters are needed.
+
+- optionsCaption: the selected option by default
+- optionsText: specify which of the objects' properties that should be displayed as the text in the drop-down list
+- optionsValue: specify which of the objects’ properties should be used to set the value attribute
+- optionsAfterRender: a callback function that will run after the option elements are generated
+
+#### custom binding handler
+
+You can create custom binding handler in Knockout.js.
+
+```
+ko.bindingHandlers.fadeVisible = {
+	// runs the first time the binding is evaluated
+	init: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
+	
+	},
+	// run every time one of its observables changes after init
+	update: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
+	
+	}
+}
+```
 
 ## Components
 
