@@ -20,7 +20,7 @@
 This can be achieved by using the `:hover` selector.
 ```
 .parent-element:hover .child-element {
-  color: #3ec7de;
+	color: #3ec7de;
 }
 ```
 
@@ -30,14 +30,14 @@ The drop caps effect is achieved using the `:first-letter` pseudo class. Basical
 
 ```
 p:first-child:first-letter {
-  color: #903;
-  float: left;
-  font-family: Georgia;
-  font-size: 75px;
-  line-height: 60px;
-  padding-top: 4px;
-  padding-right: 8px;
-  padding-left: 3px;
+	color: #903;
+	float: left;
+	font-family: Georgia;
+	font-size: 75px;
+	line-height: 60px;
+	padding-top: 4px;
+	padding-right: 8px;
+	padding-left: 3px;
 }
 ```
 
