@@ -1,6 +1,6 @@
 # Knockout.js
 
-- [Observables](#observable)
+- [Observables](#observables)
 - [Bindings](#bindings)
 - [Components](#components)
 
