@@ -99,7 +99,7 @@ myViewModel.personName.subscribe((newValue) => {
 }, target, event);
 ```
 
-## [Bindings](#bindings)
+## Bindings
 
 #### Bind the view model to a specific part of DOM
 
