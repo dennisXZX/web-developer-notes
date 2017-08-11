@@ -1,5 +1,99 @@
 ## PHP
 
+#### PHP class
+
+```
+class Person {
+  // declare a const variable
+  const AVG_LIFE_SPAN = 79;
+  
+	// declare public variables
+  public $firstName;
+  public $lastName;
+
+	// declare a constructor, with two optional parameters
+	function __construct($firstName = "", $lastName = "") {
+		$this->firstName = $firstName;
+		$this->lastName = $lastName;
+	}
+
+	// declare a public method
+	public function getFirstName() {
+		return $this->firstName;
+	}
+
+	// declare a public method
+	public function setFirstName($newName) {
+		$this->firstName = $newName;
+	}
+}
+
+// create an Author class which inherits Person class
+class Author extends Person {
+	public $penName = "dennisboys";
+
+	public function getPenName() {
+		return $this->penName;
+	}
+}
+
+// create a Person instance
+$dennis = new Person("Dennis", "Xiao");
+
+// read the value
+echo $dennis->firstName;
+// write the value
+$dennis->firstName = "Den";
+
+// access constant variable through an instance
+echo $dennis::AVG_LIFE_SPAN;
+// access constant variable through a class 
+echo Person::AVG_LIFE_SPAN;
+
+// call setFirstName method
+$dennis->setFirstName("Zoe");
+// call getFirstName method
+echo $dennis->getFirstName();
+```
+
+#### PHP index array and associative array
+
+PHP array can contain values of different types.
+
+Index arrray
+```
+$authors = array("Dennis", 1, 1.2);
+$books = ["Dennis", "Zoe", "Ken"];
+
+print_r($authors)
+```
+
+Associative array
+```
+$authors = array(
+  "name" => "Dennis",
+  "age" => 32,
+  "sex" => "male"
+);
+```
+
+#### Use global variable inside a function
+
+```
+$authorName = "Dennis";
+
+function setAuthorName() {
+  // use the global keyword to indicate to use the global $authorName variable inside the function
+  global $authorName;
+  $authorName = "New Dennis";
+}
+
+setAuthorName();
+
+// output "New Dennis"
+echo $authorName;
+```
+
 #### What's the difference between single and double quote?
 
 Everything in sinlge quote will be treated as a string, while variables and escape sequences will be evaluated in double quote.
