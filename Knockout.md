@@ -9,7 +9,8 @@
 #### Observable array only tracks which objects are in the array, not their state
 
 ```
-// notice the object in the observable array is just plain object, not observable. Therefore, any change to these objects will not be notified to the observable array. The observable array is notified when any object is added to it or gremoved from it.
+// notice the object in the observable array is just plain objects, not observables. Therefore, any change to these objects will not be notified to the observable array. 
+// The observable array is only notified when any object is added or removed from it.
 this.products = ko.observableArray([
 	{ model: 'Taylor', price: 134 },
 	{ model: 'King', price: 234 },	
@@ -21,6 +22,7 @@ this.products = ko.observableArray([
 ```
 // people observable array is not the right-most property so it has to be called
 <div data-bind="text: people().length"></div>
+// address observable is not the right-most property so it has to be called
 <div data-bind="text: address().city"></div>
 
 // people observable array is the right-most so no parentheses are required
@@ -57,6 +59,8 @@ myViewModel.personName('Dennis');
 myViewModel.personName('Mary').personAge(50);
 ```
 
+#### ObservableArray
+
 Create an observable array.
 ```
 const myViewModel = function() {
@@ -76,6 +80,8 @@ const myViewModel = function() {
 ```
 The observable array has most of the built-in native array functions and a couple of more provided by Knockout.js.
 
+#### pureComputed function
+
 You can use pure computed observables to utilize the performance gain provided by Knockout.js. One thing to note is that ko.pureComputed() can only get observable values but not set them.
 ```
 this.fullName = ko.pureComputed(() => {
@@ -85,7 +91,7 @@ this.fullName = ko.pureComputed(() => {
 
 #### Subscribe to an observable to monitor changes
 
-The subscribe function accepts three parameters: `callback` is the function that is called whenever the notification happens, `target` (optional) defines the value of this in the callback function, and `event` (optional; default is "change") is the name of the event to receive notification for.
+The subscribe function accepts three parameters: `callback` is the function that is called whenever the notification happens, `target` (optional) defines the value of `this` in the callback function, and `event` (optional; default is "change") is the name of the event to receive notification for.
 
 ```
 myViewModel.personName.subscribe((newValue) => {
@@ -112,7 +118,7 @@ There are some useful binding context.
 
 - `$parent` refers to the view model object in the immediate parent context. 
 
-#### Express if/else conditional statement in Knockout
+#### Express if/else conditional statement in Knockout.js
 
 Console log inside a Knockout template.
 ```
