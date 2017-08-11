@@ -1,5 +1,9 @@
 # Knockout.js
 
+- [Observables](#observable)
+- [Bindings](#bindings)
+- [Components](#components)
+
 ## Observables
 
 #### Observable array only tracks which objects are in the array, not their state
@@ -89,7 +93,7 @@ myViewModel.personName.subscribe((newValue) => {
 }, target, event);
 ```
 
-## Bindings
+## [Bindings](#bindings)
 
 #### Bind the view model to a specific part of DOM
 
