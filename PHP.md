@@ -1,15 +1,44 @@
 ## PHP
 
+#### Multiple checkbox array
+
+In order to pass checkbox values to thisform.php, we need to pass the checkbox name as an array, so in PHP the checked values will be stored in `$_POST['checkboxvar']`.
+```
+<form method='post' id='userform' action='thisform.php'>
+	<div>
+	<input type='checkbox' name='checkboxvar[]' value='Option One'>1<br>
+	<input type='checkbox' name='checkboxvar[]' value='Option Two'>2<br>
+	<input type='checkbox' name='checkboxvar[]' value='Option Three'>3
+	</div>
+	<input type='submit' class='buttons'>
+</form>
+```
+
+#### How to print out $_GET and $_POST values nicely in a browser
+
+Use the `<pre>` HTML markup to format the output.
+```
+echo "<pre>"
+print_r($_GET);
+echo "</pre>"
+
+// read property from the $_GET
+echo $_GET['author'];
+```
+
 #### PHP class
 
 ```
 class Person {
-  // declare a const variable
-  const AVG_LIFE_SPAN = 79;
+	// declare a const variable
+	const AVG_LIFE_SPAN = 79;
   
-  // declare public variables
-  public $firstName;
-  public $lastName;
+	// declare public variables
+	public $firstName;
+	public $lastName;
+
+	// declare a public static variable
+	public static $fortune = 1000;
 
 	// declare a constructor, with two optional parameters
 	function __construct($firstName = "", $lastName = "") {
@@ -25,6 +54,11 @@ class Person {
 	// declare a public method
 	public function setFirstName($newName) {
 		$this->firstName = $newName;
+	}
+
+	// declare a static function
+	public static function getAuthorFortune() {
+		return self::$fortune;
 	}
 }
 
@@ -54,6 +88,9 @@ echo Person::AVG_LIFE_SPAN;
 $dennis->setFirstName("Zoe");
 // call getFirstName method
 echo $dennis->getFirstName();
+
+// call static getAuthorLastName() function
+echo Person::getAuthorFortune();
 ```
 
 #### PHP index array and associative array
