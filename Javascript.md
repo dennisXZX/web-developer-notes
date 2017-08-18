@@ -1,5 +1,11 @@
 ## Javascript
 
+#### What is a shim and a polyfill?
+
+A shim intercepts existing API calls and implements different behaviors in order to enhance backward compability.
+
+A polyfill is code that detects if a certain "expected" API is missing and manually implements it.
+
 #### How to enforce a maximum arity (number of passed parameters) for a function?
 
 The ES6 rest operator is a handy way to handle parameters, which completely replaces the use of `arguments` array-like object.
