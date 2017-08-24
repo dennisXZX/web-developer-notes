@@ -11,7 +11,7 @@ var forEach = require('lodash.foreach');
 var forEach = require('lodash/foreach');
 ```
 
-#### Stop iterating in a forEach method once a result is found
+#### Stop iterating in a forEach/forEachRight method once a result is found
 
 ```
 var collection = [
