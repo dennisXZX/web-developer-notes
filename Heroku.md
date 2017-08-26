@@ -1,6 +1,6 @@
 # Heroku
 
-#### Deploy on Heroku
+#### Heroku Deployment Preparation
 
 1. Dynamic port binding - Heroku tells us which port our app should use, so we need to make sure we listen to that port.
 
@@ -38,3 +38,22 @@ Create a `.gitignore` file in the server folder.
 // ignore node dependencies
 node_modules
 ```
+
+#### Heroku Deployment
+
+After installing Heroku CLI, you can use `heroku login` to login Heroku, then use `heroku create` to create your Heroku app. The `heroku create` command should generate two links as follows.
+
+```
+// you should see two links after running 'heroku create'
+// the first link is the URL for your app
+// the second link is your deployment target, to where you should push your code
+https://fast-falls-56230.herokuapp.com/ | https://git.heroku.com/fast-falls-56230.git
+```
+
+Make sure https://git.heroku.com/fast-falls-56230.git is set as a remote repository by running `git remote -v`. Use `git remote add heroku https://git.heroku.com/fast-falls-56230.git` to add it as a deployment target if it's not there.
+
+When you finished setting up the remote heroku repository, you can then use `git push heroku master` to push your code to its master branch.
+
+Finally, use `heroku open` to launch your app.
+
+If you run into any issues during deployment, always use `heroku logs` to see what happens under the hood.
