@@ -1,5 +1,38 @@
 ## Coding
 
+#### Convert an array to an object
+
+```
+// original format
+let collection = [
+  { id: 1, age_from: 12, age_to: 99, name: "Adult" },
+  { id: 2, age_from: 3, age_to: 16,  name: "Child" },
+  { id: 3, age_from: 0, age_to: 2,  name: "Infant" }
+];
+
+// target format
+let newArr = {
+  '1': { name: 'Adult', age_from: 12, age_to: 99 },
+  '2': { name: 'Child', age_from: 3, age_to: 16 },
+  '3': { name: 'Infant', age_from: 0, age_to: 2 }
+}
+```
+
+Solution:
+
+```
+const newCollection = collection.reduce((acc, curr) => {
+  acc[curr['id']] = {
+    name: curr['name'],
+    age_from: curr['age_from'],
+    age_to: curr['age_to']
+  }
+  return acc;
+}, {});
+
+console.log(newCollection);
+```
+
 #### Convert arr to newArr
 
 ```
@@ -14,26 +47,26 @@ let newArr = [
 ]
 ```
 
-Solution 1:
+Solution:
 
 ```
 // reduce to an obj { '1': 3, '2': 2, '3': 2 }
 let obj = arr.reduce((acc, cur) => {
-	if (!acc[cur]) {
-		acc[cur] = 1;
-	} else {
-		acc[cur] += 1;
-	}
-	return acc;
+  if (!acc[cur]) {
+    acc[cur] = 1;
+  } else {
+    acc[cur] += 1;
+  }
+  return acc;
 }, {});
 
 let newArr = [];
 
 // loop through obj and create a new object for each key/value pair and push it to newArr
 for (let key in obj) {
-	let newObj = {};
-	newObj[key] = obj[key];
-	newArr.push(newObj);
+  let newObj = {};
+  newObj[key] = obj[key];
+  newArr.push(newObj);
 }
 ```
 
@@ -43,7 +76,7 @@ let i,
     myarray = [1, 2, 3];
 
 for(i = myarray.length; i--;) {
-	console.log(myarray[i])
+  console.log(myarray[i])
 }
 ```
 The output is 3, 2, 1. This for loop may seems weird at first glance. Let's dig a bit deeper into the structure of a for loop. A for loop consists of 4 parts, where initialExpression, condition and incrementExpression are optional.
@@ -83,12 +116,12 @@ function add(num1, num2) {
 Solution 2
 ```
 function add(num1, num2) {
-	if (typeof num2 === 'undefined') {
-		return function (newNum2) {
-			return x + newNum2;
-		};
-	}
-	return num1 + num2;
+  if (typeof num2 === 'undefined') {
+    return function (newNum2) {
+      return x + newNum2;
+    };
+  }
+  return num1 + num2;
 }
 ```
 #### What value is returned from the following statement?
