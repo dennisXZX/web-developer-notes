@@ -55,7 +55,7 @@ _.orderBy(users, ['user', 'age'], ['asc', 'desc']);
 times() can be used to execute a function a certain amount of times.
 
 ```
-_.times(5, function(){
+_.times(5, () => {
   console.log('hi')
 });
 ```
