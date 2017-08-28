@@ -1,6 +1,44 @@
 # Lodash Notes
 
-#### _.forEach / _.forEachRight
+#### _.sortedIndex, _.sortedIndexBy
+
+sortedIndex can be used to insert an element to an array and maintain its order.
+
+```
+let collection = [
+  'Carl',
+  'Gary',
+  'Luigi',
+  'Otto'
+];
+
+const name = 'Luke';
+
+// _.sortedIndex(collection, name) will return the index where the name should be in the collection array
+// collection.splice(index, 0, name) will then insert name to the calculated index
+collection.splice(_.sortedIndex(collection, name), 0, name);
+```
+
+sortedIndexBy can be used to insert an object element to an array and maintain its order.
+
+```
+let collection = [
+  { name: 'Zoe' },
+  { name: 'Tom' },
+  { name: 'Ken' },
+  { name: 'Dennis' }
+];
+
+const luke = {name: 'Luke'};
+
+// order the collection array by name property
+const newCollection = _.orderBy(collection, 'name');
+
+// _.sortedIndexBy(newCollection, luke, 'name') returns the location where luke object should be in the newCollection array
+newCollection.splice(_.sortedIndexBy(newCollection, luke, 'name'), 0, luke);
+```
+
+#### _.forEach & _.forEachRight
 
 ```
 var collection = [
@@ -23,11 +61,13 @@ _.forEach(collection, (name, index) => {
 sortBy() works on all array-like collections and always returns an array.
 
 ```
-// Example 1:
+Example 1
+
 // _.sortBy('cba') returns an array of [ 'a', 'b', 'c' ]
 _.sortBy('cba').join(''); // => 'abc'
 
-// Example 2:
+Example 2
+
 const users = [
   { 'user': 'fred',   'age': 48 },
   { 'user': 'barney', 'age': 36 },
@@ -35,8 +75,10 @@ const users = [
   { 'user': 'barney', 'age': 34 }
 ];
 
-// sort the array first by user property, then by age
+// sort the array by multiple property names in pluck style shorthand
 _.sortBy(users, ['user', 'age']);
+
+Example 3
 
 // sort summaryList array based on the result of the callback function
 summaryList = sortBy(summaryList, (ageGroup) => {
