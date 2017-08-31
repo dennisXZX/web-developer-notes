@@ -1,14 +1,33 @@
 ## Git
 
+### git diff
+
+`git diff` to compare the difference between the current working directory and the last commit.
+
+`git diff --stat` to get an condensed view of all the difference.
+
+`git diff --cached` to see the difference between staging area and the working directory.
+
+`git diff HEAD` to see the difference between staging area + working directory and the last commit.
+
+`git diff origin/master getRandomNumber.js` to see the difference of a specific file between two branches.
+
 ### git log
 
 `git log --oneline` to condense the log messages into one line.
+
 `git log -p` to see all the changes made to each commit.
+
 `git log --stat` to show number of insertion and deletion of each commit.
+
 `git log -3` to show the 3 most recent commits.
+
 `git log --author="dennis"` to list commits by a specific author.
+
 `git log --grep='fixed'` to limit commits output to ones with log message that matches the specified pattern.
+
 `git log -i -p -S"math"` to list all the commits that involve the word "math", ignoring case by using `-i` flag.
+
 `git log script.js` to list all commits that involve the script.js file.
 
 We can use multiple arguments such as `git log --stat --oneline`.
