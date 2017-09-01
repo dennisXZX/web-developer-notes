@@ -1,5 +1,21 @@
 ## Git
 
+### git tag
+
+`git tag v1.0.0` to add a reference to the current commits.
+
+`git tag -a v1.0.0` to add annotation to a tag.
+
+`git tag -n5` to list all tags along with the first 5 lines of annotations for each tag.
+
+`git push --tags` to push to tags to remote repository.
+
+Using a tag name like v1.0.0 is called semantic versioning. The first number represents a major release which would introduce breaking changes. The second number means a minor release while the last one is for patch release.
+
+### git blame
+
+`git blame fileName` to see who made the last change to each line in the file.
+
 ### git diff
 
 `git diff` to compare the difference between the current working directory and the last commit.
