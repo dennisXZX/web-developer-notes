@@ -8,7 +8,7 @@
 
 `git tag -n5` to list all tags along with the first 5 lines of annotations for each tag.
 
-`git push --tags` to push to tags to remote repository.
+`git push --tags` to push tags to remote repository.
 
 Using a tag name like v1.0.0 is called semantic versioning. The first number represents a major release which would introduce breaking changes. The second number means a minor release while the last one is for patch release.
 
@@ -22,9 +22,9 @@ Using a tag name like v1.0.0 is called semantic versioning. The first number rep
 
 `git diff --stat` to get an condensed view of all the difference.
 
-`git diff --cached` to see the difference between staging area and the working directory.
+`git diff --cached` to see the difference between working directory and staging area.
 
-`git diff HEAD` to see the difference between staging area + working directory and the last commit.
+`git diff HEAD` to see the difference between working directory + staging area and the last commit.
 
 `git diff origin/master getRandomNumber.js` to see the difference of a specific file between two branches.
 
@@ -32,7 +32,7 @@ Using a tag name like v1.0.0 is called semantic versioning. The first number rep
 
 `git log --oneline` to condense the log messages into one line.
 
-`git log -p` to see all the changes made to each commit.
+`git log -p` to see all the detailed changes made to each commit.
 
 `git log --stat` to show number of insertion and deletion of each commit.
 
@@ -40,7 +40,7 @@ Using a tag name like v1.0.0 is called semantic versioning. The first number rep
 
 `git log --author="dennis"` to list commits by a specific author.
 
-`git log --grep='fixed'` to limit commits output to ones with log message that matches the specified pattern.
+`git log --grep='fixed'` to list commits with log message that matches the specified pattern.
 
 `git log -i -p -S"math"` to list all the commits that involve the word "math", ignoring case by using `-i` flag.
 
@@ -66,7 +66,7 @@ We can use multiple arguments such as `git log --stat --oneline`.
 
 ### git cherry-pick
 
-We can choose a commit from one branch and apply it onto another by `git cherry-pick`.
+We can choose a commit from one branch and apply it onto another by using `git cherry-pick`.
 
 Make sure you are on the branch you want to apply the commit to, then run `git cherry-pick <commit-hash>`.
 
@@ -82,7 +82,7 @@ Running `git pull` is equal to run `git fetch` and `git merge branchName`.
 
 `git branch -a` to see both local and remote branches.
 
-`git branch -b newBranchName` to create a new branch and checkout to it.
+`git branch -b newBranchName` to create a new branch based on the current branch and checkout to it.
 
 `git branch -d branchName` to delete a branch.
 
