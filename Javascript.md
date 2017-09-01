@@ -1,5 +1,27 @@
 ## Javascript
 
+#### asyn and await
+
+asyn and await syntax is an improved way to handle promise in Javascript. 
+
+Instead of using a chain of `.then()` method, now we can handle promise in a more synchronous way.
+
+```
+function fetchAlbums() {
+  fetch('http://rallycoding.herokuapp.com/api/music_albums')
+    .then(res => res.json())
+    .then(json => console.log(json));
+}
+```
+
+```
+async function fetchAlbums() {
+  const res = await fetch('http://rallycoding.herokuapp.com/api/music_albums');
+  const json = await res.json();
+  console.log(json);
+}
+```
+
 #### What is a shim and a polyfill?
 
 A shim intercepts existing API calls and implements different behaviors in order to enhance backward compability.
