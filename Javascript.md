@@ -2,9 +2,9 @@
 
 #### asyn and await
 
-asyn and await syntax is an improved way to handle promise in Javascript. 
+asyn and await syntax is an improved way to handle asynchronous code in Javascript. 
 
-Instead of using a chain of `.then()` method, now we can handle promise in a more synchronous way.
+Instead of using a chain of `.then()` method, now we can handle asynchronous code in a more synchronous way.
 
 ```
 function fetchAlbums() {
@@ -58,12 +58,16 @@ function max(a, b, c, ...shouldBeEmpty) {
 
 Sometimes we need to pass a large number of parameters to a function, which is inconvenient and error-prone.
 ```
-function addPerson(first, last, dob, gender, address) {}
+function addPerson(first, last, dob, gender, address) {
+  // code
+}
 ```
 We can simplify that by introducing a configuraton object.
 ```
 // wrap all parameters into a configuration object
-function addPerson(config) {}
+function addPerson(config) {
+  // code
+}
 
 const config = {
   username: 'dennisboys',
