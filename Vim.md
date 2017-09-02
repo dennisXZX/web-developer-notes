@@ -1,6 +1,6 @@
 ## Vim
 
-#### Move around in Vim in normal mode
+#### Normal mode
 
 - `j` to move down the file
 - `k` to move up the file
@@ -8,6 +8,7 @@
 - `l` to move to the right character by character
 - `w` to move to the right word by word
 - `b` to move to the left word by word
+- `dd` to delete one line
 
 #### Insert mode
 
@@ -26,3 +27,17 @@
 #### Save file
 
 - In command mode, use `w fileName` to save a file
+
+#### Copy & Paste
+
+- In visual mode, highlight the text you want to copy. Press `y` to copy the text and then switch to Normal mode and press `p` to paste the text
+
+#### Configure Vim
+
+Create a `~/.vimrc` file in home directory and put your Vim config in it.
+
+```
+syntax on
+set number
+```
+
