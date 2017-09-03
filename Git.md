@@ -30,6 +30,8 @@ Using a tag name like v1.0.0 is called semantic versioning. The first number rep
 
 ### git log
 
+We can use `/` to initiate a search when viewing git logs (in ternimal pager less), and use `n` to find the next match and `N` to jump to the previous one.
+
 `git log --oneline` to condense the log messages into one line.
 
 `git log -p` to see all the detailed changes made to each commit.
@@ -47,6 +49,16 @@ Using a tag name like v1.0.0 is called semantic versioning. The first number rep
 `git log script.js` to list all commits that involve the script.js file.
 
 We can use multiple arguments such as `git log --stat --oneline`.
+
+### git stash
+
+`git stash` can temporarily store your changes to revert back to HEAD commit.
+
+`git stash list` can list all your stashes.
+
+`git stash apply` to restore stashed temporary changes to working directory.
+
+`git stash drop stashName` to delete a stash.
 
 ### git config
 
