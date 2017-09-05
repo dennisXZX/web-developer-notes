@@ -1,5 +1,14 @@
 ## PHP
 
+#### Debugging
+
+Use the <pre> HTML tag to print out values nicely in PHP for debugging purposes.
+
+```
+echo '<pre>' . print_r($variable, true) . '</pre>';
+exit();
+```
+
 #### Multiple checkbox array
 
 In order to pass checkbox values to thisform.php, we need to pass the checkbox name as an array, so in PHP the checked values will be stored in `$_POST['checkboxvar']`.
