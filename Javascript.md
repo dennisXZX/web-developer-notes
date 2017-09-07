@@ -1,5 +1,19 @@
 ## Javascript
 
+#### + and , in console.log()
+
+Using `+` and `,` in console.log() would result in different results.
+
+```
+// trying to concatenate an object will call toString() on it, resulting in [object Object] 
+// output: App store created: [object Object]
+console.log('App store created: ' +  appStore.getState());
+
+// using comma actually means to pass another argument to console.log
+// output: App store created:  { users: {}, items: [] }
+console.log('App store created: ',  appStore.getState());
+```
+
 #### asyn and await
 
 asyn and await syntax is an improved way to handle asynchronous code in Javascript. 
