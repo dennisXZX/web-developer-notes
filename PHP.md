@@ -2,7 +2,7 @@
 
 #### Debugging
 
-Use the <pre> HTML tag to print out values nicely in PHP for debugging purposes.
+Use the `pre` HTML tag to print out values nicely in PHP for debugging purposes.
 
 ```
 echo '<pre>' . print_r($variable, true) . '</pre>';
@@ -21,18 +21,6 @@ In order to pass checkbox values to thisform.php, we need to pass the checkbox n
 	</div>
 	<input type='submit' class='buttons'>
 </form>
-```
-
-#### How to print out $_GET and $_POST values nicely in a browser
-
-Use the `<pre>` HTML markup to format the output.
-```
-echo "<pre>"
-print_r($_GET);
-echo "</pre>"
-
-// read property from the $_GET
-echo $_GET['author'];
 ```
 
 #### PHP class
