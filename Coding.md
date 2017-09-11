@@ -1,5 +1,33 @@
 ## Coding
 
+#### Array spliting
+
+```
+// data array
+const arr = ['a', 'b', 'c', 'd', 'e', 'f'];
+
+// expected results
+splitArr(arr, 2); // => ["ab", "cd", "ef"]
+splitArr(arr, 3); // => ["abc", "def"]
+```
+Solution:
+
+```
+function splitArr(arr, splitNum) {
+  // join the array
+  joinArr = arr.join('');
+  // create a regular expression pattern
+  // "." matches any single character except the newline character.
+  // "{n,m}" matches at least n and at most m occurrences of the preceding expression.
+  const pattern = ".{1," + splitNum + "}";
+  // "g" flag for global search.
+  const reg = new RegExp(pattern, "g");
+  // match() returns an array of information or null on a mismatch.
+  processedArr = joinArr.match(reg);
+  return processedArr;
+}
+```
+
 #### Convert an array to an object
 
 ```
