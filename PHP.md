@@ -14,12 +14,12 @@ exit();
 In order to pass checkbox values to thisform.php, we need to pass the checkbox name as an array, so in PHP the checked values will be stored in `$_POST['checkboxvar']`.
 ```
 <form method='post' id='userform' action='thisform.php'>
-	<div>
-	<input type='checkbox' name='checkboxvar[]' value='Option One'>1<br>
-	<input type='checkbox' name='checkboxvar[]' value='Option Two'>2<br>
-	<input type='checkbox' name='checkboxvar[]' value='Option Three'>3
-	</div>
-	<input type='submit' class='buttons'>
+  <div>
+  <input type='checkbox' name='checkboxvar[]' value='Option One'>1<br>
+  <input type='checkbox' name='checkboxvar[]' value='Option Two'>2<br>
+  <input type='checkbox' name='checkboxvar[]' value='Option Three'>3
+  </div>
+  <input type='submit' class='buttons'>
 </form>
 ```
 
@@ -27,45 +27,45 @@ In order to pass checkbox values to thisform.php, we need to pass the checkbox n
 
 ```
 class Person {
-	// declare a const variable
-	const AVG_LIFE_SPAN = 79;
-  
-	// declare public variables
-	public $firstName;
-	public $lastName;
+  // declare a const variable
+  const AVG_LIFE_SPAN = 79;
 
-	// declare a public static variable
-	public static $fortune = 1000;
+  // declare public variables
+  public $firstName;
+  public $lastName;
 
-	// declare a constructor, with two optional parameters
-	function __construct($firstName = "", $lastName = "") {
-		$this->firstName = $firstName;
-		$this->lastName = $lastName;
-	}
+  // declare a public static variable
+  public static $fortune = 1000;
 
-	// declare a public method
-	public function getFirstName() {
-		return $this->firstName;
-	}
+  // declare a constructor, with two optional parameters
+  function __construct($firstName = "", $lastName = "") {
+    $this->firstName = $firstName;
+    $this->lastName = $lastName;
+  }
 
-	// declare a public method
-	public function setFirstName($newName) {
-		$this->firstName = $newName;
-	}
+  // declare a public method
+  public function getFirstName() {
+    return $this->firstName;
+  }
 
-	// declare a static function
-	public static function getAuthorFortune() {
-		return self::$fortune;
-	}
+  // declare a public method
+  public function setFirstName($newName) {
+    $this->firstName = $newName;
+  }
+
+  // declare a static function
+  public static function getAuthorFortune() {
+    return self::$fortune;
+  }
 }
 
 // create an Author class which inherits Person class
 class Author extends Person {
-	public $penName = "dennisboys";
+  public $penName = "dennisboys";
 
-	public function getPenName() {
-		return $this->penName;
-	}
+  public function getPenName() {
+    return $this->penName;
+  }
 }
 
 // create a Person instance
