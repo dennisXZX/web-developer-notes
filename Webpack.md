@@ -1,19 +1,12 @@
 # Webpack Notes
 
-#### Install webpack and run webpack without a config file
+#### Webpack flag
 
-Install webpack
 ```
-// the long command
-npm install webpack --save-dev
-// the short command
-npm i webpack -D
-```
-
-Set up a script to run webpack in package.json (created by running `npm init`)
-```
-"script": {
-  "build": "webpack src/js/entry.js dist/bundle.js",
-  "build:prod": "webpack src/js/entry.js dist/bundle.js -p"
-}
+// generated minified production code
+webpack -p
+// generated a source-map for the code
+webpack -d
+// watch file changes
+webpack --watch
 ```
