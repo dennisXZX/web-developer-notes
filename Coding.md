@@ -1,5 +1,29 @@
 ## Coding
 
+#### Get the mean value from an array
+
+```
+/*
+Requirements:
+Double the value of each element in the array and then get its average value.
+*/
+const data = [1, 2, 3, 3, 4, 5, 3, 1];
+```
+Solution:
+
+```
+const mean = data.reduce((accumulator, currentItem, index, array) => {
+  let intermediaryValue = accumulator + (currentItem * 2);
+
+  if (index === array.length - 1) {
+    return intermediaryValue / array.length;
+  }
+
+  return intermediaryValue;
+
+}, 0);
+```
+
 #### Array spliting
 
 ```
