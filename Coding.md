@@ -1,5 +1,69 @@
 ## Coding
 
+#### Convert a complex object into an array
+
+```
+// extract the cast from each object into an array, with no duplicate value.
+const data = [
+  {
+    title: "The Dark Knight",
+    year: 2008,
+    cast: [
+      "Dennis",
+      "Zoe",
+      "Dylan"
+    ]
+  },
+  {
+    title: "The Light Knight",
+    year: 2018,
+    cast: [
+      "Dennis",
+      "Ken",
+      "Tom"
+    ]    
+  },
+  {
+    title: "The Games",
+    year: 2011,
+    cast: [
+      "Dennis",
+      "Tom",
+      "John"
+    ]
+  },  
+];
+```
+Solution:
+
+```
+const flatmapData = data.reduce((accumulator, currentValue) => {
+  currentValue.cast.forEach((cast) => {
+    if (accumulator.indexOf(cast) === -1) {
+      accumulator.push(cast);
+    }
+  });
+
+  return accumulator;
+}, []);
+```
+
+#### Flatten an array
+
+```
+// original data
+const data = [[1, 2, 3], [3, 4, 5], [3, 1]];
+// expected results
+[ 1, 2, 3, 3, 4, 5, 3, 1 ]
+```
+Solution:
+
+```
+const flattenedata = data.reduce((accumulator, currentValue) => {
+  return accumulator.concat(currentValue);
+}, []);
+```
+
 #### Get the mean value from an array
 
 ```
