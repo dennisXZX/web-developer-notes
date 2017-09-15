@@ -1,5 +1,30 @@
 ## Javascript
 
+#### Computed property names
+
+Starting with ES2015, we can use computed property names in object initializer syntax.
+
+```
+// example 1
+var i = 0;
+var a = {
+  ['foo' + ++i]: i,
+  ['foo' + ++i]: i
+};
+
+console.log(a.foo1); // 1
+console.log(a.foo2); // 2
+
+// example 2
+var param = 'size';
+var config = {
+  [param]: 12,
+  ['mobile' + param.charAt(0).toUpperCase() + param.slice(1)]: 4
+};
+
+console.log(config); // {size: 12, mobileSize: 4}
+```
+
 #### + and , in console.log()
 
 Using `+` and `,` in console.log() would result in different results.
