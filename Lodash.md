@@ -1,4 +1,27 @@
-# Lodash Notes
+# Lodash
+
+#### _.mapKeys
+
+mapKeys can 
+
+```
+const posts = [
+  { id: 4, title: 'ho' },
+  { id: 5, title: 'yo' }
+]
+
+/* The specified property will be set as the key of the generated object
+{
+  "4": {
+    { id: 4, title: 'ho' },
+  },
+  "5" {
+    { id: 5, title: 'yo' }
+  }
+}
+*/
+_.mapKeys(posts, 'id');
+```
 
 #### _.sortedIndex, _.sortedIndexBy
 
