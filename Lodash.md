@@ -2,7 +2,7 @@
 
 #### _.mapKeys
 
-mapKeys can 
+mapKeys can be used to extract an object property as a key.
 
 ```
 const posts = [
