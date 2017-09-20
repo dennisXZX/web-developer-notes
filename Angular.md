@@ -14,11 +14,12 @@ In the child component, use `@Input()` annotation to indicate
 
 #### Passing an HTML element to a function
 
-Use hash `#` to assign an HTML element to a local variable and pass it to a function.
+Use hash `#` to bind an HTML element to a local variable.
 
 ```
 <div class="field">
   <label for="link">Link:</label>
+  // bind the input element to a variable named 'newlink'
   <input name="link" #newlink>
   // passing the link HTML element to a function
   <button (click)="addArticle(newlink)" class="ui positive right floated button">
