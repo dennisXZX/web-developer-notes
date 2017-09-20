@@ -1,5 +1,40 @@
 ## Angular
 
+#### Passing values from parent to child component
+
+Use bracket `[]` syntax to pass value from parent to child.
+
+```
+<p *ngFor="let name of names">
+  // pass a value to the input named foo in <app-user-item> component
+  <app-user-item [foo]="name"></app-user-item>
+</p>
+```
+In the child component, use `@Input()` annotation to indicate 
+
+#### Passing an HTML element to a function
+
+Use hash `#` to assign an HTML element to a local variable and pass it to a function.
+
+```
+<div class="field">
+  <label for="link">Link:</label>
+  <input name="link" #newlink>
+  // passing the link HTML element to a function
+  <button (click)="addArticle(newlink)" class="ui positive right floated button">
+    Submit link 
+  </button>  
+</div>
+```
+In the function, we receive the argument passed as an HTMLInputElement type.
+
+```
+addArticle(link: HTMLInputElement): boolean {
+  console.log(`Adding article link: ${link.value}`);
+  return false; 
+}
+```
+
 #### Add Bootstrap to Angular project
 
 Solution 1
