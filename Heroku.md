@@ -1,5 +1,13 @@
 # Heroku
 
+### Heroku deployment with the app being in a subfolder
+
+Sometimes your package.json is not in your project root directory, in such a case, Heroku would fail to build your app as its buildpack cannot handle your app due to detection failure. One way to address this issue is to push a subdirectory of your git repository to Heroku during deployment.
+
+```
+git subtree push --prefix appFolderName heroku master
+```
+
 ### Heroku deployment preparation
 
 1. Dynamic port binding - Heroku tells us which port our app should use, so we need to make sure we listen to that port.
