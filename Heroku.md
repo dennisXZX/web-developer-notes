@@ -73,9 +73,9 @@ Head to Heroku project setting and you should be able to see a `Config Variables
 ```
 // production keys
 module.exports = {
-	googleClientID: process.env.GOOGLE_CLIENT_ID,
-	googleClientSecret: process.env.GOOGLE_CLIENT_SECRET,
-	mongoURL: process.env.MONGO_URL,
-	cookieKey: process.env.COOKIE_KEY
+  googleClientID: process.env.GOOGLE_CLIENT_ID,
+  googleClientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  mongoURL: process.env.MONGO_URL,
+  cookieKey: process.env.COOKIE_KEY
 };
 ```
