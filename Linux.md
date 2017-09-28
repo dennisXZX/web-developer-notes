@@ -1,5 +1,13 @@
 # Linux
 
+#### List files in a tree structure
+
+For MacOS, you need to install a the tree package first `brew install tree`.
+
+```
+tree -F
+```
+
 #### Navigation in Linux
 
 // go to the previous working directory
