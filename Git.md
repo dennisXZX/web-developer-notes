@@ -1,5 +1,25 @@
 ## Git
 
+### gitFlow
+
+GitFlow is a branching model that standardizes branching and merging policy.
+
+To sum it up:
+
+- 'master' branch represents what’s in production
+- Features and fixes are worked on their own branch
+- The features and fixes branches are not directly merged into 'master' when the work is done; it is merged into a branch called 'develop'
+- 'develop' is thus some buffer between “dev done” and “in production”; release branches are made from 'develop' and merged into 'master'
+- Release branches can thus be tested and validated at length in staging environment
+
+`git flow feature start branchName` to create a new branch based on 'develop'
+
+`git flow feature finish --squash branchName` to merge a branch into 'develop'
+
+`git flow release start releaseVersion` to create a new release branch based on 'develop'
+
+`git flow hotfix start branchName` to create a hotfix branch based on 'master'
+
 ### git tag
 
 `git tag v1.0.0` to add a reference to the current commits.
