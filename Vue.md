@@ -3,19 +3,34 @@
 ### Initialize Vue in your project
 
 ```
-var app = new Vue({
+var vm = new Vue({
   // define the root element for the Vue
   el: '#app',
   // model to hold app data
   data: {
     message: 'Hello Vue World',
-    intro: '<h1>Welcome to my world</h1>',
+    intro: 'Welcome to my world',
     viewed: false,
     todos: [
       { text: 'Learn Vue', id: 1 },
       { text: 'Get Milk', id: 2 },
       { text: 'Buy Egg', id: 3 },
     ]
+  },
+  // computed property is cached, it only changes when its dependencies change
+  computed: {
+    fullName: {
+      // getter
+      get: function () {
+        return `${this.firstName} ${this.lastName}`
+      },
+      // setter
+      set: function (value) {
+        const name = value.split(' ');
+        this.firstName = name[0];
+        this.lastName = name[name.length - 1];
+      }
+    }
   },
   methods: {
     countUp: function () {
@@ -24,8 +39,27 @@ var app = new Vue({
     reset: function () {
       this.count = 0;
     }
+  },
+  filters: {
+    capitalize: function(value) {
+      if (!value) return '';
+      value = value.toString();
+      return value.charAt(0).toUpperCase() + value.slice(1);
+    },
   }  
 })
+```
+
+### Vue instance properties and methods
+
+```
+vm.$data retrieves the data property of the Vue instance
+
+vm.$el retrieves the element of the HTML element specified in the 'el' property
+
+vm.$watch('message', function(newValue, oldValue) {
+  // This callback will be called when `vm.message` changes
+}
 ```
 
 ### Directive
