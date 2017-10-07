@@ -65,6 +65,16 @@ vm.$watch('message', function(newValue, oldValue) {
 ### Directive
 
 ```
+<button 
+  // based on the 'sizeToggle' property, if it's true returns 'large' class
+  // renders 'rounded' class if 'isRounded' property is true
+  v-bind:class="[sizeToggle ? 'large' : '', {'rounded': isRounded}]"
+  // v-bind:style is often used in conjunction with computed properties that return objects
+  v-bind:style="styles"
+  v-bind:disabled="disabled">
+  Press Me!
+</button>
+
 // v-model for two-way binding
 // when the 'message' property is changed the input text will be updated and vice verse
 <input type="text" v-model="message">
