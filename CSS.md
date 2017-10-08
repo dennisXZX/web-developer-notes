@@ -18,7 +18,7 @@ body {
 }
 ```
 
-#### How to add animation to box-shadow?
+### How to add animation to box-shadow?
 
 ```
 .card {
@@ -33,7 +33,7 @@ body {
 }
 ```
 
-#### How to style children elements when hover on a parent?
+### How to style children elements when hover on a parent?
 
 This can be achieved by using the `:hover` selector.
 ```
@@ -42,7 +42,7 @@ This can be achieved by using the `:hover` selector.
 }
 ```
 
-#### How to create a drop caps effect?
+### How to create a drop caps effect?
 
 The drop caps effect is achieved using the `:first-letter` pseudo class. Basically what you need to do is to select the first letter and make it huge and floated to the left.
 
@@ -59,7 +59,7 @@ p:first-child:first-letter {
 }
 ```
 
-#### How to create a triangle?
+### How to create a triangle?
 
 The triangle effect is achieved by using the border property. Below is a series of steps to help you remember this trick.
 
@@ -69,7 +69,7 @@ The triangle effect is achieved by using the border property. Below is a series 
 4. Make three of the borders transparent in color, so only one border in the shape of a triangle left.
 5. Hooray, this is how a triangle is made in CSS!
 
-#### How to create a parallax scrolling effect?
+### How to create a parallax scrolling effect?
 
 The key to parallax scrolling effect is to set a background image `background-attachment: fixed`.
 
@@ -92,15 +92,15 @@ The key to parallax scrolling effect is to set a background image `background-at
 }
 ```
 
-#### What is the difference between classes and IDs in CSS?
+### What is the difference between classes and IDs in CSS?
 
 Most of us know that ID is unique while you can have multiple classes with the same name in a document. But there is a special feature for ID, which can act as an anchor. If you have a URL like dennisxiao.com#github, the browser will attempt to reach the section with an ID of 'github'.
 
-#### What's the difference between "resetting" and "normalizing" CSS? Which would you choose, and why?
+### What's the difference between "resetting" and "normalizing" CSS? Which would you choose, and why?
 
 Resetting destroys all the built-in styling while normalizing just tries to make built-in styling consistent across browsers. Choosing one over the other depends on what you want to achieve, but most of the time normalizing should be the one to go with.
 
-#### Describe Floats and how they work.
+### Describe Floats and how they work.
 
 When you apply float to an element, it basically pulls it out from the normal document flow so it gets on top of the flow. Since a floated element does not stay in the document flow, a container will not detect its existence, which leads to the classic 'zero height' container issue. To solve this, what we need is a clearfix hack.
 
@@ -112,6 +112,6 @@ When you apply float to an element, it basically pulls it out from the normal do
 }
 ```
 
-#### Describe z-index and how stacking context is formed.
+### Describe z-index and how stacking context is formed.
 
 z-index property specifies the z-order of a positioned element. When elements overlap, z-order determines which one covers the other. An element with a larger z-index stacks over one with a lower z-index.
