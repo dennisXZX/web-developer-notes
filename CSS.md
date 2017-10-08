@@ -1,5 +1,23 @@
 ## CSS
 
+### Mobile first design
+
+Mobile first design should write CSS for mobile screen first then use `min-width` media queries to write styles for larger screens.
+
+```
+// This applies from 0px to 600px
+body {
+  background: red;
+}
+
+// This applies for larger screen from 600px onwards
+@media (min-width: 600px) {
+  body {
+    background: green;
+  }
+}
+```
+
 #### How to add animation to box-shadow?
 
 ```
