@@ -80,6 +80,8 @@ We can use multiple arguments such as `git log --stat --oneline`.
 
 `git stash drop stashName` to delete a stash.
 
+`git stash clear` to remove all stash entries.
+
 ### git config
 
 `git config --global user.name 'Dennis'` to set up git username.
