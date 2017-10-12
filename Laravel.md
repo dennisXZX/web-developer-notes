@@ -28,3 +28,10 @@ Use `php artisan migrate` to create tables in database.
 
 Use `php artisan route:list` to list all the routes.
 
+### Routes
+
+```
+Route::get('/zombie/{id}', function($id) {
+	echo 'This zombie has an id of ' . $id;
+});
+```
