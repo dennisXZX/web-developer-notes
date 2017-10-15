@@ -9,6 +9,12 @@ echo '<pre>' . print_r($variable, true) . '</pre>';
 exit();
 ```
 
+#### Launch an internal server
+
+```
+php -S localhost:8888
+```
+
 #### Multiple checkbox array
 
 In order to pass checkbox values to thisform.php, we need to pass the checkbox name as an array, so in PHP the checked values will be stored in `$_POST['checkboxvar']`.
