@@ -9,6 +9,26 @@ echo '<pre>' . print_r($variable, true) . '</pre>';
 exit();
 ```
 
+#### Alternative syntax for control structures
+
+PHP provides alternative syntax for while, for, foreach and switch.
+
+```
+<?php foreach($person as $feature => $val): ?>
+  <li><?php echo $feature . ': ' .$val ?></li>
+<?php endforeach; ?>
+```
+
+#### Sanitize user inputs
+
+We can sanitize user inputs by using `htmlspecialchars()` method.
+
+#### Super globals
+
+Use `$_GET['key']` to retrieve variables passed to the current script via the URL parameters.
+
+Use `$_POST['key']` to retrieve variables passed to the current script via the HTTP POST method.
+
 #### PHP Data Objects (PDO)
 
 we can connect to database using PDO.
@@ -42,6 +62,8 @@ $tasks = $stmt->fetchAll(PDO::FETCH_CLASS, 'Task');
 ```
 
 #### Launch an internal server
+
+For PHP 5.4 or newer, you can use the following command to start a built-in web server.
 
 ```
 php -S localhost:8888
@@ -147,6 +169,13 @@ $authors = array(
   "age" => 32,
   "sex" => "male"
 );
+```
+
+We can delete an element from the array by using `unset()`.
+
+```
+// delete the 'name' property from the $author array
+unset($authors['name']);
 ```
 
 #### Use global variable inside a function
