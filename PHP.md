@@ -25,9 +25,11 @@ We can sanitize user inputs by using `htmlspecialchars()` method.
 
 #### Super globals
 
-Use `$_GET['key']` to retrieve variables passed to the current script via the URL parameters.
+`$_GET['key']` to retrieve variables passed to the current script via the URL parameters.
 
-Use `$_POST['key']` to retrieve variables passed to the current script via the HTTP POST method.
+`$_POST['key']` to retrieve variables passed to the current script via the HTTP POST method.
+
+`$_SERVER` to retrieve info related to the server.
 
 #### PHP Data Objects (PDO)
 
