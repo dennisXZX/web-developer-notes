@@ -1,8 +1,8 @@
 ## Vagrant
 
-### Set up a virtual development environment
+#### Set up a virtual development environment
 
-Create a folder where you want to place your virtual machine and run `vagrant init`.
+Create a folder where you want to place your virtual machine and cd into it to run `vagrant init`.
 
 ```
 $ mkdir vagrant_getting_started
@@ -12,7 +12,7 @@ $ vagrant init
 
 After running `vagrant init`, a `Vagrantfile` will be automatically generated in the current folder.
 
-After we have vagrant initiated, it's time to add a box. Think of a box here as an individual development environment.
+After you have vagrant initiated, it's time to add a box. Think of a box here as an individual development environment.
 
 ```
 vagrant box add hashicorp/precise64
@@ -26,17 +26,17 @@ Vagrant.configure("2") do |config|
 end
 ```
 
-Now we can boot up our Vagrant environment by running `vagrant up` and get into the virtual machine using `vagrant ssh`.
+Now you can boot up your Vagrant environment by running `vagrant up` and get into the virtual machine using `vagrant ssh`.
 
-We can log out the SSH session by using `CTRL + D` at any time.
+You can log out the SSH session by using `CTRL + D` at any time.
 
-To shut down the virtual machine at the end of the day, simply type `vagrant suspend`, `vagrant halt` or `vagrant destroy` to finish your job.
+To shut down the virtual machine at the end of the day, simply use either `vagrant suspend`, `vagrant halt` or `vagrant destroy` to finish your job.
 
-### Synced folders
+#### Synced folders
 
 By default, Vagrant shares your project directory (the one with the `Vagrantfile`) to the `/vagrant` directory in your virtual machine.
 
-### Provision your virtual machine
+#### Provision your virtual machine
 
 Now you have your virtual machine but it needs to be provisioned.
 
@@ -53,7 +53,7 @@ if ! [ -L /var/www ]; then
 fi
 ```
 
-Then configure your `Vagrantfile` by adding the the shell script.
+Then configure your `Vagrantfile` by adding the the shell script so it executes `bootstrap.sh` when Vagrant boots up.
 
 ```
 Vagrant.configure("2") do |config|
@@ -62,11 +62,11 @@ Vagrant.configure("2") do |config|
 end
 ```
 
-Now if we `vagrant up` the virtual machine again (or `vagrant reload --provision` if it's already running), the apache server will be automatically installed.
+Now if you `vagrant up` the virtual machine again (or `vagrant reload --provision` if it's already running), the apache server will be automatically installed.
 
-### Port forwarding
+#### Port forwarding
 
-We can set up a port forwarding, which allows us to access a port on our own machine, but actually have all the network traffic forwarded to a specific port on the guest machine.
+You can set up a port forwarding, which allows you to access a port on your own machine, but actually have all the network traffic forwarded to a specific port on the guest machine.
 
 ```
 Vagrant.configure("2") do |config|
@@ -76,4 +76,4 @@ Vagrant.configure("2") do |config|
 end
 ```
 
-Now if we visit `http://127.0.0.1:4567/`, we should see the content of index.html on your project folder.
+Now if you visit `http://127.0.0.1:4567/`, you should see the content of index.html on your project folder.
