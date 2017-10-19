@@ -1,6 +1,6 @@
 ## Vagrant
 
-#### Set up a virtual development environment
+### Set up a virtual development environment
 
 Create a folder where you want to place your virtual machine and run `vagrant init`.
 
@@ -32,11 +32,11 @@ We can log out the SSH session by using `CTRL + D` at any time.
 
 To shut down the virtual machine at the end of the day, simply type `vagrant suspend`, `vagrant halt` or `vagrant destroy` to finish your job.
 
-#### Synced folders
+### Synced folders
 
 By default, Vagrant shares your project directory (the one with the `Vagrantfile`) to the `/vagrant` directory in your virtual machine.
 
-#### Provision your virtual machine
+### Provision your virtual machine
 
 Now you have your virtual machine but it needs to be provisioned.
 
@@ -64,3 +64,16 @@ end
 
 Now if we `vagrant up` the virtual machine again (or `vagrant reload --provision` if it's already running), the apache server will be automatically installed.
 
+### Port forwarding
+
+We can set up a port forwarding, which allows us to access a port on our own machine, but actually have all the network traffic forwarded to a specific port on the guest machine.
+
+```
+Vagrant.configure("2") do |config|
+  config.vm.box = "hashicorp/precise64"
+  config.vm.provision :shell, path: "bootstrap.sh"
+  config.vm.network :forwarded_port, guest: 80, host: 4567
+end
+```
+
+Now if we visit `http://127.0.0.1:4567/`, we should see the content of index.html on your project folder.
