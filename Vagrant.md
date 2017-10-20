@@ -77,3 +77,13 @@ end
 ```
 
 Now if you visit `http://127.0.0.1:4567/`, you should see the content of index.html on your project folder.
+
+#### CLI Commands
+
+`vagrant box list` to list all your installed boxes.
+
+`vagrant box outdated` to check if the box currently using is outdated. You can add `--global` flag to check all your boxes at once.
+
+`vagrant box update` to update the box for the current Vagrant environment.
+
+`vagrant box remove boxName` to remove a box from your machine.
