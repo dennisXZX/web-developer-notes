@@ -1,10 +1,10 @@
 ## Chrome DevTools
 
-### Refresh options
+#### Refresh options
 
 When Google DevTools is open, long click or right click on the refresh button we should see a list of refresh options.
 
-### Code snippets
+#### Code snippets
 
 Code snippets can be used to reduce repetitive works.
 
@@ -13,7 +13,7 @@ A collection of useful Google DevTools snippets.
 - https://github.com/bahmutov/code-snippets
 - https://github.com/bgrins/devtools-snippets
 
-### Tips for Elements tab
+#### Tips for Elements tab
 
 We can use inspect() to immediately locate an HTML element.
 
@@ -26,39 +26,40 @@ monitorEvents() can be used to add events to an element.
 ```
 // monitor click events on an element with a class name of container-fluid
 monitorEvents($('.container-fluid')[0], 'click');
+
 // unregister event handlers
 unmonitorEvents($('.container-fluid')[0]);
 ```
 
-### Tell Chrome debugger to ignore certain libraries
+#### Tell Chrome debugger to ignore certain libraries
 
 First go to the `three dots drop down menu` and select `Settings`, then select the `Blackboxing` tab where you can add scripts that you want the Chrome debugger to ignore. Hooray! Debugging becomes smoother after blackboxing.
 
-### Console Logging
+#### Console Logging
 
-__Counting__
+> Counting
 
 console.count() can come in handy when we need to count the occurence of some conditions.
 
 ```
 for(let i = 0; i < 100; i++){
-	if (i > 60) {
-		console.count('larger than 60');
-	}
+  if (i > 60) {
+    console.count('larger than 60');
+  }
 }
 ```
 
-__Print DOM representation of an HTML element__
+> Print DOM representation of an HTML element
 
 ``` 
 console.dir($('.ei-activity-summary-page')[0]);
 ```
 
-__Warning or error message__
+> Warning or error message
 
 We can use console.warn() or console.error() to specify warning messages, such as warning about deprecated APIs in future versions.
 
-__String substitutions__
+> String substitutions
 
 Console messages also support string substitutions.
 
@@ -71,7 +72,7 @@ Console messages also support string substitutions.
 console.log('My name is %s. %cI am %d years old.', 'Dennis', 'color: blue; font-size: 30px', 35);
 ```
 
-__Grouping log messages__
+> Grouping log messages
 
 Console.group() or console.groupCollapsed() can be used to visually group together relevant messages.
 
@@ -86,7 +87,7 @@ for (let i = 0; i < 100; i++) {
 }
 ```
 
-__Assertion__
+> Assertion
 
 Writes an error message to the console if the assertion is false. If the assertion is true, nothing happens.
 
@@ -105,7 +106,7 @@ let salary = '32';
 console.assert(typeof salary === 'number', 'salary was not a number!');
 ```
 
-__Tabularization__
+> Tabularization
 
 We can log out an object in a tabularized manner.
 
@@ -113,7 +114,7 @@ We can log out an object in a tabularized manner.
 console.table(object);
 ```
 
-__Timer__
+> Timer
 
 We can record the time of our code by using console.time() and console.timeEnd().
 
