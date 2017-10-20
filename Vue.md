@@ -1,6 +1,6 @@
 ## Vue
 
-### Initialize Vue in your project
+#### Initialize Vue in your project
 
 ```
 var vm = new Vue({
@@ -50,7 +50,7 @@ var vm = new Vue({
 })
 ```
 
-### Vue instance properties and methods
+#### Vue instance properties and methods
 
 ```
 vm.$data retrieves the data property of the Vue instance
@@ -62,7 +62,7 @@ vm.$watch('message', function(newValue, oldValue) {
 }
 ```
 
-### Directive
+#### Directive
 
 ```
 <button 
@@ -112,7 +112,7 @@ vm.$watch('message', function(newValue, oldValue) {
 <div v-cloak>{{ message }}</div>
 ```
 
-### Events
+#### Events
 
 ```
 // execute 'reset' method when the button is clicked
