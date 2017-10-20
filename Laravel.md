@@ -2,6 +2,46 @@
 
 #### Homestead development set-up
 
+1. Install `vagrant` and `virtualbox`
+2. Install the `Homestead` vagrant box
+
+```
+vagrant box add laravel/homestead
+```
+
+3. Clone the Homestead repository to your local machine and checkout out the latest release branch.
+
+```
+git clone https://github.com/laravel/homestead.git Homestead
+```
+
+4. Run `bash init.sh` to create a `Homestead.yaml` configuration file
+
+5. Configure the shared folders
+
+```
+folders:
+  - map: ~/code/project1
+    to: /home/vagrant/code/project1
+
+  - map: ~/code/project2
+    to: /home/vagrant/code/project2
+
+sites:
+  - map: dennisxiao.dev
+    to: /home/vagrant/code/project1/public
+  - map: dx-blog.dev
+    to: /home/vagrant/code/project2/public
+```
+
+Everytime the sites property is changes you need to run `vagrant reload --provision`.
+
+6. Change the hosts file
+
+Get into your hosts file by `sudo vi /etc/hosts` and add `192.168.10.10  dennisxiao.test`.
+
+7. Visit your development domain `dennisxiao.dev` on your machine
+
 #### Laravel installation
 
 The installation should be straighforward, but does have a little trip.
