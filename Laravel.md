@@ -42,6 +42,17 @@ Get into your hosts file by `sudo vi /etc/hosts` and add `192.168.10.10  dennisx
 
 7. Visit your development domain `dennisxiao.dev` on your machine
 
+8. Connect to your local database by the following credentials
+
+```
+Name: Homestead
+Host: 127.0.0.1
+Username: homestead
+Password: secret
+Database: (optional, whatever you want if you want to directly connect)
+Port: 33060
+```
+
 #### Laravel installation
 
 The installation should be straighforward, but does have a little trip.
