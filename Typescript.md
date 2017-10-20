@@ -1,4 +1,4 @@
-# Typescript
+## Typescript
 
 #### Compile Typescript to Javascript
 
