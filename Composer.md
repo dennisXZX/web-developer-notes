@@ -1,5 +1,9 @@
 ## Composer
 
+#### useful commands
+
+`composer update` to download packages added to the composer.json file.
+
 #### autoload 
 
 In your `composer.json`, you can specify the path for the autoload.
