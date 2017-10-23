@@ -1,6 +1,6 @@
 ## Git
 
-### gitFlow
+#### gitFlow
 
 GitFlow is a branching model that standardizes branching and merging policy.
 
@@ -12,15 +12,15 @@ To sum it up:
 - 'develop' is thus some buffer between “dev done” and “in production”; release branches are made from 'develop' and merged into 'master'
 - Release branches can thus be tested and validated at length in staging environment
 
-`git flow feature start branchName` to create a new branch based on 'develop'
+`git flow feature start branchName` to create a new branch based on 'develop'. (switch to `develop` branch before running this command)
 
-`git flow feature finish --squash branchName` to merge a branch into 'develop'
+`git flow feature finish --squash branchName` to merge a branch into 'develop'.
 
-`git flow release start releaseVersion` to create a new release branch based on 'develop'
+`git flow release start releaseVersion` to create a new release branch based on 'develop'.
 
-`git flow hotfix start branchName` to create a hotfix branch based on 'master'
+`git flow hotfix start branchName` to create a hotfix branch based on 'master'.
 
-### git tag
+#### git tag
 
 `git tag v1.0.0` to add a reference to the current commits.
 
@@ -32,11 +32,11 @@ To sum it up:
 
 Using a tag name like v1.0.0 is called semantic versioning. The first number represents a major release which would introduce breaking changes. The second number means a minor release while the last one is for patch release.
 
-### git blame
+#### git blame
 
 `git blame fileName` to see who made the last change to each line in the file.
 
-### git diff
+#### git diff
 
 `git diff` to compare the difference between the current working directory and the last commit.
 
@@ -48,7 +48,7 @@ Using a tag name like v1.0.0 is called semantic versioning. The first number rep
 
 `git diff origin/master getRandomNumber.js` to see the difference of a specific file between two branches.
 
-### git log
+#### git log
 
 We can use `/` to initiate a search when viewing git logs (in ternimal pager less), and use `n` to find the next match and `N` to jump to the previous one.
 
@@ -70,7 +70,7 @@ We can use `/` to initiate a search when viewing git logs (in ternimal pager les
 
 We can use multiple arguments such as `git log --stat --oneline`.
 
-### git stash
+#### git stash
 
 `git stash` can temporarily store your changes to revert back to HEAD commit.
 
@@ -82,7 +82,7 @@ We can use multiple arguments such as `git log --stat --oneline`.
 
 `git stash clear` to remove all stash entries.
 
-### git config
+#### git config
 
 `git config --global user.name 'Dennis'` to set up git username.
 
@@ -94,25 +94,25 @@ We can use multiple arguments such as `git log --stat --oneline`.
 
 `git config --list` to examine the content of `.gitconfig` file.
 
-### git merge
+#### git merge
 
 `git merge branchName` to merge a branch into the current branch (the one with *).
 
-### git cherry-pick
+#### git cherry-pick
 
 We can choose a commit from one branch and apply it onto another by using `git cherry-pick`.
 
 Make sure you are on the branch you want to apply the commit to, then run `git cherry-pick <commit-hash>`.
 
-### git add
+#### git add
 
 `git add .` and `git add -A` does the same thing since git version 2.x.
 
-### git pull
+#### git pull
 
 Running `git pull` is equal to run `git fetch` and `git merge branchName`.
 
-### git branch
+#### git branch
 
 `git branch -a` to see both local and remote branches.
 
@@ -120,11 +120,11 @@ Running `git pull` is equal to run `git fetch` and `git merge branchName`.
 
 `git branch -d branchName` to delete a branch.
 
-### git checkout
+#### git checkout
 
 `git checkout -` to checkout the previous branch.
 
-### .gitignore
+#### .gitignore
 
 We can create a global `.gitignore` file for all projects.
 
