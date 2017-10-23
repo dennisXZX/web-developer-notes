@@ -101,6 +101,12 @@ myViewModel.personName.subscribe((newValue) => {
 
 ## Bindings
 
+#### Console log inside a Knockout template
+
+```
+<div data-bind="text: console.log(amount_option)"></div>
+```
+
 #### Bind the view model to a specific part of DOM
 
 The `ko.applyBindings` is used to bind view to view model. The second parameter is used to define which part of the document you want to search for data-bind attributes. This is useful when you want to bind multiple view models to the different regions of a page.
@@ -119,11 +125,6 @@ There are some useful binding context.
 - `$parent` refers to the view model object in the immediate parent context. 
 
 #### Express if/else conditional statement in Knockout.js
-
-Console log inside a Knockout template.
-```
-<div data-bind="text: console.log(amount_option)"></div>
-```
 
 There is no if/else statement in Knockout, but we can achieve that with a trick.
 
