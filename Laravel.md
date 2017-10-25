@@ -53,6 +53,8 @@ Database: (optional, whatever you want if you want to directly connect)
 Port: 33060
 ```
 
+Important: in the `.env` config file of your Laravel project, you should use `DB_HOST=localhost`.
+
 #### Laravel installation
 
 The installation should be straighforward, but does have a little trip.
@@ -73,18 +75,42 @@ export PATH="~/.composer/vendor/bin:$PATH"
 
 #### Artisan Command
 
-`php artisan make:model modelName -m` to create a model as well as a database table associated with it.
+`php artisan make:model modelName -m` to create a model as well as a database table associated with it. (the -m flag means migration)
 
 `php artisan make:controller controllerName --resource` to create a resource controller.
 
-`php artisan migrate` to create tables in database.
+`php artisan migrate` to migrate tables to database.
 
 `php artisan route:list` to list all the routes.
 
 #### Routes
 
 ```
-Route::get('/zombie/{id}', function($id) {
-  echo 'This zombie has an id of ' . $id;
-});
+Route::get('/zombie/{id}', 'ZombieController@show');
+
+Route::resource('posts', 'PostController');
+```
+
+#### Blade template
+
+You can pass variables from controller to view by using `with()`.
+
+```
+// now you can access the variable from the view using {{ $data }}
+return view('pages.about')->withData($todos);
+```
+Extend from a layout using `@extend('templateName')`.
+
+Inject dynamic content into a layout using `@yield('sectionName')`;
+
+Specify dynamic content using `@section()`.
+
+Include partial template using `@include('partials._message')`.
+
+```
+@section('title', ' | Homepage')
+
+@section('sectionName')
+  // dynamic content
+@endsection
 ```
