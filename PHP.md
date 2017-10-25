@@ -9,6 +9,22 @@ echo '<pre>' . print_r($variable, true) . '</pre>';
 exit();
 ```
 
+#### Call by reference
+
+By default, PHP passes parameter by value, however, you can change it to pass by reference by using `&`.
+
+```
+function triple(&$value) {
+  $realthing = $realthing * 3;
+}
+
+$val = 10;
+triple($value);
+
+// this will print out 30 because the function is passed by reference
+echo "Triple = $val";
+```
+
 #### Alternative syntax for control structures
 
 PHP provides alternative syntax for while, for, foreach and switch.
