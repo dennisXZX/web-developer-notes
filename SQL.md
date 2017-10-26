@@ -1,4 +1,4 @@
-## MySQL
+## SQL
 
 #### Using MySQL command line with MAMP
 
@@ -6,9 +6,14 @@
 /Applications/MAMP/Library/bin/mysql --host=localhost -uroot -proot
 ```
 
-Or you can use a MySQL management application, such as [Sequel Pro](https://www.sequelpro.com), [Querious](https://www.araelium.com/querious) and [Navicat](https://www.navicat.com).
+#### Database management application
 
-#### MySQL administration
+MySQL: [Sequel Pro](https://www.sequelpro.com) | [Querious](https://www.araelium.com/querious) | [Navicat](https://www.navicat.com)
+
+PostgreSQL: [pgAdmin](https://www.pgadmin.org/)
+
+
+#### Database administration
 
 `show databases;` to list all the databases.
 
@@ -20,7 +25,7 @@ Or you can use a MySQL management application, such as [Sequel Pro](https://www.
 
 `drop table tableName` to delete a table.
 
-#### Table operations
+#### Database operations
 
 ```
 // create a table
@@ -42,3 +47,7 @@ INSERT INTO tableName (
 )
 ```
 
+```
+// insert multiple values into the 'name' column
+INSERT INTO test_directors (name) VALUES ('Zoe'), ('Dennis'), ('John');
+```
