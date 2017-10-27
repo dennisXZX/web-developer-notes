@@ -2,19 +2,74 @@
 
 #### useful commands
 
-`composer update` to download packages added to the composer.json file.
+`composer require packageName` add a new package to the composer.json. Use `--dev` flag to add packages to require-dev section.
 
-#### autoload 
+`composer install` to install packages in the composer.json file.
 
-In your `composer.json`, you can specify the path for the autoload.
+`composer update` to update packages in the composer.json file.
+
+`composer dump-autoload` to look for new classes in the classmap path.
+
+#### composer.json
 
 ```
-// set the autoload path to be the project root folder
-"autoload": {
-  "classmap": [
-    "./"
-  ]
+{
+    "name": "laravel/laravel",
+    "description": "The Laravel Framework.",
+    "keywords": ["framework", "laravel"],
+    "license": "MIT",
+    "type": "project",
+    "require": {
+        "php": ">=7.0.0",
+        "fideloper/proxy": "~3.3",
+        "laravel/framework": "5.5.*",
+        "laravel/tinker": "~1.0",
+        "laravelcollective/html":"^5.2.0"
+    },
+    "require-dev": {
+        "filp/whoops": "~2.0",
+        "fzaninotto/faker": "~1.4",
+        "mockery/mockery": "0.9.*",
+        "phpunit/phpunit": "~6.0"
+    },
+    "autoload": {
+        "classmap": [
+            "database/seeds",
+            "database/factories"
+        ],
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": [
+            ]
+        }
+    },
+    "scripts": {
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate"
+        ],
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover"
+        ]
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "optimize-autoloader": true
+    }
 }
 ```
 
-Then you can run `composer dump-autoload` to look for all of the classes need to include again.
+
