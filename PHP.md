@@ -9,6 +9,103 @@ echo '<pre>' . print_r($variable, true) . '</pre>';
 exit();
 ```
 
+#### PSR (PHP Standards Recommedations)
+
+[PSR](http://www.php-fig.org/psr/) is a PHP specification published by the PHP Framework Interop Group which serves as a standardization of programming concepts in PHP.
+
+#### Namespace
+
+Namespace is a way of encapsulating items.
+
+```
+// define a namespace
+namespace App\MyProject;
+
+// use a namespace
+use App\MyProject;
+```
+
+#### Traits
+
+Traits are a mechanism for code reuse.
+
+```
+// define a trait
+trait ezcReflectionReturnInfo {
+  function getReturnType() { /*1*/ }
+  function getReturnDescription() { /*2*/ }
+}
+
+class ezcReflectionMethod extends ReflectionMethod {
+  // use trait
+  use ezcReflectionReturnInfo;
+  /* ... */
+}
+```
+
+#### Magic methods
+
+`__get()` is called when code attempts to access a property that is not accessible.
+
+`__set()` is called when code attempts to change the value a property that is not accessible.
+
+`__call() or __callStatic()` is called when code attempts to call inaccessible or nonexistent non-static or static methods. 
+
+`__invoke()` is called when code tries to use the object as a function.
+
+```
+class Person {
+  private $name;
+  private $metaData = [];
+
+  public function __construct($name) {
+    $this->name = $name;
+  }
+
+  // note the use of variable variables to dynamically access a property. 
+  // assuming the value 'user' for $name, $this->$name translates to $this->user.
+  public function  __get($name) {
+    if(isset($this->$name)) {
+      return $this->$name;
+    } else {
+      return 'This property does not exist.';
+    }
+  }
+
+  public function __set($name, $value) {
+    $this->metaData[$name] = $value;
+  }
+
+  public function __call($name, $arguments) {
+    echo $name . ' function does not exist' . "\n";
+  }
+
+}
+
+$dennis = new Person('dennis');
+
+// get a property that does not exist
+print_r($dennis->name1 . "\n");
+
+// set a property that does not exist
+$dennis->interest = 'coding';
+print_r($dennis->metaData['interest'] . "\n");
+
+// call an nonexistent method
+$dennis->getName();
+```
+
+#### Variable variables
+
+A variable name can be set and used dynamically in PHP.
+
+```
+$a = 'hello';
+
+// $hello = 'world'
+$$a = 'world';
+```
+
 #### Call by reference
 
 By default, PHP passes parameter by value, however, you can change it to pass by reference by using `&`.
