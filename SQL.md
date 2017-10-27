@@ -29,8 +29,8 @@ PostgreSQL: [pgAdmin](https://www.pgadmin.org/)
 
 ```
 // create a table
-create table todos (
-  id integer    PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE todos (
+  id            integer PRIMARY KEY AUTO_INCREMENT,
   description   text NOT NULL,
   completed     boolean NOT NULL
 );
