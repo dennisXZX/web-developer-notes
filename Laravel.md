@@ -93,6 +93,8 @@ Route::resource('posts', 'PostController');
 
 #### Blade template
 
+Blade `{{ }}` statements are automatically sent through PHP's `htmlentities` function to prevent XSS attacks, so if you want to display HTML content in Blade, you would need to use `{!! !!}`.
+
 You can pass variables from controller to view by using `with()`.
 
 ```
