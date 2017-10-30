@@ -1,5 +1,21 @@
 ## Laravel
 
+#### Create helper functions
+
+- Create a Helper.php in app/Helper directory
+- Register helper file to `composer.json`
+
+```
+"autoload": {
+  "classmap": ["database"],
+  "psr-4": {"App\\": "app/"},
+  "files" : ["app/Helper/Helper.php"]
+}
+```
+
+- Run `composer dump-autoload`.
+- Use the helper functions in any php file or Blade view.
+
 #### Homestead development set-up
 
 1. Install `vagrant` and `virtualbox`
@@ -79,7 +95,13 @@ export PATH="~/.composer/vendor/bin:$PATH"
 
 `php artisan make:controller controllerName --resource` to create a resource controller.
 
+`php artisan make:migration migrationName` to create a migration.
+
 `php artisan migrate` to migrate tables to database.
+
+`php artisan migrate:rollback --step=5` to roll back the last five migrations.
+
+`php artisan migrate:refresh` to roll back all of your migrations and then execute the migrate command.
 
 `php artisan route:list` to list all the routes.
 
