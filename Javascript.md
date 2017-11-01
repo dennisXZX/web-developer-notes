@@ -398,9 +398,48 @@ I used EJS before. EJS is a simple light-weight templating language that goes we
   
 #### Explain "hoisting".
 
-To put it simply, when you declare a variable or a function, it will be hoisted (magically) to the top of the scope (global scope or function scope). So you can use the variable or call the function even before its declaration. It is important to note that the hoisting applies only to function declaration, not function expression.
+To put it simply, when you declare a variable or a function, it will be hoisted (in layman's terms) to the top of the scope (global scope or function scope). So you can use the variable or call the function even before its declaration. It is important to note that the hoisting applies only to function declaration, not function expression.
 
-But the above statement glosses over a lot of details. The 'hoisting' is actually caused by the way how Javascript engines works. Javascript code interpretation is performed in two phases. During the first phase, the interpreter parses variable and function declarations and put them in memory. This phrase is commonly known as 'hoisting'. In phase two, Javascript engine starts to execute the code. Since variable and function declarations have already be placed in memory in the parsing phrase, that is why we can invoke them in our code before their declarations.
+But the above statement glosses over a lot of details. The 'hoisting' is actually caused by the way how Javascript engines works. Javascript code interpretation is performed in two phases. During the first phase, the interpreter parses variable and function declarations and put them in memory. This phrase is commonly known as 'hoisting'. In phase two, Javascript engine starts to execute the code. Since variable and function declarations have already been placed in memory in the parsing phrase, that is why we can invoke them in our code before their declarations.
+
+It's important to keep the following rules in mind.
+
+- `Variable assignment` takes precedence over `function declaration`
+- `Function declarations` take precedence over `variable declarations`
+
+```
+// this example prints out 'Hello!' because the function declaration takes precedence over variable declaration
+sayHello()
+
+function sayHello () {
+  function hello () {
+    console.log('Hello!')
+  }
+
+  hello()
+
+  var hello = function () {
+    console.log('Hey!')
+  }
+}
+```
+
+```
+// this example prints out 'Hello!' because the variable assignment take precedence over function declaration
+sayHello()
+
+function sayHello () {
+  var hello = function () {
+    console.log('Hello!')
+  }
+
+  hello()
+
+  function hello () {
+    console.log('Hey!')
+  }
+}
+```
 
 #### Describe event bubbling (event propagation).
 
