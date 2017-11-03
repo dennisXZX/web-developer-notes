@@ -58,7 +58,7 @@ Get into your hosts file by `sudo vi /etc/hosts` and add `192.168.10.10  dennisx
 
 7. Visit your development domain `dennisxiao.dev` on your machine
 
-8. Connect to your local database by the following credentials
+8. Connect to the Homestead virtual machine database by the following credentials
 
 ```
 Name: Homestead
@@ -69,7 +69,7 @@ Database: (optional, whatever you want if you want to directly connect)
 Port: 33060
 ```
 
-Important: in the `.env` config file of your Laravel project, you should use `DB_HOST=localhost`.
+Important: to connect to your MySQL or PostgreSQL database from your host machine's database client, you should connect to 127.0.0.1 and port 33060 (MySQL) or 54320 (PostgreSQL).
 
 #### Laravel installation
 
