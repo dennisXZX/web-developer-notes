@@ -1,5 +1,7 @@
 ## Laravel
 
+#### 
+
 #### Create helper functions
 
 - Create a Helper.php in app/Helper directory
@@ -115,21 +117,39 @@ Route::resource('posts', 'PostController');
 
 #### Blade template
 
+__{{ }} vs {!! !!}__
+
 Blade `{{ }}` statements are automatically sent through PHP's `htmlentities` function to prevent XSS attacks, so if you want to display HTML content in Blade, you would need to use `{!! !!}`.
 
-You can pass variables from controller to view by using `with()`.
+__Pass values to view__
+
+There are a couple of ways to pass values to view.
 
 ```
-// now you can access the variable from the view using {{ $data }}
-return view('pages.about')->withData($todos);
+// pass values using an array as the second parameter
+return view('pages.about', [
+  'todos' => $todos,
+  'names' => $names
+]);
+
+// pass values using with()
+return view('pages.about')->with('todos', $todos);
+
+return view('pages.about')->withData($todos)->withNames($names);
+
+// pass values using compact()
+return view('pages.about', compact('todos', 'names'));
 ```
-Extend from a layout using `@extend('templateName')`.
+
+__Blade layout control__
+
+Extend from a base layout using `@extend('templateName')`.
+
+Include partial template using `@include('partials._message')`.
 
 Inject dynamic content into a layout using `@yield('sectionName')`;
 
 Specify dynamic content using `@section()`.
-
-Include partial template using `@include('partials._message')`.
 
 ```
 @section('title', ' | Homepage')
