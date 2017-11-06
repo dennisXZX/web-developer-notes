@@ -1,7 +1,5 @@
 ## Laravel
 
-#### 
-
 #### Create helper functions
 
 - Create a Helper.php in app/Helper directory
@@ -15,12 +13,12 @@
 }
 ```
 
-- Run `composer dump-autoload`.
-- Use the helper functions in any php file or Blade view.
+- Run `composer dump-autoload`
+- Use the helper functions in any php file or Blade view
 
 #### Homestead development set-up
 
-1. Install `vagrant` and `virtualbox`
+1. Install `Vagrant` and `Virtualbox`
 2. Install the `Homestead` vagrant box
 
 ```
@@ -52,7 +50,7 @@ sites:
     to: /home/vagrant/code/project2/public
 ```
 
-Everytime the sites property is changes you need to run `vagrant reload --provision`.
+Everytime the 'sites' property is changed you need to run `vagrant reload --provision`.
 
 6. Change the hosts file
 
@@ -93,17 +91,21 @@ export PATH="~/.composer/vendor/bin:$PATH"
 
 #### Artisan Command
 
+`php artisan tinker` to get into REPL (Read–Eval–Print Loop) for the Laravel framework.
+
+`php artisan help make:migration` to see details about the migration command.
+
 `php artisan make:model modelName -m` to create a model as well as a database table associated with it. (the -m flag means migration)
 
 `php artisan make:controller controllerName --resource` to create a resource controller.
 
-`php artisan make:migration migrationName` to create a migration.
+`php artisan make:migration create_tasks_table --create=tasks` to create a migration.
 
 `php artisan migrate` to migrate tables to database.
 
 `php artisan migrate:rollback --step=5` to roll back the last five migrations.
 
-`php artisan migrate:refresh` to roll back all of your migrations and then execute the migrate command.
+`php artisan migrate:refresh` to reset and re-run all migrations.
 
 `php artisan route:list` to list all the routes.
 
