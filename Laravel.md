@@ -105,7 +105,9 @@ export PATH="~/.composer/vendor/bin:$PATH"
 
 `php artisan migrate:rollback --step=5` to roll back the last five migrations.
 
-`php artisan migrate:refresh` to reset and re-run all migrations.
+`php artisan migrate:refresh --step=5` to roll back all of your migrations and then execute the migrate command.
+
+`php artisan migrate:fresh` to drop all tables from the database and then execute the migrate command.
 
 `php artisan route:list` to list all the routes.
 
