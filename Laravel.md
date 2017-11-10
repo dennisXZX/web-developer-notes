@@ -97,7 +97,7 @@ export PATH="~/.composer/vendor/bin:$PATH"
 
 `php artisan make:model modelName -m` to create a model as well as a database table associated with it. (the -m flag means migration)
 
-`php artisan make:controller controllerName --resource` to create a resource controller.
+`php artisan make:controller controllerName -m modelName --resource` to create a resource controller.
 
 `php artisan make:migration create_tasks_table --create=tasks` to create a migration.
 
