@@ -31,7 +31,11 @@ When you use the `-l` format, we can see the access rights to the file.
 
 ```
 drwxrwxrwx  18 dennis.x  staff    612 13 Jul 14:09 books
--rw-r--r--   1 dennis.x  staff   8398  5 Jul 11:06 ei-activity-view.css
+-rwxr-xr--   1 dennis.x  staff   8398  5 Jul 11:06 ei-activity-view.css
 ```
 
 For `drwxrwxrwx`, the first character indicates the file type, `d` represents a directory while a `-` indicates a regular file.
+
+- The first three symbols `rwx` mean the file's owner may read, write, or execute
+- The second three symbols `r-x` mean anyone in the file's group may read or execute this file, but not write to it
+- The last three symbols `r--` mean anyone at all may read this file, but not write to it or execute its contents as a process
