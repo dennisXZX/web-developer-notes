@@ -39,3 +39,24 @@ For `drwxrwxrwx`, the first character indicates the file type, `d` represents a 
 - The first three symbols `rwx` mean the file's owner may read, write, or execute
 - The second three symbols `r-x` mean anyone in the file's group may read or execute this file, but not write to it
 - The last three symbols `r--` mean anyone at all may read this file, but not write to it or execute its contents as a process
+
+### Change permissions for files or directories
+
+You can change the permission for a file using `chmod` command.
+
+```
+chmod 400 myfile
+```
+
+The three number represents the group of User, Group and Other.
+
+Here is how the permission is calculated.
+
+- 4 stands for "read",
+- 2 stands for "write",
+- 1 stands for "execute", and
+- 0 stands for "no permission."
+
+So 7 is the combination of permissions 4+2+1 (read, write, and execute), 5 is 4+0+1 (read, no write, and execute), and 4 is 4+0+0 (read, no write, and no execute).
+
+![permission table](./images/linux_permission_table.png)
