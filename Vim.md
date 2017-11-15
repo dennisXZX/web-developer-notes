@@ -2,8 +2,8 @@
 
 #### Normal mode
 
-- `A` to move to the end of the line and switch to editing mode (just move to the end of the line using `$`)
-- `I` to move to the beginning of the line and switch to insert mode (just move to the beginning of the line using `^`)
+- `A` to move to the end of a line and switch to editing mode (move to the end of the line using `$`)
+- `I` to move to the beginning of a line and switch to insert mode (move to the beginning of the line using `^`)
 - `j` to move down the file
 - `k` to move up the file
 - `h` to move to the left character by character
