@@ -1,6 +1,14 @@
 ## NPM
 
-### Proxy
+#### Install only dev dependencies
+
+You can just install dev dependencies by running the following command.
+
+```
+npm install --only=dev
+```
+
+#### Proxy
 
 We can set up a proxy to forward a request to other API. The following code snippet forwards any request to `/auth/google` to `http://localhost:5000`. This proxy can act as a bridge between front-end and back-end server.
 
@@ -12,7 +20,7 @@ We can set up a proxy to forward a request to other API. The following code snip
 }
 ```
 
-### NPM script
+#### NPM script
 
 `--prefix` flag to specify the location where the script should be run.
 
