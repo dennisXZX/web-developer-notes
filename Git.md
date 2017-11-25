@@ -1,24 +1,56 @@
 ## Git
 
-#### gitFlow
+#### Gitflow
 
-GitFlow is a branching model that standardizes branching and merging policy.
+GitFlow is a branching model that standardizes branching and merging policy. It uses two branches to record the history of the project. The `master` branch stores the offcial release history, and the `develop` branch serves as an integration branch for features. We can also tag all commits in the `master` branch with a version number.
 
-To sum it up:
+How the Gitflow works:
 
-- `master` branch represents what’s in production
-- Features and fixes are worked on their own branch
-- The features and fixes branches are not directly merged into `master` when the work is done; it is merged into a branch called `develop`
-- `develop` is thus some buffer between 'dev done' and 'in production'; release branches are made from `develop` and merged into `master`
-- Release branches can thus be tested and validated at length in staging environment
+- First we need to create `develop` branch
 
-`git flow feature start branchName` to create a new branch based on 'develop'. (switch to `develop` branch before running this command)
+```
+git flow init
+```
 
-`git flow feature finish --squash branchName` to merge a branch into 'develop'.
+- Each new feature should reside in its own branch and `feature` branch should use `develop` as their parent branch. When a feature is complete, it gets merged back into `develop`
 
-`git flow release start releaseVersion` to create a new release branch based on 'develop'.
+```
+// create a feature branch based off develop branch
+git flow feature start feature_branch
 
-`git flow hotfix start branchName` to create a hotfix branch based on 'master'.
+/* work on the feture branch */
+
+// merge the feature branch into develop branch
+// if you do not have permission to merge into develop branch, you can use the 'pull request' feature to achieve that
+git flow feature finish --squash feature_branch
+```
+
+- When you have finished all the features for a release cycle, you fork a `release` branch off of `develop`. At this point, no new features can be added to the `release` branch anymore, only bug fixes can go to the `release` branch. Once it's ready to ship, the `release` branch get merged into `master` with a version number. In addition, it should be merged back into `develop`, which may have progressed since the release was initiated. Finally, the release branch will be deleted.
+
+```
+// create a release branch
+git flow release start 0.1.0
+
+/* added bug fixed to the release branch */
+
+// merge the release branch into master branch
+git checkout master
+git checkout merge release/0.1.0
+// merge the release branch into develop branch
+git flow release finish '0.1.0'
+```
+
+- `hotfix` branch is based on `master` branch in order to quicly patch production releases.
+
+```
+// create a hotfix branch
+git flow hotfix start hotfix_branch
+
+/* work on the hotfix branch */
+
+// merge the hotfix branch into master and develop branches
+git flow hotfix finish hotfix_branch
+```
 
 #### git tag
 
