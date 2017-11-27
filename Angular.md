@@ -2,7 +2,7 @@
 
 #### How Angular app is bootstrapped
 
-In .angular-cli.json, the 'main' property specifies where to look for the bootstrap file, which is 'main.ts' by default. In main.ts, an Angular module is specified to bootstrap the app, which is 'AppModule' by default. In 'app.module.ts', we specify which component to use as the top-level component, which is 'AppComponent' by default. Also in this file, we specify what other components belong to this module.
+In .angular-cli.json, the 'main' property specifies where to look for the bootstrap file, which is 'main.ts' by default. In main.ts, an Angular module is specified to bootstrap the app, which is 'AppModule' by default. In 'app.module.ts', we specify which component to use as the top-level component in 'bootstrap' property, which is 'AppComponent' by default. Also in this file, we specify what other components belong to this module in 'declarations' property.
 
 #### Passing values from parent to child component
 
