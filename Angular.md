@@ -58,17 +58,9 @@ Solution 2
 ],
 ```
 
-#### Create a component using Angular CLI
-
-```
-ng generate component componentName
-
-ng g c componentName
-```
-
 #### Property binding and string interpolation
 
-We use `[property]` to specify property binding and `{{ expression }}` to signal a string interpolation.
+We use `[property]` to specify property binding and `{{ expression }}` to signal a string interpolation. Interpolation binds the value in the component to the view template, which is a one-way binding.
 
 ```
 <p [innerText]="allowNewServer"></p>
@@ -93,5 +85,16 @@ The `$event` parameter is an event object associated with the event being fired.
 #### Directives
 
 ```
+// * indicates it is a structural directive, which means if the value is evaluated as false, it would remove the HTML structure from the DOM
 <p *ngIf="!isValid">Username should not exceed 5 characters.</p>
+```
+
+## Angular CLI
+
+#### Create a component
+
+```
+ng generate component componentName
+
+ng g c componentName
 ```
