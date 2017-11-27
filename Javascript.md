@@ -1,31 +1,6 @@
 ## Javascript
 
-#### Computed property names
-
-Starting with ES2015, we can use computed property names in object initializer syntax.
-
-```
-// example 1
-var i = 0;
-var a = {
-  ['foo' + ++i]: i,
-  ['foo' + ++i]: i
-};
-
-console.log(a.foo1); // 1
-console.log(a.foo2); // 2
-
-// example 2
-var param = 'size';
-var config = {
-  [param]: 12,
-  ['mobile' + param.charAt(0).toUpperCase() + param.slice(1)]: 4
-};
-
-console.log(config); // {size: 12, mobileSize: 4}
-```
-
-#### + and , in console.log()
+#### + vs , in console.log()
 
 Using `+` and `,` in console.log() would result in different results.
 
@@ -37,28 +12,6 @@ console.log('App store created: ' +  appStore.getState());
 // using comma actually means to pass another argument to console.log
 // output: App store created:  { users: {}, items: [] }
 console.log('App store created: ',  appStore.getState());
-```
-
-#### asyn and await
-
-asyn and await syntax is an improved way to handle asynchronous code in Javascript. 
-
-Instead of using a chain of `.then()` method, now we can handle asynchronous code in a more synchronous way.
-
-```
-function fetchAlbums() {
-  fetch('http://rallycoding.herokuapp.com/api/music_albums')
-    .then(res => res.json())
-    .then(json => console.log(json));
-}
-```
-
-```
-async function fetchAlbums() {
-  const res = await fetch('http://rallycoding.herokuapp.com/api/music_albums');
-  const json = await res.json();
-  console.log(json);
-}
 ```
 
 #### What is a shim and a polyfill?
@@ -133,13 +86,6 @@ let myFunc = function(param) {
   return myFunc[param];
 };
 ```
-
-#### What are the differences between for-in and for-of operator. What are the benefits of using for-of over forEach?
-
-The for-in operator is used to iterate over keys of objects.
-The for-of operator is used to iterate over values of arrays or other iterables (Map, Set, String or DOM collection).
-
-The benefits of for-of over forEach() is that we can use `break`, `continue`, and `return` in the loop which are not allowed to do in a forEach() call. All in all, the ES6 for-of operator introduces more flexibility when iterating over an array.
 
 #### How to check if a value is an array before ECMAScript 5
 
