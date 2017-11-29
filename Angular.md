@@ -4,6 +4,19 @@
 
 In `.angular-cli.json`, the 'main' property specifies where to look for the bootstrap file, which is `main.ts` by default. In main.ts, an Angular module is specified to bootstrap the app, which is `AppModule` by default. In `app.module.ts`, we specify which component to use as the top-level component in 'bootstrap' property, which is `AppComponent` by default. Also in this file, we specify what other components belong to this module in 'declarations' property.
 
+#### Safe navigation operator
+
+Angular provides a safe navigation operator `?.` to guard against unexpected property access.
+
+```
+// the 'product' object might be fetched from an asynchronous call
+// so when the template tries to display the productName, the object might still be 'undefined'
+// the safe navigation operator only accesses the 'productName' property when the 'product' object is ready
+<div class="panel-heading">
+  {{ pageTitle + ': ' + product?.productName }}
+</div>
+```
+
 #### Passing values from container to child component
 
 Use bracket `[]` property binding syntax to pass value from container to child component. In addition, we use `@Input` decorator to annotate the class property in the child component.
@@ -219,18 +232,66 @@ Inject the service into a component
 ```
 import { ProductService } from './product.service';
 
-// define a private variable '_productService' and assign it a ProductService instance
+// define a private variable '_productService' and assign it an injected ProductService instance
 constructor(private _productService: ProductService) {
   this.listFilter = '';
 }
 ```
 
-## Angular CLI
+#### Routing
 
-#### Create a component
+In order to use routing in Angular, we need to first configure the routes in a module file.
 
 ```
-ng generate component componentName
+RouterModule.forRoot([
+  { path: 'products', component: ProductListComponent },
+  { path: 'products/:id', component: ProductDetailComponent },
+  { path: 'welcome', component: WelcomeComponent },
+  { path: '', redirectTo: 'welcome', pathMatch: 'full' },
+  { path: '**', redirectTo: 'welcome', pathMatch: 'full' },
+])
+```
+In the view, we need to use `[routerLink]` to specify a route, and `<router-outlet>` directive to specify where to display the routed component's view.
 
-ng g c componentName
+```
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <a class="navbar-brand">{{ pageTitle }}</a>
+        <ul class="nav navbar-nav">
+            <li><a [routerLink]="['/welcome']">Home</a></li>
+            <li><a [routerLink]="['/products']">Product List</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+    <router-outlet></router-outlet>
+</div>
+```
+
+## Angular CLI
+
+```
+// create an Angular project
+ng new projectName
+
+// launch the Angular project and open in your default browser
+ng serve -o
+
+// generate production code using, uglify, tree-shaking and AOT (Ahead of Time compilation)  to minimize the code
+ng build --prod
+
+// run unit test and end-to-end test on your application
+ng test | ng e2e
+
+// create a component, the --flat flag indicates there is no folder created
+ng g c products/product-detail.component --flat
+
+// create a service and register it in app.module
+ng g s products/product-guard.service -m app.module
+
+// create a module and register it in app.module
+ng g m products/product --flat -m app.module
+
+// check the documentation of a CLI command
+ng commandName --help
 ```
