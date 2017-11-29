@@ -2,19 +2,55 @@
 
 #### How Angular app is bootstrapped
 
-In .angular-cli.json, the 'main' property specifies where to look for the bootstrap file, which is 'main.ts' by default. In main.ts, an Angular module is specified to bootstrap the app, which is 'AppModule' by default. In 'app.module.ts', we specify which component to use as the top-level component in 'bootstrap' property, which is 'AppComponent' by default. Also in this file, we specify what other components belong to this module in 'declarations' property.
+In `.angular-cli.json`, the 'main' property specifies where to look for the bootstrap file, which is `main.ts` by default. In main.ts, an Angular module is specified to bootstrap the app, which is `AppModule` by default. In `app.module.ts`, we specify which component to use as the top-level component in 'bootstrap' property, which is `AppComponent` by default. Also in this file, we specify what other components belong to this module in 'declarations' property.
 
-#### Passing values from parent to child component
+#### Passing values from container to child component
 
-Use bracket `[]` syntax to pass value from parent to child.
+Use bracket `[]` property binding syntax to pass value from container to child component. In addition, we use `@Input` decorator to specify a class property in the child component.
 
 ```
-<p *ngFor="let name of names">
-  // pass a value to the input named foo in <app-user-item> component
-  <app-user-item [foo]="name"></app-user-item>
-</p>
+// pass a value to child component
+<pm-star [rating]='product.starRating'></pm-star>
+
+export class StarComponent implements OnChanges {
+  // specify the value
+  @Input() rating: number;
+}
 ```
-In the child component, use `@Input()` annotation to indicate 
+
+#### Passing values from child component to container
+
+It's a bit complcated to pass something from the child component to its parent.
+
+In the child component, we need to emit an event using the `@Output()` decorator.
+
+```
+export class StarComponent implements OnChanges {
+  // define an event emitter
+  @Output() ratingClicked: EventEmitter<number> = new EventEmitter();
+
+  // when the component is clicked, event an event with a payload of number type
+  onClick(): void {
+    this.ratingClicked.emit(this.rating);
+  }
+}
+```
+
+In the container, we need to listen the event.
+
+```
+<pm-star
+        [rating]='product.starRating'
+        // listen the ratingClicked event from the child component
+        // $event is the payload emitted from the child component
+        (ratingClicked)='onRatingClicked($event)'></pm-star>
+        
+// handle the event in the component
+// the 'message' parameter is the $event payload coming from the child component
+onRatingClicked(message: string): void {
+  this.pageTitle = `This product is ${message} stars`;
+}        
+```
 
 #### Passing an HTML element to a function
 
@@ -60,12 +96,19 @@ Solution 2
 
 #### Property binding and string interpolation
 
-We use `[property]` to specify property binding and `{{ expression }}` to signal a string interpolation. Interpolation binds the value in the component to the view template, which is a one-way binding.
+We use `[property]` to specify property binding and `{{ expression }}` to signal a string interpolation. Both property binding and interpolation binds a component class property to the template, which is one-way binding.
 
 ```
-<p [innerText]="allowNewServer"></p>
+// property binding
+<img *ngIf="showImage"
+     [src]="product.imageUrl"
+     [title]="product.productName"
+     [style.width.px]="imageWidth"
+     [style.margin.px]="imageMargin">
+     
 <button [disabled]="allowNewServer">Add Server</button>
 
+// string interpolation
 <p>Server with ID {{ serverId }} is {{ getServerStatus() }}</p>
 ```
 
@@ -73,20 +116,76 @@ We use `[property]` to specify property binding and `{{ expression }}` to signal
 
 We use `(event)` to indicate an event binding. Remember to add a pair of parens after the method name.
 
-The `$event` parameter is an event object associated with the event being fired.
-
 ```
 <button 
   [disabled]="!allowNewServer"
+  // The $event parameter is an event object associated with the event being fired.
   (click)="increseServerid($event)"
 >Add Server</button>
+```
+
+#### Two-way binding
+
+We use `[(ngModel)]` to achieve two-way binding, which is part of the `FormsModule`. So in order to use ngModel, we need to first import it in app.module.ts file.
+
+```
+<input type="text" [(ngModel)]="listFilter"/>
 ```
 
 #### Directives
 
 ```
-// * indicates it is a structural directive, which means if the value is evaluated as false, it would remove the HTML structure from the DOM
-<p *ngIf="!isValid">Username should not exceed 5 characters.</p>
+Structual directives
+
+/* 
+The * prefix indicates it is a structural directive,
+which means if the value of the directive is evaluated as false, 
+it would remove the HTML structure from the DOM.
+*/
+
+<table class="table" *ngIf="products && products.length">
+  // other code...
+</table>
+
+<tr *ngFor="let product of products">
+  // other code...
+</tr>
+```
+
+#### Pipes
+
+We can use a pipe with the `|` character.
+
+```
+// use chain pipes in string interpolation
+{{ product.price | currency | lowercase }}
+
+// use parameters in pipe
+{{ product.price | currency:'USD':true:'1.2-2' }}
+
+// use pipe in property binding
+<img [src]='product.imageUrl' [title]='product.productName | uppercase' />
+```
+
+#### Component lifecycle hooks
+
+- OnInit: perform component initialization or retrieve data from backend server
+- OnChanges: perform action after change to input properties
+- OnDestroy: perform cleanup
+
+To use lifecycle hook, we need to import and implement its interface.
+
+```
+// import the OnInit interface
+import { Component, OnInit } from "@angular/core";
+
+// implement the interface
+export class ProductListComponent implements OnInit { ...code }
+
+// define the lifecycle hook method
+ngOnInit(): void {
+  console.log('ngOnInit');
+}
 ```
 
 ## Angular CLI
