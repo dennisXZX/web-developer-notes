@@ -12,6 +12,7 @@ Angular provides a safe navigation operator `?.` to guard against unexpected pro
 // the 'product' object might be fetched from an asynchronous call
 // so when the template tries to display the productName, the object might still be 'undefined'
 // the safe navigation operator only accesses the 'productName' property when the 'product' object is ready
+// another way to guard against 'undefined' is to use *ngIf directive
 <div class="panel-heading">
   {{ pageTitle + ': ' + product?.productName }}
 </div>
@@ -22,11 +23,11 @@ Angular provides a safe navigation operator `?.` to guard against unexpected pro
 Use bracket `[]` property binding syntax to pass value from container to child component. In addition, we use `@Input` decorator to annotate the class property in the child component.
 
 ```
-// pass a value to child component
+// pass a value to 'rating' proerty from container
 <pm-star [rating]='product.starRating'></pm-star>
 
 export class StarComponent implements OnChanges {
-  // dictate the value is passed from container using @Input()
+  // dictate the value is passed from container using @Input() decorator
   @Input() rating: number;
 }
 ```
@@ -39,7 +40,7 @@ In the child component, we need to emit an event using the `@Output()` decorator
 
 ```
 export class StarComponent implements OnChanges {
-  // define an event emitter
+  // define an event emitter and specify what type of data the it would emit
   @Output() ratingClicked: EventEmitter<number> = new EventEmitter();
 
   // when the component is clicked, emit an event with a payload of number type
@@ -49,7 +50,7 @@ export class StarComponent implements OnChanges {
 }
 ```
 
-In the container, we need to listen the event.
+In the container, we need to listen to the event emitting.
 
 ```
 <pm-star
@@ -213,7 +214,9 @@ import { IProduct } from './product';
 @Injectable()
 export class ProductService {
   // define a method
-  getProducts(): IProduct[] {}
+  getProducts(): IProduct[] {
+    code here ...
+  }
 }
 ```
 
@@ -263,7 +266,9 @@ In the view, we need to use `[routerLink]` to specify a route, and `<router-outl
         </ul>
     </div>
 </nav>
+
 <div class="container">
+    // <router-outlet> specify where to display the routed component's view
     <router-outlet></router-outlet>
 </div>
 ```
