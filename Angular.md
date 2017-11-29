@@ -6,14 +6,14 @@ In `.angular-cli.json`, the 'main' property specifies where to look for the boot
 
 #### Passing values from container to child component
 
-Use bracket `[]` property binding syntax to pass value from container to child component. In addition, we use `@Input` decorator to specify a class property in the child component.
+Use bracket `[]` property binding syntax to pass value from container to child component. In addition, we use `@Input` decorator to annotate the class property in the child component.
 
 ```
 // pass a value to child component
 <pm-star [rating]='product.starRating'></pm-star>
 
 export class StarComponent implements OnChanges {
-  // specify the value
+  // dictate the value is passed from container using @Input()
   @Input() rating: number;
 }
 ```
@@ -29,7 +29,7 @@ export class StarComponent implements OnChanges {
   // define an event emitter
   @Output() ratingClicked: EventEmitter<number> = new EventEmitter();
 
-  // when the component is clicked, event an event with a payload of number type
+  // when the component is clicked, emit an event with a payload of number type
   onClick(): void {
     this.ratingClicked.emit(this.rating);
   }
@@ -42,17 +42,18 @@ In the container, we need to listen the event.
 <pm-star
         [rating]='product.starRating'
         // listen the ratingClicked event from the child component
+        // when an ratingClicked event is emitted, onRatingClicked() method is executed
         // $event is the payload emitted from the child component
         (ratingClicked)='onRatingClicked($event)'></pm-star>
         
-// handle the event in the component
+// handle the event in the container
 // the 'message' parameter is the $event payload coming from the child component
 onRatingClicked(message: string): void {
   this.pageTitle = `This product is ${message} stars`;
 }        
 ```
 
-#### Passing an HTML element to a function
+#### Passing an HTML element from the view to a component class
 
 Use hash `#` to bind an HTML element to a local variable.
 
@@ -67,7 +68,7 @@ Use hash `#` to bind an HTML element to a local variable.
   </button>  
 </div>
 ```
-In the function, we receive the argument passed as an HTMLInputElement type.
+In the component, we receive the HTML element passed in as an HTMLInputElement type.
 
 ```
 addArticle(link: HTMLInputElement): boolean {
@@ -80,7 +81,7 @@ addArticle(link: HTMLInputElement): boolean {
 
 Solution 1
 
-Add the Bootstrap CDN link to the root template of an Angular project.
+Add the Bootstrap CDN link to the root template of an Angular project (index.html).
 
 Solution 2
 
@@ -126,10 +127,11 @@ We use `(event)` to indicate an event binding. Remember to add a pair of parens 
 
 #### Two-way binding
 
-We use `[(ngModel)]` to achieve two-way binding, which is part of the `FormsModule`. So in order to use ngModel, we need to first import it in app.module.ts file.
+We use `[(ngModel)]` to achieve two-way binding, which is part of the `FormsModule`. So in order to use ngModel, we need to first import it in your Angular module file (for example, app.module.ts).
 
 ```
-<input type="text" [(ngModel)]="listFilter"/>
+// any change to the input value will also reflect in the component class
+<input type="text" [(ngModel)]="listFilter" />
 ```
 
 #### Directives
@@ -139,8 +141,7 @@ Structual directives
 
 /* 
 The * prefix indicates it is a structural directive,
-which means if the value of the directive is evaluated as false, 
-it would remove the HTML structure from the DOM.
+which means it would change DOM structure based on the condition
 */
 
 <table class="table" *ngIf="products && products.length">
@@ -170,7 +171,7 @@ We can use a pipe with the `|` character.
 #### Component lifecycle hooks
 
 - OnInit: perform component initialization or retrieve data from backend server
-- OnChanges: perform action after change to input properties
+- OnChanges: perform action after change to @input() properties
 - OnDestroy: perform cleanup
 
 To use lifecycle hook, we need to import and implement its interface.
@@ -185,6 +186,42 @@ export class ProductListComponent implements OnInit { ...code }
 // define the lifecycle hook method
 ngOnInit(): void {
   console.log('ngOnInit');
+}
+```
+
+#### Services
+
+Define a service
+
+```
+import { Injectable } from '@angular/core';
+import { IProduct } from './product';
+
+@Injectable()
+export class ProductService {
+  // define a method
+  getProducts(): IProduct[] {}
+}
+```
+
+Register the service in the closest ancestor component
+
+```
+@Component({
+  selector: "pm-root",
+  templateUrl: "./app.component.html",
+  providers: [ProductService]
+})
+```
+
+Inject the service into a component
+
+```
+import { ProductService } from './product.service';
+
+// define a private variable '_productService' and assign it a ProductService instance
+constructor(private _productService: ProductService) {
+  this.listFilter = '';
 }
 ```
 
