@@ -99,7 +99,7 @@ export PATH="~/.composer/vendor/bin:$PATH"
 
 `php artisan make:controller controllerName -m modelName --resource` to create a resource controller.
 
-`php artisan make:migration create_tasks_table --create=tasks` to create a migration.
+`php artisan make:migration add_image_col_to_posts --create=posts` to create a migration which adds a new image column to 'posts' table.
 
 `php artisan migrate` to migrate tables to database.
 
