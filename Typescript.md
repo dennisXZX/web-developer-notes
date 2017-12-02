@@ -17,6 +17,48 @@ tsc
 tsc -w
 ```
 
+#### Define a class
+
+```
+class Cat {
+  // define a private property
+  private _name: string;
+  
+  constructor(name) {
+    this._name = name;
+  }
+  
+  // by default, any property and method is public
+  speak() {
+    console.log('My name is: ' + this._name);
+  }
+}
+
+// create a Cat instance
+const fluffy = new Cat('Dennis');
+fluffy.speak();
+```
+
+Because it is so common to declare a private variable in a class and then assign a value to it in the constructor, Typescript has a short-cut syntax for this.
+
+```
+class Cat {
+  constructor(private _name, private _color) {
+  
+  }
+}
+```
+
+#### Define an interface
+
+```
+// you can define an optional value in an interface using '?' operator
+interface ICat {
+  name: string;
+  age?: number;
+}
+```
+
 #### Define a specific type
 
 Typescript can assign types implicitly but it is recommeded to always assign types in an explicit way.
