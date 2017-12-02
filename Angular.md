@@ -91,23 +91,29 @@ addArticle(link: HTMLInputElement): boolean {
 }
 ```
 
-#### Add Bootstrap to Angular project
+#### Add Bootstrap and jQuery to Angular project
 
 Solution 1
 
-Add the Bootstrap CDN link to the root template of an Angular project (index.html).
+Add the Bootstrap and jQuery CDN link to the root template of an Angular project (index.html).
 
 Solution 2
 
-1. Install Bootstrap using a package manager like NPM or Yarn.
-2. Add Bootstrap to the "styles" section in .angular-cli.json.
+1. Install Bootstrap and jQuery using a package manager like NPM or Yarn.
+2. Add Bootstrap to the 'styles' section in .angular-cli.json.
+3. Add jQuery to the 'scripts' section in .angular-cli.json.
 
 ```
 "styles": [
   "../node_modules/bootstrap/dist/css/bootstrap.min.css",
   "styles.css"
 ],
+"scripts": [
+  "../node_modules/jquery/dist/jquery.min.js",
+]
 ```
+
+4. If you like to have a better theme, replace the default `bootstrap.min.css` file by one of those from [Bootswatch](https://bootswatch.com/).
 
 #### Property binding and string interpolation
 
