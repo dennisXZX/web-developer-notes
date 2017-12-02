@@ -99,7 +99,7 @@ export PATH="~/.composer/vendor/bin:$PATH"
 
 `php artisan make:controller controllerName -m modelName --resource` to create a resource controller.
 
-`php artisan make:migration add_image_col_to_posts --create=posts` to create a migration which adds a new image column to 'posts' table.
+`php artisan make:migration add_image_col_to_posts --table=posts` to create a migration which adds a new image column to 'posts' table. The `--table` and `--create` options may also be used to indicate the name of the table and whether the migration will be creating a new table.
 
 `php artisan migrate` to migrate tables to database.
 
