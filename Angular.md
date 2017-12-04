@@ -67,22 +67,27 @@ onRatingClicked(message: string): void {
 }        
 ```
 
-#### Passing an HTML element from the view to a component class
+#### Template reference variables
 
-Use hash `#` to bind an HTML element to a local variable.
+Use hash `#` to bind a DOM element or directive to a local variable, so the variable can be used anywhere in the template. This is often used for parent component to access public properties or methods of child components.
 
 ```
-<div class="field">
-  <label for="link">Link:</label>
-  // bind the input element to a variable named 'newlink'
-  <input name="link" #newlink>
-  // passing the link HTML element to a function
-  <button (click)="addArticle(newlink)" class="ui positive right floated button">
-    Submit link 
-  </button>  
-</div>
+// bind the <event-thumbnail> directive so any public properties and methods of it can be accessed in the template
+<event-thumbnail #thumbnail></event-thumbnail>
+<h3>{{ thumbnail.someProperty }}</h3>
+<button (click)="thumbnail.someMethod()">Click</button>
 ```
-In the component, we receive the HTML element passed in as an HTMLInputElement type.
+
+You can also bind a DOM element
+
+```
+// bind the input element to a variable named 'newlink'
+<input name="link" #newlink>
+// passing the link HTML element to a function
+<button (click)="addArticle(newlink)">Submit</button>  
+```
+
+In the component, we receive the HTML element passed in as an `HTMLInputElement` type.
 
 ```
 addArticle(link: HTMLInputElement): boolean {
