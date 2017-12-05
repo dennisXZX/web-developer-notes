@@ -1,4 +1,4 @@
-## WebStorm/PhpStorm
+## WebStorm / PhpStorm
 
 #### Useful shortcut
 
