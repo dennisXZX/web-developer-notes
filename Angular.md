@@ -159,23 +159,56 @@ We use `[(ngModel)]` to achieve two-way binding, which is part of the `FormsModu
 <input type="text" [(ngModel)]="listFilter" />
 ```
 
-#### Directives
+#### Structual directives
+
+*ngIf
 
 ```
-Structual directives
-
 /* 
 The * prefix indicates it is a structural directive,
 which means it would change DOM structure based on the condition
 */
 
+// *ngIf will add or remove the DOM element based on conditions
 <table class="table" *ngIf="products && products.length">
   // other code...
 </table>
 
+// another way to show or hide a DOM element is by using 'hidden' property
+// the advantage of this approach is the element is always in the DOM
+// if you need to frequently show or hide this element, this perform much better than *ngIf
+// as there is no need to re-render the element each time the condition changes
+<div [hidden]="!event.price">Price: ${{event.price}}</div>
+```
+
+*ngFor
+
+```
 <tr *ngFor="let product of products">
   // other code...
 </tr>
+```
+
+*ngSwitch
+
+```
+<div [ngSwitch]="event?.time">
+  Time: {{event?.time}}
+  <span *ngSwitchCase="'8:00 am'">(Early Start)</span>
+  <span *ngSwitchCase="'10:00 am'">(Late Start)</span>
+  <span *ngSwitchDefault>(Normal Start)</span>
+</div>
+```
+
+#### Directives
+
+`ngClass` can bind multiple classes to an element while `ngStyle` can bind multiple styles.
+
+```
+// normally we define a function in the component to minimize the logic in the template
+<div [ngClass]="{green : event?.time === '8:00 am'}">Time: {{event?.time}} {{timeLabel}}</div>
+
+<div [ngStyle]="{'color' : event?.time === '8:00 am' ? '#003300' : 'normal' }">Time: {{event?.time}} {{timeLabel}}</div>
 ```
 
 #### Pipes
@@ -222,6 +255,7 @@ Define a service
 import { Injectable } from '@angular/core';
 import { IProduct } from './product';
 
+// the @Injectable() decorator means this service also depends on other injected services
 @Injectable()
 export class ProductService {
   // define a method
