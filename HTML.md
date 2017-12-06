@@ -1,5 +1,19 @@
 ## HTML
 
+#### HTML attribute vs DOM property
+
+HTML is a set of written instructions for how to display a web page. The browser reads the HTML and creates something called a DOM (Document Object Model) in memory. Changing the HTML doesn’t automatically update the webpage unless the user refreshes the browser, changing the DOM however instantly updates the webpage. 
+
+There is mostly a 1-to-1 mapping between the names and values of HTML attributes and their equivalent DOM properties, but not always. The hidden HTML attribute is a good example, it only needs to exist on an HTML element to instruct the browser to hide the element. So `hidden="true"` hides the element but confusingly so does `hidden="false"`, in HTML we just need to add hidden to hide the element.
+
+```
+<div hidden>I'm hiding</div>
+```
+
+The DOM representation of the hidden attribute is a property also called `hidden`, which if set to true hides the element and false shows the element.
+
+Javascript framework like Angular doesn’t manipulate HTML attributes, it manipulates DOM properties because the DOM is what actually gets displayed. So when we write `[hidden]` we are manipulating the DOM property and not the HTML attribute.
+
 #### Why we need to use HTML entities?
 
 Since some characters are reserved in HTML, such as `<` (`&lt;`), `>` (`&gt;`) and `&` (`&amp;`), so we need to escape them for the HTML code to be parsed correctly. Mordern browsers are lenient on parsing but it is a good pratice to escape all these little demons.
@@ -17,18 +31,3 @@ Here are a few important things that need to be considered in making a website a
 - Give links descriptive names
 - Ensure that all content can be accessed by keyboard
 - Use ARIA roles to enhance the semantics of your website
-
-#### What is microformats?
-
-Microformats is a way to extend HTML markup by introducing some standardized class names for information they contain. Below is a hCard 
-
-```
-<p class="h-card">
-  <img class="u-photo" src="http://example.org/photo.png" alt="" />
-  <a class="p-name u-url" href="http://example.org">Joe Bloggs</a>
-  <a class="u-email" href="mailto:joebloggs@example.com">joebloggs@example.com</a>, 
-  <span class="p-street-address">17 Austerstræti</span>
-  <span class="p-locality">Reykjavík</span>
-  <span class="p-country-name">Iceland</span>
-</p>
-```
