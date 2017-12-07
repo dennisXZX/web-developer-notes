@@ -1,5 +1,25 @@
 ## Javascript
 
+#### How the bind() function works
+
+This is not exactly how the navtive bind() method is implemented internally. It only intends to give you an overview of how it works.
+
+```
+// the first parameter is the new 'this' context
+// parameters after are some pre-defined arguments for the new method
+Function.prototype.bind = function(thisArg, ...fixedArgs) {
+    // save the original object
+    const func = this;
+
+    // return a new function
+    return function(...args) {
+        // use apply method to change the 'this' context
+        // concatenate pre-defined arguments and newly passed arguments
+        return func.apply(thisArg, [...fixedArgs, ...args]);
+    }
+}
+```
+
 #### + vs , in console.log()
 
 Using `+` and `,` in console.log() would result in different results.
@@ -165,7 +185,7 @@ There are usually four ways of calling a function in Javascript.
 
 1. When called as a function, 'this' refers to the global object, which is the window object in a browser environment (non-strict mode), or `undefined` (strict mode).
 2. When called as a method, 'this' refers to the object that invokes the method.
-3. When called as a constructor function, 'this' refers to the instance created by the constructor function.
+3. When called as a constructor function, 'this' refers to the instance created by the constructor function. However, if in the constructor you explicitly return an object, 'this' would point to that object.
 4. When called via call() or apply(), 'this' refers to the first parameter passed into those functions. If the first parameter is `null`, then 'this' would point to the global object.
 
 In ES6, an arrow function does not create its own context, so 'this' inherits the function context from the context in which it was created.
