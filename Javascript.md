@@ -187,8 +187,7 @@ There are usually four ways of calling a function in Javascript.
 2. When called as a method, 'this' refers to the object that invokes the method.
 3. When called as a constructor function, 'this' refers to the instance created by the constructor function. However, if in the constructor you explicitly return an object, 'this' would point to that object.
 4. When called via call() or apply(), 'this' refers to the first parameter passed into those functions. If the first parameter is `null`, then 'this' would point to the global object.
-
-In ES6, an arrow function does not create its own context, so 'this' inherits the function context from the context in which it was created.
+5. In ES6, an arrow function does not create its own context, so 'this' inherits the function context from the context in which it was created. In addition, you cannot change the 'this' context of an array function, which is determined the moment the array function is created. 
 
 Take a look at this example to understand how arrow function affects the value of 'this'.
 
