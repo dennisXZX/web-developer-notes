@@ -2,7 +2,7 @@
 
 #### Node REPL
 
-Get into Node REPL shell (Read–Eval–Print Loop) by typing 'node'.
+Get into Node REPL shell (Read–Eval–Print Loop) by typing `node`.
 
 In Node REPL, the `_` is set to be the result of the last operation.
 
