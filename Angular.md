@@ -288,17 +288,30 @@ constructor(private _productService: ProductService) {
 
 #### Routing
 
-In order to use routing in Angular, we need to first configure the routes in a module file.
+In order to use routing in Angular, we need to first configure a route file.
 
 ```
-RouterModule.forRoot([
-  { path: 'products', component: ProductListComponent },
-  { path: 'products/:id', component: ProductDetailComponent },
-  { path: 'welcome', component: WelcomeComponent },
-  { path: '', redirectTo: 'welcome', pathMatch: 'full' },
-  { path: '**', redirectTo: 'welcome', pathMatch: 'full' },
-])
+export const appRoutes: Routes = [
+  { path: 'events', component: EventsListComponent },
+  { path: 'events/:id', component: EventDetailsComponent },
+  // pathMatch can be set to 'full' or 'prefix'
+  { path: '', redirectTo: '/events', pathMatch: 'full' }
+];
 ```
+
+Then we need to import the routes in NgModule.
+
+```
+@NgModule({
+  imports: [
+    BrowserModule,
+    RouterModule.forRoot(appRoutes)
+  ]
+}
+```
+
+We need to add a `<base href=''>` tag to index.html to tell Angular the relative path to parse the route.
+
 In the view, we need to use `[routerLink]` to specify a route, and `<router-outlet>` directive to specify where to display the routed component's view.
 
 ```
@@ -307,7 +320,8 @@ In the view, we need to use `[routerLink]` to specify a route, and `<router-outl
         <a class="navbar-brand">{{ pageTitle }}</a>
         <ul class="nav navbar-nav">
             <li><a [routerLink]="['/welcome']">Home</a></li>
-            <li><a [routerLink]="['/products']">Product List</a></li>
+            // go to /events with the event id as a parameter
+            <li><a [routerLink]="['/events', event.id]">Event</a></li>
         </ul>
     </div>
 </nav>
@@ -316,6 +330,21 @@ In the view, we need to use `[routerLink]` to specify a route, and `<router-outl
     // <router-outlet> specify where to display the routed component's view
     <router-outlet></router-outlet>
 </div>
+```
+
+You can navigate to a route in code using the navigate method.
+
+```
+export class CreateEventComponent {
+  constructor(private _router: Router) {
+
+  }
+
+  cancel() {
+    // navigate to '/events' route
+    this._router.navigate(['/events']);
+  }
+}
 ```
 
 ## Angular CLI
