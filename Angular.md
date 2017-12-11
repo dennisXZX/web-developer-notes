@@ -29,6 +29,8 @@ Use bracket `[]` property binding syntax to pass value from container to child c
 export class StarComponent implements OnChanges {
   // dictate the value is passed from container using @Input() decorator
   @Input() rating: number;
+  // we can also use an alias, so now outside this component we pass the value using [pageRating]='product.starRating'
+  @Input('pageRating') rating: number;
 }
 ```
 
@@ -54,11 +56,11 @@ In the container, we need to listen to the event emitting.
 
 ```
 <pm-star
-        [rating]='product.starRating'
-        // listen the ratingClicked event from the child component
-        // when an ratingClicked event is emitted, onRatingClicked() method is executed
-        // $event is the payload emitted from the child component
-        (ratingClicked)='onRatingClicked($event)'></pm-star>
+    [rating]='product.starRating'
+    // listen the ratingClicked event from the child component
+    // when an ratingClicked event is emitted, onRatingClicked() method is executed
+    // $event is the payload emitted from the child component
+    (ratingClicked)='onRatingClicked($event)'></pm-star>
         
 // handle the event in the container
 // the 'message' parameter is the $event payload coming from the child component
@@ -69,7 +71,7 @@ onRatingClicked(message: string): void {
 
 #### Template reference variables
 
-Use hash `#` to bind a DOM element or directive to a local variable, so the variable can be used anywhere in the template. This is often used for parent component to access public properties or methods of child components.
+Use hash `#` to bind a DOM element or directive to a local variable, so the variable can be used anywhere in the template (not in your Typescript code). This is often used for parent component to access public properties or methods of child components.
 
 ```
 // bind the <event-thumbnail> directive so any public properties and methods of it can be accessed in the template
@@ -94,6 +96,37 @@ addArticle(link: HTMLInputElement): boolean {
   console.log(`Adding article link: ${link.value}`);
   return false; 
 }
+```
+
+#### @ViewChild and @ContentChild
+
+You can access an HTML element in the Typescript code using `@ViewChild` decorator.
+
+```
+// define a template reference variable
+<input type="text" #serverContent />
+```
+
+```
+// in Typescript, you get an element reference
+@ViewChild('serverContent') serverContent: ElementRef;
+
+// now you can access the value of the input in ngAfterViewInit() life cycle method
+this.serverContent.nativeElement.value;
+```
+
+If you add a template reference variable to an HTML element between a directive, and you want to access it in the code, you can use `@ContentChild` decorator.
+
+```
+<app-server-element>
+  <p #contentParagraph></p>
+</app-server-element>
+```
+
+Now you can access the element reference in ngAfterContentInit() life cycle method.
+
+```
+@ContentChild('contentParagraph') paragraph: ElementRef;
 ```
 
 #### Add Bootstrap and jQuery to Angular project
@@ -127,10 +160,10 @@ We use `[property]` to specify property binding and `{{ expression }}` to signal
 ```
 // property binding
 <img *ngIf="showImage"
-     [src]="product.imageUrl"
-     [title]="product.productName"
-     [style.width.px]="imageWidth"
-     [style.margin.px]="imageMargin">
+    [src]="product.imageUrl"
+    [title]="product.productName"
+    [style.width.px]="imageWidth"
+    [style.margin.px]="imageMargin">
      
 <button [disabled]="allowNewServer">Add Server</button>
 
@@ -161,18 +194,19 @@ We use `[(ngModel)]` to achieve two-way binding, which is part of the `FormsModu
 
 #### Structual directives
 
+The * prefix indicates it is a structural directive, which means it would change DOM structure based on the condition
+
 *ngIf
 
 ```
-/* 
-The * prefix indicates it is a structural directive,
-which means it would change DOM structure based on the condition
-*/
-
 // *ngIf will add or remove the DOM element based on conditions
 <table class="table" *ngIf="products && products.length">
   // other code...
 </table>
+
+// you can also add an else block
+<div *ngIf="condition; else elseBlock">...</div>
+<ng-template #elseBlock>...</ng-template>
 
 // another way to show or hide a DOM element is by using 'hidden' property
 // the advantage of this approach is the element is always in the DOM
@@ -184,7 +218,7 @@ which means it would change DOM structure based on the condition
 *ngFor
 
 ```
-<tr *ngFor="let product of products">
+<tr *ngFor="let product of products; index as i;">
   // other code...
 </tr>
 ```
@@ -202,6 +236,16 @@ which means it would change DOM structure based on the condition
 
 #### Directives
 
+We can create a directive by tag, attribute and class.
+
+```
+@Component({
+  selector: 'app-server',  // by tag
+  selector: '[app-server]' // by attribute
+  selector: '.app-server'  // by class
+})
+```
+
 `ngClass` can bind multiple classes to an element while `ngStyle` can bind multiple styles.
 
 ```
@@ -210,6 +254,8 @@ which means it would change DOM structure based on the condition
 
 <div [ngStyle]="{'color' : event?.time === '8:00 am' ? '#003300' : 'normal' }">Time: {{event?.time}} {{timeLabel}}</div>
 ```
+
+`<ng-content></ng-content>` can project any HTML code between your custom directives into your component.
 
 #### Pipes
 
@@ -228,9 +274,9 @@ We can use a pipe with the `|` character.
 
 #### Component lifecycle hooks
 
-- OnInit: perform component initialization or retrieve data from backend server
-- OnChanges: perform action after change to @input() properties
-- OnDestroy: perform cleanup
+- ngOnInit: perform component initialization or retrieve data from backend server
+- ngOnChanges: perform action after change to @input() properties
+- ngOnDestroy: perform cleanup
 
 To use lifecycle hook, we need to import and implement its interface.
 
@@ -316,19 +362,19 @@ In the view, we need to use `[routerLink]` to specify a route, and `<router-outl
 
 ```
 <nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <a class="navbar-brand">{{ pageTitle }}</a>
-        <ul class="nav navbar-nav">
-            <li><a [routerLink]="['/welcome']">Home</a></li>
-            // go to /events with the event id as a parameter
-            <li><a [routerLink]="['/events', event.id]">Event</a></li>
-        </ul>
-    </div>
+  <div class="container-fluid">
+    <a class="navbar-brand">{{ pageTitle }}</a>
+    <ul class="nav navbar-nav">
+      <li><a [routerLink]="['/welcome']">Home</a></li>
+      // go to /events with the event id as a parameter
+      <li><a [routerLink]="['/events', event.id]">Event</a></li>
+    </ul>
+  </div>
 </nav>
 
 <div class="container">
-    // <router-outlet> specify where to display the routed component's view
-    <router-outlet></router-outlet>
+  // <router-outlet> specify where to display the routed component's view
+  <router-outlet></router-outlet>
 </div>
 ```
 
@@ -364,6 +410,9 @@ ng test | ng e2e
 
 // create a component, the --flat flag indicates there is no folder created
 ng g c products/product-detail.component --flat
+
+// create a component with no testing spec file
+ng g c recipes/recipe-list --spec false
 
 // create a service and register it in app.module
 ng g s products/product-guard.service -m app.module
