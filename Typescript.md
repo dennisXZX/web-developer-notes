@@ -2,12 +2,16 @@
 
 #### Compile Typescript to Javascript
 
-compile one file
+compile a Typescript file
+
 ```
 tsc fileName.ts
 ```
-set up a tsconfig.json to monitor a Typescript project folder
+
+set up a tsconfig.json to monitor the whole Typescript project folder.
+
 ```
+// create a default config file 
 tsc --init
 
 // now using command tsc will automatically look for any .ts files and convert them into .js ones
