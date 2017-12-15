@@ -235,7 +235,7 @@ The * prefix indicates it is a structural directive, which means it would change
 </div>
 ```
 
-#### Directives
+#### Attribute directives
 
 We can create a directive by tag, attribute and class.
 
@@ -417,6 +417,9 @@ ng g c recipes/recipe-list --spec false
 
 // create a service and register it in app.module
 ng g s products/product-guard.service -m app.module
+
+// create a directive
+ng g d directiveName
 
 // create a module and register it in app.module
 ng g m products/product --flat -m app.module
