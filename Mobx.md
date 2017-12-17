@@ -61,8 +61,8 @@ Access values in the store
 ```
 import { inject, observer } from 'mobx-react';
 
-// inject the TodoStore into TodoList component and observe any @observable changes
-@inject('TodoStore')
+// inject the TodoStore and StudentStore into TodoList component and observe any @observable changes
+@inject('TodoStore', 'StudentStore')
 @observer
 class TodoList extends Component {
   render() {
