@@ -1,5 +1,33 @@
 ## CSS
 
+#### UI layer
+
+z-index property specifies the z-order of a positioned element. When elements overlap, z-order determines which one sits on top of the other. An element with a larger z-index stacks over one with a lower z-index. Following is a recommended UI layer standard for web/mobile design.
+
+```
+Popup Layer       -> for displaying a popup
+================
+Mask Layer        -> for displaying a mask, locking navigation and content layer
+================
+Navigation Layer  -> for displaying navigation, it fixes on the position when the content scrolls
+================
+Content Layer     -> for displaying content
+================
+```
+
+#### BEM
+
+Block(.) - standalone entity that is meaningful on its own
+
+Element(__) - a part of a block that has no standalone meaning and is semantically tied to its block
+
+Modifier(--) - a flag on a block or element to change appearance or behavior
+
+```
+// prefix-block__element--modifier
+.eh-toolbar__arrow-btn--selected
+```
+
 #### Mobile first design
 
 Mobile first design should write CSS for mobile screen first then use `min-width` media queries to write styles for larger screens.
@@ -112,7 +140,3 @@ When you apply float to an element, it basically pulls it out from the normal do
   display: table;
 }
 ```
-
-#### z-index stack
-
-z-index property specifies the z-order of a positioned element. When elements overlap, z-order determines which one sits on top of the other. An element with a larger z-index stacks over one with a lower z-index.
