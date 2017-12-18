@@ -1,6 +1,26 @@
 ## React
 
-#### Should not mutate states directly
+#### Using CSS Module in create-react-app project
+
+First run `npm run eject` to get access to webpack config file.
+
+Go to `webpack.config.dev.js` and `webpack.config.prod.js` and add CSS modules feature in css-loader.
+
+```
+{
+  loader: require.resolve('css-loader'),
+  options: {
+    modules: true,
+    localIdentName: '[path][name]__[local]--[hash:base64:5]'
+  }
+}
+```
+
+Now you can import the CSS file `import styles from './App.css'` and use .title style in your code as if you are dealing with an object `<div className={styles.title}>test</div>`.
+
+To create a global CSS style, you can add a `:global` prefix such as `:global .post { ... } `, then you can use `className="post"` anywhere in your app and receive that styling.
+
+#### Avoid mutating states directly
 
 ```
 // copy an array in the state using slice() or spread operator
