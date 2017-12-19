@@ -63,9 +63,10 @@ body {
 
 #### Style children elements when hover on a parent
 
-This can be achieved by using the `:hover` selector on the child element.
+This can be achieved by using the `:hover` selector on the parent element.
 
 ```
+// change the color of .child-element when you hover .parent-element
 .parent-element:hover .child-element {
   color: #3ec7de;
 }
@@ -85,7 +86,7 @@ p:first-child:first-letter {
   padding-top: 4px;
   padding-right: 8px;
   padding-left: 3px;
-  }
+}
 ```
 
 #### Pure CSS triangle
@@ -96,11 +97,12 @@ The triangle effect is achieved by leveraging the border property. Below is a se
 2. Notice how the borders meet each other at angles
 3. Make the box element's height and width to zero, so only the four borders are visible now
 4. Make three of the borders transparent in color, so only one border in the shape of a triangle left
-5. Hooray, this is how a triangle is made in CSS!
+
+Hooray, this is how a triangle is made in CSS!
 
 #### Parallax scrolling effect
 
-The key to parallax scrolling effect is to set a background image `background-attachment: fixed`.
+The key to parallax scrolling effect is to add `background-attachment: fixed` property.
 
 1. Create a background image container
 2. Apply the following class to the container
@@ -108,7 +110,7 @@ The key to parallax scrolling effect is to set a background image `background-at
 ```
 .parallax {
   /* The image used */
-  background-image: url("1.jpg");
+  background-image: url("bg.jpg");
 
   /* Set a specific height */
   min-height: 500px; 
@@ -131,7 +133,7 @@ Resetting destroys all the built-in styling while normalizing just tries to make
 
 #### CSS floats and clearfix hack
 
-When you apply float to an element, it basically pulls it out from the normal document flow so it gets on top of the document flow. Since a floated element does not stay in the document flow, a container will not detect its existence, which leads to the classic `zero height collapse` container issue. To solve this, what we need is a clearfix hack.
+When you apply float to an element, it basically pulls it out from the normal document flow so it gets on top of the document flow. Since a floated element does not stay in the document flow, a container would not detect its existence, which leads to the classic `zero height collapse` container issue. To solve this, what we need is a clearfix hack.
 
 ```
 .clear:after {
