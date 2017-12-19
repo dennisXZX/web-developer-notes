@@ -1,10 +1,10 @@
 ## React
 
-#### Error boundaries
+#### Error boundary
 
-Error boundaries are React components that catch JavaScript errors anywhere in their child component tree, log those errors, and display a fallback UI instead of the component tree that crashed.
+Error boundary is a React component that catches JavaScript errors anywhere in its child component tree, logs those errors, and displays a fallback UI instead of the component tree that crashed.
 
-A class component becomes an error boundary if it defines a new lifecycle method called `componentDidCatch(error, info)`:
+A class component becomes an error boundary if it defines a lifecycle method called `componentDidCatch(error, info)`:
 
 ```
 class ErrorBoundary extends React.Component {
@@ -25,6 +25,7 @@ class ErrorBoundary extends React.Component {
       // You can render any custom fallback UI
       return <h1>Something went wrong.</h1>;
     }
+    // render its children property
     return this.props.children;
   }
 }
@@ -40,9 +41,9 @@ Then you can use it as a regular component:
 
 #### Using CSS Module in create-react-app project
 
-First run `npm run eject` to get access to webpack config file.
+First run `npm run eject` to get access to your webpack config file.
 
-Go to `webpack.config.dev.js` and `webpack.config.prod.js` and add CSS modules feature in css-loader.
+Go to `webpack.config.dev.js` and `webpack.config.prod.js` and add CSS modules feature to css-loader.
 
 ```
 {
@@ -54,11 +55,11 @@ Go to `webpack.config.dev.js` and `webpack.config.prod.js` and add CSS modules f
 }
 ```
 
-Now you can import the CSS file `import styles from './App.css'` and use .title style in your code as if you are dealing with an object `<div className={styles.title}>test</div>`.
+Now you can import the CSS file `import styles from './App.css'` and use .title style in your code as if you are dealing with a Javascript object `<div className={styles.title}>test</div>`.
 
 To create a global CSS style, you can add a `:global` prefix such as `:global .post { ... } `, then you can use `className="post"` anywhere in your app and receive that styling.
 
-#### Avoid mutating states directly
+#### Avoid mutating component states directly
 
 ```
 // copy an array in the state using slice() or spread operator
