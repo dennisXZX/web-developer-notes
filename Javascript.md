@@ -6,12 +6,12 @@ This is not exactly how the navtive bind() method is implemented internally. It 
 
 ```
 // the first parameter is the new 'this' context
-// parameters after are some pre-defined arguments for the new method
+// parameters after thisArg are some pre-defined arguments for the new method
 Function.prototype.bind = function(thisArg, ...fixedArgs) {
     // save the original object
     const func = this;
 
-    // return a new function
+    // return a new function, which accepts arguments
     return function(...args) {
         // use apply method to change the 'this' context
         // concatenate pre-defined arguments and newly passed arguments
@@ -25,11 +25,11 @@ Function.prototype.bind = function(thisArg, ...fixedArgs) {
 Using `+` and `,` in console.log() would result in different results.
 
 ```
-// trying to concatenate an object will call toString() on it, resulting in [object Object] 
+// using '+' to concatenate an object will call toString() on it, resulting in [object Object] 
 // output: App store created: [object Object]
 console.log('App store created: ' +  appStore.getState());
 
-// using comma actually means to pass another argument to console.log
+// using ',' actually means to pass another argument to console.log
 // output: App store created:  { users: {}, items: [] }
 console.log('App store created: ',  appStore.getState());
 ```
@@ -69,22 +69,25 @@ function max(a, b, c, ...shouldBeEmpty) {
 #### How to clean up the signature of a function that accepts a large number of parameters?
 
 Sometimes we need to pass a large number of parameters to a function, which is inconvenient and error-prone.
+
 ```
 function addPerson(first, last, dob, gender, address) {
   // code
 }
 ```
+
 We can simplify that by introducing a configuraton object.
+
 ```
 // wrap all parameters into a configuration object
-function addPerson(config) {
-  // code
-}
-
 const config = {
   username: 'dennisboys',
   first: 'dennis',
   last: 'xiao'
+}
+
+function addPerson(config) {
+  // code
 }
 
 addPerson(config);
@@ -99,10 +102,14 @@ let myFunc = function(param) {
   // if there is no cache in the function, calculate the result
   if (!myFunc[param]) {
     let result = 0;
-    // expensive operation
-    // result = operation result
+    
+    // do some expensive operation...
+    
+    // store the operation result
     myFunc[param] = result;
   }
+  
+  // simply return it if there is already an cached result
   return myFunc[param];
 };
 ```
@@ -119,15 +126,17 @@ if (typeof Array.isArray === "undefined") {
 }
 ```
 
-#### How to enforce a function is always called as a constructor?
+#### How to enforce a function to be always called as a constructor?
 
 The following self-invoking constructor pattern can ensure a function is always called as a constructor.
+
 ```
 function Person() {
   // check whether this is an instance of your constructor
   if (!(this instanceof Person)) {
     return new Person();
   }
+  
   this.name = "Dennis";
 }
 
@@ -145,6 +154,7 @@ Person.prototype.sayName = function() {
 #### How to access a global object in all environments?
 
 By returning `this` inside a function, `this` should always point to the global object.
+
 ```
 const global = (function() {
   return this;
@@ -152,6 +162,7 @@ const global = (function() {
 ```
 
 #### How to declare variables in single var/let/const pattern?
+
 ```
 let a = 1,
     b = 2,
@@ -160,18 +171,18 @@ let a = 1,
 
 #### In JavaScript, what's the difference between this, $(this) and $this?
 
-‘this’ is a Javascript keyword. The value of ‘this’ varies depending on how a function is invoked. Mainly there are four different patterns.
+`this` is a Javascript keyword. The value of `this` varies depending on how a function is invoked. Mainly there are four different patterns.
 
-- when invoked as a function, ‘this’ refers to the window object in non-strict mode, or `undefined` in strict mode. 
-- when invoked as a method, ‘this’ refers to the object that calls the method.
-- when invoked as a constructor function, ‘this’ refers to the object instance created by the constructor.
-- when invoked by using call() and apply() method, ‘this’ refers to the object passed in as the first parameter. If the first parameter is `null`, 'this' would point to the global object.
+- when invoked as a function, 'this' refers to the window object in non-strict mode (browser environment), or `undefined` in strict mode. 
+- when invoked as a method, 'this' refers to the object that calls the method.
+- when invoked as a constructor function, 'this' refers to the object instance created by the constructor.
+- when invoked by using call() and apply() method, 'this' refers to the object passed in as the first parameter. If the first parameter is `null`, 'this' would point to the global object.
 
 In ES6, an arrow function does not create its own context, so 'this' has its original context from the enclosing scope.
 
-$(this) is not a legitimate Javascript variable. In jQuery library, however, it means to construct a jQuery object so you can call jQuery methods on the object.
+`$(this)` is not a legitimate Javascript variable. In jQuery library, however, it means to construct a jQuery object so you can call jQuery methods on the object.
 
-$this is a legitimate Javascript variable.
+`$this` is a legitimate Javascript variable.
 
 #### Explain event delegation
 
@@ -187,7 +198,7 @@ There are usually four ways of calling a function in Javascript.
 2. When called as a method, 'this' refers to the object that invokes the method.
 3. When called as a constructor function, 'this' refers to the instance created by the constructor function. However, if in the constructor you explicitly return an object, 'this' would point to that object.
 4. When called via call() or apply(), 'this' refers to the first parameter passed into those functions. If the first parameter is `null`, then 'this' would point to the global object.
-5. In ES6, an arrow function does not create its own context, so 'this' inherits the function context from the context in which it was created. In addition, you cannot change the 'this' context of an array function, which is determined the moment the array function is created. 
+5. In ES6, an arrow function does not create its own context, so 'this' inherits the function context from the context in which it was created. In addition, you cannot change the 'this' context of an array function, which is determined the moment the arrow function is created. 
 
 Take a look at this example to understand how arrow function affects the value of 'this'.
 
@@ -219,7 +230,7 @@ In Javascript, function is nothing but object, and each object has a 'prototype'
 
 For detailed explanation about Javascript inheritance, I have previously written [a blog post](https://dennisboys.github.io/How-Prototypes-Work/ "How Prototypes Work") about it.
 
-#### What do you think of AMD vs CommonJS?
+#### AMD vs CommonJS?
 
 Both AMD and CommonJS are specifications on how modules and their dependencies should be declared in Javascript applications. AMD loads modules asynchronously while CommonJS works synchronously.
 
@@ -233,15 +244,20 @@ Because it will be treated as a function declaration instead of a function expre
 
 #### What's the difference between a variable that is: `null`, `undefined` or undeclared? How would you go about checking for any of these states?
 
-- 'undeclared' means a variable is not declared with var, let or const keyword
+- 'undeclared' means a variable is not declared with a var, let or const keyword
+
 ```
 a = 0;
 ```
-- 'undefined' represents a variable declared but not assigned
+
+- 'undefined' represents a variable is declared but not assigned a value
+
 ```
 var b;
 ```
+
 - 'null' represents an intentional absence of a value
+
 ```
 var c = null;
 ```
@@ -262,13 +278,9 @@ Closure is everywhere. It can be used to protect private variables or internal f
 
 Anonymous function can be used in callback function, as it is called by a function instead of by you, so it can go without a function name. Another typical usage of anonymous function is Inmediately Invoked Function Expression (IIFE), as it is invoked the moment defined, so a function name is not necessary. 
 
-#### How do you organize your code? (module pattern, classical inheritance?)
-
-Now I have turned to ES6 modules to organize my code.
-
 #### What's the difference between host objects and native objects?
 
-Host objects are the objects given to you by the environment. Javascript can run on different environments, such as on a browser or a server. Native objects are the objects given to you by Javascript. You will get the same native objects no matter where you run your Javascript code, but host objects will be different depending on the running environment.
+Host objects are the objects given to you by the environment. Javascript can run on different environments, such as on a browser or a server. Native objects are the objects provided to you by Javascript. You will get the same native objects no matter where you run your Javascript code, but host objects will be different depending on the running environment.
 
 #### Difference between: `function Person(){}`, `var person = Person()`, and `var person = new Person()`?
 
@@ -310,27 +322,27 @@ Simply put, Ajax is the use of JavaScript to send and receive data using HTTP wi
 
 The process of execution of Ajax looks something like the following:
 
-1. A user interaction in a browser triggers an event, such as a button click. 
+1. A user interaction in a browser triggers an event, such as a button click
 
-2. An XMLHttpRequest object is created by Javascript and sent to a web server.
+2. An XMLHttpRequest object is created by Javascript and sent to a web server
 
-3. The server sends back a response after processing the request from the browser.
+3. The server sends back a response after processing the request from the browser
 
-4. The response is handled by Javascript in the browser to perform appropriate actions.
+4. The response is handled by Javascript in the browser to perform appropriate actions
 
 #### What are the advantages and disadvantages of using Ajax?
 
 Advantages: 
 
-1. User experience is much better as no full page reload is required.
-2. Save bandwidth because only part of the page is dynamically updated.
+1. User experience is much better as no full page reload is required
+2. Save bandwidth because only part of the page is dynamically updated
 
 Disadvantages:
 
-1. No browser history is registered for the new state, so it's impossible to use Back and Forward button to navigate between various states of a page.
-2. User cannot bookmark a specific state of a web page.
-3. Data loaded through AJjax won't be indexed by search engines.
-4. The page breaks with Javascript is disabled.
+1. No browser history is registered for the new state, so it's impossible to use Back and Forward button to navigate between various states of a page
+2. User cannot bookmark a specific state of a web page
+3. Data loaded through AJjax won't be indexed by search engines
+4. The page breaks when Javascript is disabled
 
 #### Explain Cross-Origin Resource Sharing (CORS)
 
@@ -343,23 +355,24 @@ JSONP stands for JSON with Padding, yet another poorly named term in the program
 Say you send a request http://www.example.net/sample.aspx?callback=mycallback to a JSONP enabled server, it will then return a result wrapped in the callback function you specified. Normally the word 'callback' is used as a string query to tell the server it is a JSONP request.
 
 Without JSONP, the returned result would be a run-of-the-mill JSON format.
+
 ```
 { foo: "happy coder" }
 ```
+
 With JSONP, the returned result would be wrapped in a function.
+
 ```
 mycallback({ foo: "happy coder" });
 ```
+
 So, in your program, you can define a callback function name 'mycallback' to handle the response:
+
 ```
 mycallback = function(data) {
   alert(data.foo);
 };
 ```
-
-#### Have you ever used JavaScript templating?
-  
-I used EJS before. EJS is a simple light-weight templating language that goes well with Express framework. Lodash library also has provided a convenient template feature.
   
 #### Explain "hoisting".
 
@@ -419,12 +432,14 @@ You can use `event.stopPropagation()` to stop the bubbling, but normally there i
 #### What's the difference between an "attribute" and a "property"?
 
 In Javascript, an object can have as many properties as you want. For example, the following object has two properties, name and age.
+
 ```
 let obj = {
   name: 'Dennis',
   age: 34
 }
 ```
+
 Each property of an object has a few built-in attributes, such as `configurable`, `enumerable` and `writable`, etc. Most of the time you don't want to touch these attributes, but in special occasions, you can alter these attributes by calling `Object.defineProperties()` method.
 
 #### Why is extending built-in JavaScript objects not a good idea?
@@ -444,6 +459,7 @@ The equality operator == will do a type conversion before comparing the two valu
 The same-origin policy restricts how a script loaded from one origin can interact with a resource from another origin. Two pages have the same origin if the protocol, port (if one is specified), and host are the same for both pages. To bypass the same-origin policy, we have to use [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS).
 
 #### Make this work:
+
 duplicate([1,2,3,4,5]); // [1,2,3,4,5,1,2,3,4,5]
 
 Use the ES6 spread operator to achieve the duplication.
@@ -453,10 +469,6 @@ function duplicate(arr) {
   return [...arr, ...arr];
 }
 ```
-
-#### Why is it called a Ternary expression, what does the word "Ternary" indicate?
-
-Ternary expression is just a shortcut for if statement. The name ternary indicates it needs three parameters.
 
 #### What is `"use strict";`? what are the advantages and disadvantages to using it?
 
@@ -486,7 +498,8 @@ for (let i=0; i< 101; i++) {
 }
 ```
 
-Functional solution using the ternary operator
+Functional solution using ternary operator
+
 ```
 for (let i=0; i< 101; i++) {
   const isFizz = i % 3 === 0,
@@ -504,8 +517,8 @@ for (let i=0; i< 101; i++) {
 
 #### Why is it, in general, a good idea to leave the global scope of a website as-is and never touch it?
 
-1. Hard to maintain if you put code in the global scope.
-2. Any function can change a global variable at any point in the program.
-3. Namespace clashes may happen in the global scope.
+- Hard to maintain if you put code in the global scope
+- Any function can change a global variable at any point in the program
+- Namespace clashes may happen in the global scope
 
 So it is a best pratice to keep the global scope as clean as you can.
