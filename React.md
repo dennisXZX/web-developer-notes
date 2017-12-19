@@ -1,5 +1,39 @@
 ## React
 
+#### Fragments
+
+Sometimes you do not want to wrap your JSX in an unnecessary <div>, now you can use fragment to achieve this.
+  
+```
+// wrap the content in an empty JSX tag.
+<>
+  <h1>First Element</h1>
+  <h1>Second Element</h1>
+</>
+```
+
+#### React.PureComponent
+
+The difference between React.Component and React.PureComponent is that React.Component doesn’t implement `shouldComponentUpdate()`, but React.PureComponent implements it with a shallow prop and state comparison.
+
+If your React component’s render() function renders the same result given the same props and state, you can use React.PureComponent for a performance boost in some cases.
+
+```
+class Greeting extends React.PureComponent {
+  render() {
+    ... code
+  }
+}
+```
+
+#### Component lifecycle
+
+- Creation phase: constructor() -> componentWillMount() -> render() -> componentDidMount() -> componentWillUnmount()
+
+- Update phase (triggered by props change): componentWillReceiveProps(nextProps) -> shouldComponentUpdate(nextProps, nextState) -> componentWillUpdate(nextProps, nextState) -> render() -> componentDidUpdate() -> componentWillUnmount()
+
+- Update phase (triggered by state change): shouldComponentUpdate(nextProps, nextState) -> componentWillUpdate(nextProps, nextState) -> render() -> componentDidUpdate() -> componentWillUnmount()
+
 #### Error boundary
 
 Error boundary is a React component that catches JavaScript errors anywhere in its child component tree, logs those errors, and displays a fallback UI instead of the component tree that crashed.
