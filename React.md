@@ -2,7 +2,7 @@
 
 #### Component reference
 
-Component reference only exists in stateful component.
+Component reference only exists in stateful component, and should be used scarcely in your project since it is not the recommended React way of doing things.
 
 ```
 // we define a function which accepts the HTML element (input), and assign it to the 'inputEle' property of the class
@@ -100,14 +100,14 @@ export default withClass(Person, classes.Person);
 
 #### Fragments
 
-Sometimes you do not want to wrap your JSX in an unnecessary div element, now you can use fragment to achieve this.
+Sometimes you do not want to wrap your JSX in an unnecessary div element, now you can use `React.Fragment` to achieve this. There is a short syntax for declaring fragments `<> ...code </>`.
   
 ```
-// wrap the content in an empty JSX tag.
-<>
+// wrap the content in a React.Fragment
+<React.Fragment>
   <h1>First Element</h1>
   <h1>Second Element</h1>
-</>
+</React.Fragment>
 ```
 
 #### React.PureComponent
