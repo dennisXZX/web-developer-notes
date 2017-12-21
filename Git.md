@@ -52,6 +52,10 @@ git flow hotfix start hotfix_branch
 git flow hotfix finish hotfix_branch
 ```
 
+#### git revert 
+
+`git revert HEAD` to revert the last commit and add a new commit to undo its changes.
+
 #### git tag
 
 `git tag v1.0.0` to add a reference to the current commits.
@@ -154,7 +158,11 @@ Running `git pull` is equal to run `git fetch` and `git merge branchName`.
 
 #### git checkout
 
-`git checkout -` to checkout the previous branch.
+`git checkout branchName` to switch to a branch.
+
+`git checkout -b branchName` to create and switch to newly created branch.
+
+`git checkout -b branchName SHA` to create a branch based on a commit.
 
 #### .gitignore
 
