@@ -189,6 +189,8 @@ Go to `webpack.config.dev.js` and `webpack.config.prod.js` and add CSS modules f
 
 Now you can import the CSS file `import styles from './App.css'` and use .title style in your code as if you are dealing with a Javascript object `<div className={styles.title}>test</div>`.
 
+You can also add multiple classes to an element `<div className={[styles.title, styles.highlight].join(' ')}>test</div>`.
+
 To create a global CSS style, you can add a `:global` prefix such as `:global .post { ... } `, then you can use `className="post"` anywhere in your app and receive that styling.
 
 #### Avoid mutating component states directly
