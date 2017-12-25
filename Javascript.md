@@ -1,5 +1,20 @@
 ## Javascript
 
+#### encodeURI() and encodeURIComponent()
+
+Use encodeURI when you want a working URL.
+
+```
+encodeURI("http://www.example.org/a file with spaces.html");
+```
+
+Use encodeURIComponent when you want to encode the value of a URL parameter.
+
+```
+const name = encodeURIComponent('dennis xiao');
+const url = "http://example.com/?name=" + name;
+```
+
 #### How the bind() function works
 
 This is not exactly how the navtive bind() method is implemented internally. It only intends to give you an overview of how it works.
