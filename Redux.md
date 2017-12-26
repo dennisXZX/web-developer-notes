@@ -2,16 +2,16 @@
 
 #### Basic Workflow of Redux
 
-- create an action type config file for all the action constants
-- create an initial state object for each reducer as a default state (optional)
-- create a bunch of reducers, in each reducer we need to provide logic for handling each action type (usually in a switch statement). We should not directly mutate state in reducers.
-- combine all the reducers into one root reducer
-- create a store which accepts the root reducer as a parameter
-- subscribe to the store, so a callback is executed when any state is changed
-- create an action creator for each reducer
-- dispatch an action from the store
+1. create an action type config file for all the action constants
+2. create an initial state object for each reducer as a default state (optional)
+3. create a bunch of reducers, in each reducer we need to provide logic for handling each action type (usually in a switch statement). We should not directly mutate state in reducers.
+4. combine all the reducers into one root reducer
+5. create a store which accepts the root reducer as a parameter
+6. subscribe to the store, so a callback is executed when any state is changed
+7. create an action creator for each reducer
+8. dispatch an action from the store
 
-```
+```js
 // actions.js
 // create an action type config file
 export const SPEAK = 'SPEAK';
@@ -19,7 +19,7 @@ export const ADD = 'ADD';
 export const DELETE = 'DELETE';
 ```
 
-```
+```js
 import redux from 'redux';
 import { createStore, combineReducers } from 'redux';
 import * as actionTypes from './actions';
@@ -31,27 +31,27 @@ const initialState = {
 
 // create a user reducer
 const userReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case actionTypes.SPEAK:
-            return {
-                ...state,
-                data: action.payload
-            }
-        default:
-            return state;
-    }
+  switch (action.type) {
+    case actionTypes.SPEAK:
+      return {
+        ...state,
+        data: action.payload
+      }
+    default:
+      return state;
+  }
 };
 
 // create an item reducer
 const itemReducer = (state = [], action) => {
-    switch (action.type) {
-        case actionTypes.ADD:
-            return state.concat(action.payload);
-        case actionTypes.DELETE:
-            return state.slice(0, -1);
-        default:
-            return state;
-    }
+  switch (action.type) {
+    case actionTypes.ADD:
+      return state.concat(action.payload);
+    case actionTypes.DELETE:
+      return state.slice(0, -1);
+    default:
+      return state;
+  }
 };
 
 // combine all reducers
@@ -71,20 +71,20 @@ appStore.subscribe(() => {
 // create action creators
 const addItemActionCreator = (item) => {
   return {
-    type: 'ADD',
+    type: actionTypes.ADD,
     payload: item
   }
 }
 
 const deleteItemActionCreator = (item) => {
   return {
-    type: 'DELETE'
+    type: actionTypes.DELETE
   }
 }
 
 const speakUserActionCreator = (item) => {
   return {
-    type: 'SPEAK',
+    type: actionTypes.SPEAK,
     payload: item
   }
 }
@@ -96,13 +96,13 @@ appStore.dispatch(speakUserActionCreator('You are screwed!'));
 
 #### Connecting React with Redux (react-redux)
 
-- create each reducer in its own file and then export it
-- combine all the reducers into a root reducer in an index.js file and then export it
-- create a store which accepts the root reducer as a parameter
-- wrap the root React component with a <Provider> component from react-redux
-- pass the root store to the <Provider> component
+1. create each reducer in its own file and then export it
+2. combine all the reducers into a root reducer in an index.js file and then export it
+3. create a store which accepts the root reducer as a parameter
+4. wrap the root React component with a <Provider> component from react-redux
+5. pass the root store to the <Provider> component
 
-```
+```js
 import { createStore } from 'redux'
 import reducer from './store/reducer';
 import { Provider } from 'react-redux';
@@ -111,17 +111,17 @@ import * as actionTypes from './actions';
 const store = createStore(reducer);
 
 ReactDOM.render(
-<Provider store={store}>
-  <APP />
-</Provider>, 
-document.getElementById('root'));
+  <Provider store={store}>
+    <APP />
+  </Provider>, 
+  document.getElementById('root'));
 ```
 
-- define mapStateToProps() method to map your state to this.props from within the React component
-- define mapDispatchToProps() method to map your dispatch action to this.props from within the React component 
-- use `connect` method provided by react-redux to connect React and Redux
+1. define mapStateToProps() method to map your state to this.props from within the React component
+2. define mapDispatchToProps() method to map your dispatch action to this.props from within the React component 
+3. use `connect` method provided by react-redux to connect React and Redux
 
-```
+```js
 import { connect } from 'react-redux';
 
 class Counter extends Component {
@@ -152,7 +152,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(Counter);
 
 It is important to note that we should not mutate our state directly. Each time we need to change our state we need to copy the current state first and then make necessary changes based on that. In ES6, the spread operator `...` can do the trick. But keep in mind that the spread operator only does a shallow copy.
 
-```
+```js
 return {
   ...state,
   counter: state.counter + 1,
@@ -165,7 +165,7 @@ return {
 
 When dealing with nested objects, every level of nesting must be copied and updated appropriately. It is a good practice to always keep your state flattened in order to avoid multiple level states.
 
-```
+```js
 // inserting immutably
 function insertItem(array, action) {
   let newArray = array.slice();
@@ -187,7 +187,7 @@ function removeItem(array, action) {
 
 // updating immutably
 function updateObjectInArray(array, action) {
-  return array.map( (item, index) => {
+  return array.map((item, index) => {
     if(index !== action.index) {
       // This isn't the item we care about - keep it as-is
       return item;
@@ -199,5 +199,28 @@ function updateObjectInArray(array, action) {
       ...action.item
     };    
   });
+}
+```
+
+#### Redux-thunk
+
+By default, Redux action creator cannot execute asynchronous code, so we need to use a helper library for the job.
+
+```js
+// import redux-thunk
+import thunk from 'redux-thunk';
+
+// apply redux-thunk middle to the store
+const store = createStore(
+  rootReducer,
+  applyMiddleware(thunk)
+);
+
+// use redux-thunk in action creator
+const speakUserActionCreator = (item) => {
+  return {
+    type: actionTypes.SPEAK,
+    payload: item
+  }
 }
 ```
