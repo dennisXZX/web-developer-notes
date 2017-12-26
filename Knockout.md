@@ -1,4 +1,4 @@
-# Knockout.js
+## Knockout.js
 
 - [Observables](#observables)
 - [Bindings](#bindings)
@@ -8,7 +8,7 @@
 
 #### Observable array only tracks which objects are in the array, not their state
 
-```
+```js
 // notice the object in the observable array is just plain objects, not observables. Therefore, any change to these objects will not be notified to the observable array. 
 // The observable array is only notified when any object is added or removed from it.
 this.products = ko.observableArray([
@@ -19,7 +19,7 @@ this.products = ko.observableArray([
 
 #### The right-most properties don't require () in HTML declarative data binding
 
-```
+```js
 // people observable array is not the right-most property so it has to be called
 <div data-bind="text: people().length"></div>
 // address observable is not the right-most property so it has to be called
@@ -30,19 +30,22 @@ this.products = ko.observableArray([
 ```
 
 #### Dynamically display the number of items
-```
+
+```js
 There are <span data-bind="text: myItems().length"></span> items
 ```
 
 #### Enable or disable a button according to the length of an array
-```
+
+```js
 <button data-bind="enable: myItems().length < 5">Add</button>
 ```
 
 #### Read and write an observable
 
 Read an observale's value.
-```
+
+```js
 const myViewModel = function() {
     this.personName = ko.observable('Bob');
     this.personAge = ko.observable(123);
@@ -52,7 +55,8 @@ let name = myViewModel.personName();
 ```
 
 Write an observable's value.
-```
+
+```js
 myViewModel.personName('Dennis');
 
 // this method chain will write both personName and personAge observables
@@ -62,7 +66,8 @@ myViewModel.personName('Mary').personAge(50);
 #### ObservableArray
 
 Create an observable array.
-```
+
+```js
 const myViewModel = function() {
   // itemToAdd is bound to an input in the view
   this.itemToAdd = ko.observable("");
@@ -78,12 +83,14 @@ const myViewModel = function() {
   };
 };
 ```
+
 The observable array has most of the built-in native array functions and a couple of more provided by Knockout.js.
 
 #### pureComputed function
 
 You can use pure computed observables to utilize the performance gain provided by Knockout.js. One thing to note is that ko.pureComputed() can only get observable values but not set them.
-```
+
+```js
 this.fullName = ko.pureComputed(() => {
     return this.firstName() + " " + this.lastName();
 });
@@ -93,7 +100,7 @@ this.fullName = ko.pureComputed(() => {
 
 The subscribe function accepts three parameters: `callback` is the function that is called whenever the notification happens, `target` (optional) defines the value of `this` in the callback function, and `event` (optional; default is "change") is the name of the event to receive notification for.
 
-```
+```js
 myViewModel.personName.subscribe((newValue) => {
     alert("The person's new name is " + newValue);
 }, target, event);
@@ -103,14 +110,15 @@ myViewModel.personName.subscribe((newValue) => {
 
 #### Console log inside a Knockout template
 
-```
+```js
 <div data-bind="text: console.log(amount_option)"></div>
 ```
 
 #### Bind the view model to a specific part of DOM
 
 The `ko.applyBindings` is used to bind view to view model. The second parameter is used to define which part of the document you want to search for data-bind attributes. This is useful when you want to bind multiple view models to the different regions of a page.
-```
+
+```js
 ko.applyBindings(myViewModel, document.getElementById('someElementId'));
 ```
 
@@ -128,7 +136,7 @@ There are some useful binding context.
 
 There is no if/else statement in Knockout, but we can achieve that with a trick.
 
-```
+```js
 <!-- ko ifnot: activityItem.shortDescription -->
 	<p data-bind="text: activityItem.name"></p>
 <!-- /ko -->
@@ -143,7 +151,7 @@ The difference between `visible` binding and `if` binding is that `visible` bind
 
 There are a couple of `valueUpdate` properties that can be added to value binding to change how event is detected.
 
-```
+```js
 // most frequently used valueUpdate properties are 'keyup', 'keypress' and 'afterkeydown'
 <input type="text" data-bind="value: price, valueUpdate: 'afterkeydown'" />
 ```
@@ -151,6 +159,7 @@ There are a couple of `valueUpdate` properties that can be added to value bindin
 The difference between `textInput` and `value` binding is `textInput` provides immediate updates to the view model while `value` only updates your view model when user moves focus out of the text box. In addition, `textInput` provides better browser quirks handling.
 
 #### css binding
+
 The `css` binding adds or removes one or more named CSS classes to the associated DOM element.
 
 #### style binding
@@ -174,7 +183,7 @@ The `options` binding controls what options should appear in a drop-down list. I
 
 You can create custom binding handler in Knockout.js.
 
-```
+```js
 ko.bindingHandlers.fadeVisible = {
 	// runs the first time the binding is evaluated
 	init: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
@@ -190,7 +199,8 @@ ko.bindingHandlers.fadeVisible = {
 ## Components
 
 Register a component so the view model can be accessed in the template.
-```
+
+```js
 ko.components.register('ei-accommodation-search-page', {
 	viewModel: AccommodationSearchPage,
 	template: Template
