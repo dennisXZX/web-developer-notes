@@ -4,7 +4,7 @@
 
 mapKeys can be used to extract an object property as a key.
 
-```
+```js
 const posts = [
   { id: 4, title: 'ho' },
   { id: 5, title: 'yo' }
@@ -27,7 +27,7 @@ _.mapKeys(posts, 'id');
 
 sortedIndex can be used to insert an element to an array and maintain its order.
 
-```
+```js
 let collection = [
   'Carl',
   'Gary',
@@ -44,7 +44,7 @@ collection.splice(_.sortedIndex(collection, name), 0, name);
 
 sortedIndexBy can be used to insert an object element to an array and maintain its order.
 
-```
+```js
 let collection = [
   { name: 'Zoe' },
   { name: 'Tom' },
@@ -63,7 +63,7 @@ newCollection.splice(_.sortedIndexBy(newCollection, luke, 'name'), 0, luke);
 
 #### _.forEach & _.forEachRight
 
-```
+```js
 var collection = [
   'Timothy',
   'Kelly',
@@ -83,7 +83,7 @@ _.forEach(collection, (name, index) => {
 
 sortBy() works on all array-like collections and always returns an array.
 
-```
+```js
 Example 1
 
 // _.sortBy('cba') returns an array of [ 'a', 'b', 'c' ]
@@ -119,7 +119,7 @@ _.orderBy(users, ['user', 'age'], ['asc', 'desc']);
 
 times() can be used to execute a function a certain amount of times.
 
-```
+```js
 _.times(5, () => {
   console.log('hi')
 });
