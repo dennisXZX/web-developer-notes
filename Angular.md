@@ -8,7 +8,7 @@ In `.angular-cli.json`, the 'main' property specifies where to look for the boot
 
 Angular provides a safe navigation operator `?.` to guard against unexpected property access.
 
-```
+```js
 // the 'product' object might be fetched from an asynchronous call
 // so when the template tries to display the productName, the object might still be 'undefined'
 // the safe navigation operator only accesses the 'productName' property when the 'product' object is ready
@@ -22,7 +22,7 @@ Angular provides a safe navigation operator `?.` to guard against unexpected pro
 
 Use bracket `[]` property binding syntax to pass value from container to child component. In addition, we use `@Input` decorator to annotate the class property in the child component.
 
-```
+```js
 // pass a value to 'rating' proerty from container
 <pm-star [rating]='product.starRating'></pm-star>
 
@@ -41,7 +41,7 @@ It's a bit complcated to pass something from the child component to its parent.
 
 In the child component, we need to emit an event using the `@Output()` decorator.
 
-```
+```js
 export class StarComponent implements OnChanges {
   // define an event emitter and specify what type of data the it would emit
   @Output() ratingClicked: EventEmitter<number> = new EventEmitter();
@@ -55,7 +55,7 @@ export class StarComponent implements OnChanges {
 
 In the container, we need to listen to the event emitting.
 
-```
+```js
 <pm-star
     [rating]='product.starRating'
     // listen the ratingClicked event from the child component
@@ -74,7 +74,7 @@ onRatingClicked(message: string): void {
 
 Use hash `#` to bind a DOM element or directive to a local variable, so the variable can be used anywhere in the template (not in your Typescript code). This is often used for parent component to access public properties or methods of child components.
 
-```
+```js
 // bind the <event-thumbnail> directive so any public properties and methods of it can be accessed in the template
 <event-thumbnail #thumbnail></event-thumbnail>
 <h3>{{ thumbnail.someProperty }}</h3>
@@ -83,7 +83,7 @@ Use hash `#` to bind a DOM element or directive to a local variable, so the vari
 
 You can also bind a DOM element
 
-```
+```js
 // bind the input element to a variable named 'newlink'
 <input name="link" #newlink>
 // passing the link HTML element to a function
@@ -92,7 +92,7 @@ You can also bind a DOM element
 
 In the component, we receive the HTML element passed in as an `HTMLInputElement` type.
 
-```
+```js
 addArticle(link: HTMLInputElement): boolean {
   console.log(`Adding article link: ${link.value}`);
   return false; 
@@ -103,12 +103,12 @@ addArticle(link: HTMLInputElement): boolean {
 
 You can access an HTML element in the Typescript code using `@ViewChild` decorator.
 
-```
+```js
 // define a template reference variable
 <input type="text" #serverContent />
 ```
 
-```
+```js
 // in Typescript, you get an element reference
 @ViewChild('serverContent') serverContent: ElementRef;
 
@@ -118,7 +118,7 @@ this.serverContent.nativeElement.value;
 
 If you add a template reference variable to an HTML element between a directive, and you want to access it in the code, you can use `@ContentChild` decorator.
 
-```
+```js
 <app-server-element>
   <p #contentParagraph></p>
 </app-server-element>
@@ -126,7 +126,7 @@ If you add a template reference variable to an HTML element between a directive,
 
 Now you can access the element reference in ngAfterContentInit() life cycle method.
 
-```
+```js
 @ContentChild('contentParagraph') paragraph: ElementRef;
 ```
 
@@ -142,7 +142,7 @@ Solution 2
 2. Add Bootstrap to the 'styles' section in .angular-cli.json.
 3. Add jQuery to the 'scripts' section in .angular-cli.json.
 
-```
+```js
 "styles": [
   "../node_modules/bootstrap/dist/css/bootstrap.min.css",
   "styles.css"
@@ -158,7 +158,7 @@ Solution 2
 
 We use `[property]` to specify property binding and `{{ expression }}` to signal a string interpolation. Both property binding and interpolation binds a component class property to the template, which is one-way binding.
 
-```
+```js
 // property binding
 <img *ngIf="showImage"
     [src]="product.imageUrl"
@@ -176,7 +176,7 @@ We use `[property]` to specify property binding and `{{ expression }}` to signal
 
 We use `(event)` to indicate an event binding. Remember to add a pair of parens after the method name.
 
-```
+```js
 <button 
   [disabled]="!allowNewServer"
   // The $event parameter is an event object associated with the event being fired.
@@ -188,7 +188,7 @@ We use `(event)` to indicate an event binding. Remember to add a pair of parens 
 
 We use `[(ngModel)]` to achieve two-way binding, which is part of the `FormsModule`. So in order to use ngModel, we need to first import it in your Angular module file (for example, app.module.ts).
 
-```
+```js
 // any change to the input value will also reflect in the component class
 <input type="text" [(ngModel)]="listFilter" />
 ```
@@ -199,7 +199,7 @@ The * prefix indicates it is a structural directive, which means it would change
 
 *ngIf
 
-```
+```js
 // *ngIf will add or remove the DOM element based on conditions
 <table class="table" *ngIf="products && products.length">
   // other code...
@@ -218,7 +218,7 @@ The * prefix indicates it is a structural directive, which means it would change
 
 *ngFor
 
-```
+```js
 <tr *ngFor="let product of products; index as i;">
   // other code...
 </tr>
@@ -226,7 +226,7 @@ The * prefix indicates it is a structural directive, which means it would change
 
 *ngSwitch
 
-```
+```js
 <div [ngSwitch]="event?.time">
   Time: {{event?.time}}
   <span *ngSwitchCase="'8:00 am'">(Early Start)</span>
@@ -239,7 +239,7 @@ The * prefix indicates it is a structural directive, which means it would change
 
 We can create a directive by tag, attribute and class.
 
-```
+```js
 @Component({
   selector: 'app-server',  // by tag
   selector: '[app-server]' // by attribute
@@ -249,7 +249,7 @@ We can create a directive by tag, attribute and class.
 
 `ngClass` can bind multiple classes to an element while `ngStyle` can bind multiple styles.
 
-```
+```js
 // normally we define a function in the component to minimize the logic in the template
 <div [ngClass]="{green : event?.time === '8:00 am'}">Time: {{event?.time}} {{timeLabel}}</div>
 
@@ -262,7 +262,7 @@ We can create a directive by tag, attribute and class.
 
 We can use a pipe with the `|` character.
 
-```
+```js
 // use chain pipes in string interpolation
 {{ product.price | currency | lowercase }}
 
@@ -281,7 +281,7 @@ We can use a pipe with the `|` character.
 
 To use lifecycle hook, we need to import and implement its interface.
 
-```
+```js
 // import the OnInit interface
 import { Component, OnInit } from "@angular/core";
 
@@ -298,7 +298,7 @@ ngOnInit(): void {
 
 Define a service
 
-```
+```js
 import { Injectable } from '@angular/core';
 import { IProduct } from './product';
 
@@ -314,7 +314,7 @@ export class ProductService {
 
 Register the service in the closest ancestor component
 
-```
+```js
 @Component({
   selector: "pm-root",
   templateUrl: "./app.component.html",
@@ -324,7 +324,7 @@ Register the service in the closest ancestor component
 
 Inject the service into a component
 
-```
+```js
 import { ProductService } from './product.service';
 
 // define a private variable '_productService' and assign it an injected ProductService instance
@@ -337,7 +337,7 @@ constructor(private _productService: ProductService) {
 
 In order to use routing in Angular, we need to first configure a route file.
 
-```
+```js
 export const appRoutes: Routes = [
   { path: 'events', component: EventsListComponent },
   { path: 'events/:id', component: EventDetailsComponent },
@@ -348,7 +348,7 @@ export const appRoutes: Routes = [
 
 Then we need to import the routes in NgModule.
 
-```
+```js
 @NgModule({
   imports: [
     BrowserModule,
@@ -361,7 +361,7 @@ We need to add a `<base href=''>` tag to index.html to tell Angular the relative
 
 In the view, we need to use `[routerLink]` to specify a route, and `<router-outlet>` directive to specify where to display the routed component's view.
 
-```
+```js
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <a class="navbar-brand">{{ pageTitle }}</a>
@@ -381,7 +381,7 @@ In the view, we need to use `[routerLink]` to specify a route, and `<router-outl
 
 You can navigate to a route in code using the navigate method.
 
-```
+```js
 export class CreateEventComponent {
   constructor(private _router: Router) {
 
@@ -396,7 +396,7 @@ export class CreateEventComponent {
 
 ## Angular CLI
 
-```
+```js
 // create an Angular project
 ng new projectName
 
