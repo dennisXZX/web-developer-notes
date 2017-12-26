@@ -129,7 +129,7 @@ __Pass values to view__
 
 There are a couple of ways to pass values to view.
 
-```
+```php
 // pass values using an array as the second parameter
 return view('pages.about', [
   'todos' => $todos,
