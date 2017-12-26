@@ -4,13 +4,13 @@
 
 Use encodeURI when you want a working URL.
 
-```
+```js
 encodeURI("http://www.example.org/a file with spaces.html");
 ```
 
 Use encodeURIComponent when you want to encode the value of a URL parameter.
 
-```
+```js
 const name = encodeURIComponent('dennis xiao');
 const url = "http://example.com/?name=" + name;
 ```
@@ -19,7 +19,7 @@ const url = "http://example.com/?name=" + name;
 
 This is not exactly how the navtive bind() method is implemented internally. It only intends to give you an overview of how it works.
 
-```
+```js
 // the first parameter is the new 'this' context
 // parameters after thisArg are some pre-defined arguments for the new method
 Function.prototype.bind = function(thisArg, ...fixedArgs) {
@@ -39,7 +39,7 @@ Function.prototype.bind = function(thisArg, ...fixedArgs) {
 
 Using `+` and `,` in console.log() would result in different results.
 
-```
+```js
 // using '+' to concatenate an object will call toString() on it, resulting in [object Object] 
 // output: App store created: [object Object]
 console.log('App store created: ' +  appStore.getState());
@@ -60,7 +60,8 @@ A polyfill is code that detects if a certain "expected" API is missing and manua
 The ES6 rest operator is a handy way to handle parameters, which completely replaces the use of `arguments` array-like object.
 
 Solution 1
-```
+
+```js
 function max(...values) {
     if (values.length > 3) {
         throw Error('max 3 parameters')
@@ -72,7 +73,8 @@ function max(...values) {
 ```
 
 Solution 2
-```
+
+```js
 function max(a, b, c, ...shouldBeEmpty) {
     if (shouldBeEmpty.length > 0)
         throw Error('max 3 parameters allowed!');
@@ -85,7 +87,7 @@ function max(a, b, c, ...shouldBeEmpty) {
 
 Sometimes we need to pass a large number of parameters to a function, which is inconvenient and error-prone.
 
-```
+```js
 function addPerson(first, last, dob, gender, address) {
   // code
 }
@@ -93,7 +95,7 @@ function addPerson(first, last, dob, gender, address) {
 
 We can simplify that by introducing a configuraton object.
 
-```
+```js
 // wrap all parameters into a configuration object
 const config = {
   username: 'dennisboys',
@@ -112,7 +114,7 @@ addPerson(config);
 
 Function properties is usually used in memorization pattern, caching the results of a function.
 
-```
+```js
 let myFunc = function(param) {
   // if there is no cache in the function, calculate the result
   if (!myFunc[param]) {
@@ -133,7 +135,7 @@ let myFunc = function(param) {
 
 Array.isArray() is introduced in ECMAScript 5 to determine if a value is an array. Before that, we have to rely on the method of `toString()` to find out the answer.
 
-```
+```js
 if (typeof Array.isArray === "undefined") {
   Array.isArray = function(arg) {
     return Object.prototype.toString.call(arg) === "[object Array]";
@@ -145,7 +147,7 @@ if (typeof Array.isArray === "undefined") {
 
 The following self-invoking constructor pattern can ensure a function is always called as a constructor.
 
-```
+```js
 function Person() {
   // check whether this is an instance of your constructor
   if (!(this instanceof Person)) {
@@ -170,7 +172,7 @@ Person.prototype.sayName = function() {
 
 By returning `this` inside a function, `this` should always point to the global object.
 
-```
+```js
 const global = (function() {
   return this;
 })();
@@ -178,7 +180,7 @@ const global = (function() {
 
 #### How to declare variables in single var/let/const pattern?
 
-```
+```js
 let a = 1,
     b = 2,
     sum = a + b
@@ -217,7 +219,7 @@ There are usually four ways of calling a function in Javascript.
 
 Take a look at this example to understand how arrow function affects the value of 'this'.
 
-```
+```js
 function Ninja() {
   // the value of 'this' is defined when a new Ninja object is created 
   this.whoAmI = () => this;
@@ -253,7 +255,7 @@ Both AMD and CommonJS are specifications on how modules and their dependencies s
 
 Because it will be treated as a function declaration instead of a function expression. Any statement begins with a 'function' keyword will be treated by the Javascript parser as a function declaration. To make this IIFE works, you need to wrap the function with a bracket.
 
-```  
+```js
 (function foo(){})() or (function foo(){}())
 ```
 
@@ -261,25 +263,25 @@ Because it will be treated as a function declaration instead of a function expre
 
 - 'undeclared' means a variable is not declared with a var, let or const keyword
 
-```
+```js
 a = 0;
 ```
 
 - 'undefined' represents a variable is declared but not assigned a value
 
-```
+```js
 var b;
 ```
 
 - 'null' represents an intentional absence of a value
 
-```
+```js
 var c = null;
 ```
 
 You can use strict equality comparison operator '===' to check the above states.
 
-```
+```js
 if (value === undefined) || (value === null)
 ```
 
@@ -319,7 +321,7 @@ In no situation I find myself have a need for document.write(). It was used in t
 
 Feature detection is a way of determining if a feature exists in certain browsers.
 
-```
+```js
 if (navigator.geolocation) {
   // do something with geolocation
 }
@@ -371,19 +373,19 @@ Say you send a request http://www.example.net/sample.aspx?callback=mycallback to
 
 Without JSONP, the returned result would be a run-of-the-mill JSON format.
 
-```
+```js
 { foo: "happy coder" }
 ```
 
 With JSONP, the returned result would be wrapped in a function.
 
-```
+```js
 mycallback({ foo: "happy coder" });
 ```
 
 So, in your program, you can define a callback function name 'mycallback' to handle the response:
 
-```
+```js
 mycallback = function(data) {
   alert(data.foo);
 };
@@ -400,7 +402,7 @@ It's important to keep the following rules in mind.
 - `Variable assignment` takes precedence over `function declaration`
 - `Function declarations` take precedence over `variable declarations`
 
-```
+```js
 // this example prints out 'Hello!' because the function declaration takes precedence over variable declaration
 sayHello()
 
@@ -417,7 +419,7 @@ function sayHello () {
 }
 ```
 
-```
+```js
 // this example prints out 'Hello!' because the variable assignment take precedence over function declaration
 sayHello()
 
@@ -448,7 +450,7 @@ You can use `event.stopPropagation()` to stop the bubbling, but normally there i
 
 In Javascript, an object can have as many properties as you want. For example, the following object has two properties, name and age.
 
-```
+```js
 let obj = {
   name: 'Dennis',
   age: 34
@@ -479,7 +481,7 @@ duplicate([1,2,3,4,5]); // [1,2,3,4,5,1,2,3,4,5]
 
 Use the ES6 spread operator to achieve the duplication.
 
-```
+```js
 function duplicate(arr) {
   return [...arr, ...arr];
 }
@@ -492,7 +494,8 @@ function duplicate(arr) {
 #### Create a for loop that iterates up to `100` while outputting **"fizz"** at multiples of `3`, **"buzz"** at multiples of `5` and **"fizzbuzz"** at multiples of `3` and `5`
 
 Non-function solution
-```
+
+```js
 for (let i=0; i< 101; i++) {
   const isFizz = i % 3 === 0,
         isBuzz = i % 5 === 0;
@@ -515,7 +518,7 @@ for (let i=0; i< 101; i++) {
 
 Functional solution using ternary operator
 
-```
+```js
 for (let i=0; i< 101; i++) {
   const isFizz = i % 3 === 0,
         isBuzz = i % 5 === 0;
