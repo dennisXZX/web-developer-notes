@@ -4,7 +4,7 @@
 
 Sometimes your package.json is not in your project root directory, in such a case, Heroku would fail to build your app as its buildpack cannot handle your app due to detection failure. One way to address this issue is to push a subdirectory of your git repository to Heroku during deployment.
 
-```
+```js
 git subtree push --prefix appFolderName heroku master
 ```
 
@@ -12,7 +12,7 @@ git subtree push --prefix appFolderName heroku master
 
 1. Dynamic port binding - Heroku tells us which port our app should use, so we need to make sure we listen to that port.
 
-```
+```js
 const PORT = process.env.PORT || 5000;
 // listen to the specific port in express
 app.listen(PORT);
@@ -22,7 +22,7 @@ app.listen(PORT);
 
 Specify node version and npm version in package.json file (generated after running `npm init`).
 
-```
+```js
 "engines": {
   "node": "8.1.1",
   "npm": "5.0.3"
@@ -31,8 +31,9 @@ Specify node version and npm version in package.json file (generated after runni
 
 3. Specify start script - Instruct Heroku what command to run to start our server.
 
-Specify a start script in the package.json file .
-```
+Specify a start script in the package.json file.
+
+```js
 "scripts": {
   "start": "node index.js"
 }
@@ -42,7 +43,7 @@ Specify a start script in the package.json file .
 
 Create a `.gitignore` file in the server folder.
 
-```
+```js
 // ignore node dependencies
 node_modules
 ```
@@ -51,7 +52,7 @@ node_modules
 
 After installing Heroku CLI, you can use `heroku login` to login Heroku, then use `heroku create` to create your Heroku app. The `heroku create` command should generate two links as follows.
 
-```
+```js
 // you should see two links after running 'heroku create'
 // the first link is the URL for your app
 // the second link is your deployment target, to where you should push your code
@@ -70,7 +71,7 @@ If you run into any issues during deployment, always use `heroku logs` to see wh
 
 Head to Heroku project setting and you should be able to see a `Config Variables` section where you can put in `Config Vars`. Once you have them set up, you can refer to these vars in your code as follows.
 
-```
+```js
 // production keys
 module.exports = {
   googleClientID: process.env.GOOGLE_CLIENT_ID,
