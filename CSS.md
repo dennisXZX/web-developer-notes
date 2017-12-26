@@ -23,7 +23,7 @@ Element(__) - a part of a block that has no standalone meaning and is semantical
 
 Modifier(--) - a flag on a block or element to change appearance or behavior
 
-```
+```css
 // prefix-block__element--modifier
 .eh-toolbar__arrow-btn--selected
 ```
@@ -32,7 +32,7 @@ Modifier(--) - a flag on a block or element to change appearance or behavior
 
 Mobile first design should write CSS for mobile screen first then use `min-width` media queries to write styles for larger screens.
 
-```
+```css
 // This applies from 0px to 600px
 body {
   background: red;
@@ -48,7 +48,7 @@ body {
 
 #### Add animation to box-shadow
 
-```
+```css
 .card {
   box-shadow: 0 0 2px 0 rgba(119, 119, 119, 0.3);
   // transition property is the key for animation
@@ -65,7 +65,7 @@ body {
 
 This can be achieved by using the `:hover` selector on the parent element.
 
-```
+```css
 // change the color of .child-element when you hover .parent-element
 .parent-element:hover .child-element {
   color: #3ec7de;
@@ -76,7 +76,7 @@ This can be achieved by using the `:hover` selector on the parent element.
 
 The drop caps effect is achieved using the `:first-letter` pseudo class. Basically what you need to do is to select the first letter and make it huge and floated to the left.
 
-```
+```css
 p:first-child:first-letter {
   color: #903;
   float: left;
@@ -107,7 +107,7 @@ The key to parallax scrolling effect is to add `background-attachment: fixed` pr
 1. Create a background image container
 2. Apply the following class to the container
 
-```
+```css
 .parallax {
   /* The image used */
   background-image: url("bg.jpg");
@@ -135,7 +135,7 @@ Resetting destroys all the built-in styling while normalizing just tries to make
 
 When you apply float to an element, it basically pulls it out from the normal document flow so it gets on top of the document flow. Since a floated element does not stay in the document flow, a container would not detect its existence, which leads to the classic `zero height collapse` container issue. To solve this, what we need is a clearfix hack.
 
-```
+```css
 .clear:after {
   clear: both;
   content: "";
