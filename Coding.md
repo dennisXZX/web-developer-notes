@@ -2,7 +2,7 @@
 
 #### Convert a complex object into an array
 
-```
+```js
 // extract the cast from each object into an array, with no duplicate value.
 const data = [
   {
@@ -34,9 +34,10 @@ const data = [
   },  
 ];
 ```
+
 Solution:
 
-```
+```js
 const flatmapData = data.reduce((accumulator, currentValue) => {
   currentValue.cast.forEach((cast) => {
     if (accumulator.indexOf(cast) === -1) {
@@ -50,15 +51,16 @@ const flatmapData = data.reduce((accumulator, currentValue) => {
 
 #### Flatten an array
 
-```
+```js
 // original data
 const data = [[1, 2, 3], [3, 4, 5], [3, 1]];
 // expected results
 [ 1, 2, 3, 3, 4, 5, 3, 1 ]
 ```
+
 Solution:
 
-```
+```js
 const flattenedata = data.reduce((accumulator, currentValue) => {
   return accumulator.concat(currentValue);
 }, []);
@@ -66,16 +68,17 @@ const flattenedata = data.reduce((accumulator, currentValue) => {
 
 #### Get the mean value from an array
 
-```
+```js
 /*
 Requirements:
 Double the value of each element in the array and then get its average value.
 */
 const data = [1, 2, 3, 3, 4, 5, 3, 1];
 ```
+
 Solution:
 
-```
+```js
 const mean = data.reduce((accumulator, currentItem, index, array) => {
   let intermediaryValue = accumulator + (currentItem * 2);
 
@@ -90,7 +93,7 @@ const mean = data.reduce((accumulator, currentItem, index, array) => {
 
 #### Array spliting
 
-```
+```js
 // data array
 const arr = ['a', 'b', 'c', 'd', 'e', 'f'];
 
@@ -98,9 +101,10 @@ const arr = ['a', 'b', 'c', 'd', 'e', 'f'];
 splitArr(arr, 2); // => ["ab", "cd", "ef"]
 splitArr(arr, 3); // => ["abc", "def"]
 ```
+
 Solution:
 
-```
+```js
 function splitArr(arr, splitNum) {
   // join the array
   joinArr = arr.join('');
@@ -118,7 +122,7 @@ function splitArr(arr, splitNum) {
 
 #### Convert an array to an object
 
-```
+```js
 // original format
 let collection = [
   { id: 1, age_from: 12, age_to: 99, name: "Adult" },
@@ -136,7 +140,7 @@ let newArr = {
 
 Solution:
 
-```
+```js
 const newCollection = collection.reduce((acc, curr) => {
   acc[curr['id']] = {
     name: curr['name'],
@@ -151,7 +155,7 @@ console.log(newCollection);
 
 #### Convert arr to newArr
 
-```
+```js
 // original format
 let arr = [1, 1, 1, 2, 2, 3, 3];
 
@@ -165,7 +169,7 @@ let newArr = [
 
 Solution:
 
-```
+```js
 // reduce to an obj { '1': 3, '2': 2, '3': 2 }
 let obj = arr.reduce((acc, cur) => {
   if (!acc[cur]) {
@@ -187,7 +191,8 @@ for (let key in obj) {
 ```
 
 #### What is the output of this for loop?
-```
+
+```js
 let i, 
     myarray = [1, 2, 3];
 
@@ -195,6 +200,7 @@ for(i = myarray.length; i--;) {
   console.log(myarray[i])
 }
 ```
+
 The output is 3, 2, 1. This for loop may seems weird at first glance. Let's dig a bit deeper into the structure of a for loop. A for loop consists of 4 parts, where initialExpression, condition and incrementExpression are optional.
 
 for ([initialExpression]; [condition]; [incrementExpression])
@@ -205,21 +211,25 @@ So the above for loop omits the incrementExpression and uses condition to achiev
 It is not recommended to use this for loop structure to achieve micro performance optimization as it is not easily recognized, unless in performance-critical operations.
 
 #### What is the value of `foo`?
-```
+
+```js
 var foo = 10 + '20';
 ```
+
 foo is a string with a value of '1020'. 
 
 This is because when you try to concatenate a number with a string, the number will be automatically converted into a string before concatenation.
 
 #### How would you make this work?
 
-```
+```js
 add(2, 5); // 7
 add(2)(5); // 7
 ```
+
 Solution 1
-```
+
+```js
 function add(num1, num2) {
   if (arguments.length === 1) {
     return function(newNum2) {
@@ -229,8 +239,10 @@ function add(num1, num2) {
   return num1 + num2;
 }
 ```
+
 Solution 2
-```
+
+```js
 function add(num1, num2) {
   if (typeof num2 === 'undefined') {
     return function (newNum2) {
@@ -240,16 +252,20 @@ function add(num1, num2) {
   return num1 + num2;
 }
 ```
+
 #### What value is returned from the following statement?
-```
+
+```js
 "i'm a lasagna hog".split("").reverse().join("");
 ```
+
 After the method chain, the returned value is 'goh angasal a m'i'. 
 
 First the string is split into an array of characters because the split() function is called passing an empty string as parameter. After that, the array is reversed then joined together.
 
 #### What is the value of `window.foo`?
-```
+
+```js
 ( window.foo || ( window.foo = "bar" ) );
 ```
 The value of window.foo is 'bar'.
@@ -257,7 +273,8 @@ The value of window.foo is 'bar'.
 This expression first evaluates the left hand side of the || operator, which is a property retrieval expression that produces an `undefined` value. Then it evaluates the right hand side, which is an assignment expression that assigns a string 'bar' to window object's foo property.
 
 #### What is the outcome of the two alerts below?
-```
+
+```js
 var foo = "Hello";
 
 (function() {
@@ -267,29 +284,34 @@ var foo = "Hello";
 
 alert(foo + bar);
 ```
+
 It will alert "Hello World", then throws a reference error because there is no bar variable defined in the global scope.
 
 #### What is the value of `foo.length`?
-```
+
+```js
 var foo = [];
 foo.push(1);
 foo.push(2);
 ```
+
 foo.length is 2 as we call push() twice in the above code, so there are two items in the foo array.
 
 #### What is the value of `foo.x`?
-```
+
+```js
 var foo = {n: 1};
 var bar = foo;
 foo.x = foo = {n: 2};
 ```
+
 This one is really tricky. The answer is 'undefined'. Here is why:
 
 In "foo.x = foo = {n: 2};", foo.x is first evaluated to 'undefined' since there is no x property in the object that foo refers. This is because left hand side of an assignment expression is evaluated first. So the whole expression is evaluated as it is "foo.x = (foo = {n: 2});"
 
 #### What does the following code print?
 
-```
+```js
 console.log('one');
 setTimeout(function() {
   console.log('two');
@@ -307,7 +329,7 @@ This is because setTimeout() is asynchronous while console.log() is synchronous.
 
 #### Write a function called double in a declarative way which takes in an array of numbers and returns a new array after doubling every item in that array. double([1,2,3]) -> [2,4,6]
 
-```
+```js
 function double(array) {
   return array.map(item => item * 2);
 }
@@ -315,7 +337,7 @@ function double(array) {
 
 #### Write a function called add in a declarative way which takes in an array and returns the result of adding up every item in the array. add([1,2,3]) -> 6
 
-```
+```js
 function add(array) {
   return array.reduce((prev, next) => prev + next, 0);
 }
