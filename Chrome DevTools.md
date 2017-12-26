@@ -17,13 +17,13 @@ A collection of useful Google DevTools snippets.
 
 We can use inspect() to immediately locate an HTML element.
 
-```
+```js
 inspect($('.container-fluid')[0]);
 ```
 
 monitorEvents() can be used to add events to an element.
 
-```
+```js
 // monitor click events on an element with a class name of container-fluid
 monitorEvents($('.container-fluid')[0], 'click');
 
@@ -41,7 +41,7 @@ First go to the `three dots drop down menu` and select `Settings`, then select t
 
 console.count() can come in handy when we need to count the occurence of some conditions.
 
-```
+```js
 for(let i = 0; i < 100; i++){
   if (i > 60) {
     console.count('larger than 60');
@@ -51,7 +51,7 @@ for(let i = 0; i < 100; i++){
 
 > Print DOM representation of an HTML element
 
-``` 
+```js
 console.dir($('.ei-activity-summary-page')[0]);
 ```
 
@@ -68,7 +68,7 @@ Console messages also support string substitutions.
 - %o for object
 - %c for CSS style
 
-```
+```js
 console.log('My name is %s. %cI am %d years old.', 'Dennis', 'color: blue; font-size: 30px', 35);
 ```
 
@@ -76,7 +76,7 @@ console.log('My name is %s. %cI am %d years old.', 'Dennis', 'color: blue; font-
 
 Console.group() or console.groupCollapsed() can be used to visually group together relevant messages.
 
-```
+```js
 for (let i = 0; i < 100; i++) {
   const num = Math.random() * 100;
   if (num > 50) {
@@ -93,14 +93,14 @@ Writes an error message to the console if the assertion is false. If the asserti
 
 This assertion can be used to quickly determine if an element is on the page.
 
-```
+```js
 // check if there is an element with class="container"
 console.assert(document.querySelector('.container'), "Missing element with a container class element");
 ```
 
 It can also be used to check on any expression.
 
-```
+```js
 let salary = '32';
 // error message will show as salary is not type of number
 console.assert(typeof salary === 'number', 'salary was not a number!');
@@ -110,7 +110,7 @@ console.assert(typeof salary === 'number', 'salary was not a number!');
 
 We can log out an object in a tabularized manner.
 
-```
+```js
 console.table(object);
 ```
 
@@ -118,7 +118,7 @@ console.table(object);
 
 We can record the time of our code by using console.time() and console.timeEnd().
 
-```
+```js
 console.time('save user');
 
 // code to save a user to database
