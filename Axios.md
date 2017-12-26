@@ -2,7 +2,7 @@
 
 #### Instance
 
-```
+```js
 import axios from 'axios';
 
 // Set config defaults when creating the instance
@@ -20,7 +20,7 @@ export default instance;
 
 You can intercept requests or responses before they are handled by `then` or `catch`.
 
-```
+```js
 // Add a request interceptor
 axios.interceptors.request.use(function (config) {
     // Do something before request is sent
@@ -42,7 +42,7 @@ axios.interceptors.response.use(function (response) {
 
 #### Global axios defaults
 
-```
+```js
 axios.defaults.baseURL = 'https://api.example.com';
 axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
