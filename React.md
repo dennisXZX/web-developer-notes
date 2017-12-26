@@ -4,13 +4,13 @@
 
 Component reference only exists in stateful component, and should be used scarcely in your project since it is not the recommended React way of doing things.
 
-```
+```js
 // we define a function which accepts the HTML element (input), and assign it to the 'inputEle' property of the class
 // so now you can access this HTML component using this.inputEle
 <input ref={(input) => { this.inputEle = input }} value='hello' />
 ```
 
-```
+```js
 // make a focus on the input when the component is mounted
 componentDidMount() {
   this.inputEle.focus();
@@ -19,7 +19,7 @@ componentDidMount() {
 
 #### Default prop values
 
-```
+```js
 // Specifies the default values for props:
 Person.defaultProps = {
   name: 'Stranger'
@@ -30,7 +30,7 @@ Person.defaultProps = {
 
 To use React proptypes, you need to first install the package `npm i prop-types`.
 
-```
+```js
 import PropTypes from 'prop-types';
 
 Person.propTypes = {
@@ -44,7 +44,7 @@ Person.propTypes = {
 
 Because this.setState() execute asynchronously, so we need to take extra care when our state would be updated in different components. Passing a callback to retrieve the previous state is the best approach to protect the integrity of the component state.
 
-```
+```js
 this.setState((prevState, props) => {
   return {
     clickCount: prevState.click + 1
@@ -58,7 +58,7 @@ A high order component is just a React component that wraps another one.
 
 Pattern 1:
 
-```
+```js
 // create a React functional component
 const withClass = (props) => {
   return (
@@ -71,7 +71,7 @@ const withClass = (props) => {
 export default withClass;
 ```
 
-```
+```js
 <WithClass classes={styles.App}>
   ... other React components
 </WithClass>
@@ -79,7 +79,7 @@ export default withClass;
 
 Pattern 2:
 
-```
+```js
 // withClass is just a plain Javascript function which returns a React functional component
 const withClass = (WrappedComponent, className) => {
   return (props) => (
@@ -94,7 +94,7 @@ export default withClass;
 
 We can call withClass() before exporting the component.
 
-```
+```js
 export default withClass(Person, classes.Person);
 ```
 
@@ -102,7 +102,7 @@ export default withClass(Person, classes.Person);
 
 Sometimes you do not want to wrap your JSX in an unnecessary div element, now you can use `React.Fragment` to achieve this. There is a short syntax for declaring fragments `<> ...code </>`.
   
-```
+```js
 // wrap the content in a React.Fragment
 <React.Fragment>
   <h1>First Element</h1>
@@ -116,7 +116,7 @@ The difference between React.Component and React.PureComponent is that React.Com
 
 If your React component’s render() function renders the same result given the same props and state, you can use React.PureComponent for a performance boost in some cases.
 
-```
+```js
 class Greeting extends React.PureComponent {
   render() {
     ... code
@@ -126,11 +126,27 @@ class Greeting extends React.PureComponent {
 
 #### Component lifecycle
 
-- Creation phase: constructor() -> componentWillMount() -> render() -> componentDidMount() -> componentWillUnmount()
+- Creation phase: 
+1. constructor()
+2. componentWillMount()
+3. render()
+4. componentDidMount()
+5. componentWillUnmount()
 
-- Update phase (triggered by props change): componentWillReceiveProps(nextProps) -> shouldComponentUpdate(nextProps, nextState) -> componentWillUpdate(nextProps, nextState) -> render() -> componentDidUpdate() -> componentWillUnmount()
+- Update phase (triggered by props change): 
+1. componentWillReceiveProps(nextProps)
+2. shouldComponentUpdate(nextProps, nextState)
+3. componentWillUpdate(nextProps, nextState) 
+4. render()
+5. componentDidUpdate() 
+6. componentWillUnmount()
 
-- Update phase (triggered by state change): shouldComponentUpdate(nextProps, nextState) -> componentWillUpdate(nextProps, nextState) -> render() -> componentDidUpdate() -> componentWillUnmount()
+- Update phase (triggered by state change): 
+1. shouldComponentUpdate(nextProps, nextState)
+2. componentWillUpdate(nextProps, nextState) 
+3. render() 
+4. componentDidUpdate()
+5. componentWillUnmount()
 
 #### Error boundary
 
@@ -138,7 +154,7 @@ Error boundary is a React component that catches JavaScript errors anywhere in i
 
 A class component becomes an error boundary if it defines a lifecycle method called `componentDidCatch(error, info)`:
 
-```
+```js
 class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
@@ -165,7 +181,7 @@ class ErrorBoundary extends React.Component {
 
 Then you can use it as a regular component:
 
-```
+```js
 <ErrorBoundary>
   <MyWidget />
 </ErrorBoundary>
@@ -177,7 +193,7 @@ First run `npm run eject` to get access to your webpack config file.
 
 Go to `webpack.config.dev.js` and `webpack.config.prod.js` and add CSS modules feature to css-loader.
 
-```
+```js
 {
   loader: require.resolve('css-loader'),
   options: {
@@ -195,7 +211,7 @@ To create a global CSS style, you can add a `:global` prefix such as `:global .p
 
 #### Avoid mutating component states directly
 
-```
+```js
 // copy an array in the state using slice() or spread operator
 const persons = this.state.persons.splice();
 const persons = [...this.state.persons];
@@ -209,7 +225,7 @@ const person = Object.assign({}, this.state.persons[personIndex]);
 
 We have a handler method with one expected parameter that need to pass to a child component
 
-```
+```js
 deletePersonHandler = (personIndex) => {
   // copy the current state using slice() or spread operator
   const persons = this.state.persons.splice();
@@ -223,7 +239,7 @@ deletePersonHandler = (personIndex) => {
 
 We can use the `bind()` method to pass a pre-defined parameter to child component
 
-```
+```js
 // use bind() to bind the context as well as the index
 {this.state.persons.map((person, index) => {
   return <Person
