@@ -48,6 +48,8 @@ const itemReducer = (state = [], action) => {
     case actionTypes.ADD:
       return state.concat(action.payload);
     case actionTypes.DELETE:
+      // use the slice() to return a shallow copy of a portion of an array
+      // slice(0, -1) extracts the first item through the second-to-last one
       return state.slice(0, -1);
     default:
       return state;
@@ -63,7 +65,7 @@ const appReducer = combineReducers({
 // create a store and pass in the root reducer
 const appStore = createStore(appReducer);
 
-// subscribe to the store, so a callback is executed anytime a state is changed
+// subscribe to the store, so a callback is executed anytime a piece of state is changed
 appStore.subscribe(() => {
   console.log('[Subscription]', appStore.getState());
 });
@@ -99,8 +101,8 @@ appStore.dispatch(speakUserActionCreator('You are screwed!'));
 1. create each reducer in its own file and then export it
 2. combine all the reducers into a root reducer in an index.js file and then export it
 3. create a store which accepts the root reducer as a parameter
-4. wrap the root React component with a <Provider> component from react-redux
-5. pass the root store to the <Provider> component
+4. wrap the root React component with a `<Provider>` component from react-redux
+5. pass the root store to the `<Provider>` component
 
 ```js
 import { createStore } from 'redux'
@@ -137,7 +139,7 @@ const mapStateToProps = (state) => {
   }
 }
 
-// map dispatch to props, the dispatch parameter here refers to the dispatch method provided by Redux, so when you call this dispatch method in your React component, under the hood it would call the dispatch method in the Redux store
+// map dispatch to props, the dispatch parameter here refers to the dispatch method provided by Redux, so when you call this dispatch method in your code, under the hood it would call the dispatch method attached to the Redux store
 // now you can dispatch an action using this.props.onIncrementCounter from within the React component
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -154,46 +156,47 @@ It is important to note that we should not mutate our state directly. Each time 
 
 ```js
 return {
+  // use spread operator to copy all the properties on the current state
   ...state,
   counter: state.counter + 1,
   data: action.payload
 }
 ```
 
-- use `concat()` instead of push() when adding an item to an array
+- use `concat()` instead of `push()` when adding an item to an array
 - use `filter()` instead of `splice()` when deleting an item from an array
 
-When dealing with nested objects, every level of nesting must be copied and updated appropriately. It is a good practice to always keep your state flattened in order to avoid multiple level states.
+When dealing with nested objects, every level of nesting must be copied and updated appropriately. It is a good practice to always keep your state flattened in order to avoid multiple level states copy.
 
 ```js
-// inserting immutably
+// inserting immutably to an array
 function insertItem(array, action) {
   let newArray = array.slice();
   newArray.splice(action.index, 0, action.item);
   return newArray;
 }
  
-// removing immutably
+// removing immutably from an array
 function removeItem(array, action) {
   let newArray = array.slice();
   newArray.splice(action.index, 1);
   return newArray;
 }
 
-// alternative for removing immutably
+// alternative for removing immutably from an array
 function removeItem(array, action) {
-  return array.filter( (item, index) => index !== action.index);
+  return array.filter((item, index) => index !== action.index);
 }
 
-// updating immutably
+// updating an item in an array immutably
 function updateObjectInArray(array, action) {
   return array.map((item, index) => {
     if(index !== action.index) {
-      // This isn't the item we care about - keep it as-is
+      // this isn't the item we care about, so keep it as-is
       return item;
     }
 
-    // Otherwise, this is the one we want - return an updated value
+    // otherwise, this is the one we want, so return an updated value
     return {
       ...item,
       ...action.item
