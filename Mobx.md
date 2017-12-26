@@ -21,7 +21,7 @@ Install Mobx by `npm i mobx mobx-react` and `npm i -D babel-plugin-transform-dec
 
 Create a store
 
-```
+```js
 import { observable, action, computed } from 'mobx';
 
 class TodoStore {
@@ -47,7 +47,7 @@ export default store;
 
 Use the store in a React component
 
-```
+```js
 import TodoStore from './TodoStore';
 
 ReactDOM.render(
@@ -58,7 +58,7 @@ ReactDOM.render(
 
 Access values in the store
 
-```
+```js
 import { inject, observer } from 'mobx-react';
 
 // inject the TodoStore and StudentStore into TodoList component and observe any @observable changes
