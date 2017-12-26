@@ -4,7 +4,7 @@
 
 First you need to wrap your application using `<BrowserRouter>`.
 
-```
+```js
 import { BrowserRouter } from 'react-router-dom';
 
 const app = (
@@ -18,7 +18,7 @@ ReactDOM.render(app, document.getElementById('root'));
 
 Then you can use `<Switch>` to parse the URL, the first matched URL will be returned. However, keep in mind that the order of the URLs is important, and you should always place the most specific routes on top of the generic ones.
 
-```
+```js
 import { Route, Switch } from 'react-router-dom';
 
 <Switch>
@@ -31,7 +31,7 @@ import { Route, Switch } from 'react-router-dom';
 
 We can use inline rendering to pass props to an component
 
-```
+```js
 <Route
   path={this.props.match.path + '/contact-data'}
   render={() => (<ContactData ingredients={this.state.ingredients} />)} />
@@ -41,7 +41,7 @@ We can use inline rendering to pass props to an component
 
 You can use the `history` object provided by the React router.
 
-```
+```js
 // pushe a new entry onto the history stack
 this.props.history.push('/checkout');
 // replace the current entry on the history stack
@@ -54,7 +54,7 @@ this.props.history.goForward();
 
 #### Pass props to `history.location` object
 
-```
+```js
 // pass extra props to the 'location' object
 this.props.history.push({
   pathname: '/template',
@@ -70,7 +70,7 @@ this.props.location.state.detail
 
 You can use the `match` object to retrieve the current path or URL. 
 
-```
+```js
 <Route path={this.props.match.path + '/contact-data'} />
 
 <Link to={this.props.match.url + '/about'}>About</Link>
@@ -80,7 +80,7 @@ You can use the `match` object to retrieve the current path or URL.
 
 You can get access to the `history` object's properties and the closest <Route>'s `match` via the `withRouter` higher-order component.
 
-```
+```js
 import { withRouter } from 'react-router'
 
 class ShowTheLocation extends React.Component { }
