@@ -14,7 +14,7 @@
 
 `require` key specifies which packages your project depends on.
 
-```
+```js
 {
     "name": "laravel/laravel",
     "description": "The Laravel Framework.",
