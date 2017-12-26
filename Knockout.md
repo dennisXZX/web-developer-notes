@@ -12,8 +12,8 @@
 // notice the object in the observable array is just plain objects, not observables. Therefore, any change to these objects will not be notified to the observable array. 
 // The observable array is only notified when any object is added or removed from it.
 this.products = ko.observableArray([
-	{ model: 'Taylor', price: 134 },
-	{ model: 'King', price: 234 },	
+  { model: 'Taylor', price: 134 },
+  { model: 'King', price: 234 },	
 ]);
 ```
 
@@ -47,8 +47,8 @@ Read an observale's value.
 
 ```js
 const myViewModel = function() {
-    this.personName = ko.observable('Bob');
-    this.personAge = ko.observable(123);
+  this.personName = ko.observable('Bob');
+  this.personAge = ko.observable(123);
 };
 
 let name = myViewModel.personName();
@@ -92,7 +92,7 @@ You can use pure computed observables to utilize the performance gain provided b
 
 ```js
 this.fullName = ko.pureComputed(() => {
-    return this.firstName() + " " + this.lastName();
+  return this.firstName() + " " + this.lastName();
 });
 ```
 
@@ -102,7 +102,7 @@ The subscribe function accepts three parameters: `callback` is the function that
 
 ```js
 myViewModel.personName.subscribe((newValue) => {
-    alert("The person's new name is " + newValue);
+  alert("The person's new name is " + newValue);
 }, target, event);
 ```
 
@@ -138,10 +138,10 @@ There is no if/else statement in Knockout, but we can achieve that with a trick.
 
 ```js
 <!-- ko ifnot: activityItem.shortDescription -->
-	<p data-bind="text: activityItem.name"></p>
+  <p data-bind="text: activityItem.name"></p>
 <!-- /ko -->
 <!-- ko if: activityItem.shortDescription -->
-	<p data-bind="text: activityItem.shortDescription"></p>
+  <p data-bind="text: activityItem.shortDescription"></p>
 <!-- /ko -->
 ```
 
@@ -185,14 +185,14 @@ You can create custom binding handler in Knockout.js.
 
 ```js
 ko.bindingHandlers.fadeVisible = {
-	// runs the first time the binding is evaluated
-	init: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
-	
-	},
-	// run every time one of its observables changes after init
-	update: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
-	
-	}
+  // runs the first time the binding is evaluated
+  init: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
+
+  },
+  // run every time one of its observables changes after init
+  update: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
+
+  }
 }
 ```
 
@@ -202,7 +202,7 @@ Register a component so the view model can be accessed in the template.
 
 ```js
 ko.components.register('ei-accommodation-search-page', {
-	viewModel: AccommodationSearchPage,
-	template: Template
+  viewModel: AccommodationSearchPage,
+  template: Template
 });
 ```
