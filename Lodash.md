@@ -1,4 +1,4 @@
-# Lodash
+## Lodash
 
 #### _.mapKeys
 
@@ -84,12 +84,12 @@ _.forEach(collection, (name, index) => {
 sortBy() works on all array-like collections and always returns an array.
 
 ```js
-Example 1
+// Example 1
 
 // _.sortBy('cba') returns an array of [ 'a', 'b', 'c' ]
 _.sortBy('cba').join(''); // => 'abc'
 
-Example 2
+// Example 2
 
 const users = [
   { 'user': 'fred',   'age': 48 },
@@ -101,7 +101,7 @@ const users = [
 // sort the array by multiple property names in pluck style shorthand
 _.sortBy(users, ['user', 'age']);
 
-Example 3
+// Example 3
 
 // sort summaryList array based on the result of the callback function
 summaryList = sortBy(summaryList, (ageGroup) => {
