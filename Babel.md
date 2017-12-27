@@ -5,7 +5,7 @@
 Install necessary NPM packages for a React project.
 
 ```js
-npm i -D babel-loader babel-core babel-preset-react babel-preset-env
+npm i -D babel-loader babel-core babel-preset-react babel-preset-env babel-plugin-syntax-dynamic-import babel-polyfill
 ```
 
 Create a Babel config file `.babelrc`. You can find the browser list setting for babel-preset-env [here](https://github.com/ai/browserslist).
