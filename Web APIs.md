@@ -4,7 +4,7 @@
 
 The URLSearchParams interface defines utility methods to work with the query string of a URL.
 
-```
+```js
 const params = new URLSearchParams('q=search+string&version=1&person=Eric');
 
 // retrieve values from the query string
