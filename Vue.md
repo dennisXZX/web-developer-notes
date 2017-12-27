@@ -2,7 +2,7 @@
 
 #### Initialize Vue in your project
 
-```
+```js
 var vm = new Vue({
   // define the root element for the Vue
   el: '#app',
@@ -52,7 +52,7 @@ var vm = new Vue({
 
 #### Vue instance properties and methods
 
-```
+```js
 vm.$data retrieves the data property of the Vue instance
 
 vm.$el retrieves the element of the HTML element specified in the 'el' property
@@ -64,7 +64,7 @@ vm.$watch('message', function(newValue, oldValue) {
 
 #### Directive
 
-```
+```js
 <button 
   // based on the 'sizeToggle' property, if it's true returns 'large' class
   // renders 'rounded' class if 'isRounded' property is true
@@ -114,7 +114,7 @@ vm.$watch('message', function(newValue, oldValue) {
 
 #### Events
 
-```
+```js
 // execute 'reset' method when the button is clicked
 <button v-on:click="reset" class="btn btn-primary">Reset Me!</button>
 // short-cut syntax for v-on
