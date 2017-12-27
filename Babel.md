@@ -4,7 +4,7 @@
 
 Install necessary NPM packages for a React project.
 
-```js
+```
 npm i -D babel-loader babel-core babel-preset-react babel-preset-env babel-plugin-syntax-dynamic-import babel-polyfill
 ```
 
