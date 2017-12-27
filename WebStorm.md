@@ -1,8 +1,10 @@
-## WebStorm / PhpStorm
+## WebStorm 
 
 #### Useful shortcut
 
 - `command + 1` to toggle sidebar
+
+- `alt + F12` to toggle Terminal
 
 - `command + shift + o` to search a file
 
