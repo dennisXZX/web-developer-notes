@@ -23,6 +23,7 @@ Create a Babel config file `.babelrc`. You can find the browser list setting for
      // use polyfill for features like Promises and Object.assign() in older browsers
      useBuiltIns: 'entry'
     }],
+    // using stage-2 features described in The TC39 Process
     "stage-2",
     "react"
   ],
