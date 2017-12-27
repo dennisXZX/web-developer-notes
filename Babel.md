@@ -19,9 +19,16 @@ Create a Babel config file `.babelrc`. You can find the browser list setting for
           "> 1%",
           "last 2 versions"
         ]
-      }
+      },
+     // use polyfill for features like Promises and Object.assign() in older browsers
+     useBuiltIns: 'entry'
     }],
+    "stage-2",
     "react"
+  ],
+  "plugins": [
+    // support dynamic import in your code
+    "syntax-dynamic-import"
   ]
 }
 ```
