@@ -4,13 +4,13 @@
 
 compile a Typescript file
 
-```
+```ts
 tsc fileName.ts
 ```
 
 set up a tsconfig.json to monitor the whole Typescript project folder.
 
-```
+```ts
 // create a default config file 
 tsc --init
 
@@ -23,7 +23,7 @@ tsc -w
 
 #### Define a class
 
-```
+```ts
 class Cat {
   // define a private property
   private _name: string;
@@ -45,7 +45,7 @@ fluffy.speak();
 
 Because it is so common to declare a private variable in a class and then assign a value to it in the constructor, Typescript has a short-cut syntax for this.
 
-```
+```ts
 class Cat {
   constructor(private _name, private _color) {
   
@@ -55,7 +55,7 @@ class Cat {
 
 #### Define an interface
 
-```
+```ts
 // you can define an optional value in an interface using '?' operator
 interface ICat {
   name: string;
@@ -67,7 +67,7 @@ interface ICat {
 
 Typescript can assign types implicitly but it is recommeded to always assign types in an explicit way.
 
-```
+```ts
 // string type
 let myName: string = "Dennis";
 
