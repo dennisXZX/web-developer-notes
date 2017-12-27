@@ -27,7 +27,7 @@ PostgreSQL: [pgAdmin](https://www.pgadmin.org/)
 
 #### Database operations
 
-```
+```sql
 // create a table
 CREATE TABLE todos (
   id            integer PRIMARY KEY AUTO_INCREMENT,
@@ -36,7 +36,7 @@ CREATE TABLE todos (
 );
 ```
 
-```
+```sql
 // insert a record into a table
 INSERT INTO tableName (
   description, 
@@ -47,7 +47,7 @@ INSERT INTO tableName (
 )
 ```
 
-```
+```sql
 // insert multiple values into the 'name' column
 INSERT INTO test_directors (name) VALUES ('Zoe'), ('Dennis'), ('John');
 ```
