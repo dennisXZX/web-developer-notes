@@ -1,6 +1,6 @@
-## React-router
+## React router
 
-#### Set up react-router in your project
+#### Set up react router in your project
 
 First you need to wrap your application using `<BrowserRouter>`.
 
