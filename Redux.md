@@ -4,7 +4,7 @@
 
 1. create an action type config file for all the action constants
 2. create an initial state object for each reducer as a default state (optional)
-3. create a bunch of reducers, in each reducer we need to provide logic for handling each action type (usually in a switch statement). We should not directly mutate state in reducers.
+3. create a bunch of reducers, in each reducer we need to provide logic for handling each action type (usually in a switch statement). We should not directly mutate state in reducers. Also keep in mind that all reducers get called regardless of what action is emitted, so you have to return the original state if the action is not applicable.
 4. combine all the reducers into one root reducer
 5. create a store which accepts the root reducer as a parameter
 6. subscribe to the store, so a callback is executed when any state is changed
@@ -207,7 +207,7 @@ function updateObjectInArray(array, action) {
 
 #### Redux-thunk
 
-By default, Redux action creator cannot execute asynchronous code, so we need to use a helper library for the job.
+By default, Redux action creator cannot execute asynchronous code as it can only returns an object, so we need to use a helper library `redux-thunk` for the job.
 
 ```js
 // import redux-thunk
@@ -220,10 +220,16 @@ const store = createStore(
 );
 
 // use redux-thunk in action creator
-const speakUserActionCreator = (item) => {
-  return {
-    type: actionTypes.SPEAK,
-    payload: item
+// now this action creator returns a function instead of an object, the 'dispatch' parameter gives you access to the dispatch() store method
+export const initIngredients = () => {
+  return (dispatch) => {
+    axios.get('https://react-burger-app-29cd2.firebaseio.com/ingredients.json')
+      .then((response) => {
+        dispatch(setIngredients(response.data));
+      })
+      .catch((error) => {
+        dispatch(fetchIngredientsFailed());
+      });
   }
-}
+};
 ```
