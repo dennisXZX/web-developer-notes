@@ -27,6 +27,35 @@ import { Route, Switch } from 'react-router-dom';
 </Switch>
 ```
 
+#### Redirect component
+
+Rendering a <Redirect> will navigate to a new location. The new location will override the current location in the history stack.
+  
+```js
+render() {
+  let summary = <Redirect to="/" />;
+
+  if (this.props.ingredients) {
+    const purchasedRedirect = this.props.purchased ? <Redirect to="/" /> : null;
+
+    summary = (
+      <Fragment>
+        {purchasedRedirect}
+        <CheckoutSummary
+          ingredients={this.props.ingredients}
+          checkoutCancelled={this.checkoutCancelledHandler}
+          checkoutContinued={this.checkoutContinuedHandler} />
+        <Route
+          path={this.props.match.path + '/contact-data'}
+          component={ContactData} />
+      </Fragment>
+    );
+  }
+
+  return summary;
+}
+```
+
 #### Inline rendering
 
 We can use inline rendering to pass props to an component
