@@ -3,11 +3,11 @@
 #### Hover and active style only when an element is not disabled
 
 ```css
-button:hover:enabled{
+button:hover:enabled {
     /*your styles*/
 }
 
-button:active:enabled{
+button:active:enabled {
     /*your styles*/
 }
 ```
