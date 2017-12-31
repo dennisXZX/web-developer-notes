@@ -27,6 +27,19 @@ import { Route, Switch } from 'react-router-dom';
 </Switch>
 ```
 
+#### 404 error page
+
+We can rely on the `<Switch>` feature to achieve a 404 page. Since only one route will be matched in a Switch, we can place the 404 error component at the bottom to make sure it would always be matched when no other legitimate routes are matched. 
+
+```js
+<Switch>
+  <Route exact path="/" component={Home} />
+  <Route path="/popular" component={Popular} />
+  <Route path="/battle" component={Battle} />
+  <Route component={Error404}></Route>
+</Switch>
+```
+
 #### Redirect component
 
 Rendering a <Redirect> will navigate to a new location. The new location will override the current location in the history stack.
