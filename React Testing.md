@@ -1,70 +1,130 @@
 ## React Testing
 
-### General Test Structure
+In order to test a React app, we need a test runner (Jest provided by create-react-app) and testing utility (Enzyme) that allows us to shallow render a specific React component.
+
+Since `Jest` comes with create-react-app, so we only need to install `Enzyme` by running the following NPM command.
 
 ```
+// for React v16.2.0, refers to enzyme documentation for the latest package
+npm i enzyme react-test-renderer enzyme-adapter-react-16
+```
+
+To set up a React project for testing, we need to first create a test file such as `NavigationItems.test.js` and put it in the same folder as the component. Then configure Enzyme to use the adapter you want it to use.
+
+```js
+import React from 'react';
+
+import { configure, shallow } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+
+// config an Adapter
+configure({ adapter: new Adapter() });
+```
+
+#### General Test Structure
+
+```js
 // use 'describe' to group together similar tests
-describe('ComponentName', () => {
+describe('<NavigationItems />', () => {
   // use 'it' to test a single attribute of a target
   it('shows the correct text', () => {
     // use 'expect' to make an assertion about a target
-    expect(component).to.contain('React simple starter');
+    expect(component).toContain('React simple starter');
   });
 });
 ```
 
-### Testing Assertions
+#### Testing functional component using Jest
 
-```
-describe('CommentBox', () => {
-  let component;
+```js
+describe('<NavigationItems />', () => {
+  let wrapper;
 
+  // shallow render the component before testing
   beforeEach(() => {
-    // initialize the component
-    component = renderComponent(CommentBox);
+    wrapper = shallow(<NavigationItems />);
   });
 
-  // check if a component contains another component
-  it('shows a comment box', () => {
-    expect(component.find('.comment-box')).to.exist;
-  });  
-
-  // check if a component has the correct CSS class
-  it('has the correct class', () => {
-    expect(component).to.have.class('comment-box');
+  it('should render two NavigationItem elements if not authenticated', () => {
+    expect(wrapper.find(NavigationItem)).toHaveLength(2);
   });
 
-  // check if a component is correctly rendered
-  it('has a text area', () => {
-    expect('', () => {
-      expect(component.find('textarea')).to.exist;
-    });
+  it('should render three NavigationItem elements if authenticated', () => {
+    wrapper.setProps({ isAuthenticated: true });
+    expect(wrapper.find(NavigationItem)).toHaveLength(3);
   });
 
-  // check if a component contains the correct text
-  it('shows the correct text', () => {
-    expect(component).to.contain('React simple starter');  
-  }); 
+  it('should contain Logout <NavigationItem /> if authenticated', () => {
+    wrapper.setProps({ isAuthenticated: true });
+    expect(wrapper.contains(<NavigationItem link="/logout">Logout</NavigationItem>)).toEqual(true);
+  });
+});
+```
 
-  // this group is about events
-  describe('entering some text into the comment box', () => {
-    beforeEach(() => {
-      // simulate a change event on the textarea
-      component.find('textarea').simulate('change', 'new comment');
-    });
+#### Testing class component using Jest
 
-    it('shows that text in the textarea', () => {
-      // check if the textarea has the correct value after the simulated change event
-      expect(component.find('textarea')).to.have.value('new comment');
-    });
+To test class component, first you need to export the class component so you can use it in your test file. We usually test how the props would affect the class component instead of worrying about the Redux store part.
 
-    it('when submitted, clears the input', () => {
-      // simulate a submit event
-      component.simulate('submit');
-      // check if it the textarea has the correct value after the simulated submit event
-      expect(component.find('textarea')).to.have.value('');
-    });
+```js
+export class BurgerBuilder extends Component { ...code }
+```
+
+```js
+describe('<BurgerBuilder />', () => {
+  let wrapper;
+
+  // this.props.onInitIngredients() is called in componentDidMount(), so we need to define it in the component
+  beforeEach(() => {
+    wrapper = shallow(<BurgerBuilder onInitIngredients={() => {}} />);
   });
 
+  it('should render BuildControls when receiving ingredients', () => {
+    wrapper.setProps({
+      ingredients: {
+        salad: 0
+      }
+    })
+
+    expect(wrapper.find(BuildControls)).toHaveLength(1);
+  });
+});
+```
+
+#### Testing reducers
+
+```js
+import reducer from './auth';
+import * as actionTypes from '../actions/actionTypes';
+
+describe('auth reducer', () => {
+  it('should return the initial state', () => {
+    expect(reducer(undefined, {})).toEqual({
+      token: null,
+      userId: null,
+      error: null,
+      loading: false,
+      authRedirectPath: '/'
+    })
+  });
+
+  it('should store the token upon login', () => {
+    expect(reducer({
+      token: null,
+      userId: null,
+      error: null,
+      loading: false,
+      authRedirectPath: '/'
+    }, {
+      type: actionTypes.AUTH_SUCCESS,
+      idToken: 'token id',
+      userId: 'user id'
+    })).toEqual({
+      token: 'token id',
+      userId: 'user id',
+      error: null,
+      loading: false,
+      authRedirectPath: '/'
+    })
+  });
 });
 ```
