@@ -1,5 +1,17 @@
 ## CSS
 
+#### Hover and active style only when an element is not disabled
+
+```css
+button:hover:enabled{
+    /*your styles*/
+}
+
+button:active:enabled{
+    /*your styles*/
+}
+```
+
 #### UI layer
 
 z-index property specifies the z-order of a positioned element. When elements overlap, z-order determines which one sits on top of the other. An element with a larger z-index stacks over one with a lower z-index. Following is a recommended UI layer standard for web/mobile design.
