@@ -94,6 +94,21 @@ this.props.history.goBack();
 this.props.history.goForward();
 ```
 
+#### Pass query parameters
+
+You can pass query parameters to `this.props.location` object by using the search property.
+
+```
+<Link
+  className='button'
+  to={{
+    pathname: `${this.props.match.url}/result`,
+    search: `?playerOneName=${playerOneName}&playerTwoName=${playerTwoName}`
+  }}>
+  Battle
+</Link>
+```
+
 #### Pass props to `history.location` object
 
 ```js
