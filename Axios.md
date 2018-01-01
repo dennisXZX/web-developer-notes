@@ -1,5 +1,16 @@
 ## Axios
 
+#### Axios.all()
+
+Axios.all() can perform multiple concurrent requests.
+
+```js
+axios.all([getUserAccount(), getUserPermissions()])
+  .then(axios.spread(function (account, permissions) {
+    // Both requests are now complete
+  }));
+```
+
 #### Instance
 
 ```js
