@@ -127,26 +127,26 @@ class Greeting extends React.PureComponent {
 #### Component lifecycle
 
 - Creation phase: 
-1. constructor()
-2. componentWillMount()
-3. render()
-4. componentDidMount()
-5. componentWillUnmount()
+  1. constructor()
+  2. componentWillMount()
+  3. render()
+  4. componentDidMount()
+  5. componentWillUnmount()
 
 - Update phase (triggered by props change): 
-1. componentWillReceiveProps(nextProps)
-2. shouldComponentUpdate(nextProps, nextState)
-3. componentWillUpdate(nextProps, nextState) 
-4. render()
-5. componentDidUpdate() 
-6. componentWillUnmount()
+  1. componentWillReceiveProps(nextProps)
+  2. shouldComponentUpdate(nextProps, nextState)
+  3. componentWillUpdate(nextProps, nextState) 
+  4. render()
+  5. componentDidUpdate() 
+  6. componentWillUnmount()
 
 - Update phase (triggered by state change): 
-1. shouldComponentUpdate(nextProps, nextState)
-2. componentWillUpdate(nextProps, nextState) 
-3. render() 
-4. componentDidUpdate()
-5. componentWillUnmount()
+  1. shouldComponentUpdate(nextProps, nextState)
+  2. componentWillUpdate(nextProps, nextState) 
+  3. render() 
+  4. componentDidUpdate()
+  5. componentWillUnmount()
 
 #### Error boundary
 
