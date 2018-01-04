@@ -19,7 +19,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   // generate a source map
   devtool: 'cheap-module-eval-source-map',
-  entry: './src/index.js',
+  // use babel-polyfill so the compiled code can be used in all browsers
+  entry: ['babel-polyfill', './src/index.js'],
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
