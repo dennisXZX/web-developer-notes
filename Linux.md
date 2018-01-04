@@ -1,4 +1,41 @@
+
 ## Linux
+
+#### curl
+
+- get all the content of a website
+
+```
+curl https://domain.com
+```
+
+- save the output of the URL to a file
+
+```
+curl -o api/posts.json https://domain.com/apiData.json
+```
+
+- download files
+
+```
+// download file.zip and save it to the current working directory 
+curl https://domain.com/file.zip -O
+
+// download file.zip to the current working directory and rename it as archive.zip
+curl -o archive.zip https://domain.com/file.zip -O
+
+// download multiple files simultaneously
+curl -O https://domain.com/file.zip -O https://domain.com/file2.zip
+
+// download file securely via SSH
+curl -u user sftp://server.domain.com/path/to/file
+```
+
+- get HTTP header info
+
+```
+curl -I http://domain.com
+```
 
 #### Show how long a command takes to run
 
