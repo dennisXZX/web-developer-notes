@@ -1,4 +1,10 @@
-# Linux
+## Linux
+
+#### Show how long a command takes to run
+
+```
+time yarn webpack
+```
 
 #### List files in a tree structure
 
