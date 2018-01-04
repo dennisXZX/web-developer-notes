@@ -42,12 +42,12 @@ Person.propTypes = {
 
 #### Update state that depends on the previous state
 
-Because this.setState() execute asynchronously, so we need to take extra care when our state would be updated in different components. Passing a callback to retrieve the previous state is the best approach to protect the integrity of the component state.
+Because this.setState() execute asynchronously, so we need to take extra care when our state would be updated in different components. Passing a callback to retrieve the previous state is the best approach to protect the integrity of the component state. In addition, you can also ensure this.props from the parent component is correctly appied by passing in the second argument props to the callback function.
 
 ```js
 this.setState((prevState, props) => {
   return {
-    clickCount: prevState.click + 1
+    clickCount: prevState.click + props.addition
   }
 });
 ```
