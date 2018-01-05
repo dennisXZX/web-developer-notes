@@ -1,5 +1,126 @@
 ## React
 
+#### Conditional rendering component
+
+- if else statement
+
+```js
+const List = ({ list }) => {
+  if (!list) {
+    return null;
+  }
+
+  if (!list.length) {
+    return <p>Sorry, the list is empty.</p>;
+  } else {
+    return (
+      <div>
+        {list.map(item => <ListItem item={item} />)}
+      </div>
+    );
+  }
+}
+```
+
+- Ternary operator
+
+```js
+const Item = ({ item, mode }) => {
+  const isEditMode = mode === 'EDIT';
+
+  return (
+    <div>
+      { isEditMode
+        ? <ItemEdit item={item} />
+        : <ItemView item={item} />
+      }
+    </div>
+  );
+}
+```
+
+- Logical operator
+
+```js
+const LoadingIndicator = ({ isLoading }) => {
+  return (
+    <div>
+      { isLoading && <p>Loading...</p> }
+    </div>
+  );
+}
+```
+
+- Switch case operator
+
+Please note that you always have to use the default for the switch case operator. In React a component has always to return an element or `null`.
+
+```js
+const Notification = ({ text, state }) => {
+  switch(state) {
+    case 'info':
+      return <Info text={text} />;
+    case 'warning':
+      return <Warning text={text} />;
+    case 'error':
+      return <Error text={text} />;
+    default:
+      return null;
+  }
+}
+
+// since the component is rendered based on a state, it is the best practice to use propTypes to make sure the integrity of the component
+Notification.propTypes = {
+   text: React.PropTypes.string,
+   state: React.PropTypes.oneOf(['info', 'warning', 'error'])
+}
+```
+
+- Enums
+
+We define an Enum object and use `[state]` to access its value.
+
+```js
+// define an Enum object
+const NOTIFICATION_STATES = {
+  info: <Info />,
+  warning: <Warning />,
+  error: <Error />,
+};
+
+const Notification = ({ state }) => {
+  return (
+    <div>
+      {NOTIFICATION_STATES[state]}
+    </div>
+  );
+}
+
+```
+
+- HOC (High Order Component)
+
+```js
+// HOC declaration
+function withLoadingIndicator(Component) {
+  return function EnhancedComponent({ isLoading, ...props }) {
+    if (!isLoading) {
+      return <Component { ...props } />;
+    }
+
+    return <div><p>Loading...</p></div>;
+  };
+}
+  
+// Usage
+const ListWithLoadingIndicator = withLoadingIndicator(List);
+
+<ListWithLoadingIndicator
+  isLoading={props.isLoading}
+  list={props.list}
+/>
+```
+
 #### Component reference
 
 Component reference only exists in stateful component, and should be used scarcely in your project since it is not the recommended React way of doing things.
