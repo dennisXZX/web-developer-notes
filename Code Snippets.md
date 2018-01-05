@@ -1,4 +1,13 @@
-## Coding
+## Code Snippets
+
+#### Find the max and average value of an array
+
+```js
+// get the max value in a given array
+const arrMax = arr => Math.max(...arr);
+// get the average value in a given array
+const arrAvg = arr => arr.reduce((a,b) => a + b, 0) / arr.length
+```
 
 #### Convert a complex object into an array
 
