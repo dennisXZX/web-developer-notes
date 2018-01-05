@@ -1,5 +1,22 @@
 ## React
 
+#### Control whether a property would be overwritten by props
+
+You can use the spread operator to control whether a property would be affected by props.
+
+```
+const props = {
+  name: 'dennis',
+  className: 'notStay'
+}
+
+// the className property on the div would not be affected
+<div {...props} className="stayHere" />
+
+// the className property from props will overwrite the className property on the div
+<div className="stayHere" {...props} />
+```
+
 #### Conditional rendering component
 
 - if else statement
