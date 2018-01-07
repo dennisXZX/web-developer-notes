@@ -1,5 +1,16 @@
 ## Node.js
 
+#### Set up a NODE_PATH
+
+When you require modules in a complex project, it would get messy soon when you have to deal with file paths. You can set up a `NODE_PATH` in your package.json file to specify your module path.
+
+```js
+"scripts": {
+  // set NODE_PATH to the lib folder, so all the files use this 
+  "start": "NODE_PATH=./lib node index.js"
+}
+```
+
 #### Node REPL
 
 Get into Node REPL shell (Read–Eval–Print Loop) by typing `node`.
