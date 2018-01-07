@@ -52,6 +52,10 @@ git flow hotfix start hotfix_branch
 git flow hotfix finish hotfix_branch
 ```
 
+#### git grep
+
+`git grep serverRender` to print lines matching a pattern, contain the word 'serverRender' in this case.
+
 #### git revert 
 
 `git revert HEAD` to revert the last commit and add a new commit to undo its changes.
@@ -98,7 +102,7 @@ We can use `/` to initiate a search when viewing git logs (in ternimal pager les
 
 `git log --author="dennis"` to list commits by a specific author.
 
-`git log --grep='fixed'` to list commits with log message that matches the specified pattern.
+`git log --grep='fixed'` to list commits with log message that matches the specified pattern, contains the word 'fixed' in this case.
 
 `git log -i -p -S"math"` to list all the commits that involve the word "math", ignoring case by using `-i` flag.
 
