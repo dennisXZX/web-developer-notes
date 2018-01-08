@@ -1,6 +1,12 @@
 
 ## Linux
 
+#### View running processes
+
+The easiest way to find out what processes are running on your server is to run the `top` command.
+
+Find out all the Node.js related process by `ps aux | grep node`.
+
 #### curl
 
 - get all the content of a website
