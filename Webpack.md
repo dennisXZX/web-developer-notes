@@ -17,6 +17,13 @@ const autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+  // specify how Webpack should resolve files
+  resolve: {
+    modules: [
+      path.resolve('./lib'),
+      path.resolve('./node_modules')
+    ]
+  },
   // generate a source map
   devtool: 'cheap-module-eval-source-map',
   // use babel-polyfill so the compiled code can be used in all browsers
