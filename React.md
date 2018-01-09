@@ -115,12 +115,12 @@ const Notification = ({ state }) => {
 
 ```
 
-- HOC (High Order Component)
+- HOC (Higher Order Component)
 
 ```js
 // HOC declaration
 function withLoadingIndicator(Component) {
-  return function EnhancedComponent({ isLoading, ...props }) {
+  return EnhancedComponent = ({ isLoading, ...props }) => {
     if (!isLoading) {
       return <Component { ...props } />;
     }
@@ -192,9 +192,9 @@ this.setState((prevState, props) => {
 });
 ```
 
-#### High Order Component (HOC)
+#### Higher Order Component (HOC)
 
-A high order component is just a React component that wraps another one.
+A higher order component is just a React component that wraps another one.
 
 Pattern 1:
 
