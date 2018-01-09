@@ -37,5 +37,7 @@ We can use `concurrently` package to run multiple scripts at the same time.
   "client": "npm run start --prefix client",
   // use concurrently to run backend and frontend server at the same time
   "dev": "concurrently \"npm run server\" \"npm run client\""
+  // run Webpack with a specified config file
+  "dev:build:server": "webpack --config webpack.server.js"
 }
 ```
