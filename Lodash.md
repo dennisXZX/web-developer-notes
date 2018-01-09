@@ -1,5 +1,16 @@
 ## Lodash
 
+#### _.pickby
+
+Create an new object with object value or key matching the predicate.
+
+```js
+// find articles whose title or body text match the search term
+const filteredArticles = pickBy(articles, (value) => {
+  return value.title.match(searchTerm) || value.body.match(searchTerm);
+})
+```
+
 #### _.mapKeys
 
 mapKeys can be used to extract an object property as a key.
