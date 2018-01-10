@@ -22,6 +22,10 @@ Since some characters are reserved in HTML, such as `<` (`&lt;`), `>` (`&gt;`) a
 
 DOCTYPEs are required for legacy reasons. When omitted, browsers tend to use a different rendering mode that is incompatible with some specifications. Including the DOCTYPE in a document ensures that the browser makes a best-effort attempt at following the relevant specifications.
 
+#### Difference between classes and IDs
+
+Most of us know that ID is unique while you can have multiple classes with the same name in a document. But there is a special feature for ID, which can act as an anchor. If you have a URL like dennisxiao.com#github, the browser will attempt to reach the section with an ID of 'github'.
+
 #### How to make a website accessible?
 
 Here are a few important things that need to be considered in making a website accessible.
