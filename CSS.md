@@ -4,7 +4,7 @@
 
 - Keyframe animation
 
-First, you define the how an animation should look like at each stage.
+First, you define the how an animation should look like at each phase.
 
 ```css
 @keyframes moveInLeft {
@@ -26,16 +26,28 @@ Then you add this animation to an element.
 .heading-primary-main {
   animation-name: moveInLeft;
   animation-duration: 0.5s;
-  /* how long do you want to delay the animation */
+  /* how the animation should progress over the duration of each cycle */
   animation-timing-function: ease-out;
-  /* shorthand writing */
-  animation: moveInLeft 1s ease-out
   /* how long do you want to delay the animation */
   animation-delay: 3s;
-  /* how the animation should progress over the duration of each cycle */
+  /* shorthand writing */
+  animation: moveInLeft 1s ease-out .75s
+  /* how many times should the animation repeat itself */
   animation-iteration-count: 3;
 }
 ```
+
+Another useful property is `animation-fill-mode`, which specifies how a CSS animation should apply styles to its target before and after its execution.
+
+`animation-fill-mode: backward`
+
+The element will get the style values that is set by the first keyframe (depends on animation-direction), and retain this during the animation-delay period
+
+`animation-fill-mode: forward`
+
+The element will retain the style values that is set by the last keyframe (depends on animation-direction and animation-iteration-count)
+
+`animation-direction: alternate` can be used to play an animation in an infinite loop.
 
 - Transition animation
 
