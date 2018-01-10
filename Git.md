@@ -52,6 +52,10 @@ git flow hotfix start hotfix_branch
 git flow hotfix finish hotfix_branch
 ```
 
+#### git status
+
+Navigate into a subfolder and use `git status .` to get status of the subfolder.
+
 #### git grep
 
 `git grep serverRender` to print lines matching a pattern, contain the word 'serverRender' in this case.
