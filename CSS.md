@@ -36,7 +36,7 @@ background-image: linear-gradient(
     to right bottom, 
     rgba(127, 212, 112, 0.8), 
     rgba(40, 180, 133, 0.8)), 
-  url("../img/hero.jpg");
+  url("hero.jpg");
 ```
 
 #### Make an element to have hover and active pseudo style only when it is not disabled
