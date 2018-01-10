@@ -1,14 +1,106 @@
 ## CSS
 
-#### Hover and active style only when an element is not disabled
+#### CSS animation
+
+- Keyframe animation
+
+First, you define the how an animation should look like at each stage.
+
+```css
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+```
+
+Then you add this animation to an element.
+
+```css
+.heading-primary-main {
+  animation-name: moveInLeft;
+  animation-duration: 0.5s;
+  /* how long do you want to delay the animation */
+  animation-timing-function: ease-out;
+  /* shorthand writing */
+  animation: moveInLeft 1s ease-out
+  /* how long do you want to delay the animation */
+  animation-delay: 3s;
+  /* how the animation should progress over the duration of each cycle */
+  animation-iteration-count: 3;
+}
+```
+
+- Transition animation
+
+Another simpler way to add animation to an element is by using the `transition` property.
+
+```css
+.btn:link,
+.btn:visited {
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 15px 40px;
+  display: inline-block;
+  border-radius: 100px;
+  transition: all .2s;  /* specify what property you would like the animation takes place */
+}
+```
+
+#### Position an absolute element in the center of the screen
+
+The `top` and `left` position the element based on its parent container, while the `transform: translate(x, y)` positions the element based on the computed width or height itself.
+
+```css
+.text-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+```
+
+#### Clip an element
+
+The `clip-path` property specifies a specific region of an element to display.
+
+```css
+// clip a rectangle
+clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+
+// clip a triangle
+clip-path: polygon(50% 0, 100% 100%, 0 100%);
+```
+
+[Clippy](https://bennettfeely.com/clippy/) is a good tool to play around `clip-path` property.
+
+#### Gradient background image
+
+We can use gradient background on top of an image to achieve a gradient background effect.
+
+```css
+background-image: linear-gradient(
+    to right bottom, 
+    rgba(127, 212, 112, 0.8), 
+    rgba(40, 180, 133, 0.8)), 
+  url("../img/hero.jpg");
+```
+
+#### Make an element to have hover and active pseudo style only when it is not disabled
 
 ```css
 button:hover:enabled {
-    /*your styles*/
+    /* your styles */
 }
 
 button:active:enabled {
-    /*your styles*/
+    /* your styles */
 }
 ```
 
@@ -135,13 +227,28 @@ The key to parallax scrolling effect is to add `background-attachment: fixed` pr
 }
 ```
 
-#### Difference between classes and IDs
-
-Most of us know that ID is unique while you can have multiple classes with the same name in a document. But there is a special feature for ID, which can act as an anchor. If you have a URL like dennisxiao.com#github, the browser will attempt to reach the section with an ID of 'github'.
-
-#### resetting and normalizing CSS
+#### resetting or normalizing CSS
 
 Resetting destroys all the built-in styling while normalizing just tries to make built-in styling consistent across browsers. Choosing one over the other depends on what you want to achieve, but most of the time normalizing should be the one to go with.
+
+Nowadays, different browsers behave more or less the same, so resetting or normalizing CSS through a third party library is no longer a necessity. We can rely on universal selector `*` to reset a few properties instead.
+
+For anything related to font, it should set in the body element as this can take advantage of the CSS inheritance.
+
+```css
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.7;
+}
+```
 
 #### CSS floats and clearfix hack
 
