@@ -1,5 +1,15 @@
 ## Babel
 
+#### babel-polyfill
+
+Babel transpiles our code to something that browsers can understand, but the resulting code might use features that may or may not work in every single browser. For example Object.assign is not supported in all browsers, so `babel-polyfill` fills the holes. It's just a collection of polyfills that you would usually include anyway to have support for legacy browsers.
+
+To use `babel-polyfill`, you can import it in the top level component.
+
+```js
+import 'babel-polyfill';
+```
+
 #### Set up Babel
 
 Install necessary NPM packages for a React project.
