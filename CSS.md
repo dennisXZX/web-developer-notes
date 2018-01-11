@@ -1,5 +1,55 @@
 ## CSS
 
+#### How CSS is parsed
+
+Step 1: Resolve conflicting CSS declaration by looking at importance, specificity and then source order.
+
+Importance order
+
+1. User !importance declarations
+2. Author !importance declarations
+3. Author declarations
+4. User declarations
+5. Default browser declarations
+
+Specificity
+
+We calculate an element's selector specificity to determine which style we should use.
+
+```
+Inline | IDs | Classes | Elements
+   0      0       0         0
+```
+
+Step 2: Process final CSS values
+
+```
+% (fonts)                - parent's computed font-size
+% (lengths)              - parent's computed width
+em (font)                - parent's computed font-size
+em (lengths)             - current element's computed font-size
+rem (fonts and lengths)  - root's computed font-size (16px)
+vh                       - viewport height
+vw                       - viewport width
+```
+
+It's important to remember that children elements inherits __computed values__ instead of declared values.
+
+#### Rem
+
+We should always use `rem` to declare font size, so we can easily make our font responsive.
+
+```
+/* 
+  reset root font size, we want the default font size to be 10px
+  so 10px / 16px (default root font size) = 62.5%
+*/
+html {
+  font-size: 62.5%;
+}
+```
+
+
 #### Position an absolute element in the center of the screen
 
 The `top` and `left` position the element based on its parent container, while the `transform: translate(x, y)` positions the element based on the computed width or height itself.
