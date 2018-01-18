@@ -4,9 +4,9 @@
 
 1. create an action type config file for all the action constants
 2. create an initial state object for each reducer as a default state (optional)
-3. create a bunch of reducers, in each reducer we need to provide logic for handling each action type (usually in a switch statement). We should not directly mutate state in reducers. Also keep in mind that all reducers get called regardless of what action is emitted, so you have to return the original state if the action is not applicable.
+3. create a bunch of reducers, in each reducer we need to provide logic for handling each action type (usually in a switch statement). We should not directly mutate state in reducers. Also keep in mind that all reducers get called regardless of what action is emitted, so we have to return the original state if an action is not applicable.
 4. combine all the reducers into one root reducer
-5. create a store which accepts the root reducer as a parameter
+5. create a store which accepts the root reducer as the first parameter
 6. subscribe to the store, so a callback is executed when any state is changed
 7. create an action creator for each reducer
 8. dispatch an action from the store
@@ -100,9 +100,9 @@ appStore.dispatch(speakUserActionCreator('You are screwed!'));
 
 1. create each reducer in its own file and then export it
 2. combine all the reducers into a root reducer in an index.js file and then export it
-3. create a store which accepts the root reducer as a parameter
+3. create a store which accepts the root reducer as the first parameter
 4. wrap the root React component with a `<Provider>` component from react-redux
-5. pass the root store to the `<Provider>` component
+5. pass the root store to the `<Provider>` component, so all the child components can access the state 
 
 ```js
 import { createStore } from 'redux'
@@ -119,9 +119,9 @@ ReactDOM.render(
   document.getElementById('root'));
 ```
 
-1. define mapStateToProps() method to map your state to this.props from within the React component
-2. define mapDispatchToProps() method to map your dispatch action to this.props from within the React component 
-3. use `connect` method provided by react-redux to connect React and Redux
+1. define `mapStateToProps()` to map your state to props from within the React component
+2. define `mapDispatchToProps()` to map your action to props from within the React component 
+3. use `connect()` provided by react-redux to connect React and Redux
 
 ```js
 import { connect } from 'react-redux';
@@ -148,6 +148,29 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Counter);
+```
+
+#### Connect dispatch to props
+
+There are three different ways to connect dispatch to props.
+
+```js
+// manually dispatch the action
+function mapDispatchToProps = (dispatch) => ({
+  requestEmployees: () => dispatch(requestEmployees())
+});
+```
+
+```js
+// using bindActionCreators() helper function
+function matchDispatchToProps(dispatch) {
+  return bindActionCreators({ editLabResult: requestEmployees}, dispatch);
+}
+```
+
+```js
+// pass the object to connect() and it will do the wrapping for you
+connect(mapStateToProps, { requestEmployees: requestEmployees, anotherAction: anotherAction })(Component)
 ```
 
 #### Update state immutably
