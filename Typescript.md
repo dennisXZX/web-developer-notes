@@ -2,9 +2,10 @@
 
 #### Compile Typescript to Javascript
 
-compile a Typescript file
+compile a Typescript file to a Javascript file
 
 ```ts
+// compile fileName.ts to fileName.js
 tsc fileName.ts
 ```
 
