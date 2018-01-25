@@ -1,5 +1,32 @@
 ## Javascript
 
+#### Enum in Javascript
+
+Typescript has a new feature called Enum which help group similar values together.
+
+```ts
+enum Color { Red, Blue };
+```
+
+The compiled Javascript code looks something like:
+
+```js
+var Color;
+
+(function (Color) {
+  Color[Color["Red"] = 0] = "Red";
+  Color[Color["Blue"] = 1] = "Blue";
+})(Color || (Color = {}));
+```
+
+It is an anonymous function which accept either the Color value or a default empty object.
+
+`Color["Red"] = 0` assigns value 0 to the Red property, so we can access the value 0 using `Color.Red` or `Color['Red']`.
+
+Since the assignment operation `Color["Red"] = 0` returns 0, so `Color[Color["Red"] = 0] = "Red";` actually means `Color[0] = "Red"`.
+
+So after this code, we set both `Color.Red = 0` and `Color[0] = "Red"`. 
+
 #### encodeURI() and encodeURIComponent()
 
 Use encodeURI when you want a working URL.
