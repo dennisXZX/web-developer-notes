@@ -45,6 +45,8 @@ export class StarComponent implements OnChanges {
   @Input() rating: number;
   // we can also use an alias, so now outside this component we pass the value using [pageRating]='product.starRating'
   // but inside the component, we use the 'rating' property to store the value
+  // the property name (rating) represent how that incoming property will be visible in the controller
+  // the @Input argument (pageRating) configures how the property is visible to the outside world
   @Input('pageRating') rating: number;
 }
 ```
