@@ -4,6 +4,20 @@
 
 In `.angular-cli.json`, the 'main' property specifies where to look for the bootstrap file, which is `main.ts` by default. In main.ts, an Angular module is specified to bootstrap the app, which is `AppModule` by default. In `app.module.ts`, we specify which component to use as the top-level component in 'bootstrap' property, which is `AppComponent` by default. Also in this file, we specify what other components belong to this module in 'declarations' property.
 
+#### @HostBinding()
+
+@HostBinding() allows us to configure host element (the markup in the parent view) from within the component.
+
+For example, we can bind a css class to the host.
+
+```ts
+export class ArticleComponent implements OnInit {
+  @HostBinding('attr.class') cssClass = 'row';
+}
+```
+
+So instead of adding the class attribute to the markup `<app-article class="row"></app-article>`, the markup `<app-article></app-article>` would always have a `class="row"` attached to it thanks to the @HostBinding().
+
 #### Safe navigation operator
 
 Angular provides a safe navigation operator `?.` to guard against unexpected property access.
@@ -475,7 +489,9 @@ ng new projectName
 ng serve -o
 
 // generate production code using, uglify, tree-shaking and AOT (Ahead of Time compilation)  to minimize the code
+// --base-href specify the root URL of your app
 ng build --prod
+ng build --target=production --base-href /
 
 // run unit test and end-to-end test on your application
 ng test | ng e2e
