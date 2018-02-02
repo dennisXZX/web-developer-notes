@@ -357,6 +357,31 @@ We can use a pipe with the `|` character.
 <img [src]='product.imageUrl' [title]='product.productName | uppercase' />
 ```
 
+#### Custom Pipe
+
+This is an example of a custom pipe `{{ text | summary:10 }}`, which extracts a portion of the text as summary.
+
+```
+import { Pipe, PipeTransform } from "@angular/core";
+
+@Pipe({
+  name: 'summary'
+})
+export class SummaryPipe implements PipeTransform {
+  transform(value: string, limit?: number) {
+    if (!value) {
+      return null;
+    }
+
+    const actualLmit = (limit) ? limit : 50;
+
+    return value.substr(0, actualLmit) + '...';
+  }
+}
+```
+
+In order to use the custom pipe, you would have to add it to the declarations array in your module.
+
 #### Component lifecycle hooks
 
 - ngOnInit: perform component initialization or retrieve data from backend server
