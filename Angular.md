@@ -306,6 +306,17 @@ The * prefix indicates it is a structural directive, which means it would change
 <tr *ngFor="let product of products; index as i;">
   // other code...
 </tr>
+
+// by default, *ngFor tracks object by their memory location
+// you can change this behavior by using the trackBy property to reduce resource consumption
+<tr *ngFor="let product of products; index as i; trackBy: trackCourse">
+  // other code...
+</tr>
+
+// define the trackCourse function in the controller
+trackCourse(index, course) {
+  return course ? course.id : undefined;
+}
 ```
 
 *ngSwitch
