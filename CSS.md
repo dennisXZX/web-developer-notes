@@ -1,5 +1,14 @@
 ## CSS
 
+#### Make a link not clickable
+
+```css
+.inactiveLink {
+   pointer-events: none;
+   cursor: default;
+}
+```
+
 #### How CSS is parsed
 
 Step 1: Resolve conflicting CSS declaration by looking at importance, specificity and then source order.
