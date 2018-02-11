@@ -4,6 +4,41 @@
 
 In `.angular-cli.json`, the 'main' property specifies where to look for the bootstrap file, which is `main.ts` by default. In main.ts, an Angular module is specified to bootstrap the app, which is `AppModule` by default. In `app.module.ts`, we specify which component to use as the top-level component in 'bootstrap' property, which is `AppComponent` by default. Also in this file, we specify what other components belong to this module in 'declarations' property.
 
+#### Angular in memory web api
+
+You can fake a server in Angular by using the angular-in-memory-web-api.
+
+Create a file `in-memory-data.service.ts`.
+
+```ts
+import { InMemoryDbService } from 'angular-in-memory-web-api';
+
+// createTestCustomers method retrieves the customer data
+import { createTestCustomers } from '../test-data';
+
+export class InMemoryDataService implements InMemoryDbService {
+  createDb() {
+    const states = ['California', 'Illinois', 'Jalisco', 'Quebec', 'Florida'];
+    return { customers: createTestCustomers(), states };
+  }
+}
+```
+
+Register it in `app.module`.
+
+```
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService }  from './in-memory-data.service';
+
+@NgModule({
+  imports: [
+    BrowserModule,
+    FormsModule,
+    InMemoryWebApiModule.forRoot(InMemoryDataService) // <-- register in-mem-web-api and its data
+  ]
+})  
+```
+
 #### @HostBinding()
 
 @HostBinding() allows us to configure host element (the markup in the parent view) from within the component.
