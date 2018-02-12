@@ -1,5 +1,23 @@
 ## Typescript
 
+#### 'as' operator
+
+Recall how to write a type assertion:
+
+```ts
+const foo = <foo>bar;
+```
+
+Here we are asserting the variable bar to have the type foo. Since TypeScript also uses angle brackets for type assertions, JSX’s syntax introduces certain parsing difficulties. As a result, TypeScript disallows angle bracket type assertions in .tsx files.
+
+To make up for this loss of functionality in `.tsx` files, a new type assertion operator has been added: `as`. The above example can easily be rewritten with the as operator.
+
+```ts
+const foo = bar as foo;
+```
+
+The `as` operator is available in both .ts and .tsx files, and is identical in behavior to the other type assertion style.
+
 #### Compile Typescript to Javascript
 
 ```ts
