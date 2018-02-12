@@ -403,6 +403,34 @@ We can use a pipe with the `|` character.
 <img [src]='product.imageUrl' [title]='product.productName | uppercase' />
 ```
 
+#### Async pipe
+
+Async pipe works well with in the situation where you need to fetch data from a server and display the data in a view template.
+
+```ts
+export class VehicleListComponent {
+  vehicles: Observable<Vehicle[]>;
+  
+  // inject the VehicleService service
+  constructor(private vehicleService: VehicleService) {}
+  
+  getVehicles() {
+    // retrieve an observable from a service
+    this.vehicles = this.vehicleService.getVehicles();
+  }
+}
+```
+
+In the view we can then use the `async pipe`.
+
+```ts
+<ul>
+  <li *ngFor="let vehicle of vehicles | async">
+    {{ vehicle.name }}
+  </li>
+</ul>
+```
+
 #### Custom Pipe
 
 This is an example of a custom pipe `{{ text | summary:10 }}`, which extracts a portion of the text as summary.
@@ -414,6 +442,7 @@ import { Pipe, PipeTransform } from "@angular/core";
   name: 'summary'
 })
 export class SummaryPipe implements PipeTransform {
+  // the limit parameter is optional
   transform(value: string, limit?: number) {
     if (!value) {
       return null;
@@ -496,6 +525,7 @@ constructor(private _productService: ProductService) {
 In order to use routing in Angular, we need to first configure a route file.
 
 ```ts
+// app-routing.module.ts
 export const appRoutes: Routes = [
   { path: 'events', component: EventsListComponent },
   { path: 'events/:id', component: EventDetailsComponent },
