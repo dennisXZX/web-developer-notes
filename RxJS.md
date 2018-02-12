@@ -35,8 +35,8 @@ getCustomersObservable(): Observable<Customer[]> {
 Here is the difference between consuming a promise and an observable.
 
 ```js
-this.dataService.getCustomersPromise()
-  .then( // promise version
+this.dataService.getCustomersPromise() // promise version
+  .then(
     custs => {
       this.isBusy = false;
       this.customers = custs;
