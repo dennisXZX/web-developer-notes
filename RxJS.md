@@ -5,44 +5,55 @@
 ```js
 /** Get existing customers as a Promise */
 getCustomersPromise(): Promise<Customer[]> {
-  this.logger.log('Getting customers as a Promise ...');
+  this.logger.log('Getting customers as a Promise via Http ...');
 
-  // retrieve the customers
-  const customers = createTestCustomers();
-
-  return new Promise(resolve => {
-    setTimeout(() => {
-      this.logger.log(`Got ${customers.length} customers`);
-      resolve(customers);
-    }, 1500); // simulate server response latency
-  });
+  return this.http.get(this.customersUrl) // <-- returns an observable
+    .toPromise() // <-- convert immediately to a promise
+    .then(response => {
+      const custs = response.json().data as Customer[]; // <-- extract data from the response
+      this.logger.log(`Got ${custs.length} customers`);
+      return custs;
+    })
+    .catch((error: any) => {
+      this.logger.log(`An error occurred ${error}`); // for demo purposes only
+      // re-throw user-facing message
+      return Promise.reject('Something bad happened with customers; please check the console');
+    });
 }
 
 /** Get existing customers as an Observable */
 getCustomersObservable(): Observable<Customer[]> {
-  this.logger.log('Getting customers as an Observable ...');
+  this.logger.log('Getting customers as an Observable via Http ...');
 
-  // retrieve the customers
-  const customers = createTestCustomers();
-
-  return of(customers) // convert to an observable
-    .delay(1500) // simulate server response latency
-    .do(custs => this.logger.log(`Got ${custs.length} customers`));
+  return this.http.get(this.customersUrl)
+    .map(response => response.json().data as Customer[])  // <-- extract data
+    .do(custs => this.logger.log(`Got ${custs.length} customers`))
+    .catch(error => this.handleError(error));
 }
 ```
 
 Here is the difference between consuming a promise and an observable.
 
 ```js
-this.dataService.getCustomersPromise().then( // promise version
-  custs => {
+this.dataService.getCustomersPromise()
+  .then( // promise version
+    custs => {
+      this.isBusy = false;
+      this.customers = custs;
+    })
+  .catch(error => {
     this.isBusy = false;
-    this.customers = custs;
+    alert(errorMsg); // Don't use alert!
   });
 
-this.dataService.getCustomersObservable().subscribe( // observable version
-  custs => {
-    this.isBusy = false;
-    this.customers = custs;
-  });
+this.dataService.getCustomers().subscribe( // Observable version
+    (custs) => {
+      this.isBusy = false;
+      this.customers = custs;
+    },
+    (errorMsg: string) => {
+      this.isBusy = false;
+      alert(errorMsg); // Don't use alert!
+    }
+  );
 ```
