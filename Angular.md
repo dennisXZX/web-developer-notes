@@ -520,7 +520,19 @@ constructor(private _productService: ProductService) {
 }
 ```
 
+#### HTTP
+
+1. Import HttpClientModule
+2. Call Http.get in a service and return the mapped result (either a Promise or an Observable)
+3. Subscribe to the service in the component.
+
 #### Routing
+
+1. Define the routes (app-routing.module.ts)
+2. define a routing module (app-routing.module.ts)
+2. Import the routes in NgModule
+3. Declare a <router-outlet> to display the routed components
+4. Add [routerLink]="events" bindings to navigate between routes
 
 In order to use routing in Angular, we need to first configure a route file.
 
@@ -530,17 +542,46 @@ export const appRoutes: Routes = [
   { path: 'events', component: EventsListComponent },
   { path: 'events/:id', component: EventDetailsComponent },
   // pathMatch can be set to 'full' or 'prefix'
-  { path: '', redirectTo: '/events', pathMatch: 'full' }
+  { path: '', pathMatch: 'full', redirectTo: '/events' }
 ];
 ```
 
-Then we need to import the routes in NgModule.
+Then we define a routing module.
+
+```
+// app-routing.module.ts
+import { NgModel } from "@angular/forms";
+import { RouterModule, Routes } from "@angular/router";
+
+// import routes
+import { routes } from './app-routing.module';
+
+@NgModel({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+
+// define all the components for routing
+export const routableCompoents = [
+  CharacterListComponent,
+  VehicleListComponent
+];
+```
+
+Next we import the routes in `app.module`.
 
 ```ts
+import { AppRoutingModule, routableComponents } from './app-routing.module';
+
 @NgModule({
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes)
+    AppRoutingModule // import AppRoutingModule
+  ],
+  declarations: [
+    AppComponent,
+    routableComponents // import all components for routing
   ]
 }
 ```
@@ -582,7 +623,7 @@ export class CreateEventComponent {
 }
 ```
 
-## Angular CLI
+#### Angular CLI
 
 ```ts
 // create an Angular project
