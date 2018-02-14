@@ -1,5 +1,13 @@
 ## NPM
 
+#### Lock the package version
+
+You can use the `--save-exact` flag to lock the package version.
+
+```
+npm i angularfire2@4.0.0-rc.2 --save --save-exact
+```
+
 #### Install only dev dependencies
 
 You can just install dev dependencies by running the following command.
