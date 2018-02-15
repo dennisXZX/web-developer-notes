@@ -1,5 +1,46 @@
 ## RxJS
 
+#### Observables, observers and subscriptions
+
+```ts
+Rx.Observable.fromEvent(button, 'click')
+  .subscribe(
+    (value) => console.log(value.clientX), // next function
+    (error) => {...}, // error function
+    () => {...} // complete function
+  );
+  
+// you can also pass an observer object to the subscription
+// define an observer function
+const observer = {
+	next: (value) => {
+  	console.log(value);
+  },
+  error: (error) => {
+  	console.log(error);
+  },
+  complete: () => {
+  	console.log('completed');
+  }
+}
+
+Rx.Observable.fromEvent(button, 'click')
+	.subscribe(observer);
+```
+
+#### Emit an event when specified duration has passed
+
+```ts
+const button = document.querySelector('button');
+
+Rx.Observable.fromEvent(button, 'click') // create observable that emits click events
+  .throttleTime(1000) // emit the latest value when 1000 milliseconds has passed
+  .map((event) => { return event.clentY }) // map the click event and return its vertical coordinate
+  .subscribe(
+    (coordinate) => console.log(coordinate)
+  )
+```
+
 #### Promise vs Observable
 
 ```js
