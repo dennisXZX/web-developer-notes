@@ -42,6 +42,10 @@ const name = encodeURIComponent('dennis xiao');
 const url = "http://example.com/?name=" + name;
 ```
 
+#### Double !
+
+Double bangs are frequently used as a technique to coerce an object to a boolean value. If the object being coerced was falsey (e.g. 0, null, undefined, etc.), it will be false, otherwise, true.
+
 #### How the bind() function works
 
 This is not exactly how the navtive bind() method is implemented internally. It only intends to give you an overview of how it works.
