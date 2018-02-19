@@ -3,6 +3,8 @@
 #### Observables, observers and subscriptions
 
 ```ts
+// an easy way to define an observer is to pass three functions directly to the subscription
+// the error function and complete function are optional
 Rx.Observable.fromEvent(button, 'click')
   .subscribe(
     (value) => console.log(value.clientX), // next function
@@ -10,22 +12,33 @@ Rx.Observable.fromEvent(button, 'click')
     () => {...} // complete function
   );
   
-// you can also pass an observer object to the subscription
-// define an observer function
-const observer = {
-	next: (value) => {
-  	console.log(value);
+// you can also define observer in a 'formal' way
+class MyObserver implements Observer<number> {
+  next: (value) => {
+    console.log(value);
   },
   error: (error) => {
-  	console.log(error);
+    console.log(error);
   },
   complete: () => {
-  	console.log('completed');
+    console.log('completed');
   }
 }
 
 Rx.Observable.fromEvent(button, 'click')
-	.subscribe(observer);
+  .subscribe(new MyObserver());
+```
+
+#### Convert to observables
+
+```ts
+import { Observable } from 'rxjs';
+
+// convert observable from an array
+Observable.from([1, 5, 10]);
+
+// convert observable from an event
+Rx.Observable.fromEvent(button, 'click');
 ```
 
 #### Emit an event when specified duration has passed
