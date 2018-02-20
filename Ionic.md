@@ -27,8 +27,8 @@ Navigation in Ionic works like a stack data structure. You `push` to a new page 
 ```ts
 // navigate to the ItemDetailsPage
 itemTapped(event, item) {
-  // passing item to the ItemDetailsPage
-  this.navCtrl.push(ItemDetailsPage, {
+  // passing item to the ItemDetailsPage, the 'ItemDetailsPage' is a string because this page is lazily loaded
+  this.navCtrl.push('ItemDetailsPage', {
     item: item
   });
 }
