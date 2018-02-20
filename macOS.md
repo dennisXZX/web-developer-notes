@@ -1,5 +1,9 @@
 ## macOS
 
+#### Switch between different windows for the same app
+
+`Command + ~`
+
 #### Show all the hidden files in Finder
 
 `Command + Shift + .` to toggle hidden files.
