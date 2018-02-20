@@ -8,6 +8,18 @@
 
 `ionic run android` to launch the app in your device which should be connected with USB.
 
+#### Pages vs components
+
+In Ionic, pages are used as a container for components. Normally we first structure our app using pages, then we can create individual components and place them into a page. A page does not need a selector because it is loaded dynamically by Ionic, however, keeping the selector property is handy as you can use it to target page-level style.
+
+In each `.scss` file named after the `.html` one, you would see we use the page/component selector to target the specific page/component.
+
+```
+page-hello-ionic {
+  // page level or component level style
+}
+```
+
 #### Navigation
 
 Navigation in Ionic works like a stack data structure. You `push` to a new page and `pop` back to a previous page.
@@ -16,12 +28,14 @@ Navigation in Ionic works like a stack data structure. You `push` to a new page 
 // navigate to the ItemDetailsPage
 itemTapped(event, item) {
   // passing item to the ItemDetailsPage
-  this.navCtrl.push(ItemDetailsPage, item);
+  this.navCtrl.push(ItemDetailsPage, {
+    item: item
+  });
 }
 
-// in ItemDetailsPage, we can use NavParams to accept the navigation parameter
+// in ItemDetailsPage, we can use NavParams to accept the navigation parameter in the constructor
 constructor(public navCtrl: NavController, public navParams: NavParams) {
-  this.team = this.navParams.data;
+  this.team = navParams.get('item');
 }
 ```
 
