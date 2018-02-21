@@ -23,3 +23,52 @@ export class LoadItemsSuccessAction {
 
 export type Action = LoadItemsAction | LoadItemsSuccessAction
 ```
+
+```ts
+// simple action without a payload
+dispatch({ type: 'DECREMENT' });
+
+// action with an associated payload
+dispatch({
+  type: ADD_TODO, 
+  payload: {
+    id: 1, message: 
+    'Learn ngrx/store', 
+    completed: true
+  }
+})
+```
+
+#### Reducers
+
+```ts
+// a reducer that returns number
+export const counter: Reducer<number> = (state: number = 0, action: Action) => {
+  switch(action.type){
+    case 'INCREMENT':
+      return state + 1;
+    case 'DECREMENT':
+      return state - 1;
+    default:
+      return state;
+  }
+};
+```
+
+#### Project data from store for display
+
+Since the store itself is an observable, we have access to a wide range of native Javascript built-in operations, such as map, filter, reduce... etc. Furthermore, powerful RxJS based observable operators are also available at your disposal.
+
+```ts
+// most basic example, get people from state
+store.select('people')
+  
+// combine multiple state slices
+Observable.combineLatest(
+  store.select('people'),
+  store.select('events'),
+  (people, events) => { // optional projection function
+    // projection here
+  }
+);
+```
