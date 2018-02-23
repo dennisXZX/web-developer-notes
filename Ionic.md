@@ -8,6 +8,20 @@
 
 `ionic run android` to launch the app in your device which should be connected with USB.
 
+#### VirtualScroll
+
+When you are in a situation which deals with a long list of data, you need to consider using `VirtualScroll`.
+
+```
+<ion-list [virtualScroll]="items">
+
+  <ion-item *virtualItem="let item">
+    {{ item }}
+  </ion-item>
+
+</ion-list>
+```
+
 #### Pages vs components
 
 In Ionic, pages are used as a container for components. Normally we first structure our app using pages, then we can create individual components and place them into a page. A page does not need a selector because it is loaded dynamically by Ionic, however, keeping the selector property is handy as you can use it to target page-level style.
