@@ -1,4 +1,8 @@
-## WebStorm 
+## WebStorm
+
+#### Set ES6 as default language to all projects
+
+For settings that should apply to all the projects, goes to `File -> Default Settings`.
 
 #### Useful shortcut
 
