@@ -1,5 +1,76 @@
 ## RxJS
 
+#### reduce and scan
+
+Both reduce() and scan() can be used to reduce a bunch of values into a single one. The difference is that scan() would also emit the value in each step of the reduce process.
+
+#### debounceTime
+
+```ts
+Rx.Observable.fromEvent(input, 'input') // convert  the input event into an observable
+  .map(event => event.target.value) // extract the value from the input field
+  .debounceTime(500) // emit the value only there is a pause
+  .distinctUntilChanged() // emit the value only the current value is different with the last one
+  .subscribe({
+    next: (value) => console.log(value)
+  })
+```
+
+#### Subject
+
+Subjects are observables themselves but what sets them apart is that they are also observers. In addition, subject supports multiple subscriptions so you can register multiple observers on a subject.
+
+```ts
+const subject = new Rx.Subject();
+
+const observer1 = {
+  next: (value) => console.log(value + '1')
+}
+
+const observer2 = {
+  next: (value) => console.log(value + '2')
+}
+
+// you can subscribe to multiple observers
+subject.subscribe(observer1);
+subject.subscribe(observer2);
+
+// you can emit value from a subject
+subject.next(10);
+```
+
+#### Operators
+
+We chain RxJS operators to an observable before subscribing it.
+
+```ts
+// create an observable which emits a sequential number every 1 second
+const observable = Rx.Observable.interval(1000);
+
+// create an observer, since the observable created from interval() would never end and throw an error
+// we do not need to define error and complete functions
+const observer = {
+  next: (value) => {
+    console.log(value);
+  }
+}
+
+function isEven(value) {
+  if (value % 2 === 0) {
+    return value + ' is even';
+  } else {
+    return value + ' is odd';
+  }
+}
+
+// chain operators to the observable
+// and subscribe to it at the end
+observable
+  .map((value) => isEven(value))
+  .throttleTime(2000)
+  .subscribe(observer);
+```
+
 #### Observables, observers and subscriptions
 
 ```ts
@@ -65,7 +136,7 @@ getCustomersPromise(): Promise<Customer[]> {
     .toPromise() // <-- convert immediately to a promise
     .then(response => {
       const custs = response.json().data as Customer[]; // <-- extract data from the response
-      this.logger.log(`Got ${custs.length} customers`);
+      this.logger.log(`Got ${custs.length} customers`); // use the logger service
       return custs;
     })
     .catch((error: any) => {
@@ -81,7 +152,7 @@ getCustomersObservable(): Observable<Customer[]> {
 
   return this.http.get(this.customersUrl)
     .map(response => response.json().data as Customer[])  // <-- extract data
-    .do(custs => this.logger.log(`Got ${custs.length} customers`))
+    .do(custs => this.logger.log(`Got ${custs.length} customers`)) // produce some side-effect
     .catch(error => this.handleError(error));
 }
 ```
