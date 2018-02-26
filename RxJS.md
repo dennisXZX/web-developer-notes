@@ -1,5 +1,41 @@
 ## RxJS
 
+#### switchMap
+
+```ts
+const obs1 = Rx.Observable.fromEvent(button, 'click');
+const obs2 = Rx.Observable.interval(1000);
+
+// after the click event is triggered, it switches to the interval observable
+// every new click event would cancel the old click event observable
+obs1.switchMap(
+  event => {
+    return obs2;
+  }
+).subscribe(
+  value => console.log(value)
+);
+```
+
+#### mergeMap
+
+```ts
+const obs1 = Rx.Observable.fromEvent(input1, 'input');
+const obs2 = Rx.Observable.fromEvent(input2, 'input');
+
+// mergeMap will emit a new value only the inner observable changes
+// so here only when the input value of the input2 changes, the combinedValue would change
+obs1.mergeMap(
+  event1 => {
+    return obs2.map(
+      event2 => event1.target.value + ' ' + event2.target.value
+    )
+  }
+).subscribe(
+  combinedValue => span.textContent = combinedValue
+);
+```
+
 #### reduce and scan
 
 Both reduce() and scan() can be used to reduce a bunch of values into a single one. The difference is that scan() would also emit the value in each step of the reduce process.
@@ -7,16 +43,16 @@ Both reduce() and scan() can be used to reduce a bunch of values into a single o
 #### debounceTime
 
 ```ts
-Rx.Observable.fromEvent(input, 'input') // convert  the input event into an observable
+Rx.Observable.fromEvent(input, 'input') // convert the input event into an observable
   .map(event => event.target.value) // extract the value from the input field
-  .debounceTime(500) // emit the value only there is a pause
-  .distinctUntilChanged() // emit the value only the current value is different with the last one
+  .debounceTime(500) // discard emitted values that take less than half a second between output
+  .distinctUntilChanged() // emit a value only the current value is different with the last one
   .subscribe({
     next: (value) => console.log(value)
   })
 ```
 
-#### Subject
+#### Subject, BehaviorSubject, ReplaySubject
 
 Subjects are observables themselves but what sets them apart is that they are also observers. In addition, subject supports multiple subscriptions so you can register multiple observers on a subject.
 
@@ -24,11 +60,11 @@ Subjects are observables themselves but what sets them apart is that they are al
 const subject = new Rx.Subject();
 
 const observer1 = {
-  next: (value) => console.log(value + '1')
+  next: (value) => console.log(value + 'A')
 }
 
 const observer2 = {
-  next: (value) => console.log(value + '2')
+  next: (value) => console.log(value + 'B')
 }
 
 // you can subscribe to multiple observers
@@ -39,9 +75,11 @@ subject.subscribe(observer2);
 subject.next(10);
 ```
 
+A BehaviorSubject holds one value and can be created with an initial value `new Rx.BehaviorSubject(1)`. When it is subscribed it emits the value immediately. A Subject doesn't hold a value and is triggered only on `.next(value)` call. Consider ReplaySubject if you want the subject to hold more than one value.
+
 #### Operators
 
-We chain RxJS operators to an observable before subscribing it.
+We chain RxJS operators to an observable before subscribing to it.
 
 ```ts
 // create an observable which emits a sequential number every 1 second
@@ -83,7 +121,7 @@ Rx.Observable.fromEvent(button, 'click')
     () => {...} // complete function
   );
   
-// you can also define observer in a 'formal' way
+// you can also define an observer in a 'formal' way
 class MyObserver implements Observer<number> {
   next: (value) => {
     console.log(value);
@@ -97,16 +135,14 @@ class MyObserver implements Observer<number> {
 }
 
 Rx.Observable.fromEvent(button, 'click')
-  .subscribe(new MyObserver());
+  .subscribe(new MyObserver()); // pass in an instance of the MyObserver
 ```
 
 #### Convert to observables
 
 ```ts
-import { Observable } from 'rxjs';
-
 // convert observable from an array
-Observable.from([1, 5, 10]);
+Rx.Observable.from([1, 5, 10]);
 
 // convert observable from an event
 Rx.Observable.fromEvent(button, 'click');
@@ -119,7 +155,7 @@ const button = document.querySelector('button');
 
 Rx.Observable.fromEvent(button, 'click') // create observable that emits click events
   .throttleTime(1000) // emit the latest value when 1000 milliseconds has passed
-  .map((event) => { return event.clentY }) // map the click event and return its vertical coordinate
+  .map(event => event.clentY) // map the click event and return its vertical coordinate
   .subscribe(
     (coordinate) => console.log(coordinate)
   )
@@ -168,7 +204,7 @@ this.dataService.getCustomersPromise() // promise version
     })
   .catch(error => {
     this.isBusy = false;
-    alert(errorMsg); // Don't use alert!
+    console.log(errorMsg);
   });
 
 this.dataService.getCustomers().subscribe( // Observable version
@@ -178,7 +214,7 @@ this.dataService.getCustomers().subscribe( // Observable version
     },
     (errorMsg: string) => {
       this.isBusy = false;
-      alert(errorMsg); // Don't use alert!
+      console.log(errorMsg);
     }
   );
 ```
