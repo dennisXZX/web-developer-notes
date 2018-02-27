@@ -123,13 +123,13 @@ Rx.Observable.fromEvent(button, 'click')
   
 // you can also define an observer in a 'formal' way
 class MyObserver implements Observer<number> {
-  next: (value) => {
+  next(value) {
     console.log(value);
   },
-  error: (error) => {
+  error(error) {
     console.log(error);
   },
-  complete: () => {
+  complete() {
     console.log('completed');
   }
 }
@@ -139,6 +139,33 @@ Rx.Observable.fromEvent(button, 'click')
 ```
 
 #### Convert to observables
+
+```ts
+const arr = [1, 2, 5];
+
+// you can use a low-level API to create an observable from scratch
+// the Observable.create() method accepts a function, which takes in an observer object that has methods like next(), error() and complete()
+const observable = Rx.Observable.create((observer) => {
+
+  // iterate the array and emit each value
+  for (let i of arr) {
+    if (i === 5) {
+      observer.error('an error is thrown'); // throw an error
+    }
+    
+    observer.next(i); // emit a value
+  }
+  
+  observer.complete(); // call the complete method
+});
+
+// subscribe to the observable, passing in three functions as an observer
+observable.subscribe(
+  (value) => console.log(value),
+  (error) => console.log(error),
+  () => console.log('complete')
+);
+```
 
 ```ts
 // convert observable from an array
