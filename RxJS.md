@@ -1,6 +1,6 @@
 ## RxJS
 
-#### Import operators
+#### Import RxJS
 
 ```
 // import core observable functionality
@@ -150,6 +150,8 @@ Rx.Observable.fromEvent(button, 'click')
 
 #### Convert to observables
 
+Create an observable from scratch.
+
 ```ts
 const arr = [1, 2, 5];
 
@@ -176,6 +178,8 @@ observable.subscribe(
   () => console.log('complete')
 );
 ```
+
+Convert other sources into observables.
 
 ```ts
 // convert observable from an array
