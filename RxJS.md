@@ -1,5 +1,15 @@
 ## RxJS
 
+#### Import operators
+
+```
+// import core observable functionality
+import { Observable } from 'rxjs/Observable';
+
+// import operators
+import 'rxjs/add/operator/map'
+```
+
 #### switchMap
 
 ```ts
