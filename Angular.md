@@ -98,6 +98,7 @@ export class StarComponent implements OnChanges {
   @Output() ratingClicked: EventEmitter<number> = new EventEmitter();
 
   // when the component is clicked, emit an event with a payload of number type
+  // you can only emit a single value at a time, if you need to emit multiple values, you need to wrap them into an object
   onClick(): void {
     this.ratingClicked.emit(this.rating);
   }
