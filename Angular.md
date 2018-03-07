@@ -259,6 +259,15 @@ export class CourseComponent {
 }
 ```
 
+`ngClass` can bind multiple classes to an element while `ngStyle` can bind multiple styles.
+
+```ts
+// normally we define a function in the component to minimize the logic in the template
+<div [ngClass]="{green : event?.time === '8:00 am'}">Time: {{event?.time}} {{timeLabel}}</div>
+
+<div [ngStyle]="{'color' : event?.time === '8:00 am' ? '#003300' : 'normal' }">Time: {{event?.time}} {{timeLabel}}</div>
+```
+
 #### Event binding
 
 We use `(event)` to indicate an event binding. Remember to add a pair of parens after the method name.
@@ -376,15 +385,6 @@ We can create a directive by tag, attribute and class.
   selector: '[app-server]' // by attribute
   selector: '.app-server'  // by class
 })
-```
-
-`ngClass` can bind multiple classes to an element while `ngStyle` can bind multiple styles.
-
-```ts
-// normally we define a function in the component to minimize the logic in the template
-<div [ngClass]="{green : event?.time === '8:00 am'}">Time: {{event?.time}} {{timeLabel}}</div>
-
-<div [ngStyle]="{'color' : event?.time === '8:00 am' ? '#003300' : 'normal' }">Time: {{event?.time}} {{timeLabel}}</div>
 ```
 
 `<ng-content></ng-content>` can project any HTML code between your custom directives into your component.
