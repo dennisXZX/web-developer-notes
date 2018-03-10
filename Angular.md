@@ -609,17 +609,17 @@ In the view, we need to use `[routerLink]` to specify a route, and `<router-outl
 </div>
 ```
 
-You can navigate to a route in code using the navigate method.
+You can navigate to a route in code using the navigate() method.
 
 ```ts
 export class CreateEventComponent {
-  constructor(private _router: Router) {
+  constructor(private router: Router) {
 
   }
 
   cancel() {
     // navigate to '/events' route
-    this._router.navigate(['/events']);
+    this.router.navigate(['/events']);
   }
 }
 ```
