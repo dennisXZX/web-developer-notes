@@ -4,6 +4,67 @@
 
 In `.angular-cli.json`, the 'main' property specifies where to look for the bootstrap file, which is `main.ts` by default. In main.ts, an Angular module is specified to bootstrap the app, which is `AppModule` by default. In `app.module.ts`, we specify which component to use as the top-level component in 'bootstrap' property, which is `AppComponent` by default. Also in this file, we specify what other components belong to this module in 'declarations' property.
 
+#### Angular Modules
+
+A module is a mechanism to group components, directives, pipes and services that are related, in such a way that can be combined with other modules to create an application.
+
+Create a feature module:
+
+```
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+
+// import components for this module
+import { ProfileComponent } from './user-profile/user-profile.component';
+
+// import routes
+import { userRoutes } from './user.routes';
+
+@NgModule({
+  imports: [
+    CommonModule, // use CommonModule instead of BrowserModule
+    RouterModule.forChild(userRoutes) // use forChild instead of forRoot
+  ],
+  declarations: [
+    ProfileComponent
+  ],
+  providers: [
+
+  ]
+})
+export class UserModule {
+
+}
+```
+
+Create the routes for the feature module:
+
+```
+import { ProfileComponent } from './user-profile/user-profile.component';
+
+// notice the route for this is not /profile, it is user/profile
+// the 'user' path is set in the root module routing config file
+export const userRoutes = [
+  { path: 'profile', component: ProfileComponent }
+]
+```
+
+Add the feature module to the root module routing config.
+
+```
+export const appRoutes: Routes = [
+  { path: 'events/new', component: CreateEventComponent, canDeactivate: [EventRouteActivator] },
+  { path: 'events', component: EventsListComponent, resolve: { events: EventListResolver } },
+  { path: 'events/:id', component: EventDetailsComponent, canActivate: [EventRouteActivator] },
+  { path: '404', component: Error404Component },
+  { path: '', redirectTo: '/events', pathMatch: 'full' },
+  // specify when the user hits 'user' path, lazy load the UserModule
+  // loadChildren accepts a string with two parts, the first part specifies the module path, the second part is the module name
+  { path: 'user', loadChildren: 'app/user/user.module#UserModule' }
+];
+```
+
 #### Angular in memory web api
 
 You can fake a server in Angular by using the angular-in-memory-web-api.
@@ -497,7 +558,7 @@ export class ProductService {
 }
 ```
 
-You can register the service in the closest ancestor component, or in a module.
+You can register the service in the closest ancestor component, or in its module.
 
 ```ts
 // register the service in a component
@@ -506,8 +567,6 @@ You can register the service in the closest ancestor component, or in a module.
   templateUrl: "./app.component.html",
   providers: [ProductService]
 })
-
-// 
 ```
 
 Inject the service into a component
@@ -515,50 +574,8 @@ Inject the service into a component
 ```ts
 import { ProductService } from './product.service';
 
-// define a private variable '_productService' and assign it an injected ProductService instance
-constructor(private _productService: ProductService) {
+// define a private variable 'productService' and assign it an injected ProductService instance
+constructor(private productService: ProductService) {
   this.listFilter = '';
 }
-```
-
-#### HTTP
-
-1. Import HttpClientModule
-2. Call Http.get in a service and return the mapped result (either a Promise or an Observable)
-3. Subscribe to the service in the component.
-
-#### Angular CLI
-
-```ts
-// create an Angular project
-ng new projectName
-
-// launch the Angular project and open in your default browser
-ng serve -o
-
-// generate production code using, uglify, tree-shaking and AOT (Ahead of Time compilation)  to minimize the code
-// --base-href specify the root URL of your app
-ng build --prod
-ng build --target=production --base-href /
-
-// run unit test and end-to-end test on your application
-ng test | ng e2e
-
-// create a component, the --flat flag indicates there is no folder created
-ng g c products/product-detail.component --flat
-
-// create a component with no testing spec file
-ng g c recipes/recipe-list --spec false
-
-// create a service and register it in app.module
-ng g s products/product-guard -m app.module
-
-// create a directive
-ng g d directiveName
-
-// create a module and register it in app.module
-ng g m products/product --flat -m app.module
-
-// check the documentation of a CLI command
-ng commandName --help
 ```
