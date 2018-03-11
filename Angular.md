@@ -65,6 +65,40 @@ export const appRoutes: Routes = [
 ];
 ```
 
+#### Angular barrel
+
+An Angular barrel is an ES2015 module file that re-exports selected exports of other ES2015 modules.
+
+Create a barrel:
+
+```
+// components
+export * from './create-event/create-event.component';
+export * from './event-thumbnail/event-thumbnail.component';
+export * from './events-list/events-list.component';
+export * from './event-details/event-details.component';
+
+// services
+export * from './events-list/event-list-resolver.service';
+export * from './event-details/event-route-activator.service';
+export * from './events-list/event-list-resolver.service';
+export * from './shared/event.service';
+```
+
+Use the barrel:
+
+```
+import {
+  EventsListComponent,
+  EventThumbnailComponent,
+  EventDetailsComponent,
+  CreateEventComponent,
+  EventRouteActivator,
+  EventService,
+  EventListResolver
+} from './events/index';
+```
+
 #### Angular in memory web api
 
 You can fake a server in Angular by using the angular-in-memory-web-api.
