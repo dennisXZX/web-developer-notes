@@ -98,3 +98,7 @@ login(formValues) {
   this.router.navigate(['events']);
 }
 ```
+
+#### touched vs dirty
+
+The difference between `firstname.touched` and `firstname.dirty` is that when your cursor moves in a field and does nothing then moves out, it is 'touched' but not 'dirty'. But when you types something in the field, it is considered 'dirty'. 
