@@ -1,5 +1,31 @@
 ## Typescript
 
+#### Shortcut for creating a class for model data
+
+```ts
+export class Hero {
+  constructor(
+    public id: number,
+    public name: string) { }
+}
+```
+
+The above code is equivalent to
+
+```ts
+export class Hero {
+  public id: number;
+  public name: string;
+
+  constructor(id: number, name: string) {
+    this.number = number;
+    this.name = name;
+  }
+}
+```
+
+Use the Hero class `new Hero(1, 'Windstorm')`.
+
 #### 'as' operator
 
 Recall how to write a type assertion:
