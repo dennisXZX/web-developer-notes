@@ -482,7 +482,65 @@ We can create a directive by tag, attribute and class.
 })
 ```
 
+#### Content projection
+
 `<ng-content></ng-content>` can project any HTML code between your custom directives into your component.
+
+We define a custom directive `collapsible-well`.
+
+```html
+<div class="row" *ngFor="let session of sessions">
+  <div class="col-md-12">
+    <collapsible-well [title]="session.name">
+      <h4>{{session.name}}</h4>
+      <h6>{{session.presenter}}</h6>
+      <span>Duration: {{session.duration}}</span><br />
+      <span>Level: {{session.level}}</span>
+      <p>{{session.abstract}}</p>
+    </collapsible-well>
+  </div>
+</div>
+```
+
+In the template of `collapsible-well`, we use `<ng-content></ng-content>` to project content into it.
+
+```html
+<div (click)="toggleContent()" class="well pointable">
+  <h4 class="well-title">{{ title }}</h4>
+  <ng-content></ng-content>
+</div>
+```
+
+You can also take advantage of multiple slot content projections. The following example projects a title and body section into `collapsible-well`.
+
+```html
+<collapsible-well>
+  <div well-title>
+    {{ session.name }}
+    <i *ngIf="session.voters.length > 3" class="glyphicon glyphicon-fire" style="color: red"></i>
+  </div>
+
+  <div well-body>
+    <h6>{{session.presenter}}</h6>
+    <span>Duration: {{session.duration}}</span><br />
+    <span>Level: {{session.level}}</span>
+    <p>{{session.abstract}}</p>
+  </div>
+</collapsible-well>
+```
+
+In the `collapsible-well` template, you specify an attribute selector to map to the projected content. 
+
+```html
+<div (click)="toggleContent()" class="well pointable">
+  <h4>
+    <!-- [well-title] is an attribute selector -->
+    <ng-content select="[well-title]"></ng-content>
+  </h4>
+
+  <ng-content select="[well-body]" *ngIf="visible"></ng-content>
+</div>
+```
 
 #### Pipes
 
