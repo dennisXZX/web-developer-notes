@@ -614,7 +614,7 @@ In order to use the custom pipe, you would have to add it to the declarations ar
 #### Component lifecycle hooks
 
 - ngOnInit: perform component initialization or retrieve data from backend server
-- ngOnChanges: perform action after change to @input() properties
+- ngOnChanges: perform action every time change happens to @input() properties
 - ngOnDestroy: perform cleanup
 
 To use lifecycle hook, we need to import and implement its interface.
