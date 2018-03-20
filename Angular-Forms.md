@@ -34,8 +34,8 @@ Then you bind the form group and form control to the template.
       autocomplete="off" novalidate>
 
   <!-- first name field -->
-  <div class="form-group" [ngClass]="{'error':
-  profileForm.controls.firstName.invalid && profileForm.controls.firstName.touched}">
+  <div class="form-group" 
+       [ngClass]="{'error': profileForm.controls.firstName.invalid && profileForm.controls.firstName.touched}">
     <label for="firstName">First Name:</label>
     <input formControlName="firstName" id="firstName" type="text" class="form-control" placeholder="First Name..." />
   </div>
@@ -53,7 +53,7 @@ this.firstName = new FormControl(
 );
 ```
 
-```
+```html
 <span class="warning-message"
       // validate in the view
       *ngIf="!validateFirstName() && profileForm.controls.firstName.errors.pattern">
@@ -91,7 +91,7 @@ In order to use the ngModel directive, we need to import `FormsModule` in the mo
 
 We can then consume the data from the form, which is passed to the component class in the form of an object.
 
-```
+```ts
 login(formValues) {
   // call the authService to authenticate user
   this.authService.loginUser(formValues.userName, formValues.password);
