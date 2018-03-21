@@ -1,9 +1,12 @@
 ## Vue
 
-#### Initialize Vue in your project
+#### Vue instance
+
+A Vue application consists of a root Vue instance and a tree of nested components.
 
 ```js
-var vm = new Vue({
+// create a root Vue instance
+const vm = new Vue({
   // define the root element for the Vue
   el: '#app',
   // model to hold app data
@@ -50,6 +53,16 @@ var vm = new Vue({
 })
 ```
 
+#### Create a Vue component
+
+```
+// create a new component called todo-item
+Vue.component('todo-item', {
+	props: ['todo'],
+  template: '<div>{{ todo.text }}</div>'
+})
+```
+
 #### Vue instance properties and methods
 
 ```js
@@ -60,6 +73,29 @@ vm.$el retrieves the element of the HTML element specified in the 'el' property
 vm.$watch('message', function(newValue, oldValue) {
   // This callback will be called when `vm.message` changes
 }
+```
+
+#### Passing data from parent to child component
+
+```js
+// the 'todo-item' component accepts a prop of 'todo'
+Vue.component('todo-item', {
+	props: ['todo'],
+  template: '<div>{{ todo.text }}</div>'
+})
+```
+
+The parent component passes down the prop.
+
+```
+<div id="app">
+  <p v-on:click="reverseMessage">{{ message }}</p>
+  <todo-item 
+    v-for="todo in todos"
+    v-bind:todo="todo"  // pass the prop to child component
+    v-bind:key="todo.text">
+  </todo-item>
+</div>
 ```
 
 #### Directive
@@ -75,19 +111,19 @@ vm.$watch('message', function(newValue, oldValue) {
   Press Me!
 </button>
 
+// bind data to a property
+<img v-bind:url="url" v-bind:alt="intro" v-bind:title="message"></img>
+// short-cut syntax for v-bind
+<img :url="url" :alt="intro"></img>
+
 // v-model for two-way binding
 // when the 'message' property is changed the input text will be updated and vice verse
 <input type="text" v-model="message">
 
 // use v-for to loop through an array and print out its content
 <li v-for="todo in todos">{{todo.id}}) {{todo.text}}</li>
-// use v-for to execute a certain amount of times, the second 'count' is an integer
+// use v-for to execute a certain amount of times, the second 'count' is an integer, such as 10
 <li v-for="count in count">#{{count}}</li>
-
-// bind data to a property
-<img v-bind:url="url" v-bind:alt="intro"></img>
-// short-cut syntax for v-bind
-<img :url="url" :alt="intro"></img>
 
 // display the text in the element
 <div v-text="message">hello</div>
