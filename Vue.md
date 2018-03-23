@@ -1,5 +1,21 @@
 ## Vue
 
+#### Life cycle methods
+
+Some important life cycle methods `mounted`, `updated` and `destroyed`.
+
+```
+new Vue({
+  data: {
+    a: 1
+  },
+  created: function () {
+    // `this` points to the vm instance
+    console.log('a is: ' + this.a)
+  }
+})
+```
+
 #### Vue instance
 
 A Vue application consists of a root Vue instance and a tree of nested components.
@@ -58,7 +74,7 @@ const vm = new Vue({
 ```
 // create a new component called todo-item
 Vue.component('todo-item', {
-	props: ['todo'],
+  props: ['todo'],
   template: '<div>{{ todo.text }}</div>'
 })
 ```
