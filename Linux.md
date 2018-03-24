@@ -65,6 +65,12 @@ cd -
 // go to the home directory
 cd ~
 
+#### Edit hosts file
+
+Launch Terminal and run `sudo vim /etc/hosts` to edit hosts file.
+
+The `hosts` file is an operating system file that maps hostnames to IP addresses.
+
 #### Exploring the system
 
 There are some common `ls` Options 
