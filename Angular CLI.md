@@ -31,6 +31,8 @@ ng commandName --help
 
 // run unit test and end-to-end test on your application
 ng test | ng e2e
+// generate a code coverage report
+ng test --code-coverage
 
 // generate production code using, uglify, tree-shaking and AOT (Ahead of Time compilation) to minimize the code
 // --base-href specify the root URL of your app
