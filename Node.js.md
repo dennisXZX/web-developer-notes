@@ -1,5 +1,40 @@
 ## Node.js
 
+#### File System Module
+
+The `fs` module contains both synchronous and asynchronous methods, however, we should always use the asyn one in our app. The asyn method usually takes a callback function, which will be executed when the file operation is done.
+
+```js
+const fs = require('fs');
+
+fs.readdir('./', (err, files) => {
+  if (err) {
+    // handle errors
+  } else {
+    console.log(files);
+  }
+})
+```
+
+#### Event Module
+
+```js
+// EventEmitter is a class
+const EventEmitter = require('events');
+// create an instance of EventEmitter
+const emitter = new EventEmitter();
+
+// register a listener, you can use both addListener() or on() to register a listener
+emitter.on('messageLogged', () => {
+  console.log('message logged');
+});
+
+// raise an event
+emitter.emit('messageLogged');
+```
+
+It is important to remember you need to register the event before emitting them.
+
 #### Fundamentals
 
 Node.js is not a programming language or framework. It is a runtime environment written in C++ for executing Javascript code with the V8 Javascript engine embedded. It is suitable for real time application but not CPU-intensive application.
