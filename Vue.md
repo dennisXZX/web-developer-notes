@@ -5,11 +5,11 @@
 Some important life cycle methods `mounted`, `updated` and `destroyed`.
 
 ```
-new Vue({
+const vm = new Vue({
   data: {
     a: 1
   },
-  created: function () {
+  mounted: function () {
     // `this` points to the vm instance
     console.log('a is: ' + this.a)
   }
@@ -23,8 +23,10 @@ A Vue application consists of a root Vue instance and a tree of nested component
 ```js
 // create a root Vue instance
 const vm = new Vue({
+
   // define the root element for the Vue
   el: '#app',
+  
   // model to hold app data
   data: {
     message: 'Hello Vue World',
@@ -36,6 +38,7 @@ const vm = new Vue({
       { text: 'Buy Egg', id: 3 },
     ]
   },
+  
   // computed property is cached, it only changes when its dependencies change
   computed: {
     fullName: {
@@ -51,21 +54,39 @@ const vm = new Vue({
       }
     }
   },
+  
+  // watch any change happens to the value
+  watch: {
+    message: function(value) {
+      // store the 'this' reference, because in the callback function we need to access the data object on the Vue instance
+      const vm = this;
+
+      // reset the message 2 seconds later after the message value is changed
+      // the value argument in the callback function is value of the upcoming change
+      setTimeout(function(value) {
+        vm.message = "";
+      }, 2000);
+    }
+  }
+  
   methods: {
     countUp: function () {
+      // we can access any properties inside the data object using this.propertyName
       this.count += 1;
     },
     reset: function () {
       this.count = 0;
     }
   },
+  
   filters: {
     capitalize: function(value) {
       if (!value) return '';
       value = value.toString();
       return value.charAt(0).toUpperCase() + value.slice(1);
     },
-  }  
+  }
+  
 })
 ```
 
@@ -96,7 +117,7 @@ vm.$watch('message', function(newValue, oldValue) {
 ```js
 // the 'todo-item' component accepts a prop of 'todo'
 Vue.component('todo-item', {
-	props: ['todo'],
+  props: ['todo'],
   template: '<div>{{ todo.text }}</div>'
 })
 ```
@@ -118,9 +139,10 @@ The parent component passes down the prop.
 
 ```js
 <button 
-  // based on the 'sizeToggle' property, if it's true returns 'large' class
+  // myStyle is a computed property which returns an object
+  // based on the 'size' property, if it's bigger than 10 returns 'large' class
   // renders 'rounded' class if 'isRounded' property is true
-  v-bind:class="[sizeToggle ? 'large' : '', {'rounded': isRounded}]"
+  v-bind:class="[myStyle, size > 10 ? 'large' : '', {'rounded': isRounded}]"
   // v-bind:style is often used in conjunction with computed properties that return objects
   v-bind:style="styles"
   v-bind:disabled="disabled">
@@ -129,6 +151,8 @@ The parent component passes down the prop.
 
 // bind data to a property
 <img v-bind:url="url" v-bind:alt="intro" v-bind:title="message"></img>
+<a v-bind:href="link">Google</a>
+
 // short-cut syntax for v-bind
 <img :url="url" :alt="intro"></img>
 
@@ -145,7 +169,8 @@ The parent component passes down the prop.
 <div v-text="message">hello</div>
 
 // insert the HTML markup into the element
-<div v-html="intro">hello</div>
+// WARNING: this might expose your site to XSS (Cross-site Scripting) if the HTML content inserted is not properly sanitized 
+<div v-html="intro"></div>
 
 // show or hide an element based on the boolean value (the HTML markup is still in the DOM)
 <div v-show="viewed">hello</div>
@@ -169,6 +194,45 @@ The parent component passes down the prop.
 ```js
 // execute 'reset' method when the button is clicked
 <button v-on:click="reset" class="btn btn-primary">Reset Me!</button>
+
 // short-cut syntax for v-on
 <button @click="reset" class="btn btn-primary">Reset Me!</button>
+```
+
+Passing own argument to an event, the `$event` argument is the original DOM event.
+
+```html
+<button v-on:click="clicked($event, 2)">Click</button>
+```
+
+```js
+new Vue({
+  el: '#app',
+  data: {
+    counter: 0
+  },
+  methods: {
+    clicked: function(event, step) {
+    	this.counter += step;
+    }
+  }
+})
+```
+
+You may run into situations where you want to stop event propagation or prevent default event behaviors. You can easily achieve this by using `event modifiers`.
+
+```html
+<!-- the click event's propagation will be stopped -->
+<a v-on:click.stop="doThis"></a>
+
+<!-- the submit event will no longer reload the page -->
+<form v-on:submit.prevent="onSubmit"></form>
+
+<!-- modifiers can be chained -->
+<a v-on:click.stop.prevent="doThat"></a>
+```
+
+```html
+<!-- only call `vm.submit()` when user hits enter -->
+<input v-on:keyup.enter="submit">
 ```
