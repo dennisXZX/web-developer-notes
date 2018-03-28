@@ -7,7 +7,7 @@
 react-native init projectName
 
 // run IOS simulator
-react-native run-ios
+react-native run-ios/run-android
 ```
 
 #### Styling component
