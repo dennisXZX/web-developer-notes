@@ -163,7 +163,7 @@ function mapDispatchToProps = (dispatch) => ({
 
 ```js
 // using bindActionCreators() helper function
-function matchDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch) {
   return bindActionCreators({ editLabResult: requestEmployees}, dispatch);
 }
 ```
