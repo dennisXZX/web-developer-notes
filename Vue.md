@@ -137,6 +137,16 @@ The parent component passes down the prop.
 
 #### Directive
 
+__v-for__
+
+```js
+// use v-for to loop through an array and print out its content
+<li v-for="todo in todos">{{todo.id}}) {{todo.text}}</li>
+
+// use v-for to execute a certain amount of times, the second 'count' is an integer, such as 10
+<li v-for="count in count">#{{count}}</li>
+```
+
 ```js
 <button 
   // myStyle is a computed property which returns an object
@@ -159,11 +169,6 @@ The parent component passes down the prop.
 // v-model for two-way binding
 // when the 'message' property is changed the input text will be updated and vice verse
 <input type="text" v-model="message">
-
-// use v-for to loop through an array and print out its content
-<li v-for="todo in todos">{{todo.id}}) {{todo.text}}</li>
-// use v-for to execute a certain amount of times, the second 'count' is an integer, such as 10
-<li v-for="count in count">#{{count}}</li>
 
 // display the text in the element
 <div v-text="message">hello</div>
