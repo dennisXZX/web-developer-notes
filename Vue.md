@@ -147,6 +147,36 @@ __v-for__
 <li v-for="count in count">#{{count}}</li>
 ```
 
+__v-model__
+
+```js
+// v-model for two-way binding
+// when the 'message' property is changed the input text will be updated and vice verse
+<input type="text" v-model="message">
+
+<!-- You can also add modifiers to v-model -->
+
+// synced after "change" instead of "input"
+<input v-model.lazy="msg" >
+
+// user input to be automatically typecast as a number
+<input v-model.number="age" type="number">
+
+// user input to be trimmed automatically
+<input v-model.trim="msg">
+```
+
+__v-if and v-show__
+
+```js
+// show or hide an element based on the boolean value (the HTML markup is still in the DOM)
+<div v-show="viewed">hello</div>
+
+// display or remove an element based on the boolean value (the HTML markup is not in the DOM if it's false)
+<div v-if="viewed">hello</div>
+<div v-else>hello</div>
+```
+
 ```js
 <button 
   // myStyle is a computed property which returns an object
@@ -166,23 +196,12 @@ __v-for__
 // short-cut syntax for v-bind
 <img :url="url" :alt="intro"></img>
 
-// v-model for two-way binding
-// when the 'message' property is changed the input text will be updated and vice verse
-<input type="text" v-model="message">
-
 // display the text in the element
 <div v-text="message">hello</div>
 
 // insert the HTML markup into the element
 // WARNING: this might expose your site to XSS (Cross-site Scripting) if the HTML content inserted is not properly sanitized 
 <div v-html="intro"></div>
-
-// show or hide an element based on the boolean value (the HTML markup is still in the DOM)
-<div v-show="viewed">hello</div>
-
-// display or remove an element based on the boolean value (the HTML markup is not in the DOM if it's false)
-<div v-if="viewed">hello</div>
-<div v-else>hello</div>
 
 // display the text as it is without trying to interpret
 <div v-pre>{{hello if 2}}</div>
