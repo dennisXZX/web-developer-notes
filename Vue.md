@@ -61,14 +61,10 @@ const vm = new Vue({
   
   // watch any change happens to the value
   watch: {
-    message: function(value) {
-      // store the 'this' reference, because in the callback function we need to access the data object on the Vue instance
-      const vm = this;
-
+    message: function(newValue, oldValue) {
       // reset the message 2 seconds later after the message value is changed
-      // the value argument in the callback function is value of the upcoming change
-      setTimeout(function(value) {
-        vm.message = "";
+      setTimeout(() => {
+        this.message = "";
       }, 2000);
     }
   }
@@ -83,7 +79,7 @@ const vm = new Vue({
     reset: function () {
       this.count = 0;
     },
-    xCoordinate(e) {
+    xCoordinate(e) { // the event object is passed automatically by Vue
       this.x = e.clientX;
     }
   },
@@ -111,11 +107,11 @@ Vue.component('todo-item', {
 
 #### Vue instance properties and methods
 
+`vm.$data` retrieves the data property of the Vue instance
+
+`vm.$el` retrieves the element of the HTML element specified in the 'el' property
+
 ```js
-vm.$data retrieves the data property of the Vue instance
-
-vm.$el retrieves the element of the HTML element specified in the 'el' property
-
 vm.$watch('message', function(newValue, oldValue) {
   // This callback will be called when `vm.message` changes
 }
@@ -129,6 +125,45 @@ Vue.component('todo-item', {
   props: ['todo'],
   template: '<div>{{ todo.text }}</div>'
 })
+
+// props validation - String
+Vue.component('child', {
+  props: {
+    text: {
+      type: String,
+      required: true,
+      default: 'hello world'
+    }
+  },
+  template: `<div>{{ text }}</div>`
+})
+
+// props validation - Object
+// the default property need to be a function returning an object
+Vue.component('child', {
+  props: {
+    text: {
+      type: Object,
+      required: true,
+      default: function() {
+        return { 
+          message: 'hello world' 
+        }
+      }
+    }
+  },
+  template: `<div>{{ text }}</div>`
+})
+```
+
+```html
+<!-- The HTML kebab-case property will be converted into camel case in the Vue component. -->
+
+<!-- We bind `boolean-value` in the HTML. -->
+
+<checkbox :boolean-value="booleanValue"></checkbox>
+
+<!-- We would get props: ['booleanValue'] in the component -->
 ```
 
 The parent component passes down the prop.
@@ -142,6 +177,22 @@ The parent component passes down the prop.
     v-bind:key="todo.text">
   </todo-item>
 </div>
+```
+
+#### Child component emit event to parent
+
+If we need to report an event happen in the child component to its parent, we can use the `$emit`.
+
+In the child component
+
+```js
+methods: {
+  talkToMe() {
+    this.text = 'new text';
+    // report an changeText event to its parent
+    this.$emit('changeText', this.text);
+  }
+}
 ```
 
 #### Directive
@@ -166,7 +217,7 @@ __v-for__
 __v-model and modifiers__
 
 ```js
-// v-model for two-way binding
+// create a two-way binding
 // when the 'message' property is changed the input text will be updated and vice verse
 <input type="text" v-model="message">
 
@@ -193,7 +244,7 @@ __v-if and v-show__
 <div v-else>hello</div>
 ```
 
-__v-bind and :___
+__v-bind___
 
 ```js
 <button 
@@ -236,14 +287,14 @@ __v-html__
 <div v-html="intro"></div>
 ```
 
-__v-clock__
+__v-cloak
 
 ```js
 // combine with CSS rules [v-cloak] { display: none } to hide uncompiled mustache bindings
 <div v-cloak>{{ message }}</div>
 ```
 
-#### Events
+#### Events and modifers
 
 ```js
 // execute 'reset' method when the button is clicked
