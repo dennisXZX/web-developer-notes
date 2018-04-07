@@ -1,5 +1,9 @@
 ## Vue
 
+#### quick way to see data object
+
+Sometime you want to quickly view the data object, you can use `<pre>{{ $data }}</pre>`.
+
 #### Life cycle methods
 
 Some important life cycle methods `mounted`, `updated` and `destroyed`.
@@ -69,6 +73,8 @@ const vm = new Vue({
     }
   }
   
+  // if we bind an event like this - <div @mousemove="xCoordinate"></div>
+  // the event object will be automatically passed to the method
   methods: {
     countUp: function () {
       // we can access any properties inside the data object using this.propertyName
@@ -76,6 +82,9 @@ const vm = new Vue({
     },
     reset: function () {
       this.count = 0;
+    },
+    xCoordinate(e) {
+      this.x = e.clientX;
     }
   },
   
@@ -145,9 +154,16 @@ __v-for__
 
 // use v-for to execute a certain amount of times, the second 'count' is an integer, such as 10
 <li v-for="count in count">#{{count}}</li>
+
+// you can retrieve the index of each item by using the 2nd parameter
+<div v-for="(post, i) in posts" class="post">
+  <span class="label">{{ post.label }}</span>
+  <p>{{ post.title }}</p>
+  <small>{{ post.author }}</small>
+</div>
 ```
 
-__v-model__
+__v-model and modifiers__
 
 ```js
 // v-model for two-way binding
@@ -177,9 +193,11 @@ __v-if and v-show__
 <div v-else>hello</div>
 ```
 
+__v-bind and :___
+
 ```js
 <button 
-  // myStyle is a computed property which returns an object
+  // myStyle is a   property which returns an object
   // based on the 'size' property, if it's bigger than 10 returns 'large' class
   // renders 'rounded' class if 'isRounded' property is true
   v-bind:class="[myStyle, size > 10 ? 'large' : '', {'rounded': isRounded}]"
@@ -189,26 +207,38 @@ __v-if and v-show__
   Press Me!
 </button>
 
+// mouseover event changes background color property using hue
+<div id="app" :style="{ backgroundColor: `hsl(${colorValue}, 80%, 50%)` }" @mousemove="changeBg"></div>
+
 // bind data to a property
 <img v-bind:url="url" v-bind:alt="intro" v-bind:title="message"></img>
 <a v-bind:href="link">Google</a>
 
 // short-cut syntax for v-bind
 <img :url="url" :alt="intro"></img>
+```
 
-// display the text in the element
-<div v-text="message">hello</div>
+__v-once and v-pre__
 
-// insert the HTML markup into the element
-// WARNING: this might expose your site to XSS (Cross-site Scripting) if the HTML content inserted is not properly sanitized 
-<div v-html="intro"></div>
-
-// display the text as it is without trying to interpret
-<div v-pre>{{hello if 2}}</div>
-
+```js
 // render the component just once, so you cannot change its value after the first render
 <div v-text="intro" v-once>hello</div>
 
+// display the text as it is without trying to interpret
+<div v-pre>{{hello if 2}}</div>
+```
+
+__v-html__
+
+```js
+// insert the HTML markup into the element
+// WARNING: this might expose your site to XSS (Cross-site Scripting) if the HTML content inserted is not properly sanitized 
+<div v-html="intro"></div>
+```
+
+__v-clock__
+
+```js
 // combine with CSS rules [v-cloak] { display: none } to hide uncompiled mustache bindings
 <div v-cloak>{{ message }}</div>
 ```
@@ -218,6 +248,13 @@ __v-if and v-show__
 ```js
 // execute 'reset' method when the button is clicked
 <button v-on:click="reset" class="btn btn-primary">Reset Me!</button>
+
+// multiple bindings
+<div v-on="
+  click   : onClick,
+  keyup   : onKeyup,
+  keydown : onKeydown
+"></div>
 
 // short-cut syntax for v-on
 <button @click="reset" class="btn btn-primary">Reset Me!</button>
