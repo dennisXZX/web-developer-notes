@@ -1,12 +1,8 @@
 ## Vue
 
-#### quick way to see data object
-
-Sometime you want to quickly view the data object, you can use `<pre>{{ $data }}</pre>`.
-
 #### Life cycle methods
 
-Some important life cycle methods `mounted`, `updated` and `destroyed`.
+The are four different stages of a view - creation, mount, update and destroy. Some important life cycle methods `created`, `mounted`, `updated` and `destroyed`.
 
 ```
 const vm = new Vue({
@@ -120,9 +116,15 @@ Vue.component('todo-item', {
 
 #### Vue instance properties and methods
 
-`vm.$data` retrieves the data property of the Vue instance
+`vm.$data` retrieves the data property of the Vue instance. You can also use `<pre>{{ $data }}</pre>` in the template to quickly debug the data object.
 
-`vm.$el` retrieves the element of the HTML element specified in the 'el' property
+`vm.$el` retrieves the element of the HTML element specified in the 'el' property.
+
+You can put a `ref` attribute to an easily refer to an DOM element. 
+
+`<button @click="show" ref="myButton">Show</button>`
+
+Then in your view model, you can refer to this button using `vm.$refs.myButton.innerText`.
 
 ```js
 vm.$watch('message', function(newValue, oldValue) {
