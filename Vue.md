@@ -95,6 +95,19 @@ const vm = new Vue({
 })
 ```
 
+We can change the data object from outside the Vue instance by storing the instance into an variable and then access its properties.
+
+```js
+const vm = new Vue({
+  data: {
+    title: 'test'
+  }
+})
+
+// change the data object from outside
+vm.title = 'new test';
+```
+
 #### Create a Vue component
 
 ```
@@ -206,12 +219,15 @@ __v-for__
 // use v-for to execute a certain amount of times, the second 'count' is an integer, such as 10
 <li v-for="count in count">#{{count}}</li>
 
-// you can retrieve the index of each item by using the 2nd parameter
+// you can retrieve the index of each array item
 <div v-for="(post, i) in posts" class="post">
   <span class="label">{{ post.label }}</span>
   <p>{{ post.title }}</p>
   <small>{{ post.author }}</small>
 </div>
+
+// you can retrieve the value, key and index of each object
+<div v-for="(value, key, index) in person">{{ key }}: {{ value }}</div>
 ```
 
 __v-model and modifiers__
@@ -240,11 +256,19 @@ __v-if and v-show__
 <div v-show="viewed">hello</div>
 
 // display or remove an element based on the boolean value (the HTML markup is not in the DOM if it's false)
-<div v-if="viewed">hello</div>
-<div v-else>hello</div>
+<div v-if="type === 'A'">hello</div>
+<div v-else-if="type === 'B'">hi</div>
+<div v-else>bye</div>
+
+// we can also utilize <template></template> tag to group HTML tags
+// the <template> tag would not be rendered in the DOM
+<template v-if="show">
+  <h2>Flower</h2>
+  <img src="img_white_flower.jpg">
+</template>
 ```
 
-__v-bind___
+__v-bind__
 
 ```js
 <button 
@@ -257,6 +281,9 @@ __v-bind___
   v-bind:disabled="disabled">
   Press Me!
 </button>
+
+// bind multiple styles
+<div :style="{ width: playerHealth + '%', backgroundColor: playerHealthColor }">hello</div>
 
 // mouseover event changes background color property using hue
 <div id="app" :style="{ backgroundColor: `hsl(${colorValue}, 80%, 50%)` }" @mousemove="changeBg"></div>
@@ -287,7 +314,7 @@ __v-html__
 <div v-html="intro"></div>
 ```
 
-__v-cloak
+__v-cloak__
 
 ```js
 // combine with CSS rules [v-cloak] { display: none } to hide uncompiled mustache bindings
@@ -296,7 +323,7 @@ __v-cloak
 
 #### Events and modifers
 
-```js
+```html
 // execute 'reset' method when the button is clicked
 <button v-on:click="reset" class="btn btn-primary">Reset Me!</button>
 
