@@ -1,7 +1,5 @@
 ## Vue
 
-
-
 #### Life cycle methods
 
 The are four different stages of a view - creation, mount, update and destroy. Some important life cycle methods `created`, `mounted`, `updated` and `destroyed`.
@@ -365,7 +363,7 @@ __v-cloak__
 
 ```html
 // execute 'reset' method when the button is clicked
-<button v-on:click="reset" class="btn btn-primary">Reset Me!</button>
+<button @:click="reset" class="btn btn-primary">Reset Me!</button>
 
 // multiple bindings
 <div v-on="
@@ -373,9 +371,6 @@ __v-cloak__
   keyup   : onKeyup,
   keydown : onKeydown
 "></div>
-
-// short-cut syntax for v-on
-<button @click="reset" class="btn btn-primary">Reset Me!</button>
 ```
 
 Passing own argument to an event, the `$event` argument is the original DOM event.
@@ -401,17 +396,20 @@ new Vue({
 You may run into situations where you want to stop event propagation or prevent default event behaviors. You can easily achieve this by using `event modifiers`.
 
 ```html
+<!-- listen to native DOM events on a Vue component -->
+<app-server-status @click.native="updateServer"></app-server-status>
+
 <!-- the click event's propagation will be stopped -->
-<a v-on:click.stop="doThis"></a>
+<a @click.stop="doThis"></a>
 
 <!-- the submit event will no longer reload the page -->
-<form v-on:submit.prevent="onSubmit"></form>
+<form @submit.prevent="onSubmit"></form>
 
 <!-- modifiers can be chained -->
-<a v-on:click.stop.prevent="doThat"></a>
+<a @click.stop.prevent="doThat"></a>
 ```
 
 ```html
-<!-- only call `vm.submit()` when user hits enter -->
-<input v-on:keyup.enter="submit">
+<!-- only call submit() when user hits enter -->
+<input @keyup.enter="submit">
 ```
