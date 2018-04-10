@@ -1,5 +1,7 @@
 ## Vue
 
+
+
 #### Life cycle methods
 
 The are four different stages of a view - creation, mount, update and destroy. Some important life cycle methods `created`, `mounted`, `updated` and `destroyed`.
@@ -106,11 +108,41 @@ vm.title = 'new test';
 
 #### Create a Vue component
 
+Gloal component
+
 ```
-// create a new component called todo-item
+// create a global component called todo-item
 Vue.component('todo-item', {
+  data() {
+    return {
+      msg: 'Welcome to Your Vue.js App'
+    }
+  },
   props: ['todo'],
-  template: '<div>{{ todo.text }}</div>'
+  template: '<div>{{ msg }}</div>'
+})
+```
+
+Local component
+
+```
+// create a local component
+const todo = {
+  data() {
+    return {
+      msg: 'Welcome to Your Vue.js App'
+    }
+  },
+  props: ['todo'],
+  template: '<div>{{ msg }}</div>'
+}
+
+// register it in a Vue instance
+new Vue({
+  el: '#app',
+  components: {
+    'todo': todo
+  }
 })
 ```
 
@@ -188,8 +220,8 @@ The parent component passes down the prop.
   <p v-on:click="reverseMessage">{{ message }}</p>
   <todo-item 
     v-for="todo in todos"
-    v-bind:todo="todo"  // pass the prop to child component
-    v-bind:key="todo.text">
+    :todo="todo"  // pass the prop to child component
+    :key="todo.text">
   </todo-item>
 </div>
 ```
@@ -198,16 +230,22 @@ The parent component passes down the prop.
 
 If we need to report an event happen in the child component to its parent, we can use the `$emit`.
 
-In the child component
+In the child component we emit an custom event.
 
 ```js
 methods: {
   talkToMe() {
     this.text = 'new text';
-    // report an changeText event to its parent
-    this.$emit('changeText', this.text);
+    this.$emit('changeText', this.text); // emit an changeText event to its parent
   }
 }
+```
+
+In the parent component we need to listen to the custom event.
+
+```html
+<!-- the $event is the value emitted from the changeText event, which is this.text in this case -->
+<app-user-edit @changeText="name = $event"></app-user-edit>
 ```
 
 #### Directive
