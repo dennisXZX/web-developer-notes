@@ -144,6 +144,72 @@ new Vue({
 })
 ```
 
+#### Slot
+
+We can pass block of HTML content from parent to child by using slot.
+
+In the parent template, we wrap the content inside the component tag.
+
+```html
+<app-quote>
+  <h2>The Quote</h2>
+  <p>A wonderful Quote</p>
+</app-quote>
+```
+
+In the child template, we use the `<slot></slot>` tag to specify where the content should go. It is noted that the style should be defined in the child template instead of the parent one.
+
+```html
+<div>
+  <slot></slot>
+</div>
+```
+
+__named slot__
+
+```html
+<app-quote>
+  <h2 slot="title">The Quote</h2>
+</app-quote>
+```
+
+```html
+<div>
+  <slot name="title"></slot>
+</div>
+```
+
+#### Dynamic components
+
+If we want to dynamically change part of the view to a component, we can use the `<component>` tag.
+
+```html
+<!-- 'selectedComponent' need to be a string that matches a component name -->
+<!-- by default, the component would be destroyed when you navigate away from it -->
+<!-- you can use the <keep-alive> tag to change this default behavior -->
+<!-- 'activated' and 'deactivated' are two life cycle methods that will be called when a component is toggled inside <keep-alive> -->
+<keep-alive>
+  <component :is="selectedComponent"></component>
+</keep-alive>
+```
+
+```js
+import Quote from './components/Quote.vue';
+import News from './components/News.vue';
+
+export default {
+  data() {
+    return {
+      selectedComponent = "appQuote"
+    }
+  },
+  components: {
+    appQuote: Quote,
+    appNews: News
+  }
+}
+```
+
 #### Vue instance properties and methods
 
 `vm.$data` retrieves the data property of the Vue instance. You can also use `<pre>{{ $data }}</pre>` in the template to quickly debug the data object.
