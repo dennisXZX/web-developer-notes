@@ -310,7 +310,7 @@ __v-bind__
 
 ```js
 <button 
-  // myStyle is a   property which returns an object
+  // myStyle is a property which returns an object
   // based on the 'size' property, if it's bigger than 10 returns 'large' class
   // renders 'rounded' class if 'isRounded' property is true
   v-bind:class="[myStyle, size > 10 ? 'large' : '', {'rounded': isRounded}]"
@@ -323,12 +323,15 @@ __v-bind__
 // bind multiple styles
 <div :style="{ width: playerHealth + '%', backgroundColor: playerHealthColor }">hello</div>
 
+// bind multiple style objects, both accentColor and headers are an object containing CSS styles
+<div :style="[accentColor, headers]">hello</div>
+
 // mouseover event changes background color property using hue
 <div id="app" :style="{ backgroundColor: `hsl(${colorValue}, 80%, 50%)` }" @mousemove="changeBg"></div>
 
 // bind data to a property
-<img v-bind:url="url" v-bind:alt="intro" v-bind:title="message"></img>
-<a v-bind:href="link">Google</a>
+<img :url="url" v-bind:alt="intro" v-bind:title="message"></img>
+<a :href="link">Google</a>
 
 // short-cut syntax for v-bind
 <img :url="url" :alt="intro"></img>
