@@ -279,7 +279,7 @@ Vue.component('child', {
 
 The parent component passes down the prop.
 
-```
+```html
 <div id="app">
   <p v-on:click="reverseMessage">{{ message }}</p>
   <todo-item 
