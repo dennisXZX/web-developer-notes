@@ -2,7 +2,7 @@
 
 #### Life cycle methods
 
-The are four different stages of a view - creation, mount, update and destroy. Some important life cycle methods `created`, `mounted`, `updated` and `destroyed`.
+The are four different stages of a view - creation, mount, update and destroy. Some important life cycle methods are `created`, `mounted`, `updated` and `destroyed`.
 
 ```
 const vm = new Vue({
@@ -343,7 +343,7 @@ __v-model and modifiers__
 
 <!-- You can also add modifiers to v-model -->
 
-// synced after "change" instead of "input"
+// synced after "change" event instead of "input" event
 <input v-model.lazy="msg" >
 
 // user input to be automatically typecast as a number
@@ -478,7 +478,23 @@ You may run into situations where you want to stop event propagation or prevent 
 <a @click.stop.prevent="doThat"></a>
 ```
 
+<!-- 
+bypass event propagation all together, 
+'stop' modifier to prevent event propagation, 
+'self' modifier to ignore events that are not from the element itself 
+-->
+<button @click.stop.self="executeSearch">Stop Propagation</button>
+
+__Key modifier__
+
 ```html
 <!-- only call submit() when user hits enter -->
 <input @keyup.enter="submit">
+```
+
+You can also define custom key modifiers by the global `Vue.config.keyCodes` object.
+
+```js
+// enable `v-on:keyup.f1`
+Vue.config.keyCodes.f1 = 112
 ```
