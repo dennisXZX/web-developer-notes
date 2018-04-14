@@ -1,5 +1,35 @@
 ## Vue
 
+#### Mixin
+
+When you need to share some data or computed values among components, you can use `mixin`. It is important to note that the properties on the data object are replicated on each component instead of sharing the same ones.
+
+```js
+// create a mixin
+export const fruitMixin = {
+  data() {
+    return {
+      fruits: ['banana', 'melon'],
+      filterText: ''
+     }
+  },
+  computed: {
+    filteredFruits() {
+      return this.fruits.filter(fruit => fruit.match(this.filterText));
+    }
+  }
+}
+```
+
+```js
+// use the mixin
+import { fruitMixin } from './fruitMixin';
+
+export default {
+  mixins: [fruitMixin]  // an array holding all the mixins
+}
+```
+
 #### Life cycle methods
 
 The are four different stages of a view - creation, mount, update and destroy. Some important life cycle methods are `created`, `mounted`, `updated` and `destroyed`.
@@ -84,9 +114,12 @@ const vm = new Vue({
     }
   },
   
+  // filter is used to change the format of how content is displayed
   filters: {
     capitalize: function(value) {
+      // return an empty string if the value passed in is null
       if (!value) return '';
+      
       value = value.toString();
       return value.charAt(0).toUpperCase() + value.slice(1);
     },
@@ -110,7 +143,7 @@ vm.title = 'new test';
 
 #### Create a Vue component
 
-Gloal component
+Global component
 
 ```
 // create a global component called todo-item
@@ -436,6 +469,8 @@ __v-cloak__
 
 #### Custom directive
 
+__Global directive__
+
 ```js
 Vue.directive('hightlight', {
   // binding.value retrieves the value of v-hightlight="'green'"
@@ -443,6 +478,20 @@ Vue.directive('hightlight', {
     el.style.backgroundColor = binding.value;
   }
 })
+```
+
+__Local directive__
+
+```js
+export default {
+  directives: {
+    'highlight': {
+      bind(el, binding, vnode) {
+        el.style.backgroundColor = binding.value;
+      }
+    }
+  }
+}
 ```
 
 #### Events and modifers
