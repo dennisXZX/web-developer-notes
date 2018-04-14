@@ -41,12 +41,16 @@ const vm = new Vue({
   
   // computed property is cached, it only changes when its dependencies change
   computed: {
+    // a computed getter
+    reversedMessage: function () {
+      // `this` points to the vm instance
+      return this.message.split('').reverse().join('')
+    },
+    // both getter and setter
     fullName: {
-      // getter
       get: function () {
         return `${this.firstName} ${this.lastName}`
       },
-      // setter
       set: function (value) {
         const name = value.split(' ');
         this.firstName = name[0];
@@ -232,6 +236,8 @@ vm.$watch('message', function(newValue, oldValue) {
 
 ```js
 // the 'todo-item' component accepts a prop of 'todo'
+// you can access 'todo' in the template using {{ todo }}
+// you can access 'todo' in the view model using 'this.todo'
 Vue.component('todo-item', {
   props: ['todo'],
   template: '<div>{{ todo.text }}</div>'
@@ -426,6 +432,17 @@ __v-cloak__
 ```js
 // combine with CSS rules [v-cloak] { display: none } to hide uncompiled mustache bindings
 <div v-cloak>{{ message }}</div>
+```
+
+#### Custom directive
+
+```js
+Vue.directive('hightlight', {
+  // binding.value retrieves the value of v-hightlight="'green'"
+  bind(el, binding, vnode) {
+    el.style.backgroundColor = binding.value;
+  }
+})
 ```
 
 #### Events and modifers
