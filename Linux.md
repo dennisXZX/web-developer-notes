@@ -1,6 +1,15 @@
 
 ## Linux
 
+#### Execute the last command with sudo
+
+```
+[dennis@ops-server4 ~]$ cat /etc/sudoers|tail -3
+cat: /etc/sudoers: Permission denied
+[dennis@ops-server4 ~]$ sudo !!
+sudo cat /etc/sudoers|tail -3
+```
+
 #### View running processes
 
 The easiest way to find out what processes are running on your server is to run the `top` command.
