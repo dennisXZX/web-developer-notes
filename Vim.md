@@ -1,7 +1,11 @@
-## Vim
+## Vim (VI Improved)
 
-#### Normal mode
+#### Command mode
 
+- `u` to undo the last change
+- `ctrl + r` to redo the last change 
+- `ctrl + f` to move forward a page, `ctrl + d` to move forward half a page
+- `ctrl + b` to move backward a page, `ctrl + u` to move backward half a page
 - `A` to move to the end of a line and switch to editing mode (move to the end of the line using `$`)
 - `I` to move to the beginning of a line and switch to insert mode (move to the beginning of the line using `^`)
 - `j` to move down the file
@@ -12,14 +16,22 @@
 - `b` to move to the left word by word
 - `dd` to delete one line
 
+#### Search
+
+- `/textToSearch` to search in the file
+- `/\c` to search case sensitive, `/\C` to search case insensitive
+- `n` to move to the next search result (forward)
+- `shift + n` to move to the next search result (backward)
+
 #### Insert mode
 
 - `i` to get into insert mode
 - `Esc` to exit insert mode
 
-#### Command mode
+#### Last-line mode
 
-- `shift + ;` to get into command mode
+- `:` to get into last-line mode
+- `Esc` to exit last-line mode
 
 #### Visual mode
 
@@ -42,4 +54,3 @@ Create a `~/.vimrc` file in home directory and put your Vim config in it.
 syntax on
 set number
 ```
-
