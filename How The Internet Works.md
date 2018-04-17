@@ -48,22 +48,30 @@ __Server__
 
 Normally we put our public key onto the VPS to leverage public key authentication.
 
-Now you can log in your server using the private key stored in your computer.
+Once you put your public key onto the VPS, now you can log in your server using the private key stored in your computer.
 
-`ssh -i ~/.ssh/my_key root@YOUR_SERVER_IP`. The `-i` flag here means identity.
+`ssh -i ~/.ssh/my_key USER_NAME@YOUR_SERVER_IP`. The `-i` flag here means identity.
 
 Once you have logged in your server, you can update all your packages by running `apt-get update`.
 
-You can create new user by using `adduser USER_NAME`. We can then assign the newly created user sudo permission by using `usermod -aG sudo USER_NAME`. `-aG` flag means adding to a group.
+You can create new user by using `adduser USER_NAME`. We can then assign the newly created user sudo permission by using `usermod -aG sudo USER_NAME`. `-aG` flag means adding to a group called sudo.
 
 `su USER_NAME` to switch between users. (su means switch user)
 
-Now we have a new user, we need to also add the public key to the server.
+Now we have a new user, we also need to add the public key to the server.
 
 ```
 $ cat ~/.ssh/my_key.pub | ssh $USERNAME@$SERVER_IP "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"
 ```
 
-- cat ~/.ssh/my_key.pub | (prints out the public key and pipe that result to the next command)
-- ssh $USERNAME@$SERVER_IP (ssh into the server)
-- "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys" (create a .ssh folder and add the public key into the authorized_keys file)
+- `cat ~/.ssh/my_key.pub |` (prints out the public key and pipe that result to the next command)
+- `ssh $USERNAME@$SERVER_IP` (ssh into the server)
+- `"mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"` (create a .ssh folder and add the public key into the authorized_keys file)
+
+Now we have set everything up, the new user can log in the server using its private SSH key. The next security fix is to disable root login.
+
+Steps to disable root login
+- login into your server
+- run `sudo vi /etc/ssh/sshd_config`
+- set `PermitRootLogin` to no
+- restert ssh `sudo service sshd restart`
