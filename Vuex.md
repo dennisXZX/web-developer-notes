@@ -1,0 +1,108 @@
+## Vuex
+
+#### Create a central store
+
+Normally we put all our state in a separate folder called store.
+
+```js
+// store.js
+import Vue from 'vue';
+import Vuex from 'vuex';
+
+Vue.use(Vuex);
+
+export const store = new Vuex.Store({
+  state: {
+    counter: 0
+  },
+  getters: {
+    doubleCounter(state) {
+      return state.counter * 2;
+    },
+    stringCounter(state) {
+      return state.counter + ' Clicks';
+    }
+  },
+  mutations: {
+    increment(state) {
+      state.counter += 1;
+    },
+    decrement(state) {
+      state.counter -= 1;
+    }
+  }
+});
+```
+
+Register the store in the component
+
+```js
+// import the store
+import { store } from './store/store';
+
+new Vue({
+  el: '#app',
+  store, // register the store
+  render: h => h(App)
+});
+```
+
+- Access the state using `this.$store.state.counter`
+- Access the getter using `this.$store.getter.doubleCounter`
+- Commit the mutation using `this.$store.commit('increment')`
+
+#### mapGetters
+
+For example, we have two getters and we want to map them to a computered properties.
+
+```js
+getters: {
+  doubleCounter(state) {
+    return state.counter * 2;
+  },
+  stringCounter(state) {
+    return state.counter + ' Clicks';
+  }
+}
+```
+
+We can use the `mapGetters` function provided by vuex. But we need to install `babel-preset-stage-2` in order to use the spread operator.
+
+```js
+<script>
+  import { mapGetters } from 'vuex';
+
+  export default {
+    computed: {
+      ...mapGetters({
+        counter: 'doubleCounter',
+        clicks: 'stringCounter'
+      }),
+      otherComputedProp() {
+        // code...
+      }
+    }
+  };
+</script>
+```
+
+#### mapMutations
+
+<script>
+  import { mapMutations } from 'vuex';
+
+  export default {
+    methods: {
+      ...mapMutations({
+        increment: 'increment',
+        decrement: 'decrement'
+      }),
+      otherMethod() {
+        // ...code
+      }
+    }
+  };
+</script>
+
+#### Actions for async mutations
+
