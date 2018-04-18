@@ -24,13 +24,25 @@ export const store = new Vuex.Store({
     }
   },
   mutations: {
-    increment(state) {
-      state.counter += 1;
+    increment(state, payload) {
+      state.counter += payload;
     },
-    decrement(state) {
-      state.counter -= 1;
+    decrement(state, payload) {
+      state.counter -= payload;
     }
-  }
+  },
+  actions: {
+    // synchronous actions
+    increment(context, payload) {
+      context.commit('increment', payload);
+    },
+    // asynchronous actions
+    asyncIncrement(context, payload) {
+      setTimeout(() => {
+        context.commit('increment', payload);
+      }, 1000);
+    }
+  }  
 });
 ```
 
@@ -106,3 +118,32 @@ We can use the `mapGetters` function provided by vuex. But we need to install `b
 
 #### Actions for async mutations
 
+Mutations can only execute synchronous code, if you need to do some asynchronous events before mutations, then you need to rely on actions.
+
+```js
+<script>
+  import { mapActions } from 'vuex';
+
+  export default {
+    methods: {
+      // map actions to the component
+      // under the hood, actually it's doing this.$store.dispatch('asyncIncrement', payload)
+      // if you need to pass multiple values, you can make payload as an object
+      ...mapActions({
+        asyncIncrement: 'asyncIncrement',
+        asyncDecrement: 'asyncDecrement'
+      }),
+      otherMethod() {
+        // ...code
+      }
+    }
+  };
+</script>
+```
+
+Then you can dispatch the action in your template.
+
+```html
+<!-- if you need to pass multiple values, use @click="decrement({ by: 50, duration: 1000 })" -->
+<button class="btn btn-primary" @click="decrement(100)">Decrement</button>
+```
