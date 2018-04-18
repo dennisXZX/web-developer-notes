@@ -100,6 +100,7 @@ We can use the `mapGetters` function provided by vuex. But we need to install `b
 
 #### mapMutations
 
+```js
 <script>
   import { mapMutations } from 'vuex';
 
@@ -115,6 +116,7 @@ We can use the `mapGetters` function provided by vuex. But we need to install `b
     }
   };
 </script>
+```
 
 #### Actions for async mutations
 
