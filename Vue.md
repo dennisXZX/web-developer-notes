@@ -145,7 +145,7 @@ vm.title = 'new test';
 
 Global component
 
-```
+```js
 // create a global component called todo-item
 Vue.component('todo-item', {
   data() {
@@ -154,13 +154,13 @@ Vue.component('todo-item', {
     }
   },
   props: ['todo'],
-  template: '<div>{{ msg }}</div>'
+  template: '<div>{{ todo.msg }}</div>'
 })
 ```
 
 Local component
 
-```
+```js
 // create a local component
 const todo = {
   data() {
@@ -169,7 +169,7 @@ const todo = {
     }
   },
   props: ['todo'],
-  template: '<div>{{ msg }}</div>'
+  template: '<div>{{ todo.msg }}</div>'
 }
 
 // register it in a Vue instance
@@ -194,7 +194,7 @@ In the parent template, we wrap the content inside the component tag.
 </app-quote>
 ```
 
-In the child template, we use the `<slot></slot>` tag to specify where the content should go. It is noted that the style should be defined in the child template instead of the parent one.
+In the child template (<app-quote> in this case), we use the `<slot></slot>` tag to specify where the content should go. It is noted that the style should be defined in the child template instead of the parent one.
 
 ```html
 <div>
@@ -207,12 +207,15 @@ __named slot__
 ```html
 <app-quote>
   <h2 slot="title">The Quote</h2>
+  <h2 slot="content">The content</h2>
 </app-quote>
 ```
 
 ```html
 <div>
   <slot name="title"></slot>
+  <hr />
+  <slot name="content"></slot>
 </div>
 ```
 
@@ -355,7 +358,7 @@ In the parent component we need to listen to the custom event.
 
 __v-for__
 
-```js
+```html
 // use v-for to loop through an array and print out its content
 <li v-for="todo in todos">{{todo.id}}) {{todo.text}}</li>
 
@@ -375,7 +378,7 @@ __v-for__
 
 __v-model and modifiers__
 
-```js
+```html
 // create a two-way binding
 // when the 'message' property is changed the input text will be updated and vice verse
 <input type="text" v-model="message">
@@ -394,7 +397,7 @@ __v-model and modifiers__
 
 __v-if and v-show__
 
-```js
+```html
 // show or hide an element based on the boolean value (the HTML markup is still in the DOM)
 <div v-show="viewed">hello</div>
 
@@ -413,7 +416,7 @@ __v-if and v-show__
 
 __v-bind__
 
-```js
+```html
 <button 
   // myStyle is a property which returns an object
   // based on the 'size' property, if it's bigger than 10 returns 'large' class
@@ -444,7 +447,7 @@ __v-bind__
 
 __v-once and v-pre__
 
-```js
+```html
 // render the component just once, so you cannot change its value after the first render
 <div v-text="intro" v-once>hello</div>
 
@@ -454,7 +457,7 @@ __v-once and v-pre__
 
 __v-html__
 
-```js
+```html
 // insert the HTML markup into the element
 // WARNING: this might expose your site to XSS (Cross-site Scripting) if the HTML content inserted is not properly sanitized 
 <div v-html="intro"></div>
@@ -462,7 +465,7 @@ __v-html__
 
 __v-cloak__
 
-```js
+```html
 // combine with CSS rules [v-cloak] { display: none } to hide uncompiled mustache bindings
 <div v-cloak>{{ message }}</div>
 ```
