@@ -63,6 +63,69 @@ new Vue({
 - Access the getter using `this.$store.getter.doubleCounter`
 - Commit the mutation using `this.$store.commit('increment')`
 
+#### Structure your store
+
+We can separate our state into multiple modules.
+
+```
+-- store
+   |-- modules
+   |   |-- counter.js
+   |   |-- value.js
+   |-- store.js   
+```
+
+For example, the counter.js can look something like this. 
+
+```js
+const state = {
+  counter: 0
+};
+
+const getters = {
+  doubleCounter(state) {
+    return state.counter * 2;
+  }
+};
+
+const mutations = {
+  increment(state, payload) {
+    state.counter += payload;
+  }
+};
+
+const actions = {
+  asyncIncrement(context, payload) {
+    setTimeout(() => {
+      context.commit('increment', payload);
+    }, 1000);
+  }
+};
+
+export default {
+  state,
+  getters,
+  mutations,
+  actions
+}
+```
+
+Then in the store.js, we import all the modules and place them in the modules object.
+
+```js
+import counter from './modules/counter';
+
+Vue.use(Vuex);
+
+export const store = new Vuex.Store({
+  modules: {
+    counter
+  }
+});
+```
+
+If you want to further break down your file, you can create separate `actions.js`, `getters.js` and `mutations.js` for each module.
+
 #### mapGetters
 
 For example, we have two getters and we want to map them to a computered properties.
