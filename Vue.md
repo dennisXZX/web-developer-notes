@@ -115,6 +115,7 @@ const vm = new Vue({
   },
   
   // filter is used to change the format of how content is displayed
+  // now you can use this filter in the templte as todo.text | capitalize
   filters: {
     capitalize: function(value) {
       // return an empty string if the value passed in is null
@@ -467,6 +468,7 @@ __v-cloak__
 
 ```html
 // combine with CSS rules [v-cloak] { display: none } to hide uncompiled mustache bindings
+// so the user won't see the {{ message }} on the screen when the view is not compiled
 <div v-cloak>{{ message }}</div>
 ```
 
