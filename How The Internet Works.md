@@ -75,3 +75,15 @@ Steps to disable root login
 - run `sudo vi /etc/ssh/sshd_config`
 - set `PermitRootLogin` to no
 - restert ssh `sudo service sshd restart`
+
+__Domain__
+
+Now we have our server set up, we need to bind our server IP to a domain.
+
+- Get the IP address of your VPS
+- Add 2 `A Records` with your IP address, `@` and `www`
+
+`A record` maps a name to one or more IP addresses.
+`CNAME record` maps a name to another domain name.
+`www` means when you visit www.xxxx.com, the domain would be resolved to your server IP.
+`@` means when you visit xxxx.com, the domain would also be resolved to your server IP.
