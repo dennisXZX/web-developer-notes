@@ -60,8 +60,9 @@ new Vue({
 ```
 
 - Access the state using `this.$store.state.counter`
-- Access the getter using `this.$store.getter.doubleCounter`
+- Access the getter using `this.$store.getters.doubleCounter`
 - Commit the mutation using `this.$store.commit('increment')`
+- Dispatch an action using `this.$store.dispatch('ACTION_NAME')`
 
 #### Structure your store
 
