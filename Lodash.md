@@ -1,5 +1,10 @@
 ## Lodash
 
+#### _.debounce && _.throttle
+
+- debounce: execute this function only if 100 milliseconds have passed without it being called
+- throttle: execute this function at most once every 100 milliseconds
+
 #### _.pickby
 
 Create an new object with object value or key matching the predicate.
