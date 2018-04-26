@@ -50,6 +50,29 @@ Now you can use `<router-link>` to navigate between routes.
 </p>
 ```
 
+#### Route guard
+
+- Per-Route Guard
+
+```js
+const routes = [
+  { path: '/', component: WelcomePage },
+  {
+    path: '/dashboard',
+    component: DashboardPage,
+    beforeEnter(to, from, next) {
+      // if the user is logged in then continue the route, else redirect the user
+      // the JSON Web Token is stored in the state
+      if (store.state.idToken) {
+        next()
+      } else {
+        next('/signin')
+      }
+    }
+  }
+]
+```
+
 #### Navigate from code
 
 You can push a route to the route stack by leveraging the `$router` object.
