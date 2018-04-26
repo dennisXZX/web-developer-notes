@@ -90,6 +90,8 @@ const vm = new Vue({
   },
   
   // watch any change happens to the value
+  // most of the cases we should use computed properties instead of watchers
+  // but if you need to perform asynchronous actions then watchers is the solution
   watch: {
     message: function(newValue, oldValue) {
       // reset the message 2 seconds later after the message value is changed
@@ -142,7 +144,27 @@ const vm = new Vue({
 vm.title = 'new test';
 ```
 
+#### Vue instance properties and methods
+
+`vm.$data` retrieves the data property of the Vue instance. You can also use `<pre>{{ $data }}</pre>` in the template to quickly debug the data object.
+
+`vm.$el` retrieves the element of the HTML element specified in the 'el' property.
+
+You can put a `ref` attribute to an easily refer to an DOM element. 
+
+`<button @click="show" ref="myButton">Show</button>`
+
+Then in your view model, you can refer to this button using `vm.$refs.myButton.innerText`.
+
+```js
+vm.$watch('message', function(newValue, oldValue) {
+  // This callback will be called when `vm.message` changes
+}
+```
+
 #### Create a Vue component
+
+It is important to remember that all Vue components are also Vue instances, so they accept the same options object except a few root-specific options.
 
 Global component
 
@@ -248,24 +270,6 @@ export default {
     appQuote: Quote,
     appNews: News
   }
-}
-```
-
-#### Vue instance properties and methods
-
-`vm.$data` retrieves the data property of the Vue instance. You can also use `<pre>{{ $data }}</pre>` in the template to quickly debug the data object.
-
-`vm.$el` retrieves the element of the HTML element specified in the 'el' property.
-
-You can put a `ref` attribute to an easily refer to an DOM element. 
-
-`<button @click="show" ref="myButton">Show</button>`
-
-Then in your view model, you can refer to this button using `vm.$refs.myButton.innerText`.
-
-```js
-vm.$watch('message', function(newValue, oldValue) {
-  // This callback will be called when `vm.message` changes
 }
 ```
 
@@ -422,10 +426,11 @@ __v-bind__
   // myStyle is a property which returns an object
   // based on the 'size' property, if it's bigger than 10 returns 'large' class
   // renders 'rounded' class if 'isRounded' property is true
-  v-bind:class="[myStyle, size > 10 ? 'large' : '', {'rounded': isRounded}]"
+  v-bind:class="[myStyle, size > 10 ? 'large' : '', { 'rounded': isRounded }, errorClass]"
   // v-bind:style is often used in conjunction with computed properties that return objects
   v-bind:style="styles"
-  v-bind:disabled="disabled">
+  // if isButtonDisabled has the value of null, undefined, or false, the disabled attribute will not even be included in the rendered <button> element.
+  v-bind:disabled="isButtonDisabled">
   Press Me!
 </button>
 
