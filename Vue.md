@@ -364,55 +364,55 @@ In the parent component we need to listen to the custom event.
 __v-for__
 
 ```html
-// use v-for to loop through an array and print out its content
+<!-- use v-for to loop through an array and print out its content -->
 <li v-for="todo in todos">{{todo.id}}) {{todo.text}}</li>
 
-// use v-for to execute a certain amount of times, the second 'count' is an integer, such as 10
+<!-- use v-for to execute a certain amount of times, the second 'count' is an integer, such as 10 -->
 <li v-for="count in count">#{{count}}</li>
 
-// you can retrieve the index of each array item
+<!-- you can retrieve the index of each array item -->
 <div v-for="(post, i) in posts" class="post">
   <span class="label">{{ post.label }}</span>
   <p>{{ post.title }}</p>
   <small>{{ post.author }}</small>
 </div>
 
-// you can retrieve the value, key and index of each object
+<!-- you can retrieve the value, key and index of each object -->
 <div v-for="(value, key, index) in person">{{ key }}: {{ value }}</div>
 ```
 
 __v-model and modifiers__
 
 ```html
-// create a two-way binding
-// when the 'message' property is changed the input text will be updated and vice verse
+<!-- create a two-way binding -->
+<!-- when the 'message' property is changed the input text will be updated and vice verse -->
 <input type="text" v-model="message">
 
 <!-- You can also add modifiers to v-model -->
 
-// synced after "change" event instead of "input" event
+<!-- synced after "change" event instead of "input" event -->
 <input v-model.lazy="msg" >
 
-// user input to be automatically typecast as a number
+<!-- user input to be automatically typecast as a number -->
 <input v-model.number="age" type="number">
 
-// user input to be trimmed automatically
+<!-- user input to be trimmed automatically -->
 <input v-model.trim="msg">
 ```
 
 __v-if and v-show__
 
 ```html
-// show or hide an element based on the boolean value (the HTML markup is still in the DOM)
+<!-- show or hide an element based on the boolean value (the HTML markup is still in the DOM) -->
 <div v-show="viewed">hello</div>
 
-// display or remove an element based on the boolean value (the HTML markup is not in the DOM if it's false)
+<!-- display or remove an element based on the boolean value (the HTML markup is not in the DOM if it's false) -->
 <div v-if="type === 'A'">hello</div>
 <div v-else-if="type === 'B'">hi</div>
 <div v-else>bye</div>
 
-// we can also utilize <template></template> tag to group HTML tags
-// the <template> tag would not be rendered in the DOM
+<!-- we can also utilize <template></template> tag to group HTML tags -->
+<!-- the <template> tag would not be rendered in the DOM -->
 <template v-if="show">
   <h2>Flower</h2>
   <img src="img_white_flower.jpg">
@@ -423,57 +423,57 @@ __v-bind__
 
 ```html
 <button 
-  // myStyle is a property which returns an object
-  // based on the 'size' property, if it's bigger than 10 returns 'large' class
-  // renders 'rounded' class if 'isRounded' property is true
+  <!-- myStyle is a property which returns an object -->
+  <!-- based on the 'size' property, if it's bigger than 10 returns 'large' class -->
+  <!-- renders 'rounded' class if 'isRounded' property is true -->
   v-bind:class="[myStyle, size > 10 ? 'large' : '', { 'rounded': isRounded }, errorClass]"
-  // v-bind:style is often used in conjunction with computed properties that return objects
+  <!-- v-bind:style is often used in conjunction with computed properties that return objects -->
   v-bind:style="styles"
-  // if isButtonDisabled has the value of null, undefined, or false, the disabled attribute will not even be included in the rendered <button> element.
+  <!-- if isButtonDisabled has the value of null, undefined, or false, the disabled attribute will not even be included in the rendered <button> element. -->
   v-bind:disabled="isButtonDisabled">
   Press Me!
 </button>
 
-// bind multiple styles
+<!-- bind multiple styles -->
 <div :style="{ width: playerHealth + '%', backgroundColor: playerHealthColor }">hello</div>
 
-// bind multiple style objects, both accentColor and headers are an object containing CSS styles
+<!-- bind multiple style objects, both accentColor and headers are an object containing CSS styles -->
 <div :style="[accentColor, headers]">hello</div>
 
-// mouseover event changes background color property using hue
+<!-- mouseover event changes background color property using hue -->
 <div id="app" :style="{ backgroundColor: `hsl(${colorValue}, 80%, 50%)` }" @mousemove="changeBg"></div>
 
-// bind data to a property
+<!-- bind data to a property -->
 <img :url="url" v-bind:alt="intro" v-bind:title="message"></img>
 <a :href="link">Google</a>
 
-// short-cut syntax for v-bind
+<!-- short-cut syntax for v-bind -->
 <img :url="url" :alt="intro"></img>
 ```
 
 __v-once and v-pre__
 
 ```html
-// render the component just once, so you cannot change its value after the first render
+<!-- render the component just once, so you cannot change its value after the first render -->
 <div v-text="intro" v-once>hello</div>
 
-// display the text as it is without trying to interpret
+<!-- display the text as it is without trying to interpret -->
 <div v-pre>{{hello if 2}}</div>
 ```
 
 __v-html__
 
 ```html
-// insert the HTML markup into the element
-// WARNING: this might expose your site to XSS (Cross-site Scripting) if the HTML content inserted is not properly sanitized 
+<!-- insert the HTML markup into the element -->
+<!-- WARNING: this might expose your site to XSS (Cross-site Scripting) if the HTML content inserted is not properly sanitized  -->
 <div v-html="intro"></div>
 ```
 
 __v-cloak__
 
 ```html
-// combine with CSS rules [v-cloak] { display: none } to hide uncompiled mustache bindings
-// so the user won't see the {{ message }} on the screen when the view is not compiled
+<!-- combine with CSS rules [v-cloak] { display: none } to hide uncompiled mustache bindings -->
+<!-- so the user won't see the {{ message }} on the screen when the view is not compiled -->
 <div v-cloak>{{ message }}</div>
 ```
 
@@ -507,10 +507,10 @@ export default {
 #### Events and modifers
 
 ```html
-// execute 'reset' method when the button is clicked
+<!-- execute 'reset' method when the button is clicked -->
 <button @:click="reset" class="btn btn-primary">Reset Me!</button>
 
-// multiple bindings
+<!-- multiple bindings -->
 <div v-on="
   click   : onClick,
   keyup   : onKeyup,
