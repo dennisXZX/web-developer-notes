@@ -213,3 +213,13 @@ Then you can dispatch the action in your template.
 <!-- if you need to pass multiple values, use @click="decrement({ by: 50, duration: 1000 })" -->
 <button class="btn btn-primary" @click="decrement(100)">Decrement</button>
 ```
+
+#### Dispatch action in an action
+
+We can dispatch action(s) within an action.
+
+```js
+action1: ({ commit, dispatch }) => {
+  dispatch('action2');
+}
+```
