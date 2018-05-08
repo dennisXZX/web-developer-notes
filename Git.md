@@ -158,9 +158,9 @@ Running `git pull` is equal to run `git fetch` and `git merge branchName`.
 
 #### git branch
 
-`git branch -a` to see both local and remote branches.
+`git branch newBranchName` to create a new branch.
 
-`git branch -b newBranchName` to create a new branch based on the current branch and checkout to it.
+`git branch -a` to see both local and remote branches.
 
 `git branch -d branchName` to delete a branch.
 
@@ -168,7 +168,7 @@ Running `git pull` is equal to run `git fetch` and `git merge branchName`.
 
 `git checkout branchName` to switch to a branch.
 
-`git checkout -b branchName` to create and switch to newly created branch.
+`git checkout -b branchName` to create and switch to the newly created branch.
 
 `git checkout -b branchName SHA` to create a branch based on a commit.
 
