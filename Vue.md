@@ -355,7 +355,7 @@ methods: {
 In the parent component we need to listen to the custom event.
 
 ```html
-<!-- the $event is the value emitted from the changeText event, which is this.text in this case -->
+<!-- the $event is the value emitted from the changeText event, which is the 2nd parameter (this.text) in this case -->
 <app-user-edit @changeText="name = $event"></app-user-edit>
 ```
 
