@@ -2,6 +2,8 @@
 
 #### vue-class-component
 
+[ECMAScript / TypeScript decorator for class-style Vue components](https://github.com/vuejs/vue-class-component)
+
 ```ts
 @Component({
   components: {
