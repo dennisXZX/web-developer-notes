@@ -73,7 +73,7 @@ const vm = new Vue({
   computed: {
     // a computed getter
     reversedMessage: function () {
-      // `this` points to the vm instance
+      // 'this' points to the vm instance
       return this.message.split('').reverse().join('')
     },
     // both getter and setter
@@ -150,7 +150,7 @@ vm.title = 'new test';
 
 `vm.$el` retrieves the element of the HTML element specified in the 'el' property.
 
-You can put a `ref` attribute to an easily refer to an DOM element. 
+You can use a `ref` attribute to easily refer to an DOM element. 
 
 `<button @click="show" ref="myButton">Show</button>`
 
@@ -158,7 +158,7 @@ Then in your view model, you can refer to this button using `vm.$refs.myButton.i
 
 ```js
 vm.$watch('message', function(newValue, oldValue) {
-  // This callback will be called when `vm.message` changes
+  // This callback will be called when 'vm.message' changes
 }
 ```
 
@@ -217,7 +217,7 @@ In the parent template, we wrap the content inside the component tag.
 </app-quote>
 ```
 
-In the child template (<app-quote> in this case), we use the `<slot></slot>` tag to specify where the content should go. It is noted that the style should be defined in the child template instead of the parent one.
+In the child template (`<app-quote>` in this case), we use the `<slot></slot>` tag to specify where the content should go. It is noted that the style should be defined in the child template instead of the parent one.
 
 ```html
 <div>
