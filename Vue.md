@@ -1,5 +1,52 @@
 ## Vue
 
+#### vue-class-component
+
+```ts
+@Component({
+  components: {
+    NotificationList,
+    ProfileNav
+  },
+  props: {
+    propMessage: String
+  },
+  filters: {
+    sideBarClass (show) {
+      return show ? 'artefact-page__right--show' : 'artefact-page__right--hidden';
+    }
+  },
+  watch: {
+    '$store.getters.currentHistoryEvent.revisionStatusId' () {
+      this.handleNewHistoryEvent();
+    }
+  }  
+})
+export default class App extends Vue {
+  // initial data
+  msg = 123;
+
+  // use prop values for initial data
+  helloMsg = 'Hello, ' + this.propMessage;
+
+  // lifecycle hook
+  mounted () {
+    this.greet();
+  }
+
+  // computed
+  get computedMsg () {
+    return 'computed ' + this.msg;
+  }
+
+  // method
+  greet () {
+    alert('greeting: ' + this.msg);
+  }
+}
+</script>
+```
+
 #### Mixin
 
 When you need to share some data or computed values among components, you can use `mixin`. It is important to note that the properties on the data object are replicated on each component instead of sharing the same ones.
