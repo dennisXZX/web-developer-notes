@@ -1,5 +1,12 @@
 ## Chrome DevTools
 
+#### Copy object from console or XHR request or response
+
+- Right click on the object and select `Store as Global Variable`
+- A global variable named `temp1` would be created
+- Use `copy(temp1)` to copy the object
+- Paste the copied object to anywhere you like
+
 #### Refresh options
 
 When Google DevTools is open, long click or right click on the refresh button we should see a list of refresh options.
