@@ -11,7 +11,10 @@
     ProfileNav
   },
   props: {
-    propMessage: String
+    propMessage1: String,
+    propMessage2: {
+      default: 'default value'
+    }
   },
   filters: {
     sideBarClass (show) {
