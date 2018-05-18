@@ -1,5 +1,26 @@
 ## Node.js
 
+#### Path Module
+
+The `path` module makes your life easier when working with path.
+
+```js
+const path = require('path');
+
+
+/*
+ * parse the string variable __filename into an object
+    { 
+      root: '/',
+      dir: '/Users/dennisxiao/Practices/nodejs',
+      base: 'test.js',
+      ext: '.js',
+      name: 'test' 
+    }
+*/
+const pathObj = path.parse(__filename);
+```
+
 #### File System Module
 
 The `fs` module contains both synchronous and asynchronous methods, however, we should always use the asyn one in our app. The asyn method usually takes a callback function, which will be executed when the file operation is done.
@@ -39,17 +60,20 @@ It is important to remember you need to register the event before emitting them.
 
 Node.js is not a programming language or framework. It is a runtime environment written in C++ for executing Javascript code with the V8 Javascript engine embedded. It is suitable for real time application but not CPU-intensive application.
 
-When we declare a variable in a client-side Javascript environment (browser), it is automatically added to the `window` global object. However, in Node environment, the variable is scoped to the file in which it is declared and would not contaminate the `global` object. This is because in Node, every file is a separate module, which means variables and functions declared inside can only be accessed within the file. Node achieves this modularity by wrapping your code in an IIFE `function (exports, require, module, __filename, __dirname)` in each file. If you want to expose any variable or function to other module. You need to explicitly export them in the module. 
+When we declare a variable in a client-side Javascript environment (browser), it is automatically added to the `window` global object. However, in Node environment, the variable is scoped to the file in which it is declared and would not contaminate the `global` object. This is because in Node, every file is a separate module, which means variables and functions declared inside can only be accessed within the file. Node achieves this modularity by wrapping your code in an IIFE `function (exports, require, module, __filename, __dirname)` in each file. The `require` method, `exports` and `module` objects you can access in each file are actually being passed in as parameters.
+
+If you want to expose any variable or function to other modules. You need to explicitly export them in the module. 
 
 ```js
 const url = 'http://dennisxiao.com';
 
 function log(message) {
-  // send an http request
-  console.log(message);
+  // send an HTTP request to the URL to log messages to the cloud
 }
 
-// export a variable called endPoint
+// export a variable called endPoint and the log method
+// now if you console.log(module), you would see them in the exports object
+// exports: { endPoint: 'http://dennisxiao.com', log: [Function: log] }
 module.exports.endPoint = url;
 module.exports.log = log;
 
@@ -62,6 +86,7 @@ You can export just a function by using `module.exports = log`.
 In order to load a module, you need to use `require()`.
 
 ```js
+// the variable logger now stores whatever is being exported in logger module
 const logger = require(./logger);
 ```
 
