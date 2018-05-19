@@ -1,5 +1,34 @@
 ## Node.js
 
+#### HTTP Module
+
+We can use HTTP module to build a simple backend.
+
+```js
+const http = require('http')
+
+const server = http.createServer((req, res) => {
+  // handle the root route
+  if (req.url === '/') {
+    res.write('hello world')
+    res.end()
+  }
+
+  // the api route returns a string which represents a JSON object
+  if (req.url === '/api/courses') {
+    res.write(JSON.stringify({
+      id: 0,
+      name: 'dennis'
+    }))
+    res.end()
+  }
+})
+
+server.listen(3000)
+
+console.log('listening on port 3000')
+```
+
 #### Path Module
 
 The `path` module makes your life easier when working with path.
@@ -60,7 +89,7 @@ emitter.emit('messageLogged', {
 
 It is important to remember you need to register the event before emitting them.
 
-However, it is not usual to work directly with an EventEmitter instance. We normally wrap it in a class.
+However, it is not usual to work directly with an EventEmitter instance. We normally create a class and extend EventEmitter.
 
 ```js
 /* logger.js */
