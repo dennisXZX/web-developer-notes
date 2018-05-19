@@ -7,7 +7,6 @@ The `path` module makes your life easier when working with path.
 ```js
 const path = require('path');
 
-
 /*
  * parse the string variable __filename into an object
     { 
@@ -46,15 +45,65 @@ const EventEmitter = require('events');
 const emitter = new EventEmitter();
 
 // register a listener, you can use both addListener() or on() to register a listener
-emitter.on('messageLogged', () => {
-  console.log('message logged');
-});
+// when a 'messageLogged' event happens, the callback function will be executed
+emitter.on('messageLogged', (arg) => {
+  // the arg is the data raised from the event messageLogged
+  console.log(arg)
+})
 
-// raise an event
-emitter.emit('messageLogged');
+// raise an event with an object
+emitter.emit('messageLogged', {
+  id: 1,
+  url: 'http://dennis.com'
+})
 ```
 
 It is important to remember you need to register the event before emitting them.
+
+However, it is not usual to work directly with an EventEmitter instance. We normally wrap it in a class.
+
+```js
+/* logger.js */
+
+const EventEmitter = require('events')
+
+// extend EventEmitter class so the Logger class can also emit an event
+class Logger extends EventEmitter {
+  
+  // define a method
+  log(message) {
+    console.log(message)
+
+    // emit a messageLogged event with an object
+    this.emit('messageLogged', {
+      id: 1,
+      url: 'http://dennis.com'
+    })
+  }
+}
+
+// export the Logger class
+module.exports = Logger;
+```
+
+```js
+/* app.js */
+
+// import the Logger class
+const Logger = require('./logger')
+// create a Logger instance
+const logger = new Logger()
+
+// register a listener on messageLogged event
+// which can be emitted by the log(message) method in the Logger class
+// when a messageLogged event happens, a callback function is executed
+logger.on('messageLogged', (arg) => {
+  console.log(arg)
+})
+
+// call the log() method
+logger.log('message')
+```
 
 #### Fundamentals
 
