@@ -13,11 +13,11 @@ Update a package
 - Change the version number in `package.json` by running `npm version major|minor|patch`
 - `npm publish` to publish the updated package
 
-#### Update packages
+#### Update outdated packages
 
 `npm outdated` to check outdated local packages. You can add `-g` flag to check global outdated packages.
 
-Run `npm update` to update the outdated packages, however, this will only update minor and patch versions. You would need to run `npm i packageName` to install the latest package version.
+Run `npm update` to update the outdated packages, however, this will only update minor and patch versions. You would need to run `npm i packageName` to install the latest package.
 
 #### View registry info of a package
 
@@ -34,8 +34,8 @@ You can create a `Package.json` with default settings by running `npm init --yes
 NPM packages follow a semantic versioning pattern, such as, `^4.13.6`, which represents `Major.Minor.Patch`.
 
 - Patch version is for bug fix.
-- Minor version is for adding new feature that don't break existing API
-- Major version is for adding new feature that potentially break the existing API
+- Minor version is for adding new features that don't break existing APIs
+- Major version is for adding new features that potentially might break the existing APIs
 
 `^4.13.6`: The caret (^) indicates that we would use the latest package as long as the major version stay the same
 
@@ -46,7 +46,7 @@ NPM packages follow a semantic versioning pattern, such as, `^4.13.6`, which rep
 #### Install a package with a specific version
 
 ```bash
-// use the @ indicator to specify a package version
+// use the @ operator to specify a package version
 (sudo) npm i -g npm@5.5.1
 ```
 
@@ -96,7 +96,7 @@ We can use `concurrently` package to run multiple scripts at the same time.
   // running "npm run client" will actually run the command "npm run start" in the client folder
   "client": "npm run start --prefix client",
   
-  // use concurrently to run backend and frontend server at the same time
+  // use concurrently to run backend and frontend dev servers at the same time
   "dev": "concurrently \"npm run server\" \"npm run client\""
   
   // run Webpack with a specified config file and in watch mode
