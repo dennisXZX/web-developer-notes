@@ -1,10 +1,60 @@
 ## NPM
 
+#### Publish and update a package
+
+Publish a package
+
+- `npm login` to login your NPM account
+- `npm publish` to publish the package
+
+Update a package
+
+- Make changes to your package
+- Change the version number in `package.json` by running `npm version major|minor|patch`
+- `npm publish` to publish the updated package
+
+#### Update packages
+
+`npm outdated` to check outdated local packages. You can add `-g` flag to check global outdated packages.
+
+Run `npm update` to update the outdated packages, however, this will only update minor and patch versions. You would need to run `npm i packageName` to install the latest package version.
+
+#### View registry info of a package
+
+- `npm view packageName dependencies` to view all the dependencies of a package
+
+- `npm view packageName versions` to view all the released versions of a package
+
+#### NPM initiation
+
+You can create a `Package.json` with default settings by running `npm init --yes`.
+
+#### Semantic versioning
+
+NPM packages follow a semantic versioning pattern, such as, `^4.13.6`, which represents `Major.Minor.Patch`.
+
+- Patch version is for bug fix.
+- Minor version is for adding new feature that don't break existing API
+- Major version is for adding new feature that potentially break the existing API
+
+`^4.13.6`: The caret (^) indicates that we would use the latest package as long as the major version stay the same
+
+`~4.13.6`: The tilde (~) indicates that we would use the latest package as long as the major and minor version stay the same
+
+`4.13.6`: NPM would install exactly the same version
+
+#### Install a package with a specific version
+
+```bash
+// use the @ indicator to specify a package version
+(sudo) npm i -g npm@5.5.1
+```
+
 #### Lock the package version
 
 You can use the `--save-exact` flag to lock the package version.
 
-```
+```bash
 npm i angularfire2@4.0.0-rc.2 --save --save-exact
 ```
 
@@ -12,7 +62,7 @@ npm i angularfire2@4.0.0-rc.2 --save --save-exact
 
 You can just install dev dependencies by running the following command.
 
-```
+```bash
 npm install --only=dev
 ```
 
