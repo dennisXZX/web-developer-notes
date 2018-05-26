@@ -411,6 +411,22 @@ In the parent component we need to listen to the custom event.
 <app-user-edit @changeText="name = $event"></app-user-edit>
 ```
 
+If the event handler is a method, the value will be passed as the first parameter of that method.
+
+```html
+<!-- parent component listen to the changeText event -->
+<blog-post
+  ...
+  :changeText="onChangeText"
+></blog-post>
+```
+
+```js
+onChangeText: function (enlargeAmount) {
+  this.postFontSize += enlargeAmount
+}
+```
+
 #### Directive
 
 __v-for__
