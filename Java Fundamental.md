@@ -39,3 +39,52 @@ Type conversion can be performed explicitly with cast operator.
 
 long lVal = 50;
 int iVal = (int) lVal;
+
+#### Relational Operators
+
+Most of them are the same as Javascript, just need to be aware that equal to is `==` in Java. There is no such a thing as strict equal `===` as in Javascript.
+
+#### Logical Operators
+
+- And: `&`
+- Or: `|`
+- Exclusive or (XOR): `^` (return true in these situations: `false ^ true`, `true ^ false`)
+- Negation: `!`
+
+Conditional logical operators only execute the right-side if needed to determine the result.
+
+- Conditional and: `&&`
+- Conditional or `||`
+
+#### Array
+
+```java
+
+// create a new array holding float values
+float[] theVals = {
+  10.0f, 20.0f, 30.0f
+};
+
+float sum = 0.0f;
+
+// iterate through an array
+for (int i = 0; i < theVals.length; i++) {
+  sum += theVals[i];
+}
+
+System.out.println(sum);
+```
+
+For each loop
+
+```java
+int[] vals = {
+  13, 15, 18
+};
+
+for (int currentVal: vals) {
+  System.out.println(currentVal);
+}
+```
+
+#### Class
