@@ -88,3 +88,32 @@ for (int currentVal: vals) {
 ```
 
 #### Class
+
+Normally each class should have its own file which names after the class name.
+
+```java
+public class Flight {
+  int passengers;
+  int seats;
+
+  // constructor
+  Flight () {
+    seats = 150;
+    passengers = 0;
+  }
+
+  void add1Passenger () {
+    if (passengers < seats) {
+      passengers += 1;
+    }
+  }
+}
+```
+
+You can create an instance out of a class by `Flight flight1 = new Flight();`.
+
+#### Modifiers
+
+- no access modifier: only within its own package
+- public: everywhere
+- private: only within its own class
