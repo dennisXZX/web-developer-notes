@@ -1,5 +1,23 @@
 ## Javascript
 
+#### Execution Context and call stack
+
+When we run a Javascript file, it creates a global execution context, which contains a thread to run the code synchronously line by line. In addition, a globl variable environment is created to store variables and functions for the global execution context. When a function is executed in the global execution context, a local execution context is created, in which there is a local thread along with a local variable environment for storing local variables and functions.
+
+Javascript uses a call stack to keep track of which execution context it is currently in. It starts with the global execution context. When a function is called, a local execution context is pushed into the call stack. And the local execution context is popped out when the function returns explicitly or implicitly (the value `undefined`).
+
+```
+|                            |
+|_ Local Excution Context B _|
+|_ Local Excution Context A _|
+|_ Global Excution Context_ _|
+          CALL STACK
+```
+
+Javascript engine parses your code and convert it to runnable commands (V8 for both Chrome and NodeJS).
+
+Javascript runtime provides some objects to Javascript so that it can interact with the outside world. In Chrome, you have the `global window variable and DOM objects`, while in NodeJS offers you `require, Buffers and processes`. 
+
 #### Enum in Javascript
 
 Typescript has a new feature called Enum which help group similar values together.
