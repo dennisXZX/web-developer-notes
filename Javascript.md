@@ -4,6 +4,15 @@
 
 When we run a Javascript file, it creates a global execution context, which contains a thread to run the code synchronously line by line. In addition, a globl variable environment is created to store variables and functions for the global execution context. When a function is executed in the global execution context, a local execution context is created, in which there is a local thread along with a local variable environment for storing local variables and functions.
 
+```
+|---------|-------------|
+|  thread |   variable  |      
+|  to run | environment |
+|   code  |             |
+|_________|_____________|
+    EXECUTION CONTEXT
+```
+
 Javascript uses a call stack to keep track of which execution context it is currently in. It starts with the global execution context. When a function is called, a local execution context is pushed into the call stack. And the local execution context is popped out when the function returns explicitly or implicitly (the value `undefined`).
 
 ```
