@@ -73,9 +73,9 @@ type deck []string
 // the receiver (d deck) specifies that any value of type deck can call this function
 // the d is the thing that calls the function
 func (d deck) print() {
-	// iterate through a slice
-	for i, card := range d {
-		fmt.Println(i, card)
-	}
+  // iterate through a slice
+  for i, card := range d {
+    fmt.Println(i, card)
+  }
 }
 ```
