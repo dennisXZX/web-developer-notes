@@ -1,11 +1,22 @@
 ## CSS
 
+#### Make icon overlay effect
+
+<img src="./images/icon-overlay.png" width="132" height="50">
+
+```css
+// this will select the 2, 4, 6 ...etc elements
+.thumbnail:nth-child(n + 2) {
+  margin-left: -10px;
+}
+ ```
+
 #### Make a link not clickable
 
 ```css
 .inactiveLink {
-   pointer-events: none;
-   cursor: default;
+  pointer-events: none;
+  cursor: default;
 }
 ```
 
