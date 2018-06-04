@@ -5,7 +5,7 @@
 <img src="./images/icon-overlay.png" width="132" height="50">
 
 ```css
-// this will select the 2, 4, 6 ...etc elements
+/* this will select the 2, 4, 6 ...etc elements */
 .thumbnail:nth-child(n + 2) {
   margin-left: -10px;
 }
