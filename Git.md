@@ -54,7 +54,9 @@ git flow hotfix finish hotfix_branch
 
 #### git status
 
-Navigate into a subfolder and use `git status .` to get status of the subfolder.
+Navigate into a subfolder and use `git status .` to get status of just the subfolder.
+
+`git status --short` to display compact status.
 
 #### git grep
 
