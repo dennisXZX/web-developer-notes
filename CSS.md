@@ -88,10 +88,10 @@ The `top` and `left` position the element based on its parent container, while t
 The `clip-path` property specifies a specific region of an element to display.
 
 ```css
-// clip a rectangle
+/* clip a rectangle */
 clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
 
-// clip a triangle
+/* clip a triangle */
 clip-path: polygon(50% 0, 100% 100%, 0 100%);
 ```
 
@@ -145,7 +145,7 @@ Element(__) - a part of a block that has no standalone meaning and is semantical
 Modifier(--) - a flag on a block or element to change appearance or behavior
 
 ```css
-// prefix-block__element--modifier
+/* prefix-block__element--modifier */
 .eh-toolbar__arrow-btn--selected
 ```
 
@@ -154,12 +154,12 @@ Modifier(--) - a flag on a block or element to change appearance or behavior
 Mobile first design should write CSS for mobile screen first then use `min-width` media queries to write styles for larger screens.
 
 ```css
-// This applies from 0px to 600px
+/* This applies from 0px to 600px */
 body {
   background: red;
 }
 
-// This applies for larger screen from 600px onwards
+/* This applies for larger screen from 600px onwards */
 @media (min-width: 600px) {
   body {
     background: green;
@@ -187,7 +187,7 @@ body {
 This can be achieved by using the `:hover` selector on the parent element.
 
 ```css
-// change the color of .child-element when you hover .parent-element
+/* change the color of .child-element when you hover .parent-element */
 .parent-element:hover .child-element {
   color: #3ec7de;
 }
