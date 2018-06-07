@@ -1,6 +1,6 @@
 ## Javascript
 
-#### Execution Context and call stack
+#### Execution Context, call stack and lexical scope
 
 When we run a Javascript file, it creates a global execution context, which contains a thread to run the code synchronously line by line. In addition, a globl variable environment is created to store variables and functions for the global execution context. When a function is executed in the global execution context, a local execution context is created, in which there is a local thread along with a local variable environment for storing local variables and functions.
 
@@ -26,6 +26,24 @@ Javascript uses a call stack to keep track of which execution context it is curr
 Javascript engine parses your code and convert it to runnable commands (V8 for both Chrome and NodeJS).
 
 Javascript runtime provides some objects to Javascript so that it can interact with the outside world. In Chrome, you have the `global window variable and DOM objects`, while in NodeJS offers you `require, Buffers and processes`. 
+
+Now let's take a look at lexical scope.
+
+```js
+function outer() {
+    let counter = 0;
+    function incrementCounter () {
+        counter++;
+    }
+    return incrementCounter;
+}
+
+let myNewFunction = outer();
+myNewFunction();
+myNewFunction();
+```
+
+When a function is defined it gets a `[[scope]]` property that references the variable environment in which it has been defined. Wherever we call that incrementCounter function, it will always look first in its immediate variable environment, and then in the `[[scope]]` property next before it looks any further up.
 
 #### Enum in Javascript
 
