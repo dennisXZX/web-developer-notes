@@ -1,16 +1,90 @@
 ## Javascript
 
+#### __proto__ vs prototype
+
+When we run `Object.create(userFunctionStore);`, the object stored in `userFunctionStore` variable will be added to the `__proto__` property of the new object created by `Object.create()`. So later when we call increment() method on user1 object `user1.increment();`, Javascript will first check if the user1 object has a method named increment, if it cannot find it there, it will look into its `__proto__` property. This is known as prototype chain.
+
+```js
+function userCreator(name, score) {
+  // create an empty object and refer userFunctionStore object as its __proto__ property value
+  let newUser = Object.create(userFunctionStore);
+  newUser.name = name;
+  newUser.score = score;
+  return newUser;
+}
+
+let userFunctionStore = {
+  increment: function() { this.score++; },
+  login: function() { console.log('you are logged in') }
+}
+
+let user1 = userCreator('Dennis', 85);
+
+// the increment() method is stored in the userFunctionStore object
+// since userFunctionStore is now the object referred by user1.__proto__
+// so it's possible to access increment() on user1 object
+user1.increment();
+```
+
+The `new` keyword simplifies things a bit, which automatically creates a new object and returns it. In addition, the `new` keyword also automatically creates a bond to the `prototype` property of the constructor function.
+
+```js
+// User object would have a prototype property
+function User(name, score) {
+  this.name = name;
+  this.score = score;
+}
+
+User.prototype.increment = function() {
+  this.score++;
+}
+
+User.prototype.login = function() {
+  console.log('login');
+}
+
+// create a new User object, which has a __proto__ property that refers to the User.prototype object
+let user1 = new User('Dennis', 85);
+
+// the increment() method is stored in the User.prototype object
+user1.increment();
+```
+
+In ES6, the class syntactic sugar to make things even simpler, however, under the hood it remains the same as the above code.
+
+```js
+class User {
+  constructor (name, score) {
+    this.name = name;
+    this.score = score;
+  }
+  
+  increment () {
+    this.score++;
+  }
+  
+  login () {
+    console.log('login');
+  }
+}
+
+let user1 = new User('Dennis', 85);
+user1.increment();
+```
+
+Look [here](https://github.com/dennisXZX/dennisxzx.blog.github.io-deprecated/blob/master/_posts/2017-4-27-How-Prototypes-Work.md) for a deep drive into the difference between `__proto__` and `prototype`.
+
 #### Web browser API, callback queue and event loop
 
 What would be the output if we run the following code?
 
 ```js
 function printHello() {
-    console.log('hello');
+  console.log('hello');
 }
 
 function blockForOneSec() {
-    // blocks in the Javascript thread for 1 second
+  // blocks in the Javascript thread for 1 second
 }
 
 setTimeout(printHello, 0);
@@ -22,7 +96,7 @@ console.log('me first!');
 
 The result will be seeing 'me first' in the console after about 1001 milliseconds and 'hello' after 1002 milliseconds.
 
-This is because when the setTimeout (browser API) completes, the deferred function will be placed in a `callback queue`. The defferred function will be added to the call stack only when the call stack is totally empty. A event loop is used to keep track of this condition.
+This is because when the setTimeout (browser API) completes, the deferred function will be placed in a `callback queue`. The defferred function will be added to the call stack only when the call stack is totally empty and no other code need to be run in the global thread. A event loop is used to keep track of this condition.
 
 #### Execution context, call stack and lexical scope (closure)
 
@@ -49,17 +123,17 @@ Javascript uses a call stack to keep track of which execution context it is curr
 
 Javascript engine parses your code and convert it to runnable commands (V8 for both Chrome and NodeJS).
 
-Javascript runtime provides some objects to Javascript so that it can interact with the outside world. In Chrome, you have the `global window variable and DOM objects`, while in NodeJS offers you `require, Buffers and processes`. 
+Javascript runtime provides some objects to Javascript so that it can interact with the outside world. In Chrome, you have the `browser API, DOM, events and timers`, while in NodeJS offers you `Node API, IO, events and timers`. 
 
 Now let's take a look at lexical scope (closure).
 
 ```js
 function outer() {
-    let counter = 0;
-    function incrementCounter () {
-        counter++;
-    }
-    return incrementCounter;
+  let counter = 0;
+  function incrementCounter () {
+    counter++;
+  }
+  return incrementCounter;
 }
 
 let myNewFunction = outer();
