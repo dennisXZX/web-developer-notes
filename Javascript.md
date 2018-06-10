@@ -26,7 +26,7 @@ let user1 = userCreator('Dennis', 85);
 user1.increment();
 ```
 
-The `new` keyword simplifies things a bit, which automatically creates a new object and returns it. In addition, the `new` keyword also automatically creates a bond to the `prototype` property of the constructor function.
+The `new` keyword simplifies things a bit, which automatically creates a new object and returns it. In addition, the `new` keyword also creates a bond to the `prototype` property of the constructor function by default.
 
 ```js
 // User object would have a prototype property
@@ -50,7 +50,7 @@ let user1 = new User('Dennis', 85);
 user1.increment();
 ```
 
-In ES6, the class syntactic sugar to make things even simpler, however, under the hood it remains the same as the above code.
+In ES6, the class syntactic sugar makes things even simpler, however, under the hood it still uses prototype to make it work.
 
 ```js
 class User {
@@ -69,6 +69,7 @@ class User {
 }
 
 let user1 = new User('Dennis', 85);
+
 user1.increment();
 ```
 
@@ -96,7 +97,7 @@ console.log('me first!');
 
 The result will be seeing 'me first' in the console after about 1001 milliseconds and 'hello' after 1002 milliseconds.
 
-This is because when the setTimeout (browser API) completes, the deferred function will be placed in a `callback queue`. The defferred function will be added to the call stack only when the call stack is totally empty and no other code need to be run in the global thread. A event loop is used to keep track of this condition.
+This is because when the setTimeout (browser API) completes, the deferred function will be placed in a `callback queue`. The defferred function will be added to the call stack only when the call stack is totally empty and no other code need to be run in the global thread. A `event loop` mechanism is used to keep track of this condition.
 
 #### Execution context, call stack and lexical scope (closure)
 
