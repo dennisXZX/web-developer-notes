@@ -1,5 +1,18 @@
 ## Git
 
+#### Fundamentals
+
+At its core, Git is like a key value store. The key is a SHA1 (40-digit hexadecimal number), the value is the compressed data called `blob`.
+
+```
+// ask Git for the SHA1 of the contents
+echo 'Hello' | git hash-object --stdin
+
+// generate SHA1 of the contents with metadata
+// blob indicates it's a blob, 14 is the file size, \0 is the delimiter
+echo 'blob 14\0Hello' | openssl sha1
+```
+
 #### Gitflow
 
 GitFlow is a branching model that standardizes branching and merging policy. It uses two branches to record the history of the project. The `master` branch stores the offcial release history, and the `develop` branch serves as an integration branch for features. We can also tag all commits in the `master` branch with a version number.
