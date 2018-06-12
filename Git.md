@@ -2,7 +2,7 @@
 
 #### Fundamentals
 
-At its core, Git is like a key value store. The key is a SHA1 (40-digit hexadecimal number), the value is the compressed data called `blob`.
+At its core, Git is like a key value store. The key is a SHA1 (40-digit hexadecimal number), the value is the compressed data called `blob`, which represents a single file.  For directory, it is stored in a `tree`. In Git, the same content would only be stored once, which means two identical `blobs` would have exactly the same SHA1 key. All the data about our repository is stored in the hidden `.git` directory.
 
 ```
 // ask Git for the SHA1 of the contents
@@ -11,6 +11,16 @@ echo 'Hello' | git hash-object --stdin
 // generate SHA1 of the contents with metadata
 // blob indicates it's a blob, 14 is the file size, \0 is the delimiter
 echo 'blob 14\0Hello' | openssl sha1
+```
+
+In Git, a commit is a code snapshot. Commits point to parent commits and trees.
+
+```
+// look at the type of the object using a plumbing command
+git cat-file -t 980a0
+
+// look at the content of the object using a plumbing command
+git cat-file -p 980a0
 ```
 
 #### Gitflow
