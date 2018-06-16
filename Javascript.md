@@ -75,7 +75,7 @@ user1.increment();
 
 Look [here](https://github.com/dennisXZX/dennisxzx.blog.github.io-deprecated/blob/master/_posts/2017-4-27-How-Prototypes-Work.md) for a deep drive into the difference between `__proto__` and `prototype`.
 
-#### Web browser API, callback queue and event loop
+#### Web browser API, event queue and event loop
 
 What would be the output if we run the following code?
 
@@ -97,7 +97,7 @@ console.log('me first!');
 
 The result will be seeing 'me first' in the console after about 1001 milliseconds and 'hello' after 1002 milliseconds.
 
-This is because when the setTimeout (browser API) completes, the deferred function will be placed in a `callback queue`. The defferred function will be added to the call stack only when the call stack is totally empty and no other code need to be run in the global thread. A `event loop` mechanism is used to keep track of this condition.
+This is because when the setTimeout (browser API) completes, the deferred function will be placed in an `event queue`. The defferred function will be added to the call stack only when the call stack is totally empty and no other code need to be run in the global thread. A `event loop` mechanism is used to keep track of this condition. The `event loop` constantly checks for the `event queue` and takes the event at the top of the queue and processes it.
 
 #### Execution context, call stack and lexical scope (closure)
 
