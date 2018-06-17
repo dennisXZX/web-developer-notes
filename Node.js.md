@@ -51,7 +51,7 @@ const pathObj = path.parse(__filename);
 
 #### File System Module
 
-The `fs` module contains both synchronous and asynchronous methods, however, we should always use the asyn one in our app. The asyn method usually takes a callback function, which will be executed when the file operation is done.
+The `fs` module contains both synchronous and asynchronous methods, however, we should always use the asyn ones in our app. The asyn methods usually take a callback function, which will be executed when the file operation is done.
 
 ```js
 const fs = require('fs');
@@ -76,11 +76,11 @@ const emitter = new EventEmitter();
 // register a listener, you can use both addListener() or on() to register a listener
 // when a 'messageLogged' event happens, the callback function will be executed
 emitter.on('messageLogged', (arg) => {
-  // the arg is the data raised from the event messageLogged
+  // the arg is the data emitted from the event messageLogged event
   console.log(arg)
 })
 
-// raise an event with an object
+// emit an event with an object
 emitter.emit('messageLogged', {
   id: 1,
   url: 'http://dennis.com'
@@ -100,7 +100,7 @@ const EventEmitter = require('events')
 class Logger extends EventEmitter {
   
   // define a method
-  log(message) {
+  log (message) {
     console.log(message)
 
     // emit a messageLogged event with an object
