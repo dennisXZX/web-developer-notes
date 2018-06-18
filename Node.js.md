@@ -138,7 +138,7 @@ logger.log('message')
 
 Node.js is not a programming language or framework. It is a runtime environment written in C++ for executing Javascript code with the V8 Javascript engine embedded. It is suitable for real time application but not CPU-intensive application.
 
-When we declare a variable in a client-side Javascript environment (browser), it is automatically added to the `window` global object. However, in Node environment, the variable is scoped to the file in which it is declared and would not contaminate the `global` object. This is because in Node, every file is a separate module, which means variables and functions declared inside can only be accessed within the file. Node achieves this modularity by wrapping your code in an IIFE `function (exports, require, module, __filename, __dirname)` in each file. The `require` method, `exports` and `module` objects you can access in each file are actually being passed in as parameters.
+When we declare a variable in a client-side Javascript environment (browser), it is automatically added to the `window` global object. However, in Node environment, variables are scoped to the file in which they are declared and would not contaminate the `global` object. This is because in Node, every file lives in a separate module, which means variables and functions declared inside can only be accessed within the file. Node achieves this modularity by wrapping your code in an IIFE `function (exports, require, module, __filename, __dirname)` in each file. The `require` method, `exports` and `module` objects you can access in each file are actually being passed into the IIFE as parameters.
 
 If you want to expose any variable or function to other modules. You need to explicitly export them in the module. 
 
