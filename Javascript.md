@@ -1,5 +1,13 @@
 ## Javascript
 
+#### Compiler
+
+The Javascript compiler works in two distinct phases, compilation phase and execution phase.
+
+In compilation phase, the Javascript compiler looks through the code and finds out all the variable and function declarations. In addition, it determines what scope these variables and functions are in (scope resolution). The result of this compilation phase is commonly known as `hoisting`.
+
+In execution phase, the Javascript compiler executes the code line by line from top to bottom.
+
 #### __proto__ vs prototype
 
 When we run `Object.create(userFunctionStore);`, the object stored in `userFunctionStore` variable will be added to the `__proto__` property of the new object created by `Object.create()`. So later when we call increment() method on user1 object `user1.increment();`, Javascript will first check if the user1 object has a method named increment, if it cannot find it there, it will look into its `__proto__` property. This is known as prototype chain.
@@ -568,7 +576,7 @@ mycallback = function(data) {
   
 #### Explain "hoisting".
 
-To put it simply, when you declare a variable or a function, it will be hoisted (in layman's terms) to the top of the scope (global scope or function scope). So you can use the variable or call the function even before its declaration. It is important to note that the hoisting applies only to function declaration, not function expression.
+To put it simply, when you declare a variable or a function, it will be hoisted (in layman's terms) to the top of the scope (global scope or function scope). So you can use the variable or call the function even before its declaration. It is important to note that the hoisting applies only to function declaration, not function expression. Another thing to note is functions will be hoisted before variables, so if there is a function named 'bar' and a variable named the same, the variable 'bar' will be ignored because it has already been declared by the function declaration.
 
 But the above statement glosses over a lot of details. The 'hoisting' is actually caused by the way how Javascript engines works. Javascript code interpretation is performed in two phases. During the first phase, the interpreter parses variable and function declarations and put them in memory. This phrase is commonly known as 'hoisting'. In phase two, Javascript engine starts to execute the code. Since variable and function declarations have already been placed in memory in the parsing phrase, that is why we can invoke them in our code before their declarations.
 
@@ -588,9 +596,7 @@ function sayHello () {
 
   hello()
 
-  var hello = function () {
-    console.log('Hey!')
-  }
+  var hello = 10;
 }
 ```
 
