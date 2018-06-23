@@ -14,7 +14,9 @@
 
 - Copy & paste text from the clipboard
 
+`less fileName | pbcopy` or `pbcopy < fileName`
+
+- Paste the content of your clipboard
 ```
-less fileName | pbcopy
 echo `pbpaste`
 ```
