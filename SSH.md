@@ -1,6 +1,6 @@
 ## SSH (Secure Shell)
 
-#### Fundamentals
+#### Connect to a server using SSH
 
 Connect to server using SSH and install Git
 
@@ -20,8 +20,15 @@ Copy some files from your laptop to server
 ~/D/yourSite rsync -av . root@167.34.44.12:~/projects/dennisxiao.com
 ```
 
-#### Symmetrical Encryption
+#### Generate a public/private key pair
 
-#### Asymmetrical Encryption
+```
+// generate a pair of keys
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 
-#### Hashing
+// copy the public key
+pbcopy < ~/.ssh/id_rsa.pub
+
+// add the public key to ssh-agent
+ssh-add ~/.ssh/id_rsa.pub
+```
