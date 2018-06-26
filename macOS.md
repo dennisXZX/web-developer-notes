@@ -1,5 +1,9 @@
 ## macOS
 
+#### Shortcut to get focus on browser address bar
+
+`Command + l`
+
 #### Switch between different windows for the same app
 
 `Command + ~`
