@@ -2,14 +2,15 @@
 
 #### Basic Workflow of Redux
 
-1. create an action type config file for all the action constants
-2. create an initial state object for each reducer as a default state (optional)
-3. create a bunch of reducers, in each reducer we need to provide logic for handling each action type (usually in a switch statement). We should not directly mutate state in reducers. Also keep in mind that all reducers get called regardless of what action is emitted, so we have to return the original state if an action is not applicable.
-4. combine all the reducers into one root reducer
-5. create a store which accepts the root reducer as the first parameter
-6. subscribe to the store, so a callback is executed when any state is changed
-7. create an action creator for each reducer
-8. dispatch an action from the store
+- create an action type config file for all the action constants
+- create an initial state object for each reducer as a default state (optional)
+- apply middleware so each action goes through the middleware before hitting reducer (optional)
+- create a bunch of reducers, in each reducer we need to provide logic for handling interested action types (usually in a switch statement). We should not directly mutate state in reducers. Also keep in mind that all reducers get called regardless of what action is emitted, so we have to return the original state if an action is not applicable.
+- combine all the reducers into one root reducer
+- create a store which accepts the root reducer as the first parameter
+- subscribe to the store, so a callback is executed when any state is changed
+- create an action creator (which normally returns an object) for each action
+- dispatch an action from the store
 
 ```js
 // actions.js
@@ -102,7 +103,7 @@ appStore.dispatch(speakUserActionCreator('You are screwed!'));
 2. combine all the reducers into a root reducer in an index.js file and then export it
 3. create a store which accepts the root reducer as the first parameter
 4. wrap the root React component with a `<Provider>` component from react-redux
-5. pass the root store to the `<Provider>` component, so all the child components can access the state 
+5. pass the root store to the `<Provider>` component, so all the child components can access the store 
 
 ```js
 import { createStore } from 'redux'
@@ -230,7 +231,7 @@ function updateObjectInArray(array, action) {
 
 #### Redux-thunk
 
-By default, Redux action creator cannot execute asynchronous code as it can only returns an object, so we need to use a helper library `redux-thunk` for the job.
+By default, Redux action creator cannot execute asynchronous code as it can only returns an object, so we need to use a middleware library `redux-thunk` for the job.
 
 ```js
 // import redux-thunk
@@ -242,17 +243,58 @@ const store = createStore(
   applyMiddleware(thunk)
 );
 
-// use redux-thunk in action creator
-// now this action creator returns a function instead of an object, the 'dispatch' parameter gives you access to the dispatch() store method
-export const initIngredients = () => {
-  return (dispatch) => {
-    axios.get('https://react-burger-app-29cd2.firebaseio.com/ingredients.json')
-      .then((response) => {
-        dispatch(setIngredients(response.data));
-      })
-      .catch((error) => {
-        dispatch(fetchIngredientsFailed());
-      });
-  }
+/*
+  use redux-thunk in action creator
+  now this action creator returns a function instead of an object, the 'dispatch' parameter gives you access to the dispatch() store method
+  every async action should have three states, pending, success and failed
+*/
+
+export const requestResults = () => (dispatch) => {
+  // get into the pending state when this action is fired
+  dispatch({ type: REQUEST_RESULTS_PENDING });
+
+  axios.get('https://react-burger-app-29cd2.firebaseio.com/ingredients.json')
+    // dispatch success state if the async call returns results
+    .then((response) => {
+      dispatch({ type: REQUEST_RESULTS_SUCCESS, payload: response });
+    })
+    // dispatch failed state if the async call doesn't make it
+    .catch((error) => {
+      dispatch({ type: REQUEST_RESULTS_FAILED, payload: error });
+    });
 };
+```
+
+In the reducer, we handle all three states accordingly.
+
+```js
+const initialState = {
+  isPending: false,
+  results: [],
+  error: ''
+}
+
+export const requestResults = (state = initialState) => {
+  switch (action.type) {
+    case REQUEST_RESULTS_PENDING:
+      return {
+        ...state,
+        isPending: true
+      }
+    case REQUEST_RESULTS_SUCCESS:
+      return {
+        ...state,
+        results: action.payload,
+        isPending: false
+      }
+    case REQUEST_RESULTS_FAILED:
+      return {
+        ...state,
+        error: action.payload,
+        isPending: false
+      }
+    default:
+      return state;
+  }
+}
 ```
