@@ -1,5 +1,32 @@
 ## Code Snippets
 
+#### Copy text to clipboard
+
+The idea behind this solution is to first create a 'hidden' textarea and set its value to the string that we want to copy. Then copy the textarea value and remove it from the DOM when the copy is done.
+
+```js
+export const copyToClipboard = (str) => {
+  // create a textarea for holding the string that need to be saved to clipboard
+  const el = document.createElement('textarea');
+  // set the string to the area value
+  el.value = str;
+
+  // set the textarea read only and make it invisible on the screen
+  el.setAttribute('readonly', '');
+  el.style.position = 'absolute';
+  el.style.left = '-9999px';
+
+  // append it to the DOM
+  document.body.appendChild(el);
+  // select the textarea
+  el.select();
+  // copy the text in the textarea
+  document.execCommand('copy');
+  // remove it from the DOM
+  document.body.removeChild(el);
+};
+```
+
 #### Find the max and average value of an array
 
 ```js
