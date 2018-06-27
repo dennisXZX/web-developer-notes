@@ -10,7 +10,7 @@ Following is a list of things you can do to optimize your web app.
   - Use PNG for transparency, GIF for animation, JPEG for colorful images
   - Use [TinyPNG](https://tinypng.com/) and [JPEG optimizer](http://jpeg-optimizer.com/) for compressing images
   - Lower JPEG image quality to about 30% - 60% ([ImageOptim](https://imageoptim.com/))
-  - Resize image based on the size it will be displayed
+  - Resize image based on the size it will be displayed on the screen
   - Display different sized images for different screen sizes
 
     ```
@@ -38,4 +38,8 @@ Following is a list of things you can do to optimize your web app.
 
 - Load style tag in the <head> and script right before </body>
 
-- Use `<script async>` to load JS file asynchronously. These scripts should not modify DOM because there is no guarantee when they will be loaded. Use `<script defer>` to load scripts that are not required above the fold.
+- Use `<script async>` to load JS file asynchronously. These scripts should not modify DOM, such as Google Analytics script, because there is no guarantee when they will be loaded. Use `<script defer>` to load scripts that are not required above the fold.
+
+- Implement route-based code splitting, which utilizes `dynamic import()` under the hood to achieve the splitting.
+
+- Avoid unnecessary rendering, for example, we can consider using `PureComponent` and implementing `shouldComponentUpdate` life cycle method in React to fine tune component rendering.
