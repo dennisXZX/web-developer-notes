@@ -1,5 +1,13 @@
 ## React Testing
 
+To test in the frontend, we need a suite of toolkit.
+
+- Test framework, which acts as a scaffolding for the testing. (Jasimine, Jest, Mocha)
+- Assertion library, which verifies that things are correct. (Jasmine, Jest, Chai)
+- Test runner, which runs your tests in browser, headless browser (Puppeteer) or JsDOM. (Jasmine, Jest, Mocha, Karma)
+- Spy, Stub and Mock - Spy provides info about your function, Stub replaces a function with a selected function, Mock fakes a function.  (Jasmine, Jest, Sinon)
+- Code coverage, which gives you coverage report on your test. (Jest, Istanbul)
+
 In order to test a React app, we need a test runner (Jest provided by create-react-app) and testing utility (Enzyme) that allows us to shallow render a specific React component.
 
 Since `Jest` comes with create-react-app, so we only need to install `Enzyme` by running the following NPM command.
