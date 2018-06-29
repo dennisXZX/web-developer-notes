@@ -1,4 +1,4 @@
-## Javascript Functional
+## Javascript Functional Programming
 
 #### Composition
 
