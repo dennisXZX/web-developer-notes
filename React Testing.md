@@ -4,22 +4,93 @@ To test in the frontend, we need a suite of toolkit.
 
 - Test framework, which acts as a scaffolding for the testing. (Jasimine, Jest, Mocha)
 - Assertion library, which verifies that things are correct. (Jasmine, Jest, Chai)
-- Test runner, which runs your tests in browser, headless browser (Puppeteer) or JsDOM. (Jasmine, Jest, Mocha, Karma)
-- Spy, Stub and Mock - Spy provides info about your function, Stub replaces a function with a selected function, Mock fakes a function.  (Jasmine, Jest, Sinon)
+- Test runner, which runs your tests in browser (DOM), headless browser (Puppeteer) or JsDOM. (Jasmine, Jest, Mocha, Karma)
+- Spy, Stub and Mock, which helps you test your functions easily (Jasmine, Jest, Sinon)
+  - Spy provides info about your function
+  - Stub replaces a function with code that returns a specified result
+  - Mock fakes a function
 - Code coverage, which gives you coverage report on your test. (Jest, Istanbul)
+
+__Unit Test__
+
+Test synchronous function:
+
+```js
+// import that function that need to be tested
+const googleSearch = require('./script');
+
+// mock the database
+dbMock = [
+  'abc.com',
+  'def.com'
+]
+
+// group relevant test cases
+describe('googleSearch function', () => {
+  it('searches "dog"', () => {
+    // user assertion library to verify the results
+    expect(googleSearch('dog', dbMock)).toEqual([]);
+  })
+  
+  it('work with undefined', () => {
+    expect(googleSearch(undefined, dbMock)).toEqual([]);
+  })  
+})
+```
+
+Test asynchronous function:
+
+```js
+const fetch = require('node-fetch');
+
+it('calls swapi to get people object', (done) => {
+  // expect one assertion happens
+  expect.assertions(1);
+  
+  swapi.getPeople(fetch).then(data => {
+    expect(data.count).toEqual(87);
+    // call done() to signal that the test is finished
+    // this is necessary in testing asynchronous function
+    done();
+  })
+})
+
+it('getPeople returns count and results', (done) => {
+  // mock the fetch function
+  const mockFetch = jest.fn()
+    .mockReturnValue(Promise.resolve({
+      json: () => Promise.resolve({
+        count: 89,
+        results: [0, 1, 2, 3, 4, 5, 6]
+      })
+    }))
+  
+  expect.assertions(4);
+  
+  swapi.getPeople(fetch).then(data => {
+    expect(mockFetch.mock.calls.length).toBe(1);
+    expect(mockFetch).toBeCalledWith('https://swapi.co/api/people');
+    expect(data.count).toEqual(87);
+    expect(data.results.length).toBeGreaterThan(5);
+  })
+}) 
+```
+
+#### Set up testing in React
 
 In order to test a React app, we need a test runner (Jest provided by create-react-app) and testing utility (Enzyme) that allows us to shallow render a specific React component.
 
 Since `Jest` comes with create-react-app, so we only need to install `Enzyme` by running the following NPM command.
 
 ```
-// for React v16.2.0, refers to enzyme documentation for the latest package
-npm i enzyme react-test-renderer enzyme-adapter-react-16
+npm i --save-dev enzyme enzyme-adapter-react-16
 ```
 
-To set up a React project for testing, we need to first create a test file such as `NavigationItems.test.js` and put it in the same folder as the component. Then configure Enzyme to use the adapter you want it to use.
+To set up a React project for testing, we need to first create a test file such as `NavigationItems.test.js` and put it in the same folder as the named-after component. Then create a Enzyme config file `setupTests.js` in the `src` folder to use the adapter you want it to use.
 
 ```js
+/* setupTests.js */
+
 import React from 'react';
 
 import { configure, shallow } from 'enzyme';
@@ -45,6 +116,11 @@ describe('<NavigationItems />', () => {
 #### Testing functional component using Jest
 
 ```js
+// shallow allows you to render a component but not its nested components
+// so you can focus on just testing one component at a time
+import { shallow } from 'enzyme';
+import React from 'react';
+
 describe('<NavigationItems />', () => {
   let wrapper;
 
@@ -94,6 +170,13 @@ describe('<BurgerBuilder />', () => {
     })
 
     expect(wrapper.find(BuildControls)).toHaveLength(1);
+    
+    // simulate a click on the button
+    wrapper.find('[id="counter"]').simulate('click');
+    
+    // verify the state after the click event
+    expect(wrapper.state()).toEqual({ count: 2 });
+    
   });
 });
 ```
@@ -135,4 +218,21 @@ describe('auth reducer', () => {
     })
   });
 });
+```
+
+#### Snapshot test
+
+```js
+it('expect to render Card component', () => {
+  // generate a snapshot of the Card component
+  expect(shallow(<Card />)).toMatchSnapshot();
+})
+```
+
+#### Generate code coverage
+
+If you run Jest via npm test, you can still use the command line arguments by inserting a `--` between npm test and the Jest arguments.
+
+```
+npm test -- --coverage
 ```
