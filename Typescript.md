@@ -80,14 +80,15 @@ class Cat {
   }
   
   // by default, any field and method is public
-  speak() {
+  speak(): void {
     console.log('My name is: ' + this._name);
   }
 }
 
 // create a Cat instance
 // you do not need to specify Cat type in the instance creation, as it is implied
-const fluffy = new Cat('Dennis');
+const fluffy: Cat = new Cat('Dennis');
+
 fluffy.speak();
 ```
 
@@ -147,14 +148,24 @@ let myName: string = "Dennis";
 
 // array type
 let hobbies: string[] = ["Coding", "Reading"];
+let hobbies: Array<string> = ["Coding", "Reading"];
+
+// object type
+let wizard: object = {
+  name: 'Dennis'
+}
 
 // tuple type
-let address: [string, number] = ["Zetland", 906];
+let address: [string, number, boolean] = ["Zetland", 906, true];
 
 // enum can group similar values together
 // Typescript automatically assign value 0 to the first element, each subsequent element gets an increased value
 enum Color { Red = 0, Greed = 1, Blue = 2 };
-let bgColor = Color.Red;
+let bgColorNum: number = Color.Red; // => 0
+let bgColorStr: string = Color[0];  // => 'Red'
+
+// union type
+let id: string | number = 'TX-101'; // can be type string or number
 
 // any type
 let car: any = "BMW";
@@ -164,9 +175,14 @@ function getName(): string {
   return this.name;
 }
 
-// function returns nothing
+// function that returns nothing
 function sayHello(): void {
   console.log('Hello');
+}
+
+// function that returns nothing and has no end point
+function throwError(): never {
+  throw Error('Couldn't connect to server');
 }
 
 // specify arguments type
@@ -179,8 +195,22 @@ let myFunc: (val1: number, val2: number) => number;
 ```
 
 ```ts
-// type assertions
+// type assertions example 1
 let message;
 message = 'abc';
+
 let endsWithC = (<string>message).endsWith('c');
+
+// type assertions example 2
+interface Army {
+  type: string,
+  magic: string
+}
+
+let dog = {} as Army; // treat dog as a type of Army
+dog.count; // so we can access the count property no matter what
 ```
+
+#### Declaration Files
+
+You can find declaration files for older libraries at [DefinitelyTyped](https://definitelytyped.org).
