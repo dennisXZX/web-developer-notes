@@ -2,13 +2,13 @@
 
 #### Fundamentals
 
-At its core, Git is like a key value store. The key is a SHA1 (40-digit hexadecimal number), the value is the compressed data called `blob`, which represents a single file.  For directory, it is stored in a `tree`. In Git, the same content would only be stored once, which means two identical `blobs` would have exactly the same SHA1 key. All the data about our repository is stored in the hidden `.git` directory.
+At its core, Git is like a key value store. The key is a SHA1 (40-digit hexadecimal number), the value is the compressed data called `blob`, which represents a single file.  For directory, it is stored in a `tree`, which can itself contains `blob` or `tree`. In Git, the same content would only be stored once, which means two identical `blobs` would have exactly the same SHA1 key. All the data about our repository is stored in the hidden `.git` directory.
 
 ```
 // ask Git for the SHA1 of the contents
 echo 'Hello' | git hash-object --stdin
 
-// generate SHA1 of the contents with metadata
+// generate SHA1 of the contents with metadata ('blob 14\0')
 // blob indicates it's a blob, 14 is the file size, \0 is the delimiter
 echo 'blob 14\0Hello' | openssl sha1
 ```
@@ -22,6 +22,16 @@ git cat-file -t 980a0
 // look at the content of the object using a plumbing command
 git cat-file -p 980a0
 ```
+
+#### References (pointers) to commits
+
+- Tags
+
+- Branches
+
+- HEAD (pointer to the current commit)
+
+Run `cat .git/HEAD` to know where the `HEAD` is currently pointing to.
 
 #### Gitflow
 
@@ -121,7 +131,7 @@ Using a tag name like v1.0.0 is called semantic versioning. The first number rep
 
 We can use `/` to initiate a search when viewing git logs (in ternimal pager less), and use `n` to find the next match and `N` to jump to the previous one.
 
-`git log --oneline` to condense the log messages into one line.
+`git --no-pager log --oneline` to condense the log messages into one line and output with no pager.
 
 `git log -p` to see all the detailed changes made to each commit.
 
