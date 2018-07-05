@@ -153,9 +153,17 @@ We can use multiple arguments such as `git log --stat --oneline`.
 
 `git stash` can temporarily store your changes to revert back to HEAD commit.
 
+`git stash --include-untracked` can temporarily store your changes, even those newly added untracked folders and files.
+
+`git stash save "WIP: making progress on infinite scroll"` can name your stash for easy reference.
+
+`git stash branch <branchName>` to create a branch from a stash.
+
 `git stash list` can list all your stashes.
 
-`git stash apply` to restore stashed temporary changes to working directory.
+`git stash show stashName` to examine stash contents.
+
+`git stash apply stashName` to restore stashed temporary changes to working directory.
 
 `git stash drop stashName` to delete a stash.
 
@@ -187,9 +195,15 @@ Make sure you are on the branch you want to apply the commit to, then run `git c
 
 `git add .` and `git add -A` does the same thing since git version 2.x.
 
+`git add -p` allows you to stage commits interactively.
+
+#### git reset
+
+`git reset fileName` to remove the file from the staging area, without changing the file in the working area. 
+
 #### git pull
 
-Running `git pull` is equal to run `git fetch` and `git merge branchName`.
+`git pull` is equal to run `git fetch` and `git merge branchName`.
 
 #### git branch
 
