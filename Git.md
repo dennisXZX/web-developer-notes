@@ -26,12 +26,22 @@ git cat-file -p 980a0
 #### References (pointers) to commits
 
 - Tags
+  - tag is just a simple pointer to a commit
+  - when you create a tag with no arguments (`git tag ver-1.2`), it captures the value in HEAD
 
 - Branches
+  - A branch is just a pointer to a particular commit
 
 - HEAD (pointer to the current commit)
+  - HEAD is how git knows what branch you're currently on
 
 Run `cat .git/HEAD` to know where the `HEAD` is currently pointing to.
+
+#### Detached HEAD
+
+When you checkout a specific commit or a tag, you get into the detached HEAD state. If you make commits in the detached HEAD state and want to keep your changes, you should create a new branch that points to the last commit you made in a detached state. If you don't create a branch for your changes, eventually they will be garbage collected as they are no longer referenced in Git (dangling commits).
+
+`git branch branchName <commit>`
 
 #### Gitflow
 
@@ -101,11 +111,17 @@ Navigate into a subfolder and use `git status .` to get status of just the subfo
 
 #### git tag
 
-`git tag v1.0.0` to add a reference to the current commits.
+`git tag -a v1.0.0 -m 'version 1.0 of my site'` to add a reference to the current commits with an annotation.
 
-`git tag -a v1.0.0` to add annotation to a tag.
+`git tag` to list all your tags.
+
+`git show v1.0.0` to see details of an annotated tag.
 
 `git tag -n5` to list all tags along with the first 5 lines of annotations for each tag.
+
+`git show-ref --tags` to list all tags and what commit they are pointing to.
+
+`git tag --points-at fc19c45946230064b759616c0d99e3a1ff5b1a41` to list all tags pointing at a commit.
 
 `git push --tags` to push tags to remote repository.
 
