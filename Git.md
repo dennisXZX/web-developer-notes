@@ -39,6 +39,8 @@ Run `cat .git/HEAD` to know where the `HEAD` is currently pointing to.
 
 #### Detached HEAD
 
+`git show-ref --heads` to see which commits your HEADs are pointing at.
+
 When you checkout a specific commit or a tag, you get into the detached HEAD state. If you make commits in the detached HEAD state and want to keep your changes, you should create a new branch that points to the last commit you made in a detached state. If you don't create a branch for your changes, eventually they will be garbage collected as they are no longer referenced in Git (dangling commits).
 
 `git branch branchName <commit>`
@@ -201,6 +203,8 @@ We can use multiple arguments such as `git log --stat --oneline`.
 
 `git merge branchName` to merge a branch into the current branch (the one with *).
 
+`git merge --no-ff` to retain the history of a merge commit, wich will prevent from executing `fast-forward`.
+
 #### git cherry-pick
 
 We can choose a commit from one branch and apply it onto another by using `git cherry-pick`.
@@ -217,6 +221,20 @@ Make sure you are on the branch you want to apply the commit to, then run `git c
 
 `git reset fileName` to remove the file from the staging area, without changing the file in the working area. 
 
+`git reset --hard HEAD^` to reset to the previous HEAD.
+
+The difference between `^` and `~` can be illustrated by the follow graph.
+
+![difference between ^ and ~](./images/git_reset.png)
+
+Both `~` and `^` on their own refer to the parent of the commit (`~~` and `^^` both refer to the grandparent commit, etc.) But they differ in meaning when they are used with numbers:
+
+`~2` means up two levels in the hierarchy, via the first parent if a commit has more than one parent
+
+`^2` means the second parent where a commit has more than one parent (i.e. because it's a merge)
+
+These can be combined, so `HEAD~2^3` means HEAD's grandparent commit's third parent commit.
+
 #### git pull
 
 `git pull` is equal to run `git fetch` and `git merge branchName`.
@@ -232,6 +250,8 @@ Make sure you are on the branch you want to apply the commit to, then run `git c
 #### git checkout
 
 `git checkout branchName` to switch to a branch.
+
+`git checkout -` to checkout the previous branch.
 
 `git checkout -b branchName` to create and switch to the newly created branch.
 
