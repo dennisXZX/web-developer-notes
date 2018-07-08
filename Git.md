@@ -63,7 +63,7 @@ git flow init
 // create a feature branch based off develop branch
 git flow feature start feature_branch
 
-/* work on the feture branch */
+/* work on the feature branch */
 
 // merge the feature branch into develop branch
 // if you do not have permission to merge into develop branch, you can use the 'pull request' feature to achieve that
@@ -97,11 +97,23 @@ git flow hotfix start hotfix_branch
 git flow hotfix finish hotfix_branch
 ```
 
+#### Reuse Recorded Resolution (ReReRe)
+
+Reuse Recorded Resolution feature would record how you resolve conflict and try to resolve for you the same conflicts automatically.
+
+`git config rerere.enabled true` to enable ReReRe functionality.
+
+`git rerere diff` to see the resolution strategy.
+
 #### git status
 
 Navigate into a subfolder and use `git status .` to get status of just the subfolder.
 
 `git status --short` to display compact status.
+
+#### git mv
+
+`git mv hello.txt hello.html` to rename a file.
 
 #### git grep
 
@@ -149,7 +161,13 @@ Using a tag name like v1.0.0 is called semantic versioning. The first number rep
 
 We can use `/` to initiate a search when viewing git logs (in ternimal pager less), and use `n` to find the next match and `N` to jump to the previous one.
 
-`git --no-pager log --oneline` to condense the log messages into one line and output with no pager.
+`git --no-pager log --oneline --graph` to condense the log messages into one line and output with no pager.
+
+`git log --since="yesterday"`, `git log --since="2 weeks ago"` to see commits within a period of time.
+
+`git log --name-status --follow --oneline hello.html` to trace how hello.html has its name changed and moved around in the codebase.
+
+`git log --diff-filter=R --find-renames` to find commits where files have been renamed.
 
 `git log -p` to see all the detailed changes made to each commit.
 
@@ -161,11 +179,19 @@ We can use `/` to initiate a search when viewing git logs (in ternimal pager les
 
 `git log --grep='fixed'` to list commits with log message that matches the specified pattern, contains the word 'fixed' in this case.
 
+You can use multiple flags: `git log --grep='mail' --author=dennis --since=2.weeks`
+
 `git log -i -p -S"math"` to list all the commits that involve the word "math", ignoring case by using `-i` flag.
 
 `git log script.js` to list all commits that involve the script.js file.
 
 We can use multiple arguments such as `git log --stat --oneline`.
+
+#### git show
+
+`git show <commit>` show commit and contents.
+
+`git show <commit> --stat` show files changed in the commit.
 
 #### git stash
 
@@ -221,7 +247,7 @@ Make sure you are on the branch you want to apply the commit to, then run `git c
 
 `git reset fileName` to remove the file from the staging area, without changing the file in the working area. 
 
-`git reset --hard HEAD^` to reset to the previous HEAD.
+`git reset --hard HEAD^` to reset to the previous HEAD. (You have to use `git reset 'HEAD^'` in zsh)
 
 The difference between `^` and `~` can be illustrated by the follow graph.
 
@@ -246,6 +272,10 @@ These can be combined, so `HEAD~2^3` means HEAD's grandparent commit's third par
 `git branch -a` to see both local and remote branches.
 
 `git branch -d branchName` to delete a branch.
+
+`git branch --merged master` to see all branches that have already been merged into master. (So you can clean them)
+
+`git branch --no-merged master` to see all branches that have not been merged into master.
 
 #### git checkout
 
