@@ -123,6 +123,8 @@ Navigate into a subfolder and use `git status .` to get status of just the subfo
 
 `git revert HEAD` to revert the last commit and add a new commit to undo its changes.
 
+Note: always use `git revert` to undo changes on a collaborated repository. 
+
 #### git tag
 
 `git tag -a v1.0.0 -m 'version 1.0 of my site'` to add a reference to the current commits with an annotation.
@@ -253,13 +255,15 @@ The difference between `^` and `~` can be illustrated by the follow graph.
 
 ![difference between ^ and ~](./images/git_reset.png)
 
-Both `~` and `^` on their own refer to the parent of the commit (`~~` and `^^` both refer to the grandparent commit, etc.) But they differ in meaning when they are used with numbers:
+Both `~` and `^` on their own refer to the parent of the commit (`~~` and `^^` both refer to the grandparent commit, etc.) But they differ in meaning when they are used with numbers:  
 
 `~2` means up two levels in the hierarchy, via the first parent if a commit has more than one parent
 
 `^2` means the second parent where a commit has more than one parent (i.e. because it's a merge)
 
 These can be combined, so `HEAD~2^3` means HEAD's grandparent commit's third parent commit.
+
+`git reset ORIG_HEAD` to undo a git reset.
 
 #### git pull
 
@@ -282,6 +286,8 @@ These can be combined, so `HEAD~2^3` means HEAD's grandparent commit's third par
 `git checkout branchName` to switch to a branch.
 
 `git checkout -` to checkout the previous branch.
+
+`git checkout -- fileName` to replace the working area copy with the version from the current staging area.
 
 `git checkout -b branchName` to create and switch to the newly created branch.
 
