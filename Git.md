@@ -47,17 +47,17 @@ When you checkout a specific commit or a tag, you get into the detached HEAD sta
 
 #### Gitflow
 
-GitFlow is a branching model that standardizes branching and merging policy. It uses two branches to record the history of the project. The `master` branch stores the offcial release history, and the `develop` branch serves as an integration branch for features. We can also tag all commits in the `master` branch with a version number.
+GitFlow is a branching model that standardizes branching and merging policy. It uses two branches to record the history of the project. The `master` branch stores the offcial release history, and the `develop` branch serves as an integration branch for features.
 
 How the Gitflow works:
 
-- First we need to create `develop` branch
+- First we need to create a `develop` branch
 
 ```
 git flow init
 ```
 
-- Each new feature should reside in its own branch and `feature` branch should use `develop` as their parent branch. When a feature is complete, it gets merged back into `develop`
+- Each new feature should reside in its own branch and a `feature` branch should use `develop` as their parent branch. When a feature is complete, it gets merged back into `develop`
 
 ```
 // create a feature branch based off develop branch
@@ -66,11 +66,12 @@ git flow feature start feature_branch
 /* work on the feature branch */
 
 // merge the feature branch into develop branch
-// if you do not have permission to merge into develop branch, you can use the 'pull request' feature to achieve that
+// if you do not have permission to merge into develop branch
+// you can push the code onto Github and use 'pull request' feature to achieve that
 git flow feature finish --squash feature_branch
 ```
 
-- When you have finished all the features for a release cycle, you fork a `release` branch off of `develop`. At this point, no new features can be added to the `release` branch anymore, only bug fixes can go to the `release` branch. Once it's ready to ship, the `release` branch get merged into `master` with a version number. In addition, it should be merged back into `develop`, which may have progressed since the release was initiated. Finally, the release branch will be deleted.
+- When you have finished all the features for a release cycle, you fork a `release` branch off of `develop`. At this point, no new features can be added to the `release` branch anymore, only bug fixes can go to the `release` branch. Once it's ready to ship, the `release` branch get merged into `master`. At this point, we should add a version number (tag) to the `master` branch. In addition, it should also be merged back into `develop`, which may have progressed since the release was initiated. Finally, the release branch will be deleted after successfully merging into `master` and `develop`.
 
 ```
 // create a release branch
@@ -85,7 +86,7 @@ git checkout merge release/0.1.0
 git flow release finish '0.1.0'
 ```
 
-- `hotfix` branch is based on `master` branch in order to quicly patch production releases.
+- `hotfix` branch is based on `master` branch in order to quicly patch production releases
 
 ```
 // create a hotfix branch
@@ -117,11 +118,11 @@ Navigate into a subfolder and use `git status .` to get status of just the subfo
 
 #### git grep
 
-`git grep serverRender` to print lines matching a pattern, contain the word 'serverRender' in this case.
+`git grep console.log` to print lines matching a pattern, code that contains the word 'console.log' will be printed out in this case.
 
 #### git revert 
 
-`git revert HEAD` to revert the last commit and add a new commit to undo its changes.
+`git revert HEAD^` to revert the last commit and add a new commit to undo its changes.
 
 Note: always use `git revert` to undo changes on a collaborated repository. 
 
@@ -135,13 +136,13 @@ Note: always use `git revert` to undo changes on a collaborated repository.
 
 `git tag -n5` to list all tags along with the first 5 lines of annotations for each tag.
 
-`git show-ref --tags` to list all tags and what commit they are pointing to.
+`git show-ref --tags` to list all tags and what commit each tag is pointing to.
 
-`git tag --points-at fc19c45946230064b759616c0d99e3a1ff5b1a41` to list all tags pointing at a commit.
+`git tag --points-at fc19c45946230064b759616c0d99e3a1ff5b1a41` to list all tags that pointing at a commit.
 
 `git push --tags` to push tags to remote repository.
 
-Using a tag name like v1.0.0 is called semantic versioning. The first number represents a major release which would introduce breaking changes. The second number means a minor release while the last one is for patch release.
+Using a tag name like v1.0.0 is called semantic versioning. The first number represents a major release which would introduce breaking changes. The second number means a minor release for adding new features. The last one is for patch release indicating bug fixes.
 
 #### git blame
 
@@ -291,7 +292,7 @@ These can be combined, so `HEAD~2^3` means HEAD's grandparent commit's third par
 
 `git checkout -b branchName` to create and switch to the newly created branch.
 
-`git checkout -b branchName SHA` to create a branch based on a commit.
+`git checkout -b branchName SHA1` to create a branch based on a commit.
 
 #### .gitignore
 
