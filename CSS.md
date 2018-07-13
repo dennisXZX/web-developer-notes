@@ -1,5 +1,23 @@
 ## CSS
 
+#### Feature query
+
+Use `@supports` to check if a CSS feature is supported and provide fallback strategy.
+
+```css
+@supports (display: grid) {
+  div {
+    display: grid;
+  }
+}
+
+@supports not (display: grid) {
+  div {
+    float: right;
+  }
+}
+```
+
 #### Make icon overlay effect
 
 <img src="./images/icon-overlay.png" width="132" height="50">
