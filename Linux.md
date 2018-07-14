@@ -1,5 +1,14 @@
-
 ## Linux
+
+#### Fundamentals 
+
+- `mkdir -p /data/db` to create nested directories using the `-p` flag
+- `cd -` to navigate to the previous working directory
+- `cd ~` to navigate to the home directory
+
+#### Change file/folder ownership
+
+`sudo chown <username> /data/db` to change the owner of the folder `/data/db`. You can get your username using the command `whoami`.
 
 #### Execute the last command with sudo
 
@@ -65,14 +74,6 @@ For MacOS, you need to install a the tree package first `brew install tree`.
 ```
 tree -F
 ```
-
-#### Navigation in Linux
-
-// go to the previous working directory
-cd -
-
-// go to the home directory
-cd ~
 
 #### Edit hosts file
 
