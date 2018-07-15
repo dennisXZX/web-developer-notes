@@ -1,8 +1,56 @@
 ## Python
 
-#### Fundamentals
+### Fundamentals
 
-Parse HTML
+__define a class__
+
+```python
+class Database():
+    # static variables
+    URI = 'mongodb://127.0.0.1:27017'
+    DATABASE = None
+
+    # define a static method
+    @staticmethod
+    def initialize():
+        client = pymongo.MongoClient(Database.URI)
+        Database.DATABASE = client['fullstack']
+
+    @staticmethod
+    def insert(collection, data):
+        Database.DATABASE[collection].insert(data)
+```
+
+__ternary conditional operator__
+
+```python
+# <expression1> if <condition> else <expression2>
+self.id = uuid.uuid4().hex if id is None else id
+```
+
+__List comprehension__
+
+List comprehension is a succinct way to generate a list from another list
+
+The verbose way:
+
+```python
+for item in list:
+    if conditional:
+        expression
+```
+
+The succinct way:
+
+```python
+# [ expression for item in list if conditional ]
+
+# for each student in the MongoDB students collection, extract its mark value if it's greater than or equal to 85
+collection = database['students']
+students = [ student['mark'] for student in collection.find({}) if student['mark'] >= 85 ]
+```
+
+__Parse HTML__
 
 ```python
 import requests
@@ -21,10 +69,10 @@ Our task is to retrieve the price from the page in this HTML markup
 soup = BeautifulSoup(content, "html.parser")
 element = soup.find("p", {"class": "price--large"})
 
-# get the string price £279.00
+# get the string price £279.00, removing all the whitespace
 string_price = element.text.strip()
 
-# convert the string price to number
+# convert the string price to number, dropping the £ sign
 price_without_symbol = float(string_price[1:])
 
 if price_without_symbol < 200:
@@ -34,7 +82,7 @@ else:
     print('No, too expensive!')
 ```
 
-Format strings
+__Format strings__
 
 ```python
 age = 5
@@ -46,14 +94,14 @@ print('I am {} years and {} months old'.format(age, 7))
 print('I am {age} years old, are you {age} years old too?'.format(age=age))
 ```
 
-Get user input
+__Get user input__
 
 ```python
 name = input('Enter your name: ')
 print(name)
 ```
 
-#### Launch a local server quickly using Python 2 or Python 3
+### Launch a local server quickly using Python 2 or Python 3
 
 ```python
 # python 2
