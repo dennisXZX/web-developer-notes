@@ -16,7 +16,7 @@ This will install MongoDB in the following location (which can be verified by `b
 /usr/local/var/Cellar/mongodb/
 ```
 
-Now we need to create a folder in `/data/db` (default location) for MongoDB to store data.
+Now we need to create a folder in `/data/db` (default location in the root directory) for MongoDB to store data.
 
 ```
 // create nested directories using the `-p` flag
