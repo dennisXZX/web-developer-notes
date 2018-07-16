@@ -152,6 +152,43 @@ myNewFunction();
 
 When a function is defined it gets a `[[scope]]` property that references the variable environment in which it has been defined. Wherever we call that incrementCounter function, it will always look first in its immediate variable environment for the variable `counter`, and then in the `[[scope]]` property next before it looks any further up.
 
+#### Method chaining
+
+The key to achieve method chaining in Javascript is to return `this` keyword in the method.
+
+```js
+// define a calculator class
+class Calc {
+    constructor (start) {
+        this.start = start;
+    }
+
+    add (x) {
+        this.start += x;
+        return this;
+    };
+
+    multiply (x) {
+        this.start *= x;
+        return this;
+    };
+
+    equals (callback) {
+        callback(this.start);
+        return this;
+    };
+}
+
+// create a Calc object and use method chaining
+new Calc(0)
+    .add(1)
+    .add(2)
+    .multiply(3)
+    .equals((result) => {
+        console.log(result);
+    })
+```
+
 #### Enum in Javascript
 
 Typescript has a new feature called Enum which help group similar values together.
