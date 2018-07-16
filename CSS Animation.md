@@ -29,7 +29,7 @@ Then you add this animation to an element.
   /* how long do you want to delay the animation */
   animation-delay: 3s;
   /* shorthand writing */
-  animation: moveInLeft 1s ease-out .75s
+  animation: moveInLeft 0.5s ease-out 3s
   /* how many times should the animation repeat itself */
   animation-iteration-count: 3;
 }
