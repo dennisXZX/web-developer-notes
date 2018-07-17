@@ -21,6 +21,16 @@ class Database():
         Database.DATABASE[collection].insert(data)
 ```
 
+__string slicing__
+
+```python
+# use step size on string slicing
+'abcdefg'[::2]  # -> aceg
+
+# use string slicing to reverse a string
+'abcdefg'[::-1]  # -> gfedcba
+```
+
 __ternary conditional operator__
 
 ```python
