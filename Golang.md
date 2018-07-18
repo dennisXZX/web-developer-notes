@@ -21,6 +21,12 @@ func main() {
 - go build: compile the Go source code files
 - go run: compile and execute Go source code
 - go fmt: format all code in each file in the current directory
+
+```
+// the -w flag is used to write the results to the original source file instead of printing to console
+gofmt -w main.go
+```
+
 - go install: compile and install a package
 - go get: download raw source code of someone else's package
 - go test: run tests associated with the current project
