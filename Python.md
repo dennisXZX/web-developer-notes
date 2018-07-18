@@ -102,6 +102,8 @@ print('I am {} years and {} months old'.format(age, 7))
 
 # I am 8 years old, are you 8 years old too?
 print('I am {age} years old, are you {age} years old too?'.format(age=age))
+
+print(f'I am {year} years and {month} months old')
 ```
 
 __Get user input__
