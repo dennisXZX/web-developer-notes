@@ -239,6 +239,39 @@ The triangle effect is achieved by leveraging the border property. Below is a se
 
 Hooray, this is how a triangle is made in CSS!
 
+If you need to build a triangle with border, you would need to have two triangles to achieve that.
+
+```css
+/* forms the triangles */
+.add-new-menu:after,
+.add-new-menu:before {
+    content: '';
+    display: block;
+    position: absolute;
+    right: 6px;
+    top: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+}
+
+/* this border color controls inner triangle */
+.add-new-menu:after {
+    top: -20px;
+    right: 7px;
+    border-color: transparent transparent #fff transparent;
+    border-width: 10px;
+}
+
+/* this border color controls outer triangle */
+.add-new-menu:before {
+    top: -23px;
+    right: 6px;
+    border-color: transparent transparent #E8EBEE transparent;
+    border-width: 11px;
+}
+```
+
 #### Parallax scrolling effect
 
 The key to parallax scrolling effect is to add `background-attachment: fixed` property.
