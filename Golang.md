@@ -30,24 +30,75 @@ gofmt -w main.go
 - go install: compile and install a package
 - go get: download raw source code of someone else's package
 - go test: run tests associated with the current project
+- goimports: detect missing packages and automatically updates import statements in the source code
+
+```
+goimports -w main.go
+```
 
 #### The Fundamentals
+
+- command line arguments
+
+```go
+// the first argument is the default system argument
+os.Args[0]
+// argument passed by the user
+os.Args[1]
+
+// check if user has provided any argument
+if len(os.Args) {
+  ...code
+}
+```
 
 - declare a variable and assign it a value
 
 ```go
-// the long form
+// the long form, manual type declaration
 var card string = "hello"
-// the short form
+
+// the short form, type inference
 card := "hello"
 ```
 
 - declare a function
 
 ```go
-// a function that returns string
-func newCard() string {
-  return "Hello"
+func main() {
+  // retrieve the current hour
+	hourOfDay := time.Now().Hour()
+  
+  // the greet() function returns two parameters, a string and an error
+  greeting, err := greet(hourOfDay)
+
+  // catch the error raised from the greet() function
+  if err != nil {
+    fmt.Println(err)
+    os.Exit(1)
+  }
+  
+  fmt.Println(greeting)
+}
+
+// a function that accepts an integer parameter and returns string and error
+func greet(hourOfDay int) (string, error) {
+  var message string
+
+  if hourOfDay < 7 {
+    err := errors.New("too early for greetings")
+    return message, err
+  }
+
+  if hourOfDay < 12 {
+    message = "good morning"
+  } else if hourOfDay < 18 {
+    message = "good afternoon"
+  } else {
+    message = "good evening"
+  }
+
+  return message, nil
 }
 ```
 
