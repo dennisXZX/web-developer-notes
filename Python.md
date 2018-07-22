@@ -38,6 +38,14 @@ __ternary conditional operator__
 self.id = uuid.uuid4().hex if id is None else id
 ```
 
+__List operation__
+
+`list.append('item')` to add a new item to the end of the list
+`list.pop()` to remove the last item from the list
+`list.pop(index)` to remove an item at the specified index
+`list.sort()` to sort the list in place
+`list.reverse()` to reverse the list in place
+
 __List comprehension__
 
 List comprehension is a succinct way to generate a list from another list
@@ -55,9 +63,48 @@ The succinct way:
 ```python
 # [ expression for item in list if conditional ]
 
-# for each student in the MongoDB students collection, extract its mark value if it's greater than or equal to 85
+# for each student in the MongoDB students collection, extract its mark if it's greater than or equal to 85
 collection = database['students']
 students = [ student['mark'] for student in collection.find({}) if student['mark'] >= 85 ]
+```
+
+__Dictionary operation__
+
+`dict['key']` to retrieve the value associated with the key
+`dict['key1']['key2']` to retrieve nested value
+`dict['newKey'] = value` to add a new value to the dictionary
+`dict.keys()` returns a list containing all the keys
+`dict.values()` returns a list containing all the values
+`dict.items()` returns a list of tuple (immutable list), each tuple contains a key and a value
+
+__Set operation__
+
+`myset = set()` to create a set
+`myset.add(1)` to add an item to the set
+`set(list)` to cast a list into a set (removing all the duplicate items)
+
+__File operation__
+
+`myfile = open('myfile.txt')` to open a file
+`content = myfile.read()` to read all the content into a string (the cursor will move to the end of the file)
+`myfile.seek(0)` to reset the cursor to the beginning of the file
+`myfile.readlines()` to read the file into a list of string
+`myfile.close()` to close the file
+
+```python
+# mode='r' is read only
+# mode='w' is write only (will overwrite files or create new ones)
+# mode='a' is append only (will add on to files)
+# mode='r+' is reading and writing
+# mode='w+' is writing and reading (will overwrite files or create new ones)
+
+# open a file in read mode without the need of closing it manually
+with open('myfile.txt', mode='r') as my_new_file:
+  contents = my_new_file.read()
+
+# open a file in append mode
+with open('myfile.txt', mode='a') as my_new_file:
+  my_new_file.write('new content')
 ```
 
 __Parse HTML__
