@@ -2,13 +2,57 @@
 
 ### Fundamentals
 
-__define a class__
+__check if a .py file is run directly__
+
+```python
+if __name__ == "__main__":
+    print('the .py file is run directly')
+else:
+    print('the .py file has been imported')
+```
+
+__pip (package manager)__
+
+`pip install packageName`
+
+__lambda function (anonymous function)__
+
+```python
+myList = []
+
+list(map(lambda num: num ** 2, myList))
+```
+
+__define a function accepting uncertain amount of parameters__
+
+```python
+# take infinite amount of parameters
+# the args parameter is in a tuple format
+def myfunc(*args):
+    return sum(args) * 0.05
+    
+myfunc(2, 5)
+
+# take infinite amount of key value pair
+# the kwargs is in a dictionary format
+def myfunc(**kwargs):
+    if 'fruit' in kwargs:
+        print('You have fruit')
+    
+myfunc(fruit='apple')    
+```
+
+__define a class and extend it__
 
 ```python
 class Database():
     # static variables
     URI = 'mongodb://127.0.0.1:27017'
     DATABASE = None
+    
+    # constructor
+    def __init__(self, name):
+        self.name = name
 
     # define a static method
     @staticmethod
@@ -19,6 +63,45 @@ class Database():
     @staticmethod
     def insert(collection, data):
         Database.DATABASE[collection].insert(data)
+        
+    # abstract method, which must be implemented by sub-class
+    def shutdown(self):
+        raise NotImplementedError("Subclass must implement this abstrat method")
+        
+# create a NewDatabase class inheriting the Database class
+class NewDatabase(Database):
+    def __init__(self):
+        # call parent's constructor
+        Database.__init__(self)
+```
+
+__Polymorphism__
+
+```python
+class Dog():
+    def __init__(self, name):
+        self.name = name
+
+    def speak(self):
+        return self.name + " says woof!"
+
+class Cat():
+    def __init__(self, name):
+        self.name = name
+
+    def speak(self):
+        return self.name + " says meow!"
+
+niko = Dog("niko")
+felix = Cat("felix")
+
+# this method does not care what pet class you would pass in
+# as long as it has a speak() method
+def pet_speak(pet):
+    print(pet.speak())
+
+pet_speak(niko)
+pet_speak(felix)
 ```
 
 __string slicing__
@@ -68,6 +151,29 @@ collection = database['students']
 students = [ student['mark'] for student in collection.find({}) if student['mark'] >= 85 ]
 ```
 
+__Tuple unpacking__
+
+```python
+mylist = [(1, 2), (3, 4)]
+
+# tuple unpacking
+for a, b in mylist:
+    print(a)
+  
+# add a counter to an iterable
+word = ['a', 'b']
+
+for index, letter in enumerate(word):
+    print(f'{index}: {letter}')
+  
+# zip two lists into one
+list1 = [1, 2, 3]
+list2 = ['a', 'b', 'c']
+
+for item in zip(list1, list2):
+    print(item) # -> (1, 'a')
+```
+
 __Dictionary operation__
 
 `dict['key']` to retrieve the value associated with the key
@@ -76,6 +182,13 @@ __Dictionary operation__
 `dict.keys()` returns a list containing all the keys
 `dict.values()` returns a list containing all the values
 `dict.items()` returns a list of tuple (immutable list), each tuple contains a key and a value
+
+Iterate through a dictioary:
+
+```python
+for key, value in dict.items():
+    print(value)
+```
 
 __Set operation__
 
@@ -100,11 +213,11 @@ __File operation__
 
 # open a file in read mode without the need of closing it manually
 with open('myfile.txt', mode='r') as my_new_file:
-  contents = my_new_file.read()
+    contents = my_new_file.read()
 
 # open a file in append mode
 with open('myfile.txt', mode='a') as my_new_file:
-  my_new_file.write('new content')
+    my_new_file.write('new content')
 ```
 
 __Parse HTML__
