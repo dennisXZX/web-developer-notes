@@ -1,5 +1,47 @@
 ## CSS
 
+#### Customise file input
+
+You need to hide the file input and style a label as the file input.
+
+```html
+<input type="file"
+       id="file"
+       multiple
+       @change="filesChange($event.target.files)"
+       accept="image/*,.pdf,.csv"
+       class="input-file">
+<label for="file">Select Files...</label>
+```
+
+```css
+.input-file {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+label {
+    color: @dms-dark-background-grey;
+    height: 23px;
+    border: 1px solid #D1D1D1;
+    border-radius: 5px;
+    padding: 2px 13px;
+    font-size: 12px;
+    background-color: @dms-new-background-grey;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+label:hover {
+    color: @dms-tag-blue;
+    border: 1px solid @dms-tag-blue;
+}
+```
+
 #### Feature query
 
 Use `@supports` to check if a CSS feature is supported and provide fallback strategy.
