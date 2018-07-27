@@ -40,6 +40,7 @@ In another terminal you can use `mongo` to connect to the database.
 - `use <database_name>` to use a database or create one if it doesn't exist
 - `show collections` to show all collections
 - `db.students.insert({ "name": "Jose", "mark": 100 })` to create a students collection and insert an entry
+- `db.students.update({ "id": id }, { "$set": { 'mark': new_mark } })` to update a student's mark
 - `db.<collection_name>.drop()` to delete a collection
 - `db.students.find({}).pretty()` to list all entries in students collection in a pretty format
 - `db.students.remove({ "price": 999 })` to remove entries that has a price value of 999
