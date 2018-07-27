@@ -13,7 +13,13 @@ else:
 
 __pip (package manager)__
 
-`pip install packageName`
+Create a `requirements.txt` file in your project and specify what packages you will be using.
+
+```
+pymongo == 3.7.0
+```
+
+`pip install packageName` to install packages for the project.
 
 __lambda function (anonymous function)__
 
