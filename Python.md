@@ -2,7 +2,7 @@
 
 ### Fundamentals
 
-__check if a .py file is run directly__
+__check if a Python file is run directly__
 
 ```python
 if __name__ == "__main__":
