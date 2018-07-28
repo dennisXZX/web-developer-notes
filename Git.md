@@ -106,6 +106,10 @@ Reuse Recorded Resolution feature would record how you resolve conflict and try 
 
 `git rerere diff` to see the resolution strategy.
 
+#### git commit
+
+`git commit --amend` to rewrite the most recent commit message in your local repository.
+
 #### git status
 
 Navigate into a subfolder and use `git status .` to get status of just the subfolder.
