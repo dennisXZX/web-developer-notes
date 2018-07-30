@@ -583,7 +583,26 @@ Disadvantages:
 
 #### Explain Cross-Origin Resource Sharing (CORS)
 
-CORS is a mechanism that allows you to work around the same-orign policy implemented by browsers. By enabling CORS on your server, you sepcify what other servers can have access to your resources. Therefore, your server would respond to requests with an Access-Control-Allow-Origin header to let the browser know if the requested resource is accessible to those origins.
+CORS is a mechanism that allows you to work around the same-orign policy implemented by browsers. By enabling CORS on your server, you sepcify what other servers can have access to your resources. 
+
+When Site A tries to fetch content from Site B, Site B can send an `Access-Control-Allow-Origin` response header to tell the browser that the content of this page is accessible to certain origins. (An origin is a domain, plus a scheme and port number.)
+
+By default, Site B's pages are not accessible to any other origins; using the `Access-Control-Allow-Origin` header opens a door for cross-origin access by specific requesting origins.
+
+```
+http://foo.example.com:8080/
+^^^^   ^^^^^^^^^^^^^^^ ^^^^
+ ||           ||        ||
+scheme      domain     port
+```
+
+```
+// On siteB, we can set the Access-Control-Allow-Origin
+// allowing siteA to access its content
+Access-Control-Allow-Origin: http://siteA.com
+```
+
+Therefore, your server would respond to requests with an Access-Control-Allow-Origin header to let the browser know if the requested resource is accessible to those origins.
 
 #### Explain how JSONP works
 
