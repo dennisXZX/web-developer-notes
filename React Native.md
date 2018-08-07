@@ -1,15 +1,5 @@
 ## React Native
 
-### Project initialization
-
-```
-// initialize an React Native project
-react-native init projectName
-
-// run IOS simulator
-react-native run-ios/run-android
-```
-
 ### Styling component
 
 __flexbox layout__
