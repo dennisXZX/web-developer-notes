@@ -51,7 +51,7 @@ const pathObj = path.parse(__filename);
 
 #### File System Module
 
-The `fs` module contains both synchronous and asynchronous methods, however, we should always use the asyn ones in our app. The asyn methods usually take a callback function, which will be executed when the file operation is done.
+The `fs` module contains both synchronous and asynchronous methods to deal with files, however, we should always use the asyn ones in our app. The asyn methods usually take a callback function, which will be executed when the file operation is done.
 
 ```js
 const fs = require('fs');
