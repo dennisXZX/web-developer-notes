@@ -80,7 +80,7 @@ emitter.on('messageLogged', (arg) => {
   console.log(arg)
 })
 
-// emit an event with an object
+// emit an event with event argument
 emitter.emit('messageLogged', {
   id: 1,
   url: 'http://dennis.com'
@@ -138,7 +138,9 @@ logger.log('message')
 
 Node.js is not a programming language or framework. It is a runtime environment written in C++ for executing Javascript code with the V8 Javascript engine embedded. It is suitable for real time application but not CPU-intensive application.
 
-When we declare a variable in a client-side Javascript environment (browser), it is automatically added to the `window` global object. However, in Node environment, variables are scoped to the file in which they are declared and would not contaminate the `global` object. This is because in Node, every file lives in a separate module, which means variables and functions declared inside can only be accessed within the file. Node achieves this modularity by wrapping your code in an IIFE `function (exports, require, module, __filename, __dirname)` in each file. The `require` method, `exports` and `module` objects you can access in each file are actually being passed into the IIFE as parameters.
+When we declare a variable outside functions in a client-side Javascript environment (browser), it is automatically added to the `window` global object. However, in Node environment, variables are scoped to the file in which they are declared and would not contaminate the global environment. Although, Node does provide a `global` object for utility methods like `global.console.log()` and `global.setTimeout()`. 
+
+In Node, every file lives in a separate module, which means variables and functions declared inside can only be accessed within the file. Node achieves this modularity by wrapping your code in an IIFE `function (exports, require, module, __filename, __dirname)` in each file. The `require` method, `exports` and `module` objects you can access in each file are actually being passed into the IIFE as parameters.
 
 Now take a look at the parameters in the IIFE. Think of `module.exports` as the variable that gets returned from `require()`. It is an empty object by default, and it is fine to change to anything. The parameter `exports` itself is never returned. It is just a reference to `module.exports`; a convenience variable to help module authors write less code. Working with its properties is safe and recommended.
 
