@@ -13,10 +13,11 @@ const app = express();
 
 const fs = require('fs');
 
+// serving a file using GET request
 app.get('/', (req, res) => {
     // sendFile() takes an absolute path to a file and
     // sets the mime type based on the file extension name
-    // under the hood it uses the built-in 'fs' NodeJS module
+    // under the hood it uses the built-in 'fs' Node module
    res.sendFile(__dirname + '/index.html', (err) => {
        if (err) {
            // set the status code
@@ -33,14 +34,100 @@ app.get('/', (req, res) => {
     })
 });
 
+// serving JSON data using GET request
 // res.send() converts to JSON as well
 // but req.json() will convert things like null and undefined to JSON too
 app.get('/data', (req, res) => res.json(jsonData));
 
-app.listen(3000, () => console.log('Example app listening on port 3000!'));
+// retrieving all the courses using GET request
+// retrieve route params (req.params.id) and queries (req.query.sortBy)
+// when user hits http://domain/api/courses/1?sortBy=name
+app.get('/api/courses/:id', (req, res) => {
+    // find the course with the given id
+    const course = courses.find(c => c.id === parseInt(req.params.id))
+    if (!course) {
+        res.status(404).send('The course wit the given ID is not found')
+        return
+    }
+    
+    // return the course if it's found
+    res.send(course)
+})
+
+// update a course using PUT request
+app.put('api/courses/:id', (req, res) => {
+    // find the course with the given id
+    const course = courses.find(c => c.id === parseInt(req.params.id))
+    if (!course) {
+        res.status(404).send('The course wit the given ID is not found')
+        return
+    }
+    
+    // using joi library to validate
+    const { error } = validateCourse(req.body)
+    
+    if (error) {
+        res.status(400).send(error.details[0].message)
+        return
+    }
+    
+    course.name = req.body.name
+    res.send(course)
+})
+
+// delete a course using DELETE request
+app.delete('api/course/:id'. (req, res) => {
+    // find the course with the given id
+    const course = courses.find(c => c.id === parseInt(req.params.id))
+    if (!course) {
+        res.status(404).send('The course wit the given ID is not found')
+        return
+    }   
+    
+    // delete the course
+    const index = courses.indexOf(course)
+    courses.splice(index, 1)
+    
+    res.send(course)
+})
+
+// helper function for validation
+function validateCourse(course) {
+    const schema = {
+        name: Joi.string().min(3).required()
+    }
+    
+    return Joi.validate(course, schema)
+}
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`));
 ```
 
 For better dev experiences, install `nodemon (npm i -g nodemon)` and use `nodemon server.js` to launch the server.
+
+#### Custom middleware
+
+A middleware in Express is just a function with a specific signature.
+
+```js
+const logger = (req, res, next) => {
+    /* code for logging */
+    
+    // handle the responsibility to the next middleware
+    next();
+}
+
+module.exports = logger;
+```
+
+Use middleware
+
+```js
+const logger = require('./middleware/logger');
+
+app.use(logger);
+```
 
 #### RESTful services
 
