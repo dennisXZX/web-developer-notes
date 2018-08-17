@@ -1,5 +1,9 @@
 ## macOS
 
+#### External monitor does not work using a USB-C to DisplayPort adapter
+
+Reset NVRAM to the rescue. Shut down your Mac, then turn it on and immediately press and hold these four keys together: `Option`, `Command`, `P`, and `R`. You can release the keys after about 20 seconds, during which your Mac might appear to restart.
+
 #### Environment variables
 
 `printenv` to get a list of environment variables
