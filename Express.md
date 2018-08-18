@@ -106,6 +106,21 @@ app.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`));
 
 For better dev experiences, install `nodemon (npm i -g nodemon)` and use `nodemon server.js` to launch the server.
 
+#### Apply middlewares based on different environments
+
+Use `app.get('env')` to check the current environment, under the hood it retrieve the value of `process.env.NODE_ENV`.
+
+```js
+if (app.get('env') === 'development') {
+    app.use(morgan('tiny'));
+    console.log('Morgan enabled...');
+}
+```
+
+#### Config setting
+
+Use [node-config](https://github.com/lorenwest/node-config) to manage your config.
+
 #### Custom middleware
 
 A middleware in Express is just a function with a specific signature.
@@ -126,7 +141,10 @@ Use middleware
 ```js
 const logger = require('./middleware/logger');
 
+// use logger middleware to all routes
 app.use(logger);
+// user logger middleware to a specific route
+app.use(‘/api/admin’, logger);
 ```
 
 #### RESTful services
