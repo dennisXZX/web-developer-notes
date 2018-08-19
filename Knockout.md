@@ -19,7 +19,7 @@ this.products = ko.observableArray([
 
 #### The right-most properties don't require () in HTML declarative data binding
 
-```js
+```html
 // people observable array is not the right-most property so it has to be called
 <div data-bind="text: people().length"></div>
 // address observable is not the right-most property so it has to be called
@@ -31,13 +31,13 @@ this.products = ko.observableArray([
 
 #### Dynamically display the number of items
 
-```js
-There are <span data-bind="text: myItems().length"></span> items
+```html
+<p>There are <span data-bind="text: myItems().length"></span> items</p>
 ```
 
 #### Enable or disable a button according to the length of an array
 
-```js
+```html
 <button data-bind="enable: myItems().length < 5">Add</button>
 ```
 
@@ -110,7 +110,7 @@ myViewModel.personName.subscribe((newValue) => {
 
 #### Console log inside a Knockout template
 
-```js
+```html
 <div data-bind="text: console.log(amount_option)"></div>
 ```
 
@@ -136,7 +136,7 @@ There are some useful binding context.
 
 There is no if/else statement in Knockout, but we can achieve that with a trick.
 
-```js
+```html
 <!-- ko ifnot: activityItem.shortDescription -->
   <p data-bind="text: activityItem.name"></p>
 <!-- /ko -->
@@ -151,7 +151,7 @@ The difference between `visible` binding and `if` binding is that `visible` bind
 
 There are a couple of `valueUpdate` properties that can be added to value binding to change how event is detected.
 
-```js
+```html
 // most frequently used valueUpdate properties are 'keyup', 'keypress' and 'afterkeydown'
 <input type="text" data-bind="value: price, valueUpdate: 'afterkeydown'" />
 ```
