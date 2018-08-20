@@ -1,5 +1,15 @@
 ## Javascript
 
+#### Module vs Module format vs Module loader vs Module bundler
+
+A `module` is a reusable piece of code that encapsulates implementation details and exposes a public API so it can be easily loaded and used by other code.
+
+A `module format` is the syntax we use to define a module. Different module formats such `AMD`, `CommonJS`, `UMD` and `System.register` have emerged in the past and a native module format is now available since ES6.
+
+A `module loader` interprets and loads a module written in a certain module format at runtime. Popular examples are `RequireJS` and `SystemJS`.
+
+A `module bundler` replaces a module loader and generates a bundle of all code at build time. Popular examples are `Browserify`, `Webpack`, `rollup` and `parcel`.
+
 #### Compiler
 
 The Javascript compiler works in two distinct phases, compilation phase and execution phase.
