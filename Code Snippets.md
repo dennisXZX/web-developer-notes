@@ -29,6 +29,8 @@ export const copyToClipboard = (str) => {
 
 #### Find the max and average value of an array
 
+A solution taking advantage of the ES6 `rest operator` and `reduce` method.
+
 ```js
 // get the max value in a given array
 const arrMax = arr => Math.max(...arr);
@@ -37,6 +39,8 @@ const arrAvg = arr => arr.reduce((a,b) => a + b, 0) / arr.length
 ```
 
 #### Convert a complex object into an array
+
+An example of how to use `reduce` method to convert data structure.
 
 ```js
 // extract the cast from each object into an array, with no duplicate value.
@@ -85,7 +89,42 @@ const flatmapData = data.reduce((accumulator, currentValue) => {
 }, []);
 ```
 
+#### Convert an array to an object
+
+```js
+// original format
+let collection = [
+  { id: 1, age_from: 12, age_to: 99, name: "Adult" },
+  { id: 2, age_from: 3, age_to: 16,  name: "Child" },
+  { id: 3, age_from: 0, age_to: 2,  name: "Infant" }
+];
+
+// target format
+let newArr = {
+  '1': { name: 'Adult', age_from: 12, age_to: 99 },
+  '2': { name: 'Child', age_from: 3, age_to: 16 },
+  '3': { name: 'Infant', age_from: 0, age_to: 2 }
+}
+```
+
+Solution:
+
+```js
+const newCollection = collection.reduce((acc, curr) => {
+  acc[curr['id']] = {
+    name: curr['name'],
+    age_from: curr['age_from'],
+    age_to: curr['age_to']
+  }
+  return acc;
+}, {});
+
+console.log(newCollection);
+```
+
 #### Flatten an array
+
+An example of how to use `reduce` method to flatten an array.
 
 ```js
 // original data
@@ -103,6 +142,8 @@ const flattenedata = data.reduce((accumulator, currentValue) => {
 ```
 
 #### Get the mean value from an array
+
+Another example on how you can use `reduce` to achieve things.
 
 ```js
 /*
@@ -154,39 +195,6 @@ function splitArr(arr, splitNum) {
   processedArr = joinArr.match(reg);
   return processedArr;
 }
-```
-
-#### Convert an array to an object
-
-```js
-// original format
-let collection = [
-  { id: 1, age_from: 12, age_to: 99, name: "Adult" },
-  { id: 2, age_from: 3, age_to: 16,  name: "Child" },
-  { id: 3, age_from: 0, age_to: 2,  name: "Infant" }
-];
-
-// target format
-let newArr = {
-  '1': { name: 'Adult', age_from: 12, age_to: 99 },
-  '2': { name: 'Child', age_from: 3, age_to: 16 },
-  '3': { name: 'Infant', age_from: 0, age_to: 2 }
-}
-```
-
-Solution:
-
-```js
-const newCollection = collection.reduce((acc, curr) => {
-  acc[curr['id']] = {
-    name: curr['name'],
-    age_from: curr['age_from'],
-    age_to: curr['age_to']
-  }
-  return acc;
-}, {});
-
-console.log(newCollection);
 ```
 
 #### Convert arr to newArr
