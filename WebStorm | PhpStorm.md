@@ -1,8 +1,12 @@
-## WebStorm
+## WebStorm | PhpStorm
+
+#### Live reload for HTML/CSS
+
+- install `LiveEdit` plugin, then launch the HTML page in debug mode.
 
 #### Set ES6 as default language to all projects
 
-For settings that should apply to all the projects, goes to `File -> Default Settings`.
+For settings that should apply to all the projects, goes to `File -> Preferences for New Projects`.
 
 #### Useful shortcut
 
