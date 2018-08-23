@@ -22,7 +22,7 @@ For settings that should apply to all the projects, goes to `File -> Preferences
 
 #### Quick HTML generation
 
-WebStorm or PhpStorm integrates with `Emmet`, which allows you to generate HTML quickly by using short-cut syntax like `.row>a.label*2`.
+WebStorm or PhpStorm integrates with `Emmet`, which allows you to generate HTML quickly by using short-cut syntax like `.row>a.label*2`, which would generate an HTML structure as follows.
 
 ```
 <div class="row">
@@ -30,3 +30,11 @@ WebStorm or PhpStorm integrates with `Emmet`, which allows you to generate HTML 
   <a class="label"></a>
 </div>
 ```
+
+`#wrapper.container.bg-secondary.text-light` generates 
+
+```html
+<div id="wrapper" class="container bg-secondary text-light"></div>
+```
+
+`lorem10` generates 10 lorem words
