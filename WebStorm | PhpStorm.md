@@ -2,7 +2,8 @@
 
 #### Live reload for HTML/CSS
 
-- install `LiveEdit` plugin, then launch the HTML page in debug mode.
+- install `LiveEdit` plugin and activate it in `Build, Execution, Deployment -> Debugger -> Live Edit`
+- launch the HTML page in debug mode and any change would be automatically reflected in the browser
 
 #### Set ES6 as default language to all projects
 
