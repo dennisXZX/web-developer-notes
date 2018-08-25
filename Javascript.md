@@ -4,9 +4,9 @@
 
 A `module` is a reusable piece of code that encapsulates implementation details and exposes a public API so it can be easily loaded and used by other code.
 
-A `module format` is the syntax we use to define a module. Different module formats such `AMD`, `CommonJS`, `UMD` and `System.register` have emerged in the past and a native module format is now available since ES6.
+A `module format` is the syntax we use to define a module. Different module formats such `AMD`, `CommonJS`, `UMD` and `System.register` have emerged in the past and a native module format (import & export) is now available since ES6.
 
-A `module loader` interprets and loads a module written in a certain module format at runtime. Popular examples are `RequireJS` and `SystemJS`.
+A `module loader` interprets and loads a module written in a certain module format at runtime. Popular examples are `RequireJS` (AMD) and `SystemJS` (CommonJS, UMD, AMD, ES6).
 
 A `module bundler` replaces a module loader and generates a bundle of all code at build time. Popular examples are `Browserify`, `Webpack`, `rollup` and `parcel`.
 
@@ -483,10 +483,19 @@ Both AMD and CommonJS are specifications on how modules and their dependencies s
 
 #### Explain why the following doesn't work as an IIFE: `function foo(){ }();`.
 
-Because it will be treated as a function declaration instead of a function expression. Any statement begins with a 'function' keyword will be treated by the Javascript parser as a function declaration. To make this IIFE works, you need to wrap the function with a bracket.
+Because it will be treated as a function declaration instead of a function expression. Any statement begins with a `function` keyword will be treated by the Javascript parser as a function declaration. To make this IIFE works, you need to wrap the function with a bracket.
 
 ```js
-(function foo(){})() or (function foo(){}())
+(function foo(){ /* code */ })() or (function foo(){ /* code */ }())
+```
+
+Or you are really a tightass who wants to save a byte.
+
+```js
+!function(){ /* code */ }();
+~function(){ /* code */ }();
+-function(){ /* code */ }();
++function(){ /* code */ }();
 ```
 
 #### What's the difference between a variable that is: `null`, `undefined` or undeclared? How would you go about checking for any of these states?
