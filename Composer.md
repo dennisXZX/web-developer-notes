@@ -2,17 +2,19 @@
 
 #### useful commands
 
-`composer require packageName` add a new package to the composer.json. Use `--dev` flag to add packages to require-dev section.
+`composer require packageName` add a new package to the composer.json. Use `--dev` flag to add packages to require-dev section
 
-`composer install` to install packages in the composer.json file. When Composer has finished installing, it writes all of the packages and the exact versions of them that it downloaded to the `composer.lock` file.
+`composer install` to install packages in the composer.json file. When Composer has finished installing, it writes all of the packages and the exact versions of them that it downloaded to the `composer.lock` file
 
-`composer update` to update packages in the composer.json file.
+`composer update` to update packages in the composer.json file
 
-`composer dump-autoload` to look for new classes in the classmap path.
+`composer (global) show` to show all locally (globally) installed packages
+
+`composer dump-autoload` to look for new classes in the classmap path
 
 #### composer.json
 
-`require` key specifies which packages your project depends on.
+`require` key specifies which packages your project depends on
 
 ```js
 {
