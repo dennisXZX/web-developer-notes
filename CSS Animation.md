@@ -2,6 +2,8 @@
 
 #### Keyframe animation
 
+Check out lot of keyframe examples [here](http://animista.net/).
+
 First, you define the how an animation should look like at each phase.
 
 ```css
