@@ -3,40 +3,58 @@
 #### Command mode
 
 - `u` to undo the last change
-- `ctrl + r` to redo the last change 
-- `ctrl + f` to move forward a page, `ctrl + d` to move forward half a page
-- `ctrl + b` to move backward a page, `ctrl + u` to move backward half a page
-- `A` to move to the end of a line and switch to editing mode (move to the end of the line using `$`)
-- `I` to move to the beginning of a line and switch to insert mode (move to the beginning of the line using `^`)
-- `j` to move down the file
-- `k` to move up the file
-- `h` to move to the left character by character
-- `l` to move to the right character by character
-- `w` to move to the right word by word
-- `b` to move to the left word by word
-- `dd` to delete one line
+- `ctrl + r` redo the last change 
+
+- `ctrl + f` move forward a page, `ctrl + d` to move forward half a page
+- `ctrl + b` move backward a page, `ctrl + u` to move backward half a page
+
+- `j` move down the file
+- `k` move up the file
+- `h` move to the left character by character
+- `l` move to the right character by character
+- `w` move to the right word by word
+- `b` move to the left word by word
+- `^` move to the beginning of the line
+- `$` move to the end of the line
+
+- `x` delete a character
+- `dw` delete a word
+- `dd` delete one line
+- `D` delete from the current position
+
+- `r` replace one character
+- `cw` change a word
+- `cc` change an entire line
+
+- `~` toggle uppercase / lowercase
+
+- `yy` copy a line
+- `p` paste a line
 
 #### Search
 
-- `/textToSearch` to search in the file
-- `/\c` to search case sensitive, `/\C` to search case insensitive
-- `n` to move to the next search result (forward)
-- `shift + n` to move to the next search result (backward)
+- `/textToSearch` search in the file
+- `/\c` search case sensitive, `/\C` to search case insensitive
+- `n` move to the next search result (forward)
+- `shift + n` move to the next search result (backward)
 
 #### Insert mode
 
-- `i` to get into insert mode
-- `Esc` to exit insert mode
+- `i` insert at the cursor position
+- `I` insert at the beginning of the line
+- `a` append after the cursor position
+- `A` append at the end of the line
 
 #### Last-line mode
 
-- `:` to get into last-line mode
-- `Esc` to exit last-line mode
+- `:` get into last-line mode
+- `:set nu` display line number
+- `:10` go to line 10
 
 #### Visual mode
 
-- `v` to get into visual mode
-- `shift + v` to get into visual line mode
+- `v` get into visual mode
+- `shift + v` get into visual line mode
 
 #### Save file
 
