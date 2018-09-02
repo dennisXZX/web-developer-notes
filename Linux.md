@@ -22,6 +22,15 @@ Another lesser-known family of operaing system is BSD, one of the best known BSD
 - `cp -r source_directory destination_directory` recursively copy directory
 - `mv -i source_file destination_file` move or rename a file or directory
 
+#### Wildcards
+
+- `*` match zero or more characters
+- `?` match exactly one character
+- `[]` match any of the characters included between the brackets. It match exactly one character
+- `[!]` match any of the characters NOT included between the brackets. It match exactly one character
+- `[a-g]` create a range in a character class
+- `[[:alpha:]]`, `[[:alnum:]]`, `[[:digit:]]`, `[[:lower:]]`, `[[:upper:]]`, `[[:space:]]` are pre-defined wildcards
+
 #### Change file/folder ownership
 
 `sudo chown <username> /data/db` to change the owner of the folder `/data/db`. You can get your username using the command `whoami`.
