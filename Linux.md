@@ -4,14 +4,14 @@
 
 Technically speaking, Linux is a kernel, not an operating system. Linux distribution refers to a Linux kernel plus additional software. [DistroWatch](https://distrowatch.com/) has a thorough list of Linux distrubtion.
 
-Another lesser-known family of operation systems is BSD, one of the best known BSD derivatives is [FreeBSD](https://www.freebsd.org/). macOS is also a closed source descendant of the BSD family.
+Another lesser-known family of operaing system is BSD, one of the best known BSD derivatives is [FreeBSD](https://www.freebsd.org/). macOS is also a closed source descendant of the BSD family.
 
-- `mkdir -p /data/db` to create nested directories using the `-p` flag
-- `cd -` to navigate to the previous working directory
-- `cd ~` to navigate to the home directory
-- `cat error-log.txt` to display a file
-- `echo $PATH` to display command search path to the screen, each path is separated by a colon
-- `man commandName` to get documentation for a command. Use `g` to go to the top and `G` to the bottom on the documentation page.
+- `mkdir -p /data/db` create nested directories using the `-p` flag
+- `cd -` navigate to the previous working directory
+- `cd ~` navigate to the home directory
+- `cat error-log.txt` display a file
+- `echo $PATH` display command search path, each path is separated by a colon
+- `man commandName` get documentation for a command. Use `g` to jump to the top and `G` to the bottom on the documentation page.
 - `which commandName` to locate the command being executed
 
 #### Change file/folder ownership
@@ -20,7 +20,7 @@ Another lesser-known family of operation systems is BSD, one of the best known B
 
 #### Execute the last command with sudo
 
-```
+```shell
 [dennis@ops-server4 ~]$ cat /etc/sudoers|tail -3
 cat: /etc/sudoers: Permission denied
 [dennis@ops-server4 ~]$ sudo !!
@@ -37,19 +37,19 @@ Find out all the Node.js related process by `ps aux | grep node`.
 
 - get all the content of a website
 
-```
+```shell
 curl https://domain.com
 ```
 
 - save the output of the URL to a file
 
-```
+```shell
 curl -o api/posts.json https://domain.com/apiData.json
 ```
 
 - download files
 
-```
+```shell
 // download file.zip and save it to the current working directory 
 curl https://domain.com/file.zip -O
 
@@ -65,13 +65,13 @@ curl -u user sftp://server.domain.com/path/to/file
 
 - get HTTP header info
 
-```
+```shell
 curl -I http://domain.com
 ```
 
 #### Show how long a command takes to run
 
-```
+```shell
 time yarn webpack
 ```
 
@@ -79,7 +79,7 @@ time yarn webpack
 
 For MacOS, you need to install a the tree package first `brew install tree`.
 
-```
+```shell
 tree -F
 ```
 
@@ -93,16 +93,23 @@ The `hosts` file is an operating system file that maps hostnames to IP addresses
 
 There are some common `ls` Options 
 
-- -a, list all files, including hidden files
-- -l, list in long format
-- -F, indicate directories by placing a '/' at the end of each listed file
-- -r, list in reverse order
-- -S, sort results by file size
-- -t, sort results by modification time
+- `-a`, list all files, including hidden files
+- `-l`, list in long format
+- `-F`, reveal file types, `/` for directory, `@` for symbolic link and `*` for executable
+- `-r`, list in reverse order
+- `-S`, sort results by file size
+- `-t`, sort results by modification time
+- `-latr`, display most recently changed files at the bottom
+
+If you need to work on a file name with space, you can use quote to get around it.
+
+```shell
+ls -l 'my notes.txt'
+```
 
 When you use the `-l` format, we can see the access rights to the file. 
 
-```
+```shell
 drwxrwxrwx  18 dennis.x  staff    612 13 Jul 14:09 books
 -rwxr-xr--   1 dennis.x  staff   8398  5 Jul 11:06 ei-activity-view.css
 ```
@@ -117,7 +124,7 @@ For `drwxrwxrwx`, the first character indicates the file type, `d` represents a 
 
 You can change the permission for a file using `chmod` command.
 
-```
+```shell
 chmod 400 myfile
 ```
 
