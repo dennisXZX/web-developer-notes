@@ -1,10 +1,18 @@
 ## Linux
 
-#### Fundamentals 
+#### Fundamentals
+
+Technically speaking, Linux is a kernel, not an operating system. Linux distribution refers to a Linux kernel plus additional software. [DistroWatch](https://distrowatch.com/) has a thorough list of Linux distrubtion.
+
+Another lesser-known family of operation systems is BSD, one of the best known BSD derivatives is [FreeBSD](https://www.freebsd.org/). macOS is also a closed source descendant of the BSD family.
 
 - `mkdir -p /data/db` to create nested directories using the `-p` flag
 - `cd -` to navigate to the previous working directory
 - `cd ~` to navigate to the home directory
+- `cat error-log.txt` to display a file
+- `echo $PATH` to display command search path to the screen, each path is separated by a colon
+- `man commandName` to get documentation for a command. Use `g` to go to the top and `G` to the bottom on the documentation page.
+- `which commandName` to locate the command being executed
 
 #### Change file/folder ownership
 
