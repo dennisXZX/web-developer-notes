@@ -15,7 +15,7 @@ Another lesser-known family of operaing system is BSD, one of the best known BSD
 - `head fileName` look at the first 10 lines of the file
 - `tail fileName` look at the last 10 lines of the file, you can add the `-f` flag to follow the file change
 
-- `find . -iname npm* -ls` find files and directories start with 'npm', ignoring case
+- `find . -iname 'npm*' -ls` find files and directories start with 'npm', ignoring case
 
 - `cp -i source_file destination_file` copy a file, `-i` flag to use interactive mode
 - `cp file_1 file_2 directory_name` copy files to a directory
