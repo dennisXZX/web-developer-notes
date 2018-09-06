@@ -106,6 +106,10 @@ Reuse Recorded Resolution feature would record how you resolve conflict and try 
 
 `git rerere diff` to see the resolution strategy.
 
+#### git remote
+
+`git remote set-url <name> <url>` change an existing remote repository.
+
 #### git commit
 
 `git commit --amend` to rewrite the most recent commit message in your local repository.
