@@ -4,7 +4,7 @@ You can check the performance benchmark using [PageSpeed Insight](https://develo
 
 Following is a list of things you can do to optimize your web app.
 
-- Use [minifier](https://www.minifier.org/) to minimize JS and CSS code
+- Use [minifier](https://www.minifier.org/) to minimize JS and CSS code, and also run Gzip on the minified files
 
 - Minimize images
   - Use PNG for transparency, GIF for animation, JPEG for colorful images, SVG for icons, logos and illustrations
