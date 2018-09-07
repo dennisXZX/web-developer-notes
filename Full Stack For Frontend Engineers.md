@@ -1,6 +1,6 @@
-## How The Internet Works
+## Full Stack For Frontend Engineers
 
-Notes from a front end master course - Full Stack for Front End Engineers
+Notes from a front end master course - Full Stack For Frontend Engineers
 
 __DNS__
 
