@@ -1,5 +1,31 @@
 ## Javascript
 
+#### Best practice to assign default object to a function
+
+```js
+// the function expects a config object
+function draw(element, config) {
+  // define the default object
+  let defaults = {
+      width: 200,
+      height: 200,
+      margin: 28,
+      padding: 14
+  };
+
+  // solution one, use Object.assign
+  config = Object.assign(defaults, config);
+  
+  // solution two, use spread operator
+  config = {
+      ...defaults,
+      ...config
+  }
+}
+
+draw(null, { margin: 0, padding: 0 });
+```
+
 #### Module vs Module format vs Module loader vs Module bundler
 
 A `module` is a reusable piece of code that encapsulates implementation details and exposes a public API so it can be easily loaded and used by other code.
