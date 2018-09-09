@@ -1,5 +1,18 @@
 ## Javascript
 
+#### Create an immutable object
+
+`const` keywords does not guarantee an unchangable object, it only prevents re-assignment to the variable. To make an object immutable, you need to use `Object.freeze()`.
+
+```js
+const config = {
+  ... code
+}
+
+// make an object immutable
+Object.freeze(config);
+```
+
 #### Best practice to assign default object to a function
 
 ```js
@@ -33,6 +46,83 @@ A `module` is a reusable piece of code that encapsulates implementation details 
 A `module format` is the syntax we use to define a module. Different module formats such `AMD`, `CommonJS`, `UMD` and `System.register` have emerged in the past and a native module format (import & export) is now available since ES6.
 
 A `module loader` interprets and loads a module written in a certain module format at runtime. Popular examples are `RequireJS` (AMD) and `SystemJS` (CommonJS, UMD, AMD, ES6).
+
+Following is a simple module loader implementation, which is now obsolete and replaced by better implementations. However, it's still good to know how it all started.
+
+```js
+function ModuleLoader() {
+  /*
+  An object to store all the modules
+
+  In this example, it would store two modules:
+  HttpClient: { get: function }
+  PostManager: { getPosts: function }
+  */
+  const modules = {};
+
+  // return the implementation of the module
+  function getInstance (name) {
+    if (modules[name]) {
+      return modules[name];
+    } else {
+      throw new Error(`Undefined module: ${name}`)
+    }
+  }
+
+  // @param name - name of the module
+  // @param dependencies - an array of dependencies
+  // @param instance - the actual implementation of the module, normally an object returns an API
+  function define (name, dependencies, instance) {
+    // check if the module has already been defined
+    if (modules[name]) {
+      throw new Error(`Module ${name} has already been defined`);
+    } else {
+      // convert the array of module names into the array of module implementations
+      const depsInstances = dependencies.map(dep => {
+          return getInstance(dep)
+      });
+
+      // use apply() to provide the dependencies as parameters to the instance function
+      modules[name] = instance.apply(instance, depsInstances);
+    }
+  }
+
+  return {
+    getInstance: getInstance,
+    define: define
+  }
+}
+
+const loader = ModuleLoader();
+
+// define an HttpClient module
+loader.define('HttpClient', [], function HttpClient () {
+  function get (url) {
+    return fetch(url).then(res => res.json());
+  }
+
+  return {
+    get: get
+  }
+})
+
+// define a PostManager module
+loader.define('PostManager', ['HttpClient'], function PostManager (httpClient) {
+  function getPosts () {
+    httpClient.get('https://jsonplaceholder.typicode.com/posts').then(posts => {
+      console.log('Posts: ', posts);
+    })
+  }
+
+  return {
+    getPosts: getPosts
+  }
+})
+
+let postManager = loader.getInstance('PostManager');
+
+postManager.getPosts();
+```
 
 A `module bundler` replaces a module loader and generates a bundle of all code at build time. Popular examples are `Browserify`, `Webpack`, `rollup` and `parcel`.
 
