@@ -1,5 +1,13 @@
 ## NPM
 
+#### NPX
+
+NPX is a tool for executing Node packages introduced after `npm@5.2.0`.
+
+You can run a locally installed package using `npx package_name`.
+
+In addition, you can use it to run one-off command `npx create-react-app my-app` so you don't need to pollute global installs.
+
 #### Publish and update a package
 
 Publish a package
