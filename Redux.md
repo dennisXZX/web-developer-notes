@@ -5,7 +5,7 @@
 - create an action type config file for all the action constants
 - create an initial state object for each reducer as a default state (optional)
 - apply middleware so each action goes through the middleware before hitting reducer (optional)
-- create a bunch of reducers, in each reducer we need to provide logic for handling interested action types (usually in a switch statement). We should not directly mutate state in reducers. Also keep in mind that all reducers get called regardless of what action is emitted, so we have to return the original state if an action is not applicable.
+- create a bunch of reducers, in each reducer we need to provide logic for handling interested action types (usually in a switch statement). We should return a new piece of state instead of directly mutating state in reducers. Also keep in mind that all reducers get called regardless of what action is emitted, so we have to return the original state if an action is not applicable.
 - combine all the reducers into one root reducer
 - create a store which accepts the root reducer as the first parameter
 - subscribe to the store, so a callback is executed when any state is changed
