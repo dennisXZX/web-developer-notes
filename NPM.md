@@ -8,6 +8,24 @@ You can run a locally installed package using `npx package_name`.
 
 In addition, you can use it to run one-off command `npx create-react-app my-app` so you don't need to pollute global installs.
 
+#### Add additional parameters to NPM script
+
+Use `--` to tack additional flags to the NPM command.
+
+For example, you have an NPM script like the following.
+
+```
+"scripts": {
+  "lint": "eslint **/*.{js,jsx} --quiet"
+}
+```
+
+You can add the `--fix` flag in this way.
+
+```
+npm lint -- --fix
+```
+
 #### Publish and update a package
 
 Publish a package
