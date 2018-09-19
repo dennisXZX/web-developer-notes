@@ -48,6 +48,18 @@ Create a Babel config file `.babelrc`. You can find the browser list setting for
   "plugins": [
     // support dynamic import in your code
     "syntax-dynamic-import"
-  ]
+  ],
+  // run specific plugins based on the value of NODE_ENV
+  "env": {
+    "server": {
+      "plugins": ["transform-es2015-modules-commonjs"]
+    },
+    "development": {
+      "plugins": ["transform-es2015-modules-commonjs"]
+    },
+    "test": {
+      "plugins": ["transform-es2015-modules-commonjs"]
+    }
+  }  
 }
 ```
