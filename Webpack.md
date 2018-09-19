@@ -37,6 +37,12 @@ module.exports = {
     chuckFilename: '[id].js',
     publicPath: ''
   },
+  // server your static files using an HTTP server
+  devServer: {
+    hot: true,
+    publicPath: '/public/',
+    historyApiFallback: true
+  },  
   // Webpack would try to add these extensions to the file, so we can omit file extensions during import
   resolve: {
     extensions: ['.js', '.jsx']
@@ -49,6 +55,13 @@ module.exports = {
   },  
   module: {
     rules: [
+      // run eslint before Babel
+      {
+        enforce: 'pre', // ensure the linting happens before Babel
+        test: /\.jsx?$/,
+        loader: 'eslint-loader',
+        exclude: /node_modules/
+      },    
       {
         test: /\.js$/,
         loader: 'babel-loader',
