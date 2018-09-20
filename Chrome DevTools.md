@@ -7,6 +7,12 @@
 - Use `copy(temp1)` to copy the object
 - Paste the copied object to anywhere you like
 
+#### Interact with DOM elements
+
+- Highlight an element in Chrome Dev Tool
+- Type `$0` in the Console tab to access the element
+- Now you can freely interact with it
+
 #### Refresh options
 
 When Google DevTools is open, long click or right click on the refresh button we should see a list of refresh options.
