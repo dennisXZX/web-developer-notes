@@ -10,6 +10,14 @@
 
 4. React events will be grouped under the User `Timing` label.
 
+#### Debugging tips
+
+1. Highlight the React component in Chrome React Dev Tool
+
+2. Switch to Console tab and type `$r` to access the component
+
+3. Now you can freely interact with the component in whatever ways you want
+
 #### Control whether a property would be overwritten by props
 
 You can use the spread operator to control whether a property would be affected by props.
