@@ -2,7 +2,7 @@
 
 #### Useful shortcuts
 
-`Command + Shift + G` opens `go to the folder` function in Finder
+In Finder, `Command + Shift + G` opens `go to the folder` function
 
 `Command + ,` opens the application’s preferences
 
@@ -13,6 +13,12 @@
 `Command + Shift + .` toggles hidden files
 
 `Control + Command + Spacebar` brings up the emoji panel
+
+`Command + M` minimises the app window
+
+`Command + Shift + T` opens your last closed tab
+
+`Command + Shift + [` navigates between tabs in a browser 
 
 #### Environment variables
 
