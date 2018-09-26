@@ -15,7 +15,8 @@ Another lesser-known family of operaing system is BSD, one of the best known BSD
 - `head fileName` look at the first 10 lines of the file
 - `tail fileName` look at the last 10 lines of the file, you can add the `-f` flag to follow the file change
 
-- `find . -iname 'npm*' -ls` find files and directories start with 'npm', ignoring case
+- `find . -iname 'npm*' -ls` find files and directories start with 'npm' in current and sub-directories, ignoring case
+- `find /home -name *.jpg` find all .jpg files in the /home and sub-directories
 
 - `cp -i source_file destination_file` copy a file, `-i` flag to use interactive mode
 - `cp file_1 file_2 directory_name` copy files to a directory
@@ -50,6 +51,16 @@ The easiest way to find out what processes are running on your server is to run 
 
 Find out all the Node.js related process by `ps aux | grep node`.
 
+#### grep
+
+`grep -i "boo" /etc/passwd` search passwd file for the word "boo", ignoring word case
+
+`grep -r "192.168.1.5" /etc/` search all files under /etc folder for "192.168.1.5"
+
+`grep -w 'word1|word2' /path/to/file` search word1 or word2 exact match in a file
+
+`grep -c 'hello' /path/to/file` count how many times the word 'hello' appear in the file
+
 #### curl
 
 - get all the content of a website
@@ -68,16 +79,16 @@ curl -o api/posts.json https://domain.com/apiData.json
 
 ```shell
 // download file.zip and save it to the current working directory 
-curl https://domain.com/file.zip -O
-
-// download file.zip to the current working directory and rename it as archive.zip
-curl -o archive.zip https://domain.com/file.zip -O
+curl -O https://domain.com/file.zip
 
 // download multiple files simultaneously
-curl -O https://domain.com/file.zip -O https://domain.com/file2.zip
+curl -O https://domain.com/file.zip https://domain.com/file2.zip
+
+// download file.zip to the current working directory and rename it as archive.zip
+curl -o archive.zip https://domain.com/file.zip
 
 // download file securely via SSH
-curl -u user sftp://server.domain.com/path/to/file
+curl -u user:pass -O ftp://server.domain.com/path/to/file
 ```
 
 - get HTTP header info
