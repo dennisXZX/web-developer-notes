@@ -1,14 +1,12 @@
 ### React
 
-#### Profiling components with Chrome timeline
+#### Dump JSON into the DOM
 
-1. Load your app with `?react_perf` in the query string (for example, http://localhost:3000/?react_perf).
-
-2. Open the Chrome DevTools `Timeline` tab and press `Record` (Don't record more than 20 seconds).
-
-3. Perform the actions you want to profile. 
-
-4. React events will be grouped under the User `Timing` label.
+```
+<pre>
+    <code>{JSON.stringify(this.state, null, 4)}</code>
+</pre>
+```
 
 #### Debugging tips
 
