@@ -14,7 +14,7 @@
 
 2. Switch to Console tab and type `$r` to access the component
 
-3. Now you can freely interact with the component in whatever ways you want
+3. Now you can freely interact with the component in whatever ways you want, like `$r.setState()`
 
 #### Control whether a property would be overwritten by props
 
