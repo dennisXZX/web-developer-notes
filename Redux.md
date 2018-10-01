@@ -1,5 +1,52 @@
 ## Redux
 
+#### Middleware
+
+Concept: a Redux middleware sits between an action and a reducer. When it intercepts an action that it is interested, it would do some procession and return a new action which goes through all the middlewares again. (Because middlewares do not run in a particular order, so the new action needs to go through all middlewares again in case it misses some of them)
+
+```js
+// boilerplate for the Redux middleware
+export default ({ dispatch }) => next => action => {
+  ... code
+};
+
+// the boilerplate above is equal to the this
+export default function (dispatch) {
+  return function (next) {
+    return function (action) {
+      ... code
+    }
+  }
+}
+```
+
+A example of Redux-promise middleware.
+
+```js
+export default ({ dispatch }) => next => action => {
+  // Check to see if the action
+  // has a promise on its 'payload' property
+  // If it does, then wait for it to resolve
+  // If it doesn't, then send the action on to the
+  // next middleware
+  if (!action.payload || !action.payload.then) {
+    return next(action);
+  }
+
+  // We want to wait for the promise to resolve
+  // (get its data!!) and then create a new action
+  // with that data and dispatch it
+  action.payload.then((response) => {
+    // create a new action
+    const newAction = { ...action, payload: response };
+
+    // dispatch the new action
+    dispatch(newAction);
+  });
+};
+
+```
+
 #### Basic Workflow of Redux
 
 - create an action type config file for all the action constants
