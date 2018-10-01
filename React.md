@@ -1,5 +1,101 @@
 ### React
 
+#### Higher Order Component (HOC)
+
+Steps to build a HOC:
+
+Image we need to build a HOC which checks whether a user is signed in or not. In addition, we want to apply this component to all the other components that requires authentication.
+
+1. write the logic you want to reuse in a component
+
+The logic we need to navigate users based on their login status.
+
+```js
+// Our component just got rendered
+componentDidMount() {
+  this.shouldNavigateAway();
+}
+
+// Our component just got updated
+componentDidUpdate() {
+  this.shouldNavigateAway();
+}
+
+shouldNavigateAway() {
+  if (!this.props.auth) {
+    this.props.history.push('/');
+  }
+}
+```
+
+Access the authenticatio piece of state in the component.
+
+```js
+function mapStateToProps(state) {
+  return { auth: state.auth };
+}
+```
+
+2. create a HOC file and add the HOC scaffold
+
+```js
+import React, { Component } from 'react';
+
+// export a function
+export default (ChildComponent) => {
+  // define a class that renders the component received as parameter
+  class ComposedComponent extends Component {
+    render() {
+      return <ChildComponent />;
+    }
+  }
+
+  return ComposedComponent;
+};
+```
+
+3. move the reusable logic into the HOC and pass props through to child component
+
+```js
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+
+// export a function
+export default ChildComponent => {
+
+  // define a class
+  class ComposedComponent extends Component {
+    // Our component just got rendered
+    componentDidMount () {
+      this.shouldNavigateAway()
+    }
+
+    // Our component just got updated
+    componentDidUpdate () {
+      this.shouldNavigateAway()
+    }
+
+    shouldNavigateAway () {
+      if (!this.props.auth) {
+        this.props.history.push('/')
+      }
+    }
+
+    // pass props received by ComposedComponent into its child component
+    render () {
+      return <ChildComponent {...this.props} />
+    }
+  }
+
+  // access the state
+  function mapStateToProps (state) {
+    return { auth: state.auth }
+  }
+
+  return connect(mapStateToProps)(ComposedComponent)
+};
+```
+
 #### Dump JSON into the DOM
 
 ```
