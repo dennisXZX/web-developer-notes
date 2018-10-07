@@ -209,30 +209,6 @@ user1.increment();
 
 Look [here](https://github.com/dennisXZX/dennisxzx.blog.github.io-deprecated/blob/master/_posts/2017-4-27-How-Prototypes-Work.md) for a deep drive into the difference between `__proto__` and `prototype`.
 
-#### Web browser API, event queue and event loop
-
-What would be the output if we run the following code?
-
-```js
-function printHello() {
-  console.log('hello');
-}
-
-function blockForOneSec() {
-  // blocks in the Javascript thread for 1 second
-}
-
-setTimeout(printHello, 0);
-
-blockForOneSec();
-
-console.log('me first!');
-```
-
-The result will be seeing 'me first' in the console after about 1001 milliseconds and 'hello' after 1002 milliseconds.
-
-This is because when the setTimeout (browser API) completes, the deferred function will be placed in an `event queue`. The defferred function will be added to the call stack only when the call stack is totally empty and no other code need to be run in the global thread. A `event loop` mechanism is used to keep track of this condition. The `event loop` constantly checks for the `event queue` and takes the event at the top of the queue and processes it.
-
 #### Execution context, call stack and lexical scope (closure)
 
 When we run a Javascript file, it creates a global execution context, which contains a thread to run the code synchronously line by line. In addition, a globl variable environment is created to store variables and functions for the global execution context. When a function is executed in the global execution context, a local execution context is created, in which there is a local thread along with a local variable environment for storing local variables and functions.
@@ -277,6 +253,34 @@ myNewFunction();
 ```
 
 When a function is defined it gets a `[[scope]]` property that references the variable environment in which it has been defined. Wherever we call that incrementCounter function, it will always look first in its immediate variable environment for the variable `counter`, and then in the `[[scope]]` property next before it looks any further up.
+
+#### Web browser API, event queue and event loop
+
+What would be the output if we run the following code?
+
+```js
+function printHello() {
+  console.log('hello');
+}
+
+function blockForOneSec() {
+  // blocks in the Javascript thread for 1 second
+}
+
+setTimeout(printHello, 0);
+
+blockForOneSec();
+
+console.log('me first!');
+```
+
+The result will be seeing 'me first' in the console after about 1001 milliseconds and 'hello' after 1002 milliseconds.
+
+This is because when the setTimeout (browser API) completes, the deferred function will be placed in an `event queue`. The deferred function will be added to the call stack only when the call stack is totally empty and no other code need to be run in the global thread. A `event loop` mechanism is used to keep track of this condition. The `event loop` constantly checks for the `event queue` and takes the item at the top of the queue and puts it back to the `call stack` for execution when it's empty.
+
+Here is the diagram for how Javascript engine and browser API work together to execute the code above.
+
+![execution context](./images/execution-context.png)
 
 #### Method chaining
 
