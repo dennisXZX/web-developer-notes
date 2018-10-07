@@ -282,6 +282,36 @@ Here is the diagram for how Javascript engine and browser API work together to e
 
 ![execution context](./images/execution-context.png)
 
+#### Microtask queue vs event queue
+
+```js
+console.log('script start');
+
+setTimeout(function() {
+  console.log('setTimeout');
+}, 0);
+
+Promise.resolve().then(function() {
+  console.log('promise1');
+}).then(function() {
+  console.log('promise2');
+});
+
+console.log('script end');
+```
+
+The output of this script is...
+
+```
+script start
+script end
+promise1
+promise2
+setTimeout
+```
+
+The reason is that apart from the event queue, there is another queue named microtask queue which takes priority over callback queue. `setTimeout`, `setInterval` and browser events would go into task queue while promise callbacks go into microtask queue. Therefore, promise callbacks are executed prior to tasks in the event queue.
+
 #### Method chaining
 
 The key to achieve method chaining in Javascript is to return `this` keyword in the method.
