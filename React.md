@@ -28,7 +28,7 @@ shouldNavigateAway() {
 }
 ```
 
-Access the authenticatio piece of state in the component.
+Access the authentication piece of state in the component.
 
 ```js
 function mapStateToProps(state) {
@@ -41,8 +41,8 @@ function mapStateToProps(state) {
 ```js
 import React, { Component } from 'react';
 
-// export a function
-export default (ChildComponent) => {
+// define a function that takes a Component that need to be enhanced
+const enhanceComponent = (ChildComponent) => {
   // define a class that renders the component received as parameter
   class ComposedComponent extends Component {
     render() {
@@ -60,8 +60,8 @@ export default (ChildComponent) => {
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-// export a function
-export default ChildComponent => {
+// define a function that takes a Component that need to be enhanced
+const enhanceComponent = (ChildComponent) => {
 
   // define a class
   class ComposedComponent extends Component {
@@ -94,6 +94,18 @@ export default ChildComponent => {
 
   return connect(mapStateToProps)(ComposedComponent)
 };
+```
+
+4. Use the enhanced component
+
+```js
+const EnhancedTitle = enhanceComponent(OriginalTitle);
+
+class App extends React.Component {
+  render () {
+    return <EnhancedTitle config={config} />
+  }
+}
 ```
 
 #### Dump JSON into the DOM
