@@ -388,29 +388,11 @@ class Greeting extends React.PureComponent {
 }
 ```
 
-#### Component lifecycle
+#### React lifecycle
 
-- Creation phase: 
-  1. constructor()
-  2. componentWillMount()
-  3. render()
-  4. componentDidMount()
-  5. componentWillUnmount()
+Here is an interactive React life cycle diagram.
 
-- Update phase (triggered by props change): 
-  1. componentWillReceiveProps(nextProps)
-  2. shouldComponentUpdate(nextProps, nextState)
-  3. componentWillUpdate(nextProps, nextState) 
-  4. render()
-  5. componentDidUpdate() 
-  6. componentWillUnmount()
-
-- Update phase (triggered by state change): 
-  1. shouldComponentUpdate(nextProps, nextState)
-  2. componentWillUpdate(nextProps, nextState) 
-  3. render() 
-  4. componentDidUpdate()
-  5. componentWillUnmount()
+[http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)
 
 #### Error boundary
 
