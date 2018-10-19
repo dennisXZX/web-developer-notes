@@ -1,5 +1,21 @@
 ## Web APIs
 
+#### Detect screen size using matchMedia
+
+```js
+if (window.matchMedia("(min-width: 400px)").matches) {
+  /* the viewport is at least 400 pixels wide */
+} else {
+  /* the viewport is less than 400 pixels wide */
+}
+
+if (window.matchMedia("(orientation: portrait)").matches) {
+  /* The viewport is currently in portrait orientation */
+} else {
+  /* The viewport is not currently in portrait orientation, therefore landscape */
+}
+```
+
 #### URLSearchParams
 
 The URLSearchParams interface defines utility methods to work with the query string of a URL.
