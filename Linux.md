@@ -12,6 +12,7 @@ Another lesser-known family of operaing system is BSD, one of the best known BSD
 - `echo $PATH` display command search path, each path is separated by a colon
 - `man commandName` get documentation for a command. Use `g` to jump to the top and `G` to the bottom on the documentation page.
 - `which commandName` locate the command being executed
+- `nc locallost 5000 < post.txt` send the text in post.txt to netcat command (redirection operator)
 
 - `head fileName` look at the first 10 lines of the file
 - `tail fileName` look at the last 10 lines of the file, you can add the `-f` flag to follow the file change
@@ -96,6 +97,15 @@ curl -u user:pass -O ftp://server.domain.com/path/to/file
 
 ```shell
 curl -I http://domain.com
+```
+
+- send a POST request
+
+```shell
+// -H to set a header
+// -X to set a request
+// -d to set the data to be sent
+curl -H "X-First-Name: Dennis" -X POST http://localhost:5000 -d title=whatever -d date=12321231 -d body='hello world'
 ```
 
 #### Show how long a command takes to run
