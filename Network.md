@@ -25,12 +25,12 @@ Host: google.com
 curl -s google.com
 ```
 
-HTTPS - browser web pages with encryption (port 443)
-SMTP - send and receive demails (port 25)
-IMAP, POP3 - load emails from an inbox
-IRC - chat (port 6667)
-FTP - file transfer (port 21)
-SSH - remote shell over an encrypted connection (port 22)
+- HTTPS - browser web pages with encryption (port 443)
+- SMTP - send and receive demails (port 25)
+- IMAP, POP3 - load emails from an inbox
+- IRC - chat (port 6667)
+- FTP - file transfer (port 21)
+- SSH - remote shell over an encrypted connection (port 22)
 
 A port is a umber between 1 and 65535.
 
