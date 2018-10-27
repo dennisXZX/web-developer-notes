@@ -26,12 +26,12 @@ curl -s google.com
 ```
 
 - HTTPS - browser web pages with encryption (port 443)
-- SMTP - send and receive demails (port 25)
+- SMTP - send and receive emails (port 25)
 - IMAP, POP3 - load emails from an inbox
 - IRC - chat (port 6667)
 - FTP - file transfer (port 21)
 - SSH - remote shell over an encrypted connection (port 22)
 
-A port is a umber between 1 and 65535.
+A port is a number between 1 and 65535.
 
-Run `nc -l 5000` to launch a server on your machine listening to incoming connections on port 5000. After that, use `nc localhost 5000` to connect to your server. Now you can type messages in each session.
+Run `nc -l 5000` to launch a server on your machine listening to incoming connections on port 5000. After that, use `nc localhost 5000` to connect to your server. Now you can type messages in each session to have a chat with yourself.
