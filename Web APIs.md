@@ -1,6 +1,6 @@
 ## Web APIs
 
-#### Detect screen size using matchMedia
+#### Detect screen size using window.matchMedia
 
 ```js
 if (window.matchMedia("(min-width: 400px)").matches) {
@@ -37,3 +37,25 @@ for (let p of params) {
   console.log(p);
 }
 ```
+
+#### localStorage and sessionStorage
+
+```js
+// set a local storage item
+localStorage.setItem('name', 'Dennis')
+localStorage.setItem('age', '36')
+
+// remove a value from local storage
+localStorage.removeItem('name')
+
+// get a value from local storage
+const name = localStorage.getItem('name')
+
+// clear local storage
+localStorage.clear()
+
+// set session storage item, session storage clears out when you end the session (close the tab or browser)
+sessionStorage.setItem('name', 'Dennis')
+```
+
+You would need to use `JSON.parse()` to read the value from the local storage, and `JSON.stringify()` to convert array or object into string before storing in local storage.
