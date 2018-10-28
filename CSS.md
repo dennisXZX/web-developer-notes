@@ -1,8 +1,44 @@
 ## CSS
 
+#### Embed video in a background image
+
+```html
+<div class="video-container">
+  <video 
+         playsinline
+         autoplay
+         muted
+         loop
+         class="phone__video--mobile" 
+         id="demo-video" 
+         poster="https://lonelyplanetstatic.imgix.net/marketing/trips_app/TripsWalkthrough.jpg?q=40">
+    <source src="https://lonelyplanetstatic.imgix.net/marketing/trips_app/TripsWalkthroughVersion2.mp4">
+  </video>
+</div>
+```
+
+```css
+.video-container {
+    margin: 0 auto;
+    background: url(https://lonelyplanetstatic.imgix.net/marketing/guides_app/iphonebody.png) top no-repeat;
+    height: 550px;
+    width: 300px;
+    padding-top: 52px;
+}
+
+.phone__video--mobile {
+    position: relative;
+    height: 460px;
+    width: 255px;
+    top: 18px;
+    left: 19px;
+    z-index: -1;
+}
+```
+
 #### Customise file input
 
-You need to hide the file input and style a label as the file input.
+You need to hide the file input and style a label making it look like a real file input.
 
 ```html
 <input type="file"
