@@ -1,5 +1,62 @@
 ## Javascript
 
+#### Patterns
+
+Revealing module pattern
+
+```js
+const UICtrl = (function () {
+  // declare private variables and functions
+  let text = 'Hello world'
+
+  const changeText = () => {
+    const element = document.querySelector('h1')
+    element.textContent = text;
+  }
+
+  return {
+    // declare public variables and functions
+    callChangeText: function () {
+      changeText();
+      console.log(text);
+    }
+  }
+})();
+```
+
+Singleton pattern
+
+```js
+const Singleton = (function () {
+  // declare a variable to hold an instance
+  let instance;
+
+  // function to create an instance
+  function createInstance () {
+    const object = new Object({ name: 'Dennis' })
+
+    return object
+  }
+
+  // revealing module pattern
+  return {
+    getInstance: function () {
+      // check if there is already an object in the instance variable
+      // if not, then create one, otherwise, return the instance variable
+      if (!instance) {
+        instance = createInstance()
+      }
+
+      return instance
+    }
+  }
+})();
+
+const instanceA = Singleton.getInstance()
+const instanceB = Singleton.getInstance()
+console.log(instanceA === instanceB) // => true
+```
+
 #### Create an immutable object
 
 `const` keywords does not guarantee an unchangable object, it only prevents re-assignment to the variable. To make an object immutable, you need to use `Object.freeze()`.
