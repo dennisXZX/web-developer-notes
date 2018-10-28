@@ -1,5 +1,99 @@
 ## Code Snippets
 
+#### Implement a simple HTTP library
+
+Using plain XMLHttpRequest and prototype
+
+```js
+function easyHTTP () {
+  this.http = new XMLHttpRequest()
+}
+
+easyHTTP.prototype.get = function (url, callback) {
+  this.http.open('GET', url, true)
+
+  this.http.onload = () => {
+    if (this.http.status === 200) {
+      callback(null, this.http.responseText)
+    } else {
+      callback('Error: ' + this.http.status)
+    }
+  }
+
+  this.http.send();
+}
+
+easyHTTP.prototype.post = function (url, data, callback) {
+  this.http.open('POST', url, true)
+
+  this.http.setRequestHeader('Content-type', 'application/json')
+
+  this.http.onload = () => {
+    callback(null, this.http.responseText)
+  }
+
+  this.send(JSON.stringify(data))
+}
+```
+
+Using Class, Fetch() and Promise
+
+```js
+class EasyHttp {
+  get (url) {
+    return new Promise((resolve, reject) => {
+      fetch(url)
+        .then(res => res.json())
+        .then(data => resolve(data))
+        .catch(err => reject(err))
+    })
+  }
+
+  post (url, data) {
+    return new Promise((resolve, reject) => {
+      fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+        .then(res => res.json())
+        .then(data => resolve(data))
+        .catch(err => reject(err))
+    })
+  }
+}
+```
+
+Using Class, fetch(), async and await
+
+```js
+class EasyHttp {
+  async get (url) {
+    const response = await fetch(url)
+
+    const responseData = await response.json()
+
+    return responseData
+  }
+
+  async post (url, data) {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+
+    const responseData = response.json();
+
+    return responseData;
+  }
+}
+```
+
 #### Copy text to clipboard
 
 The idea behind this solution is to first create a 'hidden' textarea and set its value to the string that we want to copy. Then copy the textarea value and remove it from the DOM when the copy is done.
