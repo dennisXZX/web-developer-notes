@@ -2,7 +2,7 @@
 
 #### Middleware
 
-Concept: a Redux middleware sits between an action and a reducer. When it intercepts an action that it is interested, it would do some procession and return a new action which goes through all the middlewares again. (Because middlewares do not run in a particular order, so the new action needs to go through all middlewares again in case it misses some of them)
+Concept: a Redux middleware sits between an action and a reducer. When it intercepts an action that it is interested, it would manipulate it with its own logics. The middeware could stop the action or return a new action which goes through all the middlewares again. (Because middlewares do not run in a particular order, so the new action needs to go through all middlewares again in case it misses some of them)
 
 ```js
 // boilerplate for the Redux middleware
