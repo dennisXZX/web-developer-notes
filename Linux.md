@@ -12,7 +12,6 @@ Another lesser-known family of operaing system is BSD, one of the best known BSD
 - `echo $PATH` display command search path, each path is separated by a colon
 - `man commandName` get documentation for a command. Use `g` to jump to the top and `G` to the bottom on the documentation page.
 - `which commandName` locate the command being executed
-- `nc locallost 5000 < post.txt` send the text in post.txt to netcat command (redirection operator)
 
 - `head fileName` look at the first 10 lines of the file
 - `tail fileName` look at the last 10 lines of the file, you can add the `-f` flag to follow the file change
@@ -24,6 +23,12 @@ Another lesser-known family of operaing system is BSD, one of the best known BSD
 - `cp file_1 file_2 directory_name` copy files to a directory
 - `cp -r source_directory destination_directory` recursively copy directory
 - `mv -i source_file destination_file` move or rename a file or directory
+
+#### Redirection operator
+
+- `ls -al > listings` re-direct the result of command `ls -al` file "listings" instead of your screen
+- `echo "node_modules" >> .gitignore` add more content to an existing file instead of overwrite it
+- `nc locallost 5000 < post.txt` send the text in post.txt to netcat command
 
 #### Wildcards
 
