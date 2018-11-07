@@ -4,8 +4,8 @@
 
 1. Specify an entry point where Webpack should start (multiple entry points are possible)
 2. Apply loaders on per file basis (file-type dependent transformation)
-3. Apply plugin on the bundled file (global transformation)
-4. Output a bundled file
+3. Apply plugin on the bundled files (global transformation)
+4. Output bundled files to the specified path
 
 #### webpack.config.js
 
