@@ -143,7 +143,9 @@ There are some common `ls` Options
 - `-r`, list in reverse order
 - `-S`, sort results by file size
 - `-t`, sort results by modification time
+- `-h`, make the size human readable
 - `-latr`, display most recently changed files at the bottom
+- `ls /etc | wc -l`, display the number of file and folder in /etc folder
 
 If you need to work on a file name with space, you can use quote to get around it.
 
