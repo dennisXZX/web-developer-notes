@@ -7,6 +7,29 @@
 3. Apply plugin on the bundled files (global transformation)
 4. Output bundled files to the specified path
 
+#### Loaders
+
+1. Make sure they are in correct order. (right to left)
+
+2. Loaders are functions that take the source of a resource file as the parameter and return the new source.
+
+3. Loaders can be chained. They are applied in a pipeline to the resource. The final loader is expected to return JavaScript; each other loader can return source in arbitrary format, which is passed to the next loader.
+
+For example, if you have `somefile.css` and you are passing it through loaderOne, loaderTwo, loaderThree is behaves like a regular chained function.
+
+```js
+{
+    test: /\.css$/,
+    loaders: ['loaderOne', 'loaderTwo', 'loaderThree']
+}
+```
+
+means exactlly the same as...
+
+```js
+loaderOne(loaderTwo(loaderThree(somefile.css)))
+```
+
 #### webpack.config.js
 
 Development workflow
