@@ -781,7 +781,7 @@ Luckily, you can use [Modernizr](https://modernizr.com/) library to do feature d
 
 #### Explain Ajax in as much detail as possible.
 
-Simply put, Ajax is the use of JavaScript to send and receive data using HTTP without refreshing a web page. It is used to make the browsing experience smoother by dynamically updating the content on a web page.
+Simply put, Ajax (a misnomer today) is the use of JavaScript to send and receive data using HTTP without refreshing a web page. It is used to make the browsing experience smoother by dynamically updating the content on a web page.
 
 The process of execution of Ajax looks something like the following:
 
@@ -789,7 +789,29 @@ The process of execution of Ajax looks something like the following:
 
 2. An XMLHttpRequest object is created by Javascript and sent to a web server
 
-3. The server sends back a response after processing the request from the browser
+A bare-bones way to create an Ajax request is through the XMLHttpRequest object.
+
+```js
+const XHR = new XMLHttpRequest();
+
+// listen to the state change, from 0 to 4
+// https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/readyState
+XHR.onreadystatechange = function() {
+  if (XHR.readyState === 4 && XHR.status === 200) {
+    console.log(XHR.responseText)
+  } else {
+    console.log('There was a problem')
+  }
+}
+
+// specify the request
+XHR.open('GET', 'https://api.github.com/zen')
+
+// send the request
+XHR.send()
+```
+
+3. The server sends back a response after processing the request from the browser. The response used to be XML, hence the name Ajax, but now most of the responses are in JSON format. 
 
 4. The response is handled by Javascript in the browser to perform appropriate actions
 
