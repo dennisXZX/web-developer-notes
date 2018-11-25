@@ -8,7 +8,8 @@ Another lesser-known family of operaing system is BSD, one of the best known BSD
 
 - `mkdir -p /data/db` create nested directories using the `-p` flag
 - `mkdir .storybook src` create two folders named `.storybook` and `src`
-- `cat error-log.txt` display a file
+- `cat error-log.txt` display a file in one go
+- `less error-log.txt` display a file page by page (press `b` for prevous page and `/` to search)
 - `echo $PATH` display command search path, each path is separated by a colon
 - `man commandName` get documentation for a command. Use `g` to jump to the top and `G` to the bottom on the documentation page.
 - `which commandName` locate the command being executed
@@ -23,6 +24,20 @@ Another lesser-known family of operaing system is BSD, one of the best known BSD
 - `cp file_1 file_2 directory_name` copy files to a directory
 - `cp -r source_directory destination_directory` recursively copy directory
 - `mv -i source_file destination_file` move or rename a file or directory
+
+#### .bash_profile (MacOX) / .bashrc (Linux)
+
+You can put commands in `~/.bash_profile` file which will be run each time when you start your shell program.
+
+```shell
+alias g="cd ~/Github/"
+alias ..="cd .."
+alias ...="cd ../../"
+
+PATH=$PATH:/Users/bin
+```
+
+You can generate a custom prompt using [.bashrc generator](http://bashrcgenerator.com/).
 
 #### Redirection operator
 
@@ -62,6 +77,8 @@ Find out all the Node.js related process by `ps aux | grep node`.
 
 `grep -i "boo" /etc/passwd` search passwd file for the word "boo", ignoring word case
 
+`grep -i "shell" dictionary.txt | less` search dictionary.txt for the word "shell", ignoring word case and pipe the result to `less` command
+
 `grep -r "192.168.1.5" /etc/` search all files under /etc folder for "192.168.1.5"
 
 `grep -w 'word1|word2' /path/to/file` search word1 or word2 exact match in a file
@@ -73,13 +90,18 @@ Find out all the Node.js related process by `ps aux | grep node`.
 - get all the content of a website
 
 ```shell
-curl https://domain.com
+curl 'https://google.com'
+
+// use -L flag to follow redirection
+curl -L 'https://google.com'
 ```
 
-- save the output of the URL to a file
-
 ```shell
-curl -o api/posts.json https://domain.com/apiData.json
+// save the output of the URL to a file
+curl -o api/posts.json 'https://domain.com/apiData.json'
+
+// save the html page to a file named google.html
+curl -o google.html -L 'http://google.com'
 ```
 
 - download files
