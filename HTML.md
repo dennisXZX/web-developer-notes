@@ -1,5 +1,21 @@
 ## HTML
 
+#### Build a better form
+
+Use `<datalist>` instead of `<select>` to give user a better form experience.
+
+```html
+<label for="myBrowser">Choose a browser from this list:</label>
+<input list="browsers" id="myBrowser" name="myBrowser" />
+<datalist id="browsers">
+  <option value="Chrome">
+  <option value="Firefox">
+  <option value="Internet Explorer">
+</datalist>
+```
+
+It is also important to take advantage of `autocomplete` to auto fill the fields.
+
 #### HTML attribute vs DOM property
 
 HTML is a set of written instructions for how to display a web page. The browser reads the HTML and creates something called a DOM (Document Object Model) in memory. Changing the HTML doesn’t automatically update the webpage unless the user refreshes the browser, changing the DOM however instantly updates the webpage. 
