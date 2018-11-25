@@ -34,4 +34,9 @@ curl -s google.com
 
 A port is a number between 1 and 65535.
 
-Run `nc -l 5000` to launch a server on your machine listening to incoming connections on port 5000. After that, use `nc localhost 5000` to connect to your server. Now you can type messages in each session to have a chat with yourself.
+Run `nc -l 5000`, aka `netcat`, to launch a server on your machine listening to incoming connections on port 5000. After that, use `nc localhost 5000` to connect to your server. Now you can type messages in each session to have a chat with yourself. You can also open your browser and visit `localhost:9999`, your server should receive the request from your browser. Try to respond the request using a redirection.
+
+```
+HTTP/1.1 307 Temporary Redirect
+Location: https://dennisxiao.com
+```
