@@ -18,7 +18,7 @@ Another lesser-known family of operaing system is BSD, one of the best known BSD
 - `tail fileName` look at the last 10 lines of the file, you can add the `-f` flag to follow the file change
 
 - `find . -iname 'npm*' -ls` find files and directories start with 'npm' in current and sub-directories, ignoring case
-- `find /home -name *.jpg` find all .jpg files in the /home and sub-directories
+- `find /home -name '*.jpg'` find all .jpg files in the /home and sub-directories
 
 - `cp -i source_file destination_file` copy a file, `-i` flag to use interactive mode
 - `cp file_1 file_2 directory_name` copy files to a directory
@@ -30,10 +30,13 @@ Another lesser-known family of operaing system is BSD, one of the best known BSD
 You can put commands in `~/.bash_profile` file which will be run each time when you start your shell program.
 
 ```shell
+// add alias
 alias g="cd ~/Github/"
 alias ..="cd .."
 alias ...="cd ../../"
 
+// add new path '/Users/bin' to the $PATH
+// the best practice is to add new path after $PATH
 PATH=$PATH:/Users/bin
 ```
 
@@ -42,8 +45,8 @@ You can generate a custom prompt using [.bashrc generator](http://bashrcgenerato
 #### Redirection operator
 
 - `ls -al > listings` re-direct the result of command `ls -al` file "listings" instead of your screen
-- `echo "node_modules" >> .gitignore` add more content to an existing file instead of overwrite it
-- `nc locallost 5000 < post.txt` send the text in post.txt to netcat command
+- `echo "node_modules" >> .gitignore` add more content to an existing file instead of overwriting it
+- `nc locallost 5000 < post.txt` send the text in post.txt to `netcat` command
 
 #### Wildcards
 
@@ -51,7 +54,7 @@ You can generate a custom prompt using [.bashrc generator](http://bashrcgenerato
 - `?` match exactly one character
 - `[]` match any of the characters included between the brackets. It match exactly one character
 - `[!]` match any of the characters NOT included between the brackets. It match exactly one character
-- `[a-g]` create a range in a character class
+- `[a-g]` create a range of characters
 - `[[:alpha:]]`, `[[:alnum:]]`, `[[:digit:]]`, `[[:lower:]]`, `[[:upper:]]`, `[[:space:]]` are pre-defined wildcards
 
 #### Change file/folder ownership
@@ -63,6 +66,7 @@ You can generate a custom prompt using [.bashrc generator](http://bashrcgenerato
 ```shell
 [dennis@ops-server4 ~]$ cat /etc/sudoers|tail -3
 cat: /etc/sudoers: Permission denied
+
 [dennis@ops-server4 ~]$ sudo !!
 sudo cat /etc/sudoers|tail -3
 ```
