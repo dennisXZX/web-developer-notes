@@ -1,5 +1,15 @@
 ## Javascript
 
+#### Sorting non-ASCII characters
+
+```js
+const items = ['réservé', 'premier', 'cliché', 'communiqué', 'café', 'adieu'];
+
+items.sort((a, b) => {
+  return a.localeCompare(b);
+});
+```
+
 #### Patterns
 
 Revealing module pattern
