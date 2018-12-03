@@ -1,5 +1,9 @@
 ## CSS
 
+#### Compress SVG image
+
+Handle tool to compress SVG https://www.npmjs.com/package/svgo
+
 #### Embed video in a background image
 
 ```html
