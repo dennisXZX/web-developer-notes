@@ -295,10 +295,10 @@ This can be achieved by using the `:hover` selector on the parent element.
 
 #### Create a drop caps effect
 
-The drop caps effect is achieved using the `:first-letter` pseudo class. Basically what you need to do is to select the first letter and make it huge and floated to the left.
+The drop caps effect is achieved using the `::first-letter` pseudo class. Basically what you need to do is to select the first letter and make it huge and floated to the left.
 
 ```css
-p:first-child:first-letter {
+p:first-child::first-letter {
   color: #903;
   float: left;
   font-family: Georgia;
