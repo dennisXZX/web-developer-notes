@@ -1,8 +1,27 @@
 ## CSS
 
+#### Create a three column layout
+
+Just for fun to list all the possible solutions to create a three column layout, with left and right columns with a fixed width of 300px.
+
+1. Float
+2. Absolute position
+3. Flexbox
+4. display: table-cell (never ever used it, it's here for completeness)
+5. CSS grid
+
+```css
+.layout.grid .left-right-center {
+    display: grid;
+    width: 100%;
+    grid-template-rows: 100px;
+    grid-template-columns: 300px auto 300px;
+}
+```       
+
 #### Compress SVG image
 
-Handle tool to compress SVG https://www.npmjs.com/package/svgo
+Handy tool to compress SVG https://www.npmjs.com/package/svgo
 
 #### Embed video in a background image
 
