@@ -39,3 +39,11 @@ WebStorm or PhpStorm integrates with `Emmet`, which allows you to generate HTML 
 ```
 
 `lorem10` generates 10 lorem words
+
+`div.left+div.right+div.center` generates
+
+```html
+  <div class="left"></div>
+  <div class="right"></div>
+  <div class="center"></div>
+```
