@@ -9,7 +9,7 @@ Just for fun to list all the possible solutions to create a three column layout,
 3. Flexbox
 4. display: table-cell (never ever used it, it's here for completeness)
 5. CSS grid
-
+ 
 ```css
 .layout.grid .left-right-center {
     display: grid;
@@ -17,7 +17,21 @@ Just for fun to list all the possible solutions to create a three column layout,
     grid-template-rows: 100px;
     grid-template-columns: 300px auto 300px;
 }
-```       
+```
+
+#### Use CSS selector to select an element with two classes
+
+```css
+/* refers to an element that has both classes A and B */
+.classA.classB {
+  border: 1px solid;
+}
+
+/* refers to an element with class="classB" descended from an element with class="classA" */
+.classA .classB {
+  border: 1px solid;
+}
+```
 
 #### Compress SVG image
 
