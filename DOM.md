@@ -1,5 +1,18 @@
 ## DOM
 
+#### Retrieve an element's property using Javascript
+
+```js
+// select an element
+const para = document.querySelector('p');
+
+// get all its current style, whether is from inline, style tag or external
+const compStyles = window.getComputedStyle(para);
+
+// get the width value
+const paraWidth = compStyles.getPropertyValue('width');
+```
+
 #### Convert HTMLCollection or NodeList to normal array
 
 ```js
