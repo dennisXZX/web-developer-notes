@@ -1,5 +1,9 @@
 ## macOS
 
+#### Search previous command in bash
+
+`Ctl + R` searches previous CLI commands
+
 #### Useful shortcuts
 
 In Finder, `Command + Shift + G` opens `go to the folder` function
@@ -25,6 +29,8 @@ In Finder, `Command + Shift + G` opens `go to the folder` function
 `printenv` to get a list of environment variables
 
 `export PORT = 5000` to set an environment variable, which now can be accessed using `process.env.PORT`
+
+`export EDITOR=vim` to set your editor to Vim
 
 #### Hide a folder or file
 
