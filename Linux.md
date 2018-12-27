@@ -6,6 +6,8 @@ Technically speaking, Linux is a kernel, not an operating system. Linux distribu
 
 Another lesser-known family of operaing system is BSD, one of the best known BSD derivatives is [FreeBSD](https://www.freebsd.org/). macOS is also a closed source descendant of the BSD family.
 
+Linux usually comes with a [package management tool](https://www.digitalocean.com/community/tutorials/package-management-basics-apt-yum-dnf-pkg) for finding and installing software.
+
 - `mkdir -p /data/db` create nested directories using the `-p` flag
 - `mkdir .storybook src` create two folders named `.storybook` and `src`
 - `cat error-log.txt` display a file in one go
