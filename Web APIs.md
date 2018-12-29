@@ -1,5 +1,24 @@
 ## Web APIs
 
+#### Reduce the DOM operation by using createDocumentFragment
+
+```js
+const element  = document.getElementById('ul');
+const fragment = document.createDocumentFragment();
+const browsers = ['Firefox', 'Chrome', 'Opera',
+  'Safari', 'Internet Explorer'];
+
+browsers.forEach(function(browser) {
+  const li = document.createElement('li');
+  li.textContent = browser;
+  // manipulate the document fragment instead of DOM directly
+  fragment.appendChild(li);
+});
+
+// operate on the DOM only once
+element.appendChild(fragment);
+```
+
 #### Detect screen size using window.matchMedia
 
 ```js
