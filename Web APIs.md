@@ -40,6 +40,10 @@ for (let p of params) {
 
 #### localStorage and sessionStorage
 
+Since `cookie` has a size limit of 4KB and has to be sent with each AJAX request, local storage has now largely replaced cookie as the browser storage solution.
+
+Session storage clears out when you end the session (close the tab or browser), while local storage will remain in your browser until you manually clear them out.
+
 ```js
 // set a local storage item
 localStorage.setItem('name', 'Dennis')
@@ -53,9 +57,6 @@ const name = localStorage.getItem('name')
 
 // clear local storage
 localStorage.clear()
-
-// set session storage item, session storage clears out when you end the session (close the tab or browser)
-sessionStorage.setItem('name', 'Dennis')
 ```
 
 You would need to use `JSON.parse()` to read the value from the local storage, and `JSON.stringify()` to convert array or object into string before storing in local storage.
