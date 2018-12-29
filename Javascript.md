@@ -962,7 +962,7 @@ Because when you extend a built-in Javascript object, you change its behavior an
 
 #### Difference between document load event and document DOMContentLoaded event?
 
-The DOMContentLoaded event is triggered when all the HTML document has been completely loaded. The document load event, on the other hand, is triggered when all the HTML document and its resources (images, styles, etc) have been fully loaded. Therefore, DOMContentLoaded event is triggered before the document load event.
+The `DOMContentLoaded` event is triggered when all the HTML document has been completely loaded. The document `load` event, on the other hand, is triggered when all the HTML document and its resources (images, styles, etc) have been fully loaded. Therefore, `DOMContentLoaded` event is triggered before the document `load` event.
 
 #### What is the difference between `==` and `===`?
 
