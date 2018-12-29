@@ -36,12 +36,16 @@ Then you add this animation to an element.
 .heading-primary-main {
   animation-name: moveInLeft;
   animation-duration: 0.5s;
+  
   /* how the animation should progress over the duration of each cycle */
   animation-timing-function: ease-out;
+  
   /* how long do you want to delay the animation */
   animation-delay: 3s;
+  
   /* shorthand writing */
   animation: moveInLeft 0.5s ease-out 3s
+  
   /* how many times should the animation repeat itself */
   animation-iteration-count: 3;
 }
@@ -49,13 +53,9 @@ Then you add this animation to an element.
 
 `animation-fill-mode` specifies a style for the element when the animation is not playing (before it starts, after it ends, or both).
 
-`animation-fill-mode: backward`
+`animation-fill-mode: backwards` - The element will get the style values that is set by the first keyframe, and retain this during the animation-delay period.
 
-The element will get the style values that is set by the first keyframe, and retain this during the animation-delay period.
-
-`animation-fill-mode: forward`
-
-The element will retain the style values that is set by the last keyframe.
+`animation-fill-mode: forwards` - The element will retain the style values that is set by the last keyframe.
 
 `animation-direction: alternate` can be used to force an animation to an infinite loop.
 
