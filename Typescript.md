@@ -183,7 +183,7 @@ function sayHello(): void {
   console.log('Hello');
 }
 
-// function that returns nothing and has no end point
+// function that would never return anything, because it would not be finished executing
 function throwError(): never {
   throw Error('Couldn't connect to server');
 }
@@ -195,6 +195,17 @@ function multiply(x: number, y: number): number {
 
 // declare a variable that accepts a specific type of function
 let myFunc: (val1: number, val2: number) => number;
+
+// type alias
+type UserData = { 
+  name: string, 
+  age: number
+}
+
+let userData: UserData = {
+	name: 'dennis',
+	age: 32
+}
 ```
 
 ```ts
