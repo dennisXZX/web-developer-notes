@@ -154,11 +154,11 @@ appStore.dispatch(speakUserActionCreator('You are screwed!'));
 
 ```js
 import { createStore } from 'redux'
-import reducer from './store/reducer';
+import rootReducer from './store/rootReducer';
 import { Provider } from 'react-redux';
 import * as actionTypes from './actions';
 
-const store = createStore(reducer);
+const store = createStore(rootReducer);
 
 ReactDOM.render(
   <Provider store={store}>
@@ -167,8 +167,8 @@ ReactDOM.render(
   document.getElementById('root'));
 ```
 
-1. define `mapStateToProps()` to map your state to props from within the React component
-2. define `mapDispatchToProps()` to map your action to props from within the React component 
+1. define `mapStateToProps()` to map your state to props from within React component
+2. define `mapDispatchToProps()` to map your actions to props from within React component 
 3. use `connect()` provided by react-redux to connect React and Redux
 
 ```js
@@ -178,20 +178,25 @@ class Counter extends Component {
   ... code
 }
 
-// map state to props, the state parameter here refers to the Redux state you defined in your reducers
-// because we use combineReducers so we need to access state via the key of the state, such as state.users.counter
-// now you can access the Redux state via the this.props.counter from within the React component
-const mapStateToProps = (state) => {
+// map state to props, the state parameter here refers to the Redux state
+// because we use combineReducers so we need to access state via a key of the state, such as state.users.counter
+// now you can access the Redux state via this.props.counter from within React component
+const mapStateToProps = state => {
   return {
     counter: state.users.counter
   }
 }
 
-// map dispatch to props, the dispatch parameter here refers to the dispatch method provided by Redux, so when you call this dispatch method in your code, under the hood it would call the dispatch method attached to the Redux store
-// now you can dispatch an action using this.props.onIncrementCounter from within the React component
-const mapDispatchToProps = (dispatch) => {
+// map dispatch to props, the dispatch parameter here refers to the dispatch method provided by Redux, 
+// so when you call this dispatch method in your code, 
+// under the hood it would call the dispatch method provided by the Redux store
+// now you can dispatch an action using this.props.onIncrementCounter from within React component
+const mapDispatchToProps = dispatch => {
   return {
+    // dispatch a plain action object
     onIncrementCounter: () => dispatch({ type: actionType.ADD, payload: 10 })
+    // dispatch an action returned from an action creator
+    onDecrementCounter: () => dispatch(decrementCounter(10))
   }
 }
 
@@ -200,19 +205,26 @@ export default connect(mapStateToProps, mapDispatchToProps)(Counter);
 
 #### Connect dispatch to props
 
-There are three different ways to connect dispatch to props.
+There are various ways to connect dispatch to props.
 
 ```js
 // manually dispatch the action
-function mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   requestEmployees: () => dispatch(requestEmployees())
 });
 ```
 
 ```js
+// return an object, connect would automatically wrap the function in a dispatch()
+const mapDispatchToProps = {
+  requestEmployees
+};
+```
+
+```js
 // using bindActionCreators() helper function
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ editLabResult: requestEmployees}, dispatch);
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({ requestEmployees }, dispatch);
 }
 ```
 
