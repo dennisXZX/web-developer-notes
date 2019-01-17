@@ -63,6 +63,10 @@ import { connect } from 'react-redux'
 // define a function that takes a Component that need to be enhanced
 const enhanceComponent = (ChildComponent) => {
 
+  state = {
+    username: 'dennis',
+  };
+
   // define a class
   class ComposedComponent extends Component {
     // Our component just got rendered
@@ -81,9 +85,10 @@ const enhanceComponent = (ChildComponent) => {
       }
     }
 
+    // pass Component state to child component, so the Component state would appear as props in child component
     // pass props received by ComposedComponent into its child component
     render () {
-      return <ChildComponent {...this.props} />
+      return <ChildComponent {...this.state} {...this.props} />
     }
   }
 
