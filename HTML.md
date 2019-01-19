@@ -1,5 +1,26 @@
 ## HTML
 
+#### dataset property
+
+The dataset property on the HTMLElement interface provides read/write access to all the custom data attributes (data-*) set on the element.
+
+```html
+<div id="user" data-id="1234567890" data-user="dennis" onClick={getId}>John Doe</div>
+```
+
+```js
+const el = document.querySelector('#user');
+
+// el.id === 'user'
+// el.dataset.id === '1234567890'
+// el.dataset.user === 'dennis'
+
+function getId(e) {
+  const customId = e.target.dataset.id; // '1234567890'
+  return customId;
+}
+```
+
 #### Build a better form
 
 Use `<datalist>` instead of `<select>` to give user a better form experience.
