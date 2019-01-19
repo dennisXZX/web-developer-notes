@@ -216,8 +216,10 @@ const mapDispatchToProps = dispatch => ({
 
 ```js
 // return an object, connect would automatically wrap the function in a dispatch()
+// if you need to pass arguments to the action, you can use a wrapper function to do that
 const mapDispatchToProps = {
-  requestEmployees
+  requestEmployees,
+  increment: () => increment(42)  // use a wrapper function to pass an argument
 };
 ```
 
