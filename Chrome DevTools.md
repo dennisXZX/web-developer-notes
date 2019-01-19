@@ -1,5 +1,10 @@
 ## Chrome DevTools
 
+#### Take a screenshot
+
+- `Command + Shift + p` to open commands panel
+- type in `screenshot` to find the capture screenshot command
+
 #### Copy object from console or XHR request or response
 
 - Right click on the object and select `Store as Global Variable`
