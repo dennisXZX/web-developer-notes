@@ -1,5 +1,15 @@
 ## Redux
 
+#### data structure in Redux store (array vs object)
+
+[This video](https://www.youtube.com/watch?v=aJxcVidE0I0&feature=youtu.be) shows how you can use object data structure in Redux store to dramatically simply CRUD operations.
+
+Using object would make CRUD operations easier, however, it does come with disadvantages.
+
+- You cannot iterate over an object as easy as an array. you might need helper functions from Lodash such as `_.map()` or `_.values()`
+
+- Array can preserve the order of data, but not object. To address this, you might keep a separate array of IDs to denote order.
+
 #### Middleware
 
 Concept: a Redux middleware sits between an action and a reducer. When it intercepts an action that it is interested, it would manipulate it with its own logics. The middeware could stop the action or return a new action which goes through all the middlewares again. (Because middlewares do not run in a particular order, so the new action needs to go through all middlewares again in case it misses some of them)
