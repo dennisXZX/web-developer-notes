@@ -106,6 +106,12 @@ Reuse Recorded Resolution feature would record how you resolve conflict and try 
 
 `git rerere diff` to see the resolution strategy.
 
+#### git rebase
+
+Rebase is the process of moving or combining a sequence of commits to a new base commit. The primary reason for rebasing is to maintain a linear project history.
+
+`git rebase -i` performs rebase interactively
+ 
 #### git remote
 
 `git remote set-url <name> <url>` change an existing remote repository.
@@ -128,7 +134,9 @@ Navigate into a subfolder and use `git status .` to get status of just the subfo
 
 `git grep console.log` to print lines matching a pattern, code that contains the word 'console.log' will be printed out in this case.
 
-#### git revert 
+#### git revert
+
+The difference between `git reset` and `git revert` is the former would rewrite the history, while the latter would preserve the history, which is important in collaborative projects.
 
 `git revert HEAD^` to revert the last commit and add a new commit to undo its changes.
 
@@ -256,11 +264,13 @@ Make sure you are on the branch you want to apply the commit to, then run `git c
 
 #### git reset
 
+`git reset` reverts changes by moving a branch reference backwards in time to an older commit. In this sense you can think of it as "rewriting history;" `git reset` will move a branch backwards as if the commit had never been made in the first place. So this command should only be used locally for your repository.
+
 `git reset fileName` to remove the file from the staging area, without changing the file in the working area. 
 
 `git reset --hard HEAD^` to reset to the previous HEAD. (You have to use `git reset 'HEAD^'` in zsh)
 
-The difference between `^` and `~` can be illustrated by the follow graph.
+`^` and `~` are called relative refs. The difference between `^` and `~` can be illustrated by the follow graph.
 
 ![difference between ^ and ~](./images/git_reset.png)
 
@@ -285,6 +295,8 @@ These can be combined, so `HEAD~2^3` means HEAD's grandparent commit's third par
 `git branch -a` to see both local and remote branches.
 
 `git branch -d branchName` to delete a branch.
+
+`git branch -f branchName HEAD~3` moves (by force) the specified branch to three parents behind HEAD
 
 `git branch --merged master` to see all branches that have already been merged into master. (So you can clean them)
 
