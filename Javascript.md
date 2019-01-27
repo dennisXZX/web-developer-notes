@@ -1,5 +1,27 @@
 ## Javascript
 
+#### Use logical operators to simplfy conditional statement
+
+```js
+let xmlhttp = null;
+
+if (window.XMLHttpRequest) {
+  // Modern browsers
+  xmlhttp = new XMLHttpRequest();
+} else if (window.ActiveXObject) {
+  // Older versions of Internet Explorer (IE <= 6)
+  xmlhttp = new ActiveXObject('Microsoft.XMLHTTP');
+}
+```
+
+can be simplified as
+
+```js
+const xmlhttp = window.XMLHttpRequest && new XMLHttpRequest()
+  || window.ActiveXObject && new ActiveXObject('Microsoft.XMLHTTP')
+  || null;
+```
+
 #### Sorting non-ASCII characters
 
 ```js
