@@ -16,12 +16,12 @@ Concept: a Redux middleware sits between an action and a reducer. When it interc
 
 ```js
 // boilerplate for the Redux middleware
-export default ({ dispatch }) => next => action => {
+export default ({ dispatch, getState }) => next => action => {
   ... code
 };
 
 // the boilerplate above is equal to the this
-export default function (dispatch) {
+export default function (dispatch, getState) {
   return function (next) {
     return function (action) {
       ... code
@@ -33,7 +33,7 @@ export default function (dispatch) {
 A example of Redux-promise middleware.
 
 ```js
-export default ({ dispatch }) => next => action => {
+export default ({ dispatch, getState }) => next => action => {
   // Check to see if the action
   // has a promise on its 'payload' property
   // If it does, then wait for it to resolve
@@ -54,8 +54,15 @@ export default ({ dispatch }) => next => action => {
     dispatch(newAction);
   });
 };
-
 ```
+
+Normally we can classify our middlewares into three categories:
+
+- middleware responds to all actions (logging)
+- middleware responds to a specific flag (throttle, analytics)
+- middleware responds to a specific type of action (API)
+
+A middleware example can be found [here](https://github.com/dennisXZX/middleware-lecture).
 
 #### Basic Workflow of Redux
 
