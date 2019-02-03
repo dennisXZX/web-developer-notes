@@ -2,7 +2,7 @@
 
 #### Fundamentals
 
-CSS animation is ofen used in combination with pseudo-class.
+CSS animation is often used in combination with pseudo-class.
 
 - `:hover` state indicates when you hover an element, like mouse hover
 - `:focus` state indicates when an element receives focus, like click on an input field or use `tab` key moving to it
@@ -42,12 +42,12 @@ Then you add this animation to an element.
   
   /* how long do you want to delay the animation */
   animation-delay: 3s;
-  
-  /* shorthand writing */
-  animation: moveInLeft 0.5s ease-out 3s
-  
+    
   /* how many times should the animation repeat itself */
   animation-iteration-count: 3;
+  
+  /* shorthand writing for applying multiple animations */
+  animation: moveInLeft 0.5s ease-out 3s, rotate .5s .75s forwards  
 }
 ```
 
