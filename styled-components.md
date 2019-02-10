@@ -1,5 +1,25 @@
 ## styled-components
 
+#### Simply the function interpolation syntax using partial 
+
+```
+// before
+const Button = styled.button`
+  background-color: ${({ theme }) => theme.bgColor}
+  color: ${({ theme }) => theme.textColor}
+`
+
+// after
+const fromTheme = prop => ({ theme }) => theme[prop]
+const getBackgroundColor = fromTheme("bgColor")
+const getTextColor = fromTheme("textColor")
+
+const Button = styled.button`
+  background-color: ${getBackgroundColor}
+  color: ${getTextColor}
+`
+```
+
 #### Fundamentals
 
 Define a styled component
