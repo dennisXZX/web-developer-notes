@@ -37,17 +37,19 @@ items.sort((a, b) => {
 Revealing module pattern
 
 ```js
+// define an IIFE that returns public variables and methods
 const UICtrl = (function () {
-  // declare private variables and functions
+  // private variables
   let text = 'Hello world'
-
+  
+  // private functions
   const changeText = () => {
     const element = document.querySelector('h1')
     element.textContent = text;
   }
 
   return {
-    // declare public variables and functions
+    // public functions exposed to the library users
     callChangeText: function () {
       changeText();
       console.log(text);
@@ -59,11 +61,12 @@ const UICtrl = (function () {
 Singleton pattern
 
 ```js
+// define an IIFE that returns an instance of the class
 const Singleton = (function () {
   // declare a variable to hold an instance
   let instance;
 
-  // function to create an instance
+  // function to create an instance of the class
   function createInstance () {
     const object = new Object({ name: 'Dennis' })
 
@@ -105,10 +108,10 @@ Object.freeze(config);
 #### Best practice to assign default object to a function
 
 ```js
-// the function expects a config object
+// the function expects a config object as the second parameter
 function draw(element, config) {
   // define the default object
-  let defaults = {
+  const defaults = {
       width: 200,
       height: 200,
       margin: 28,
@@ -123,6 +126,8 @@ function draw(element, config) {
       ...defaults,
       ...config
   }
+  
+  // other codes
 }
 
 draw(null, { margin: 0, padding: 0 });
