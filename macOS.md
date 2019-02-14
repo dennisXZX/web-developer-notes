@@ -35,3 +35,17 @@ In Finder, `Command + Shift + G` opens `go to the folder` function
 #### Hide a folder or file
 
 In Terminal, type `chflags hidden fileName / folderName`, to unhide them, you can use `chflags nohidden` followed by the file or folder path. Alternatively, you can use `mv fileName .fileName`. Because by default, folders with period at the beginning of their names are hidden in OS X.
+
+#### Add alias to terminal
+
+- Create a `.bash_profile` in user profile folder if it doesn't already exist
+- Place your alias in the file
+
+```
+alias g="cd ~/Github/"
+alias p="cd ~/Practices"
+alias ..="cd .."
+alias ...="cd ../../"
+```
+
+- Reload the bash file using `source .bash_profile`
