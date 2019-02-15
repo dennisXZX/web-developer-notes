@@ -1,5 +1,16 @@
 ## Typescript
 
+#### Generic
+
+```ts
+// define a function with generic type
+function identity<T>(arg: T): T {
+    return arg;
+}
+
+let output = identity("myString");  // type of output will be 'string'
+```
+
 #### Shortcut for creating a class for model data
 
 ```ts
@@ -130,9 +141,10 @@ Now you can get and set the private value x using `let x = point.X` and `point.X
 ```ts
 // you can define an optional value in an interface using '?' operator
 interface Point {
-  x: number,
-  y: number,
-  name?: string
+  readonly x: number;  // read-only property
+  readonly y: number;
+  name?: string;  // optional property
+  [propName: string]: any;  // could have any number of other properties
 }
 
 // specify the parameter to be a Point object
@@ -169,9 +181,10 @@ let bgColorStr: string = Color[0];  // => 'Red'
 
 // union type
 let id: string | number = 'TX-101'; // can be type string or number
+let username: string | undefined; // can be type string or undefined
 
 // any type
-let car: any = "BMW";
+let car: any = "BMW"; // should refrain from using any type
 
 // function returns a specific type
 function getName(): string {
@@ -183,7 +196,7 @@ function sayHello(): void {
   console.log('Hello');
 }
 
-// function that would never return anything, because it would not be finished executing
+// function that would never return anything (always throws an exception), because it would not be finished executing
 function throwError(): never {
   throw Error('Couldn't connect to server');
 }
@@ -208,11 +221,14 @@ let userData: UserData = {
 }
 ```
 
+A type assertion is like a type cast in other languages, but performs no special checking or restructuring of data.
+
 ```ts
 // type assertions example 1
 let message;
 message = 'abc';
 
+// use angle-bracket syntax to cast type
 let endsWithC = (<string>message).endsWith('c');
 
 // type assertions example 2
@@ -222,7 +238,7 @@ interface Army {
 }
 
 let dog = {} as Army; // treat dog as a type of Army
-dog.count; // so we can access the count property no matter what
+dog.magic; // so we can access the magic property no matter what
 ```
 
 #### Declaration Files
