@@ -86,16 +86,16 @@ tsc -w
 ```ts
 class Cat {
   // define a private field
-  private _name: string;
+  private name: string;
   
   // the initial name is optional
   constructor(name?: string) {
-    this._name = name;
+    this.name = name;
   }
   
   // by default, any field and method is public
   speak(): void {
-    console.log('My name is: ' + this._name);
+    console.log('My name is: ' + this.name);
   }
 }
 
@@ -110,7 +110,7 @@ Because it is so common to declare a private variable in a class and then assign
 
 ```ts
 class Cat {
-  constructor(private _name: string, public _color?: string) {
+  constructor(private name: string, public _color?: string) {
     // other code
   }
 }
@@ -119,10 +119,10 @@ class Cat {
 #### Properties for private variable
 
 ```ts
-private _x;
+private x;
 
 get x() {
-  return this._x
+  return this.x
 }
 
 set x(value) {
@@ -130,7 +130,7 @@ set x(value) {
     throw new Error('value cannot be less than 0');
   }
   
-  this._x = value;
+  this.x = value;
 }
 ```
 
@@ -145,11 +145,31 @@ interface Point {
   readonly y: number;
   name?: string;  // optional property
   [propName: string]: any;  // could have any number of other properties
+  
+  getX(): number  // define a method
 }
 
 // specify the parameter to be a Point object
-let drawPoint = (point: Point) => {
-  // ...
+const drawPoint = (point: Point) => {
+  ...code
+}
+
+// function interface
+interface DoubleValueFunc {
+  (num1: number, num2: number): number;
+}
+
+const myDoubleFunc: DoubleValueFunc = (num1: number, num2: number) => (num1 + num2) * 2;
+
+// create a class that implements Point interface,
+// so all the Point properties and methods need to be implemented in WeirdPoint
+class WeirdPoint implements Point {
+  ...code
+}
+
+// create an interface that extends Point interface
+interface NewPoint extends Point {
+  brand: string
 }
 ```
 
@@ -216,8 +236,8 @@ type UserData = {
 }
 
 let userData: UserData = {
-	name: 'dennis',
-	age: 32
+  name: 'dennis',
+  age: 32
 }
 ```
 
