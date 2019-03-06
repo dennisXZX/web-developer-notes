@@ -22,7 +22,9 @@ In Finder, `Command + Shift + G` opens `go to the folder` function
 
 `Command + Shift + T` opens your last closed tab
 
-`Command + Shift + [` navigates between tabs in a browser 
+`Command + Shift + [` navigates between tabs in a browser
+
+`Command + ctrl + shift + 3` takes a whole screen shot, `4` takes partial screen shot
 
 #### Environment variables
 
