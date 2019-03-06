@@ -13,7 +13,7 @@ Linux usually comes with a [package management tool](https://www.digitalocean.co
 - `cat error-log.txt` display a file in one go
 - `less error-log.txt` display a file page by page (press `b` for prevous page and `/` to search)
 - `echo $PATH` display command search path, each path is separated by a colon
-- `man commandName` get documentation for a command. Use `g` to jump to the top and `G` to the bottom on the documentation page.
+- `man commandName` get documentation for a command. `man -k "list directory"` to search something in manual. Use `g` to jump to the top and `G` to the bottom on the documentation page.
 - `which commandName` locate the command being executed
 
 - `head fileName` look at the first 10 lines of the file
