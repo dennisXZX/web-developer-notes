@@ -23,6 +23,44 @@ git cat-file -t 980a0
 git cat-file -p 980a0
 ```
 
+#### Productive tips
+
+__use wild card to commit some of the files__
+
+`git add src/app/app.component.*`
+
+__make git log pretty and readable__
+
+- edit `~/.gitconfig` file
+
+```
+[alias]
+      lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --branches
+```
+
+- use `g lg` to view git log
+
+__discard some commits on a local branch__
+
+```
+git reset --hard 9a7f06b
+```
+
+This would discard all commits after `9a7f06b`
+
+__change the commit message of the last commit__
+
+`git commit --amend`
+
+__add files that have been forgotten to add to the last commit__
+
+- `git add fileName` to add the file to staging area
+- `git commit --amend` to add the file to the last commit
+
+__undo the last commit__
+
+`git reset HEAD~`
+
 #### References (pointers) to commits
 
 - Tags
@@ -247,6 +285,8 @@ We can use multiple arguments such as `git log --stat --oneline`.
 #### git merge
 
 `git merge branchName` to merge a branch into the current branch (the one with *).
+
+`git merge --squash branchName` to squash then merge a branch into the current branch.
 
 `git merge --no-ff` to retain the history of a merge commit, wich will prevent from executing `fast-forward`.
 
