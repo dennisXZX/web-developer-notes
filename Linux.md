@@ -10,7 +10,7 @@ Linux usually comes with a [package management tool](https://www.digitalocean.co
 
 - `mkdir -p /data/db` create nested directories using the `-p` flag
 - `mkdir .storybook src` create two folders named `.storybook` and `src`
-- `cat error-log.txt` display a file in one go
+- `cat error-log.txt` display a file in one go, you can use `-n` flag to show line number
 - `less error-log.txt` display a file page by page (press `b` for prevous page and `/` to search)
 - `echo $PATH` display command search path, each path is separated by a colon
 - `man commandName` get documentation for a command. `man -k "list directory"` to search something in manual. Use `g` to jump to the top and `G` to the bottom on the documentation page.
@@ -21,11 +21,12 @@ Linux usually comes with a [package management tool](https://www.digitalocean.co
 
 - `find . -iname 'npm*' -ls` find files and directories start with 'npm' in current and sub-directories, ignoring case
 - `find /home -name '*.jpg'` find all .jpg files in the /home and sub-directories
+- `find . -type d` find all directiories in the current folder
+- `find dist/ -name '*.built.js' -delete` find all built.js file in the dist folder and delete them
+- `find images/ -name '*.png' -exec pngquant {} \;` find all png in the images folder and run pngquant on each matched file
 
-- `cp -i source_file destination_file` copy a file, `-i` flag to use interactive mode
-- `cp file_1 file_2 directory_name` copy files to a directory
 - `cp -r source_directory destination_directory` recursively copy directory
-- `mv -i source_file destination_file` move or rename a file or directory
+- `mv source_file destination_file` move or rename a file or directory
 
 #### .bash_profile (MacOX) / .bashrc (Linux)
 
@@ -81,6 +82,8 @@ Find out all the Node.js related process by `ps aux | grep node`.
 
 #### grep
 
+`grep --color -n -C 1 'download' package.json` search the word 'download' in package.json
+
 `grep -i "boo" /etc/passwd` search passwd file for the word "boo", ignoring word case
 
 `grep -i "shell" dictionary.txt | less` search dictionary.txt for the word "shell", ignoring word case and pipe the result to `less` command
@@ -129,7 +132,7 @@ curl -u user:pass -O ftp://server.domain.com/path/to/file
 - get HTTP header info
 
 ```shell
-curl -I http://domain.com
+curl -i http://domain.com
 ```
 
 - send a POST request
