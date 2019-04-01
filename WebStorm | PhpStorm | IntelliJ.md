@@ -1,4 +1,4 @@
-## WebStorm | PhpStorm
+## WebStorm | PhpStorm | IntelliJ
 
 #### Live reload for HTML/CSS
 
@@ -20,6 +20,8 @@ For settings that should apply to all the projects, goes to `File -> Preferences
 - `alt + command + o` to search for a method
 
 - `command + shift + f` to search in path
+
+- `option + shift + mouse click` to edit multiple lines
 
 #### Quick HTML generation
 
