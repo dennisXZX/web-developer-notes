@@ -28,6 +28,11 @@ Linux usually comes with a [package management tool](https://www.digitalocean.co
 - `cp -r source_directory destination_directory` recursively copy directory
 - `mv source_file destination_file` move or rename a file or directory
 
+#### Find out what program is using a specific port
+
+- find out what program is using port 8080 `lsof -i :8080`
+- kill the program `kill -9 <PID>`
+
 #### .bash_profile (MacOX) / .bashrc (Linux)
 
 You can put commands in `~/.bash_profile` file which will be run each time when you start your shell program.
