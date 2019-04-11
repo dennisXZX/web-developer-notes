@@ -31,6 +31,7 @@ Linux usually comes with a [package management tool](https://www.digitalocean.co
 #### Find out what program is using a specific port
 
 - find out what program is using port 8080 `lsof -i :8080`
+- find out all the ports being used `sudo lsof -PiTCP -sTCP:LISTEN`
 - kill the program `kill -9 <PID>`
 
 #### .bash_profile (MacOX) / .bashrc (Linux)
