@@ -25,8 +25,20 @@ Linux usually comes with a [package management tool](https://www.digitalocean.co
 - `find dist/ -name '*.built.js' -delete` find all built.js file in the dist folder and delete them
 - `find images/ -name '*.png' -exec pngquant {} \;` find all png in the images folder and run pngquant on each matched file
 
-- `cp -r source_directory destination_directory` recursively copy directory
+- `cp -r source_directory destination_directory` recursively copy a directory
 - `mv source_file destination_file` move or rename a file or directory
+
+- `reset` resett SHELL program
+
+#### Powerful command combination
+
+- count how many times the word 'cute or cupe' appear in a file, and save the result to a txt file
+
+`curl -s example.txt | gunzip | tr " " "\n" | grep -i cu(t|p)e | wc -l > curl-count.txt`
+
+- generate a log file each day
+
+echo 'log message' >> `date + '%F'`.txt
 
 #### Find out what program is using a specific port
 
