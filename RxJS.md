@@ -179,6 +179,24 @@ observable.subscribe(
 );
 ```
 
+```ts
+// wrap a promise into an observable
+createHttpObservable (url: string) {
+  return Observable.create(observer => {
+
+    // inside the observable we rely on the native fetch to call the endpoint
+    fetch(url)
+      .then(response => response.json())
+      .then(courses => {
+        observer.next(courses);
+        observer.complete();
+      })
+      .catch(err => observer.error(err));
+
+  });
+}
+```
+
 Convert other sources into observables.
 
 ```ts
