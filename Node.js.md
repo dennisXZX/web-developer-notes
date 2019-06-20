@@ -1,5 +1,14 @@
 ## Node.js
 
+#### Debug
+
+- set a `debugger` in your nodejs code
+- use `node inspect app.js` to launch your app
+- visit `chrome://inspect`
+- add your app folder to the workspace
+- use the Chrome devtool to debug your app
+- use `restart` to re-run your app in debug mode
+
 #### HTTP Module
 
 We can use HTTP module to build a simple backend.
