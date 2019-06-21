@@ -31,6 +31,10 @@
 - `yy` copy a line
 - `p` paste a line
 
+__delete all lines__
+
+- `gg` to move the cursor to the first line of the file, then `dG` to delete all the lines
+
 #### Search
 
 - `/textToSearch` search in the file
