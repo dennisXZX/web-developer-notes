@@ -101,6 +101,25 @@ http {
       return 307 /thumb.png;
     }
     
+    # use try_files to catch all invalid uri requests
+    # any invalid request would be handled by named location '@friendly_404'
+    try_files $uri, @friendly_404;
+    
+    location @friendly_404 {
+      return 404 'Sorry, that file could not be found.';
+    }
+    
+    # specify a logging file
+    location /secure {
+      # record access log in another file other than the default log file
+      access_log /var/nginx/secure.access.log
+      
+      # disable logging in order to reduce server load
+      access_log off;
+      
+      return 200 'Welcome to secure area.';
+    }
+    
   }
 }
 ```
