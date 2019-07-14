@@ -25,7 +25,7 @@ __Order of priority for matching requests__
 3. REGEX Match `~* uri`
 4. prefix Match `uri`
 
-__Example Nginx Configuration__
+__Example Nginx Configuration for serving static website__
 
 ```
 events {}
