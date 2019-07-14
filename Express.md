@@ -1,5 +1,39 @@
 ## Express (Node.js framework)
 
+#### Server side rendering
+
+`res.render()` is for server-side rendering, which means the server generates HTML, CSS and Javascript (mostly through a template engine) and sends back to browser via Apache or Nginx. 
+
+You can access `res.locals` in the template views (EJS, handlebars or Pug), which means you can put stuff in `res.locals` through middlewares, and those stuff can be accessed in the template views. For example, you can add `res.locals.validated` in a validation middleware, then you can use the variable in the EJS template like `<%= validated %>`.
+
+```js
+app.set('view engine', 'ejs')
+app.uset('views', path.join(__dirname, 'views'))
+```
+
+#### Middlewares
+
+Express is a framework composed of middlewares. A middleware is a function that has access to `req`, `res` and `next`.
+
+```js
+// add secure headers
+app.use(helmet())
+
+// handle static files
+app.use(express.static())
+
+// parse JSON data from POST or PUT requests
+app.use(express.json())
+
+// parse urlencoded data from POST or PUT requests with "application/x-www-form-urlencoded" content type
+app.use(express.urlencoded())
+
+// even a routing in Express is just a middleware that never calls next()
+app.get('/', (req, res) => {
+    code here...
+})
+```
+
 #### Set up a simple server
 
 ```js
