@@ -87,6 +87,6 @@ Now we have our server set up, we need to bind our server IP to a domain.
 
 `CNAME record` maps a name to another domain name.
 
-`www` means when you visit www.xxxx.com, the domain would be resolved to your server IP.
+`www` means when you visit `www.yourDomain.com`, the domain would be resolved to your server IP.
 
-`@` means when you visit xxxx.com, the domain would also be resolved to your server IP.
+`@` means when you visit `yourDomain.com`, the domain would also be resolved to your server IP.
