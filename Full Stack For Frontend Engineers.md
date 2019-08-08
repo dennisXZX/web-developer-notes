@@ -95,11 +95,13 @@ Now we have our server set up, we need to bind our server IP to a domain.
 
 __Nginx__
 
-Nginx is a `reverse proxy`, which means it takes all the traffic from internet, and then route the traffic to the server properly.
+Nginx can act as a `reverse proxy`, which means it takes all the traffic from internet, and then route the traffic to appropriate servers.
 
 Once you install Nginx by `apt-get install nginx`, you can start it `service start nginx`.
 
 The default Nginx configuration is located at `/etc/nginx/sites-available/default`
+
+Clone the Nodejs app into `/var/www` directory
 
 Start a Nodejs app that is listening on port 3001, then set up Nginx as a proxy server.
 
@@ -111,6 +113,6 @@ location / {
 
 Restart Nginx `service restart nginx`, now you should see your website by hitting your domain name.
 
-Now we link up everything
+This is how we link up everything
 
 YourDomainName.com -> 23.23.182.23 (Your VPS IP) -> Nginx -> Node app
