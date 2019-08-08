@@ -21,12 +21,12 @@ DNS cache poisoning (DNS spoofing) means the DNS cache is changed maliciously. F
 
 `traceroute` tells you how you get to a website.
 
-__SSH__
+__SSH (Secure Shell)__
 
 There are two ways to use `ssh` to log in a server.
 
-- by using username/password such as `ssh accountName@65.33.44.112`
-- by using `ssh key`
+- by using username/password such as `ssh userName@65.33.44.112`
+- by using `ssh -i generatedPrivateKey userName@65.33.44.112`
 
 Public Key Authentication
 
@@ -64,6 +64,8 @@ Now we have a new user, we also need to add the public key to the server.
 $ cat ~/.ssh/my_key.pub | ssh $USERNAME@$SERVER_IP "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"
 ```
 
+Command breakdown:
+
 - `cat ~/.ssh/my_key.pub |` (prints out the public key and pipe that result to the next command)
 - `ssh $USERNAME@$SERVER_IP` (ssh into the server)
 - `"mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"` (create a .ssh folder and add the public key into the authorized_keys file)
@@ -81,7 +83,7 @@ __Domain__
 Now we have our server set up, we need to bind our server IP to a domain.
 
 - Get the IP address of your VPS
-- Add 2 `A Records` with your IP address, `@` and `www`
+- Add 2 `A records` with your IP address, namely, `@` and `www`
 
 `A record` maps a name to one or more IP addresses.
 
@@ -90,3 +92,25 @@ Now we have our server set up, we need to bind our server IP to a domain.
 `www` means when you visit `www.yourDomain.com`, the domain would be resolved to your server IP.
 
 `@` means when you visit `yourDomain.com`, the domain would also be resolved to your server IP.
+
+__Nginx__
+
+Nginx is a `reverse proxy`, which means it takes all the traffic from internet, and then route the traffic to the server properly.
+
+Once you install Nginx by `apt-get install nginx`, you can start it `service start nginx`.
+
+The default Nginx configuration is located at `/etc/nginx/sites-available/default`
+
+Start a Nodejs app that is listening on port 3001, then set up Nginx as a proxy server.
+
+```
+location / {
+  proxy_pass http://127.0.0.1:3001
+}
+```
+
+Restart Nginx `service restart nginx`, now you should see your website by hitting your domain name.
+
+Now we link up everything
+
+YourDomainName.com -> 23.23.182.23 (Your VPS IP) -> Nginx -> Node app
