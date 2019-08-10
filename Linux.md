@@ -8,6 +8,7 @@ Another lesser-known family of operaing system is BSD, one of the best known BSD
 
 Linux usually comes with a [package management tool](https://www.digitalocean.com/community/tutorials/package-management-basics-apt-yum-dnf-pkg) for finding and installing software.
 
+- `echo $0` returns the shell you are currently using
 - `mkdir -p /data/db` create nested directories using the `-p` flag
 - `mkdir .storybook src` create two folders named `.storybook` and `src`
 - `cat error-log.txt` display a file in one go, you can use `-n` flag to show line number
