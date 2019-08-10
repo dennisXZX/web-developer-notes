@@ -1,5 +1,6 @@
 ## Helpful Websites
 
+- [https://explainshell.com](https://explainshell.com) - explain shell commands
 - [https://www.iconfont.cn](https://www.iconfont.cn) - icons libraries
 - [https://transform.tools](https://transform.tools/) - transforming between different data types
 - [https://httpstat.us](https://httpstat.us) - testing failed server requests
