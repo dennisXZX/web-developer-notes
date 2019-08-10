@@ -1,6 +1,6 @@
 ## Full Stack For Frontend Engineers
 
-Notes from a front end master course - Full Stack For Frontend Engineers
+Notes from a front end master course - Full Stack For Frontend Engineers by Jem Young
 
 __DNS__
 
@@ -36,7 +36,7 @@ Create an SSH Key
 
 ```
 cd ~/.ssh/
-ssh-keygen -t rsa  // -t rsa means use rsa type
+ssh-keygen -t rsa  // '-t rsa' means to use rsa algorithm
 ```
 
 Once you run the `ssh-keygen` command, two files will be generated, one is your public key with `.pub` extension, the other is your private key. You can copy your public key by `cat keyName.pub | pbcopy`.
@@ -46,37 +46,38 @@ __Server__
 - Dedicated Server
 - VPS (Virtual Private Server)
 
-Normally we put our public key onto the VPS to leverage public key authentication.
+Normally we put our public key onto VPS to leverage public key authentication.
 
-Once you put your public key onto the VPS, now you can log in your server using the private key stored in your computer.
+Once you put your public key onto VPS, now you can log in your server using the private key stored in your computer.
 
-`ssh -i ~/.ssh/my_key USER_NAME@YOUR_SERVER_IP`. The `-i` flag here means identity.
+`ssh -i ~/.ssh/myPrivateKey USER_NAME@YOUR_SERVER_IP`. The `-i` flag here means identity.
 
 Once you have logged in your server, you can update all your packages by running `apt-get update`.
 
-You can create new user by using `adduser USER_NAME`. We can then assign the newly created user sudo permission by using `usermod -aG sudo USER_NAME`. `-aG` flag means adding to a group called sudo.
+You can create new user by using `adduser USER_NAME`. We can then assign the newly created user `sudo` permission by using `usermod -aG sudo USER_NAME`. `-aG` flag means adding to a group called sudo.
 
-`su USER_NAME` to switch between users. (su means switch user)
+`su USER_NAME` to switch between users. (`su` means switch user)
 
 Now we have a new user, we also need to add the public key to the server.
 
 ```
-$ cat ~/.ssh/my_key.pub | ssh $USERNAME@$SERVER_IP "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"
+$ cat ~/.ssh/MyPublicKey.pub | ssh $USERNAME@$SERVER_IP "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"
 ```
 
 Command breakdown:
 
-- `cat ~/.ssh/my_key.pub |` (prints out the public key and pipe that result to the next command)
+- `cat ~/.ssh/MyPublicKey.pub |` (prints out the public key and pipe that result to the next command)
 - `ssh $USERNAME@$SERVER_IP` (ssh into the server)
 - `"mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"` (create a .ssh folder and add the public key into the authorized_keys file)
 
 Now we have set everything up, the new user can log in the server using its private SSH key. The next security fix is to disable root login.
 
-Steps to disable root login
+Steps to disable root login and password login (only allow SSH login)
 - login into your server
 - run `sudo vi /etc/ssh/sshd_config`
 - set `PermitRootLogin` to no
-- restert ssh `sudo service sshd restart`
+- set `PasswordAuthentication` to no
+- restert OpenSSH server process `sudo service sshd restart`
 
 __Domain__
 
@@ -85,13 +86,13 @@ Now we have our server set up, we need to bind our server IP to a domain.
 - Get the IP address of your VPS
 - Add 2 `A records` with your IP address, namely, `@` and `www`
 
-`A record` maps a name to one or more IP addresses.
+`A record` maps a domain name to one or more IP addresses.
 
-`CNAME record` maps a name to another domain name.
+`CNAME record` maps a domain name to another domain name. It should only be used when there are no other records on that domain name.
 
 `www` means when you visit `www.yourDomain.com`, the domain would be resolved to your server IP.
 
-`@` means when you visit `yourDomain.com`, the domain would also be resolved to your server IP.
+`@` means when you visit `yourDomain.com`, the domain would be resolved to your server IP.
 
 __Nginx__
 
@@ -116,3 +117,15 @@ Restart Nginx `service restart nginx`, now you should see your website by hittin
 This is how we link up everything
 
 YourDomainName.com -> 23.23.182.23 (Your VPS IP) -> Nginx -> Node app
+
+__Firewall__
+
+You can set up a firewall on your server to control inbound and outbound traffic. On AWS, for example, you can set up a security group acts as a virtual firewall for your EC2 instance.
+
+__Cron Job__
+
+- `crontab -l` to list all the cron jobs for current user
+
+- `sudo crontab -e` to open crontab for editing
+
+- `00 1 * * 1 certbot renew` to renew certificate every week at 12pm on Monday
