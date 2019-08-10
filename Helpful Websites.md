@@ -1,5 +1,6 @@
 ## Helpful Websites
 
+- [https://crontab.guru](https://crontab.guru) - explain cron job syntax
 - [https://explainshell.com](https://explainshell.com) - explain shell commands
 - [https://www.iconfont.cn](https://www.iconfont.cn) - icons libraries
 - [https://transform.tools](https://transform.tools/) - transforming between different data types
