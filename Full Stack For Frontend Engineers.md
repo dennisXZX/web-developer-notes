@@ -96,7 +96,7 @@ Now we have our server set up, we need to bind our server IP to a domain.
 
 __Nginx__
 
-Nginx can act as a `reverse proxy`, which means it takes all the traffic from internet, and then route the traffic to appropriate servers.
+Nginx is a powerful web server that can act as a `reverse proxy` or `load balancer`, which means it takes all the traffic from internet, and then route the traffic to appropriate servers.
 
 Once you install Nginx by `apt-get install nginx`, you can start it `service start nginx`.
 
@@ -108,7 +108,7 @@ Start a Nodejs app that is listening on port 3001, then set up Nginx as a proxy 
 
 ```
 location / {
-  proxy_pass http://127.0.0.1:3001
+  proxy_pass http://127.0.0.1:3001;
 }
 ```
 
