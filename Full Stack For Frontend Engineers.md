@@ -56,7 +56,7 @@ Once you have logged in your server, you can update all your packages by running
 
 You can create new user by using `adduser USER_NAME`. We can then assign the newly created user `sudo` permission by using `usermod -aG sudo USER_NAME`. `-aG` flag means adding to a group called sudo.
 
-`su USER_NAME` to switch between users. (`su` means switch user)
+`su USER_NAME` to switch between users. (`su` means switch user, `sudo su` means to switch to root user)
 
 Now we have a new user, we also need to add the public key to the server.
 
