@@ -255,20 +255,52 @@ addArticle(link: HTMLInputElement): boolean {
 
 #### @ViewChild and @ContentChild
 
-You can access an HTML element in the Typescript code using `@ViewChild` decorator.
+You can access an HTML element or Angular component in the Typescript code using `@ViewChild` decorator.
+
+__Access HTML element(s)__
 
 ```ts
 // define a template reference variable
 <input type="text" #serverContent />
+
+// access multiple template references
+<img
+  #img
+  *ngFor="let slider of sliders"
+  [src]="slider.imgUrl"
+/>
 ```
 
 ```ts
 // in Typescript, you get an element reference
 @ViewChild('serverContent') serverContent: ElementRef;
 
+@ViewChildren('img') imgs: QueryList<ElementRef>;
+
+// now you can access the value of the input in ngAfterViewInit() life cycle method
+this.serverContent.nativeElement.value;
+
+// you should use Renderer2 service provided by Angular to update DOM to prevent any Cross-Site Scripting attacks
+this.images.forEach(item => {
+  this.renderer2.setStyle(item.navtiveElement, 'height', '100px')
+})
+```
+
+__Access Angular component__
+
+```
+// define a template reference variable
+<app-image-slider [sliders]="imageSliders"></app-image-slider>
+```
+
+```ts
+// in Typescript, you get an element reference
+@ViewChild('serverContent') imageSliders: ImageSliderComponent;
+
 // now you can access the value of the input in ngAfterViewInit() life cycle method
 this.serverContent.nativeElement.value;
 ```
+__@ContentChild__
 
 If you add a template reference variable to an HTML element between a directive, and you want to access it in the code, you can use `@ContentChild` decorator.
 
