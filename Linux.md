@@ -2,9 +2,9 @@
 
 #### Fundamentals
 
-Technically speaking, Linux is a kernel, not an operating system. Linux distribution refers to a Linux kernel plus additional software. [DistroWatch](https://distrowatch.com/) has a thorough list of Linux distrubtion.
+Technically speaking, Linux is a kernel, not an operating system. Linux distribution refers to a Linux kernel plus additional software. [DistroWatch](https://distrowatch.com/) has a thorough list of Linux distribution.
 
-Another lesser-known family of operaing system is BSD, one of the best known BSD derivatives is [FreeBSD](https://www.freebsd.org/). macOS is also a closed source descendant of the BSD family.
+Another lesser-known family of operating system is BSD, one of the best known BSD derivatives is [FreeBSD](https://www.freebsd.org/). macOS is also a closed source descendant of the BSD family.
 
 Linux usually comes with a [package management tool](https://www.digitalocean.com/community/tutorials/package-management-basics-apt-yum-dnf-pkg) for finding and installing software.
 
