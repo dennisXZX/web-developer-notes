@@ -18,6 +18,8 @@ ReactDOM.render(app, document.getElementById('root'));
 
 Then you can use `<Switch>` to parse the URL, the first matched URL will be returned. However, keep in mind that the order of the URLs is important, and you should always place the most specific routes on top of the generic ones.
 
+When you use `<Route>`, three properties will be assigned to your component by React-router, namely, `history`, `location` and `match`. However, these properties will only be assigned to the component you specified in the Route, not its children components. If you want to access these properties from a children component, you need to use `withRouter()` higher-order component.
+
 ```js
 import { Route, Switch } from 'react-router-dom';
 
@@ -97,7 +99,7 @@ this.props.history.goForward();
 #### Pass query parameters
 
 You can pass query parameters to `this.props.location` object by using the search property.
-
+ 
 ```
 <Link
   className='button'
@@ -133,15 +135,13 @@ You can use the `match` object to retrieve the current path or URL.
 <Link to={this.props.match.url + '/about'}>About</Link>
 ```
 
-#### Pass `history` and `match` objects to any component
+#### Pass `history`, `match` and `location` properties to any component
 
-You can get access to the `history` object's properties and the closest <Route>'s `match` via the `withRouter` higher-order component.
+You can get access to the `history` object's properties and the closest <Route>'s `match` via the `withRouter()` higher-order component.
 
 ```js
 import { withRouter } from 'react-router'
 
-class ShowTheLocation extends React.Component { }
-
-// Create a new component that is "connected" to the router
-const ShowTheLocationWithRouter = withRouter(ShowTheLocation)
+// now MenuItem would be able to access `history`, `match` and `location` objects
+export default withRouter(MenuItem)
 ```
