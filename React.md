@@ -39,18 +39,16 @@ function mapStateToProps(state) {
 2. create a HOC file and add the HOC scaffold
 
 ```js
-import React, { Component } from 'react';
-
 // define a function that takes a Component that need to be enhanced
-const enhanceComponent = (ChildComponent) => {
+const withAuth = WrappedComponent => {
   // define a class that renders the component received as parameter
-  class ComposedComponent extends Component {
+  class EnhancedComponent extends Component {
     render() {
-      return <ChildComponent />;
+      return <WrappedComponent />;
     }
   }
 
-  return ComposedComponent;
+  return EnhancedComponent;
 };
 ```
 
@@ -60,15 +58,15 @@ const enhanceComponent = (ChildComponent) => {
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-// define a function that takes a Component that need to be enhanced
-const enhanceComponent = (ChildComponent) => {
-
-  state = {
-    username: 'dennis',
-  };
+// define a function that takes a component that need to be enhanced
+const withAuth = WrappedComponent => {
 
   // define a class
-  class ComposedComponent extends Component {
+  class EnhancedComponent extends Component {
+    state = {
+      username: 'dennis',
+    };
+  
     // Our component just got rendered
     componentDidMount () {
       this.shouldNavigateAway()
@@ -85,10 +83,10 @@ const enhanceComponent = (ChildComponent) => {
       }
     }
 
-    // pass Component state to child component, so the Component state would appear as props in child component
-    // pass props received by ComposedComponent into its child component
+    // pass EnhancedComponent state to wrapped component, so the EnhancedComponent state would appear as props in WrappedComponent component
+    // pass props received by EnhancedComponent into WrappedComponent component
     render () {
-      return <ChildComponent {...this.state} {...this.props} />
+      return <WrappedComponent {...this.state} {...this.props} />
     }
   }
 
@@ -97,14 +95,14 @@ const enhanceComponent = (ChildComponent) => {
     return { auth: state.auth }
   }
 
-  return connect(mapStateToProps)(ComposedComponent)
+  return connect(mapStateToProps)(EnhancedComponent)
 };
 ```
 
 4. Use the enhanced component
 
 ```js
-const EnhancedTitle = enhanceComponent(OriginalTitle);
+const EnhancedTitle = withAuth(OriginalTitle);
 
 class App extends React.Component {
   render () {
