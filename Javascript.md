@@ -231,13 +231,14 @@ In execution phase, the Javascript compiler executes the code line by line from 
 #### `__proto__` vs prototype
 
 When we run `Object.create(userFunctionStore);`, the object stored in `userFunctionStore` variable will be added to the `__proto__` property of the new object created by `Object.create()`. So later when we call increment() method on user1 object `user1.increment();`, Javascript will first check if the user1 object has a method named increment, if it cannot find it there, it will look into its `__proto__` property. This is known as prototype chain.
-`
+
 ```js
 function userCreator(name, score) {
   // create an empty object and refer userFunctionStore object as its __proto__ property value
   let newUser = Object.create(userFunctionStore);
   newUser.name = name;
   newUser.score = score;
+  
   return newUser;
 }
 
