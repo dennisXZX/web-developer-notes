@@ -869,11 +869,11 @@ Disadvantages:
 
 #### Explain Cross-Origin Resource Sharing (CORS)
 
-There are only three HTML tags tat can bypass same-origin policy, namely, `<img>`, `<link>` and `<script>`.
+There are only three HTML tags that can bypass same-origin policy, namely, `<img>`, `<link>` and `<script>`.
 
 CORS is a mechanism that allows you to work around the same-orign policy implemented by browsers. By enabling CORS on your server, you sepcify what other servers can have access to your resources. 
 
-When Site A tries to fetch content from Site B, Site B can send an `Access-Control-Allow-Origin` response header to tell the browser that the content of this page is accessible to certain origins. (An origin is a domain, plus a scheme and port number.)
+When Site A tries to fetch content from Site B (GET request), Site B can send an `Access-Control-Allow-Origin` response header to tell the browser that the content of this page is accessible to certain origins. (An origin is a domain, plus a scheme and port number.)
 
 By default, Site B's pages are not accessible to any other origins; using the `Access-Control-Allow-Origin` header opens a door for cross-origin access by specific requesting origins.
 
@@ -891,6 +891,8 @@ Access-Control-Allow-Origin: http://siteA.com
 ```
 
 Therefore, your server would respond to requests with an `Access-Control-Allow-Origin` header to let the browser know if the requested resource is accessible to those origins.
+
+For HTTP request methods that can cause side-effects on server data (`POST` or `PUT` requests), the browser would preflight the request, soliciting supported methods from the server with the HTTP `OPTIONS` request method, and then, upon "approval" from the server, sending the actual request. 
 
 #### Explain how JSONP works
 
