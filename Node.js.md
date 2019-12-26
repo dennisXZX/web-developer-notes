@@ -1,13 +1,10 @@
 ## Node.js
 
-#### Debug
+#### Debug using Chrome dev tools
 
 - set a `debugger` in your nodejs code
-- use `node inspect app.js` to launch your app
-- visit `chrome://inspect`
-- add your app folder to the workspace
+- use `node --inspect app.js` to launch your app
 - use the Chrome devtool to debug your app
-- use `restart` to re-run your app in debug mode
 
 #### HTTP Module
 
