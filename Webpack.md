@@ -1,5 +1,7 @@
 ## Webpack
 
+Webpack is a bundler that can handle ESM, CommonJS and AMD modules with tree-shaking.
+
 #### Webpack workflow
 
 1. Specify an entry point where Webpack should start (multiple entry points are possible)
