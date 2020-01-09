@@ -1,6 +1,56 @@
 ## Git
 
-#### Fundamentals
+### Common mistakes fix
+
+__Change a commit message that hasn't been pushed yet__
+
+`git commit --amend -m "New message"`
+
+__Add more files and changes to a commit before pushing__
+
+To add more files to the most recent commit, we can add them to the staging area with:
+
+`git add -A`
+
+and then rewrite the most recent commit to include them with:
+
+`git commit --amend -m "My new message"`
+ 
+__Remove files from staging before committing__
+
+`git reset HEAD filename` to reset a file back to the HEAD pointer.
+
+__Remove changes from a commit before pushing__
+
+`git reset HEAD~1` `git reset [HASH]` to undo the commits before the hash.
+
+The three primary options for `git reset`:
+
+`--soft` puts the files back to staging area
+
+`--mixed` puts the files back to working area (this is the default git reset behavior)
+
+`--hard` removes the files completely
+
+__Recover local changes from `git reset --hard` with `git reflog`__
+
+Use `git reflog` to find the right commit and then `git reset --hard [HASH]` to reset back to that commit hash.
+
+__Undo a commit that has already been pushed__
+
+Use `git revert [HASH]` to revert a commit. NEVER use `git reset` because it will rewrite the history tree, and anyone who has already pulled that branch will have a bad tree.
+
+__Git ignore a file that has already been committed and pushed__
+
+Add the file you want to ignore to `.gitignore`, then we can remove all of our files from git cache with `git rm -r --cached .`, the add back all the files again `git add -A`, this will exclude the files you specify in the `.gitignore`.
+
+However, this method does not actually remove the files in the repo, you can still see them in the git history.
+
+__Completely remove a file from pushed git history__
+
+https://help.github.com/en/github/authenticating-to-github/removing-sensitive-data-from-a-repository
+
+### Fundamentals
 
 At its core, Git is like a key value store. The key is a SHA1 (40-digit hexadecimal number), the value is the compressed data called `blob`, which represents a single file.  For directory, it is stored in a `tree`, which can itself contains `blob` or `tree`. In Git, the same content would only be stored once, which means two identical `blobs` would have exactly the same SHA1 key. All the data about our repository is stored in the hidden `.git` directory.
 
@@ -23,7 +73,7 @@ git cat-file -t 980a0
 git cat-file -p 980a0
 ```
 
-#### Productive tips
+### Productive tips
 
 __use wild card to commit some of the files__
 
@@ -61,7 +111,7 @@ __undo the last commit__
 
 `git reset HEAD~`
 
-#### References (pointers) to commits
+### References (pointers) to commits
 
 - Tags
   - tag is just a simple pointer to a commit
@@ -75,7 +125,7 @@ __undo the last commit__
 
 Run `cat .git/HEAD` to know where the `HEAD` is currently pointing to.
 
-#### Detached HEAD
+### Detached HEAD
 
 `git show-ref --heads` to see which commits your HEADs are pointing at.
 
@@ -83,7 +133,7 @@ When you checkout a specific commit or a tag, you get into the detached HEAD sta
 
 `git branch branchName <commit>`
 
-#### Gitflow
+### Gitflow
 
 GitFlow is a branching model that standardizes branching and merging policy. It uses two branches to record the history of the project. The `master` branch stores the offcial release history, and the `develop` branch serves as an integration branch for features.
 
