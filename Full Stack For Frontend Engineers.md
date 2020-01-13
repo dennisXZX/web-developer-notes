@@ -21,12 +21,14 @@ DNS cache poisoning (DNS spoofing) means the DNS cache is changed maliciously. F
 
 `traceroute` tells you how you get to a website.
 
+`dig dennisxiao.com` looks up DNS info on a website.
+
 __SSH (Secure Shell)__
 
 There are two ways to use `ssh` to log in a server.
 
-- by using username/password such as `ssh userName@65.33.44.112`
-- by using `ssh -i generatedPrivateKey userName@65.33.44.112`
+- by using username/password `ssh userName@65.33.44.112`, then you will be prompted to enter a password to log in
+- by using a private key `ssh -i generatedPrivateKey userName@65.33.44.112`
 
 Public Key Authentication
 
@@ -52,13 +54,13 @@ Once you put your public key onto VPS, now you can log in your server using the 
 
 `ssh -i ~/.ssh/myPrivateKey USER_NAME@YOUR_SERVER_IP`. The `-i` flag here means identity.
 
-Once you have logged in your server, you can update all your packages by running `apt-get update`.
+Once you have logged in your server (take Ubuntu as an example), you can update all your packages by running `apt update` and `apt upgrade`.
 
-You can create new user by using `adduser USER_NAME`. We can then assign the newly created user `sudo` permission by using `usermod -aG sudo USER_NAME`. `-aG` flag means adding to a group called sudo.
+You can create new user by using `adduser USER_NAME`. We can then assign the newly created user `sudo` permission by adding the user to sudo group `usermod -aG sudo USER_NAME`. `-aG` flag means adding to a group called sudo.
 
 `su USER_NAME` to switch between users. (`su` means switch user, `sudo su` means to switch to root user)
 
-Now we have a new user, we also need to add the public key to the server.
+Now we have a new user, we need to add the public key to the server.
 
 ```
 $ cat ~/.ssh/MyPublicKey.pub | ssh $USERNAME@$SERVER_IP "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"
@@ -79,6 +81,8 @@ Steps to disable root login and password login (only allow SSH login)
 - set `PasswordAuthentication` to no
 - restert OpenSSH server process `sudo service sshd restart`
 
+You can use `tail -f /var/log/auth.log` to follow the log, which is a good way of debugging.
+
 __Domain__
 
 Now we have our server set up, we need to bind our server IP to a domain.
@@ -98,13 +102,13 @@ __Nginx__
 
 Nginx is a powerful web server that can act as a `reverse proxy` or `load balancer`, which means it takes all the traffic from internet, and then route the traffic to appropriate servers.
 
-Once you install Nginx by `apt-get install nginx`, you can start it `service start nginx`.
+Once you install Nginx by `apt install nginx`, you can start it `sudo service nginx start`.
 
 The default Nginx configuration is located at `/etc/nginx/sites-available/default`
 
-Clone the Nodejs app into `/var/www` directory
+Clone a Nodejs app into `/var/www/app` directory
 
-Start a Nodejs app that is listening on port 3001, then set up Nginx as a proxy server.
+Start the Nodejs application server that is listening on port 3001, then set up Nginx as a proxy server, so when users hit your domain name, the requests are passed to the Nodejs server to handle.
 
 ```
 location / {
@@ -112,11 +116,21 @@ location / {
 }
 ```
 
-Restart Nginx `service restart nginx`, now you should see your website by hitting your domain name.
+Restart Nginx `sudo service nginx reload`, now you should see your website by hitting your domain name.
 
 This is how we link up everything
 
-YourDomainName.com -> 23.23.182.23 (Your VPS IP) -> Nginx -> Node app
+YourDomainName.com -> 23.23.182.23 (Your VPS IP) -> Nginx -> Express.js app
+
+__Process Manager__
+
+Process manager is used to keep your app running and also handle erros, restarts, logging and clustering.
+
+- Install PM2 `sudo npm i -g pm2`
+
+- Start PM2 `pm2 start app.js`
+
+- Setup auto restart `pm2 startup`
 
 __Firewall__
 
