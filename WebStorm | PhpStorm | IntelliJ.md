@@ -1,27 +1,22 @@
 ## WebStorm | PhpStorm | IntelliJ
 
-#### Live reload for HTML/CSS
+#### Useful default shortcuts
 
-- install `LiveEdit` plugin and activate it in `Build, Execution, Deployment -> Debugger -> Live Edit`
-- launch the HTML page in debug mode and any change would be automatically reflected in the browser
-
-#### Set ES6 as default language to all projects
-
-For settings that should apply to all the projects, goes to `File -> Preferences for New Projects`.
-
-#### Useful shortcut
-
-- `command + 1` to toggle sidebar
-
-- `alt + F12` to toggle Terminal
+- `control + tab` to switch between opened tabs
 
 - `command + shift + o` to search a file
 
-- `alt + command + o` to search for a method
-
 - `command + shift + f` to search in path
 
+- `command + shift + a` to search all actions (such as split the screen vertically)
+
 - `option + shift + mouse click` to edit multiple lines
+
+- `command + l` to use go to line (tips: go to line 1 will go to the top of the file)
+
+- `option + command + t` to use `Surround With` feature
+
+NOTE: you can create your own shortcuts by changing the `Keymap`.
 
 #### Quick HTML generation
 
@@ -49,3 +44,7 @@ WebStorm or PhpStorm integrates with `Emmet`, which allows you to generate HTML 
   <div class="right"></div>
   <div class="center"></div>
 ```
+
+#### Settings for all projects
+
+For settings that should apply to all the projects, goes to `File -> Other Settings -> Preferences for New Projects`.
