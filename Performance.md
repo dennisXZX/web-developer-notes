@@ -1,5 +1,10 @@
 ## Performance
 
+Principle of performance optimisation:
+
+- Reduce the number of files loaded in the browser
+- Reduce the number of code executed in the browser
+
 __Performance Benchmark__
 
 Performance API (window.performance.timing)
@@ -65,3 +70,9 @@ Following is a list of things you can do to optimize your web app.
 - Implement route-based code splitting, which utilizes `dynamic import()` under the hood to achieve the splitting.
 
 - Avoid unnecessary rendering, for example, we can consider using `PureComponent` and implementing `shouldComponentUpdate` life cycle method in React to fine tune component rendering.
+
+- Lazy load components in SPA.
+
+- Use Webpack bundleAnalyzerPlugin to analyze your bundle.
+
+- Do not use deep nested class selector (#test .class1 .class2), CSS selector resolves from right to left, deep mested selector would increase time for browser to generate a CSS tree.
