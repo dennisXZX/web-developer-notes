@@ -1,8 +1,30 @@
 ## Performance
 
-You can check the performance benchmark using [PageSpeed Insight](https://developers.google.com/speed/pagespeed/insights/) and [WebPagetest](https://www.webpagetest.org/).
+__Performance Benchmark__
+
+Performance API (window.performance.timing)
+
+```js
+const timingInfo = window.performance.timing;
+
+console.log({
+  "TCP connection time": timingInfo.connectEnd - timingInfo.connectStart,
+  "DNS lookup time": timingInfo.domainLookupEnd - timingInfo.domainLookupStart,
+  TTFB: timingInfo.responseStart - timingInfo.navigationStart,
+  "DOM ready": timingInfo.domContentLoadedEventStart - timingInfo.navigationStart,
+  "DOM downloaded": timingInfo.responseEnd - timingInfo.responseStart
+});
+```
+
+You can check the performance benchmark using [Lighthouse](https://www.npmjs.com/package/lighthouse), [PageSpeed Insight](https://developers.google.com/speed/pagespeed/insights/) or [WebPagetest](https://www.webpagetest.org/).
+
+__Performance Optimization__
 
 Following is a list of things you can do to optimize your web app.
+
+- Look at the Network tab in developer tool to check which request takes the most of the time, so we can start from there.
+
+- DNS prefetch `<link ref="dns-prefetch" href="//g.example.com" />`
 
 - Use [minifier](https://www.minifier.org/) to minimize JS and CSS code, and also run Gzip on the minified files
 
