@@ -175,7 +175,7 @@ interface NewPoint extends Point {
 
 #### Typescript types
 
-Typescript can assign types implicitly but it is recommeded to always assign types in an explicit way.
+Typescript can assign types implicitly (type inference) but it is recommeded to always assign types in an explicit way (type annotation).
 
 ```ts
 // string type
@@ -184,6 +184,15 @@ let myName: string = "Dennis";
 // array type
 let hobbies: string[] = ["Coding", "Reading"];
 let hobbies: Array<string> = ["Coding", "Reading"];
+let strOrNumArr: (number | string)[] = [1, '2', 3];
+
+// type alias
+type Person = {
+    name: string,
+    age: number
+}
+
+let personArr: Person[] = [{ name: 'dennis', age: 18 }];
 
 // object type
 let wizard: object = {
@@ -216,7 +225,7 @@ function sayHello(): void {
   console.log('Hello');
 }
 
-// function that would never return anything (always throws an exception), because it would not be finished executing
+// function that would never return anything (always throws an exception, or a never ending while loop), because it would not be finished executing
 function throwError(): never {
   throw Error('Couldn't connect to server');
 }
@@ -228,6 +237,11 @@ function multiply(x: number, y: number): number {
 
 // declare a variable that accepts a specific type of function
 let myFunc: (val1: number, val2: number) => number;
+
+// params destructuring
+function add({ first, second }: { first: number; second: number }): number {
+  return first + second;
+}
 
 // type alias
 type UserData = { 
