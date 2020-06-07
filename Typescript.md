@@ -1,6 +1,45 @@
 ## Typescript
 
-#### Generic
+#### Namespace
+
+```ts
+// components.ts
+
+// create a namespace
+namespace Components {
+  export class Header {
+    constructor() {
+      const divElement = document.createElement("div");
+      divElement.innerText = "Header";
+      document.body.appendChild(divElement);
+    }
+  }
+
+  export class Footer {
+    constructor() {
+      const divElement = document.createElement("div");
+      divElement.innerText = "Footer";
+      document.body.appendChild(divElement);
+    }
+  }
+}
+```
+
+```ts
+page.ts
+
+///<reference path="./components.ts">
+namespace Home {
+    export class Page {
+        constructor() {
+            new Components.Header();
+            new Components.Footer();
+        }
+    }
+}
+```
+
+#### Generic function
 
 ```ts
 // define a function with generic type
@@ -8,7 +47,55 @@ function identity<T>(arg: T): T {
     return arg;
 }
 
-let output = identity("myString");  // type of output will be 'string'
+// call the generic function with a string type
+let output = identity<string>("myString");  // type of output will be 'string'
+
+// call the generic function with a number type
+let output = identity<number>(123);  // type of output will be 'number'
+```
+
+```ts
+// multiple generic types
+function join<T, P>(first: T, second: P[]): string {
+    return `${first} ${second}`
+}
+
+join<string, number>('1', [2, 3]);
+```
+
+#### Generic class
+
+```ts
+interface DataItem {
+  name: string;
+}
+
+interface StudentData {
+  name: string;
+  age: number;
+  dob: string;
+}
+
+// class DataManager<T extends number | string>, 
+// this would limit the data type to be either number or string
+class DataManager<T extends DataItem> {
+  constructor(private data: T[]) {}
+
+  getItem(index: number): string {
+    return this.data[index].name;
+  }
+}
+
+const mockStudentData = [
+  {
+    name: "dennis",
+    age: 33,
+    dob: "1971-01-01"
+  }
+];
+
+const studentData = new DataManager<StudentData>(mockStudentData);
+const studentName = studentData.getItem(0);
 ```
 
 #### Shortcut for creating a class for model data
@@ -277,4 +364,4 @@ dog.magic; // so we can access the magic property no matter what
 
 #### Declaration Files
 
-You can find declaration files for older libraries at [DefinitelyTyped](https://definitelytyped.org).
+Declaration file is used to give type support to code originally written in Javascript. You can find declaration files for older libraries at [DefinitelyTyped](https://definitelytyped.org).
