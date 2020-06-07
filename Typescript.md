@@ -3,7 +3,7 @@
 #### Namespace
 
 ```ts
-// components.ts
+/** components.ts */
 
 // create a namespace
 namespace Components {
@@ -26,7 +26,7 @@ namespace Components {
 ```
 
 ```ts
-page.ts
+/** page.ts */
 
 ///<reference path="./components.ts">
 namespace Home {
