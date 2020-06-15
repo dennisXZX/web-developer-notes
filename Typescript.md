@@ -1,5 +1,31 @@
 ## Typescript
 
+#### Decorator
+
+__class decorator__
+
+- Decorator itself is a function
+- Decorator function accepts a constructor as parameter
+- Decorator function is executed when a class is defined, instead of when a new instance is created from the class
+- You can apply multiple decorators to a class, the execution order of decorators is from right to left
+
+```ts
+function testDecorator(isEnabled: boolean) {
+  if (isEnabled) {
+    return function (constructor: any) {
+      constructor.prototype.getName = () => {
+        console.log("Dennis");
+      };
+    };
+  } else {
+    return function (constructor: any) {};
+  }
+}
+
+@testDecorator(true)
+class Test {}
+```
+
 #### Namespace
 
 ```ts
