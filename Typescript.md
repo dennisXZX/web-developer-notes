@@ -89,6 +89,20 @@ function join<T, P>(first: T, second: P[]): string {
 join<string, number>('1', [2, 3]);
 ```
 
+__Generic constraint__
+
+```ts
+interface funcArgs {
+  length: number;
+}
+
+function getLength<T extends funcArgs>(args: T) : number {
+  return args.length;
+}
+```
+
+We’ve created a generic constraint using an interface. Furthermore, we also extended our function getlength() with this interface. It now needs length as a required parameter.
+
 #### Generic class
 
 ```ts
