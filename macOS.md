@@ -24,7 +24,9 @@ In Finder, `Command + Shift + G` opens `go to the folder` function
 
 `Command + Shift + [` navigates between tabs in a browser
 
-`Command + ctrl + shift + 3` takes a whole screen shot, `4` takes partial screen shot
+`Command + ctrl + shift + 3` takes a screenshot for the whole screen, `4` takes screenshot for partial screen
+
+`Command + shift + 4` takes a screenshot then edit it
 
 #### Environment variables
 
