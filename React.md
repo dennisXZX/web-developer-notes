@@ -1,10 +1,32 @@
 ### React
 
+#### Performance optimisation
+
+First we use Profiler from React dev tool to look into what components are having performance issue.
+
+- To address wasted rendering issue:
+
+For class component, we can convert components into pure components. Note that if your component accepts an arrow function as a prop like `onClick={() => setIsOpen(true)}`, this would not prevent the component from re-rendering even it is a pure component. Because every time the component is rendered, a new function is passed to it, so pure component alone would not do the job. You will need to use `useCallback` hook to create a function and pass to the component, so each render the function would be the same reference. `const showDialog = useCallback(() => setIsOpen(true))`.
+
+We can also implement `shouldComponentUpdate(nextProps, nextState)` to control when a class component should be rendered.
+
+For functional component, we can rely on `React.memo(MyComponent, comparisonFunction)` to achieve the same result as class component.
+
+- To address expensive operation issue:
+
+Use `useMemo()` hook to cache heavy computed result.
+
+- To reduce bundle size:
+
+Make sure you build your app in `production` build mode.
+
+Lazy load your components using `lazy()` and `<Suspense>`.
+
 #### Higher Order Component (HOC)
 
 Steps to build a HOC:
 
-Image we need to build a HOC which checks whether a user is signed in or not. In addition, we want to apply this component to all the other components that requires authentication.
+Image we need to build a HOC which checks whether a user is signed in or not. In addition, we want to apply this login checking logic to all other components that require authentication.
 
 1. write the logic you want to reuse in a component
 
@@ -197,7 +219,7 @@ const LoadingIndicator = ({ isLoading }) => {
 
 - Switch case operator
 
-Please note that you always have to use the default for the switch case operator. In React a component has always to return an element or `null`.
+Please note that you need to have a default case for switch case operator. In React a component must return either an element or `null`.
 
 ```js
 const Notification = ({ text, state }) => {
@@ -211,12 +233,6 @@ const Notification = ({ text, state }) => {
     default:
       return null;
   }
-}
-
-// since the component is rendered based on a state, it is the best practice to use propTypes to make sure the integrity of the component
-Notification.propTypes = {
-   text: React.PropTypes.string,
-   state: React.PropTypes.oneOf(['info', 'warning', 'error'])
 }
 ```
 
@@ -239,7 +255,6 @@ const Notification = ({ state }) => {
     </div>
   );
 }
-
 ```
 
 - HOC (Higher Order Component)
@@ -264,48 +279,6 @@ const ListWithLoadingIndicator = withLoadingIndicator(List);
   list={props.list}
 />
 ```
-
-#### Component reference
-
-Component reference only exists in stateful component, and should be used scarcely in your project since it is not the recommended React way of doing things.
-
-```js
-// we define a function which accepts the HTML element (input), and assign it to the 'inputEle' property of the class
-// so now you can access this HTML component using this.inputEle
-<input ref={(input) => { this.inputEle = input }} value='hello' />
-```
-
-```js
-// make a focus on the input when the component is mounted
-componentDidMount() {
-  this.inputEle.focus();
-}
-```
-
-#### Default prop values
-
-```js
-// Specifies the default values for props:
-Person.defaultProps = {
-  name: 'Stranger'
-};
-```
-
-#### Proptypes
-
-To use React proptypes, you need to first install the package `npm i prop-types`.
-
-```js
-import PropTypes from 'prop-types';
-
-Person.propTypes = {
-  click: PropTypes.func.isRequired,
-  name: PropTypes.string,
-  age: PropTypes.number
-}
-```
-
-Proptypes can only be used on dev environment, not production environment. You can use `babel-plugin-transform-react-remove-prop-types` plugin to remove proptypes when building app for production.
 
 #### Update state that depends on the previous state
 
@@ -363,18 +336,6 @@ We can call withClass() before exporting the component.
 
 ```js
 export default withClass(Person, classes.Person);
-```
-
-#### Fragments
-
-Sometimes you do not want to wrap your JSX in an unnecessary div element, now you can use `React.Fragment` to achieve this. There is a short syntax for declaring fragments `<> ...code </>`.
-  
-```js
-// wrap the content in a React.Fragment
-<React.Fragment>
-  <h1>First Element</h1>
-  <h1>Second Element</h1>
-</React.Fragment>
 ```
 
 #### React.PureComponent
@@ -435,28 +396,6 @@ Then you can use it as a regular component:
   <MyWidget />
 </ErrorBoundary>
 ```
-
-#### Using CSS Module in create-react-app project
-
-First run `npm run eject` to get access to your webpack config file.
-
-Go to `webpack.config.dev.js` and `webpack.config.prod.js` and add CSS modules feature to css-loader.
-
-```js
-{
-  loader: require.resolve('css-loader'),
-  options: {
-    modules: true,
-    localIdentName: '[path][name]__[local]--[hash:base64:5]'
-  }
-}
-```
-
-Now you can import the CSS file `import styles from './App.css'` and use .title style in your code as if you are dealing with a Javascript object `<div className={styles.title}>test</div>`.
-
-You can also add multiple classes to an element `<div className={[styles.title, styles.highlight].join(' ')}>test</div>`.
-
-To create a global CSS style, you can add a `:global` prefix such as `:global .post { ... } `, then you can use `className="post"` anywhere in your app and receive that styling.
 
 #### Avoid mutating component states directly
 
