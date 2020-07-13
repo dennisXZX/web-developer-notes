@@ -6,7 +6,7 @@ First we use Profiler from React dev tool to look into what components are havin
 
 - To address wasted rendering issue:
 
-For class component, we can convert components into pure components. Note that if your component accepts an arrow function as a prop like `onClick={() => setIsOpen(true)}`, this would not prevent the component from re-rendering even it is a pure component. Because every time the component is rendered, a new function is passed to it, so pure component alone would not do the job. You will need to use `useCallback` hook to create a function and pass to the component, so each render the function would be the same reference. `const showDialog = useCallback(() => setIsOpen(true))`.
+For class component, we can convert components into pure components. Note that if your component accepts an arrow function as a prop like `onClick={() => setIsOpen(true)}`, this would not prevent the component from re-rendering even it is a pure component. Because every time the component is rendered, a new function is passed to it, so pure component alone would not do the job. You will need to use `useCallback` hook to create a function and pass to the component, so in each render the function would refer to the same reference. `const showDialog = useCallback(() => setIsOpen(true))`.
 
 We can also implement `shouldComponentUpdate(nextProps, nextState)` to control when a class component should be rendered.
 
@@ -163,7 +163,7 @@ const props = {
 <div {...props} className="stayHere" />
 
 // the className property from props will overwrite the className property on the div
-<div className="stayHere" {...props} />
+<div className="willBeOverwritten" {...props} />
 ```
 
 #### Conditional rendering component
@@ -262,13 +262,15 @@ const Notification = ({ state }) => {
 ```js
 // HOC declaration
 function withLoadingIndicator(Component) {
-  return EnhancedComponent = ({ isLoading, ...props }) => {
+  const EnhancedComponent = ({ isLoading, ...props }) => {
     if (!isLoading) {
       return <Component { ...props } />;
     }
 
     return <div><p>Loading...</p></div>;
   };
+  
+  return EnhancedComponent;
 }
   
 // Usage
@@ -300,7 +302,7 @@ Pattern 1:
 
 ```js
 // create a React functional component
-const withClass = (props) => {
+const withClass = props => {
   return (
     <div className={props.classes}>
       {props.children}
@@ -414,9 +416,8 @@ const person = Object.assign({}, this.state.persons[personIndex]);
 We have a handler method with one expected parameter that need to pass to a child component
 
 ```js
-deletePersonHandler = (personIndex) => {
-  // copy the current state using slice() or spread operator
-  const persons = this.state.persons.splice();
+const deletePersonHandler = personIndex => {
+  // copy the current state using spread operator
   const persons = [...this.state.persons];
   
   // remove a person from the array based on its index
@@ -428,7 +429,7 @@ deletePersonHandler = (personIndex) => {
 We can use the `bind()` method to pass a pre-defined parameter to child component
 
 ```js
-// use bind() to bind the context as well as the index
+// use bind() to bind the context as well as passing the index
 {this.state.persons.map((person, index) => {
   return <Person
     deletePerson={this.deletePersonHandler.bind(this, index)}
