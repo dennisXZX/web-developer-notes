@@ -63,24 +63,34 @@ this.firstName = new FormControl(
 
 #### Template-based form
 
+In order to use Angular form, we need to first import `FormsModule`. After that, Angular will automatically attach an `ngForm` directive to any HTML `<form>` tag. We normally assign the `ngForm` directive to a template reference like `#loginForm="ngForm"`. You can visualise all the form values by printing `{{ loginForm.value | json }}` in the template.
+
 `(ngModel)="userName"` binds the input value to the form, which can be accessed by using `<form #loginForm="ngForm" autocomplete="off" (ngSubmit)="login(loginForm.value)">`. Here `loginForm.value` will contain an object of each input field.
 
-In order to use the ngModel directive, we need to import `FormsModule` in the module.
-
 ```html
-<h1>Login</h1>
-<hr>
 <div class="col-md-4">
   <form #loginForm="ngForm" autocomplete="off" (ngSubmit)="login(loginForm.value)">
     <div class="form-group" >
       <label for="userName">User Name:</label>
-      <input (ngModel)="userName" name="userName"
-        id="userName" type="text" class="form-control" placeholder="User Name..." />
+      
+      <input (ngModel)="userName" 
+             name="userName"
+             id="userName" 
+             type="text" 
+             class="form-control" 
+             placeholder="User Name..." 
+      />
     </div>
+    
     <div class="form-group" >
       <label for="password">Password:</label>
-      <input (ngModel)="password" name="password"
-        id="password" type="password" class="form-control"placeholder="Password..." />
+      
+      <input (ngModel)="password" 
+             name="password"
+             id="password" 
+             type="password" 
+             class="form-control"placeholder="Password..." 
+      />
     </div>
 
     <button type="submit" class="btn btn-primary">Login</button>
