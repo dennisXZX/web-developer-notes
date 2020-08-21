@@ -8,9 +8,9 @@ Another lesser-known family of operating system is BSD, one of the best known BS
 
 Linux usually comes with a [package management tool](https://www.digitalocean.com/community/tutorials/package-management-basics-apt-yum-dnf-pkg) for finding and installing software.
 
+To get your hand dirty, try fiddling with Ubuntu with no hassle using [multipass](https://multipass.run).
+
 - `echo $0` returns the shell you are currently using
-- `mkdir -p /data/db` create nested directories using the `-p` flag
-- `mkdir .storybook src` create two folders named `.storybook` and `src`
 - `cat error-log.txt` display a file in one go, you can use `-n` flag to show line number
 - `less error-log.txt` display a file page by page (press `b` for prevous page and `/` to search)
 - `echo $PATH` display command search path, each path is separated by a colon
@@ -29,7 +29,11 @@ Linux usually comes with a [package management tool](https://www.digitalocean.co
 - `cp -r source_directory destination_directory` recursively copy a directory
 - `mv source_file destination_file` move or rename a file or directory
 
-- `reset` resett SHELL program
+- `reset` reset SHELL program
+
+#### Pro tips
+
+- `control + r` to get into `reverse-i-search` mode, which can search all your previous bash commands. Press `control + r` to go to the next search result.
 
 #### Powerful command combination
 
@@ -186,6 +190,8 @@ The `hosts` file is an operating system file that maps hostnames to IP addresses
 #### Exploring the system
 
 There are some common `ls` Options 
+
+The favorite combo is `ls -lash`.
 
 - `-a`, list all files, including hidden files
 - `-l`, list in long format
