@@ -35,6 +35,12 @@ To get your hand dirty, try fiddling with Ubuntu with no hassle using [multipass
 
 - `control + r` to get into `reverse-i-search` mode, which can search all your previous bash commands. Press `control + r` to go to the next search result.
 
+- `control + a` goes to the beginning of the command
+
+- `control + e` goes to the end of the command
+
+- `control + u` deletes the current command
+
 #### Powerful command combination
 
 - count how many times the word 'cute or cupe' appear in a file, and save the result to a txt file
