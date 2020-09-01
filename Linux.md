@@ -10,6 +10,8 @@ Linux usually comes with a [package management tool](https://www.digitalocean.co
 
 To get your hand dirty, try fiddling with Ubuntu with no hassle using [multipass](https://multipass.run).
 
+- `tar -zcf archive.tar.gz fileName/folderName` to buddle everything into a compressed file. `tar -xzf archive.tar.gz -C destinationFolder` to unzip the compressed file.
+- `touch fileName` creates a file, but if the file already exists, it would update the modified time of the file.
 - `echo $0` returns the shell you are currently using
 - `cat error-log.txt` display a file in one go, you can use `-n` flag to show line number
 - `less error-log.txt` display a file page by page (press `b` for prevous page and `/` to search)
@@ -18,7 +20,7 @@ To get your hand dirty, try fiddling with Ubuntu with no hassle using [multipass
 - `which commandName` locate the command being executed
 
 - `head fileName` look at the first 10 lines of the file
-- `tail fileName` look at the last 10 lines of the file, you can add the `-f` flag to follow the file change
+- `tail fileName` look at the last 10 lines of the file, you can add the `-f` flag to follow the file change (mostly used to `tail the log`)
 
 - `find . -iname 'npm*' -ls` find files and directories start with 'npm' in current and sub-directories, ignoring case
 - `find /home -name '*.jpg'` find all .jpg files in the /home and sub-directories
@@ -55,7 +57,7 @@ echo 'log message' >> `date + '%F'`.txt
 
 - find out what program is using port 8080 `lsof -i :8080`
 - find out all the ports being used `sudo lsof -PiTCP -sTCP:LISTEN`
-- kill the program `kill -9 <PID>`
+- kill the program `kill -9 <PID>` (this is sending a `SIGKILL` signal to the program, you can a list of signals by `kill -l`)
 
 #### .bash_profile (MacOX) / .bashrc (Linux)
 
