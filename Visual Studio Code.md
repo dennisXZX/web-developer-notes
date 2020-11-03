@@ -18,15 +18,15 @@
 
 ### Extensions
 
-One Dark Pro - VSCode theme
-GitLens
-Code Spell Checker
-Debugger for Chrome
-ES7 React/Redux/GraphQL/React-Native snippets
-Auto Rename Tag
-Bracket Pair Colorizer
-Prettier
-Eslint
+- One Dark Pro - VSCode theme
+- GitLens
+- Code Spell Checker
+- Debugger for Chrome
+- ES7 React/Redux/GraphQL/React-Native snippets
+- Auto Rename Tag
+- Bracket Pair Colorizer
+- Prettier
+- Eslint
 
 ### Custom configs
 
