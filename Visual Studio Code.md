@@ -1,15 +1,26 @@
 ## Visual Studio Code
 
-#### Add shortcut to focus on integrated terminal
+### Shortcuts
 
-Add the following code to `keybindings.jsom`. (Preference -> Keyboard Shortcuts)
+- Open command palette - `shift + cmd + p`
+- Toggle terminal - `ctrl + backtick`
+- Toogle sidebar - `cmd + b`
+- Switch between tabs - `ctrl + tab`
+- Get back previously closed tabs - `cmd + shift + t`
+- Quick file open - `cmd + p` (use `cmd + enter` to open file on the side)
+- Open file on the side from side bar - `ctrl + enter`
 
-```
-{ "key": "ctrl+`",          "command": "workbench.action.focusActiveEditorGroup", "when": "terminalFocus" },
-{ "key": "ctrl+`",          "command": "workbench.action.terminal.focus", "when": "!terminalFocus" }
-```
+- Move line up & down - `option + up/down`
+- Copy line up & down - `shift + option + up/down`
+- Add block comment - `shift + option + a`
+- Add cursor - `option + click`
+- Search an entity (function or variable) - `cmd + shift + o`
+
+### Extensions
+
+### Custom configs
 
 #### Add `code .` command to Mac terminal
 
-- press `fn + F1` and search `install` in the input field
+- press `shift + cmd + p` and search `install` in the input field
 - select `Shell Command: Install 'code' command in PATH`
