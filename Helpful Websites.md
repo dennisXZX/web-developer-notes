@@ -9,3 +9,4 @@
 - [https://httpstat.us](https://httpstat.us) - testing failed server requests
 - [https://regexr.com](https://regexr.com) - understanding regular expression better
 - [https://jsonschema.net](https://jsonschema.net) - generating JSON schema
+- [https://designer.mocky.io](https://designer.mocky.io) - mock backend data
