@@ -2,6 +2,7 @@
 
 ### Shortcuts
 
+- Organise imports - `option + shift + o`
 - Open command palette - `shift + cmd + p`
 - Toggle terminal - `ctrl + backtick`
 - Toogle sidebar - `cmd + b`
