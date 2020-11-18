@@ -10,7 +10,7 @@ For class component, we can convert components into pure components. Note that i
 
 We can also implement `shouldComponentUpdate(nextProps, nextState)` to control when a class component should be rendered.
 
-For functional component, we can rely on `React.memo(MyComponent, comparisonFunction)` to achieve the same result as class component.
+For functional component, we can rely on `React.memo(ComponentName)` to achieve the same result as pure class component.
 
 - To address expensive operation issue:
 
