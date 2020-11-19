@@ -28,6 +28,7 @@
 - Bracket Pair Colorizer
 - Prettier
 - Eslint
+- Path Intellisense
 
 ### Custom configs
 
