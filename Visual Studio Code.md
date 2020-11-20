@@ -32,6 +32,18 @@
 
 ### Custom configs
 
+#### Make VSCode recognise path alias
+
+Go to `path-intellisense` settings and add the following to `Mappings for paths`
+
+```
+ "path-intellisense.mappings": {
+    "@": "${workspaceRoot}/src"
+  }
+ ```
+ 
+ Then reload your VSCode.
+
 #### Enable screencast mode
 
 - select `Toggle Screencast mode`
