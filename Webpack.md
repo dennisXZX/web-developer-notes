@@ -2,6 +2,21 @@
 
 Webpack is a bundler that can handle ESM, CommonJS and AMD modules with tree-shaking.
 
+#### NPM tips
+
+- All executables are placed inside `node_modues/.bin`.
+
+- NPM scripts can let you use all executables in `.bin` directly as if they are all in scope. 
+
+- You can compose scripts and pass parameter to script by `--`.
+
+```
+scripts: {
+    "webpack": "webpack",
+    "dev": "npm run webpack -- --mode development"
+}
+```
+
 #### Webpack workflow
 
 1. Specify an entry point where Webpack should start (multiple entry points are possible)
