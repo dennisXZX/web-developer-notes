@@ -13,7 +13,10 @@ Webpack is a bundler that can handle ESM, CommonJS and AMD modules with tree-sha
 ```
 scripts: {
     "webpack": "webpack",
-    "dev": "npm run webpack -- --mode development"
+    "dev": "npm run webpack -- --mode development --watch",
+    "debug": "node --inspect --inspect-brk ./node_modules/webpack/bin/webpack.js",
+    "prod:debug": "npm run debug -- --mode production",
+    "dev:debug": "npm run debug -- --mode development"
 }
 ```
 
