@@ -3,7 +3,6 @@
 ```jsx
 import { makeStyles } from '@material-ui/core/styles';
 
-
 // makeStyles() returns a hook, normally we call it `useStyles`, which is used to 
 // We use function signature here because we want to access to the default 'theme' provided by Material-UI
 // https://material-ui.com/styles/api/#makestyles-styles-options-hook
