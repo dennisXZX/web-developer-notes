@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-Note the above `'& > *'` is SASS selector. The `&` always refers to the parent selector when nesting. `>` is the child selector. So `& > *` means to select all the elements.
+Note the above `'& > *'` is a SASS selector. The `&` always refers to the parent selector when nesting. `>` is the child selector. So `& > *` means to select all the elements of the parent selector.
 
 // Call the userStyles() hook to get CSS classes we defined in the style object passed to makeStyles().
 const classes = useStyles();
