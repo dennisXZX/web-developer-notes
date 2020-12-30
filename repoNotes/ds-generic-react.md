@@ -1,10 +1,49 @@
 ## ds-generic-react repo notes
 
+### How theming works
+
+- We define SCSS variables as the base of our theme in `styles/themes/_variables.scss`. We add `!default` to SCSS variables so that we are allowing the value to be set anywhere higher up the load order and if it does not get set then we apply the default value.
+
+- We define different themes in `styles/themes/themeName`. We define CSS variables in these themes and use SCSS variables as their values.
+
+```scss
+// Import SCSS variables so we can use them as values in the CSS variables below
+@import "../../variables";
+
+/* CSS VARIABLES */
+:root {
+  // --color--primary--main is the CSS variable we define
+  // #{$color--primary--main} is the syntax of how we use a SCSS variable as the value of the CSS variable
+  --color--primary--main: #{$color--primary--main};
+}
+
+/ *CSS IN JS */
+:export {
+  // We also export CSS variable in a way that JavaScript can use
+  colorPrimaryMain: $color--primary--main;
+}
+```
+
+- In the component, we import a theme and then use the CSS variables defined in the theme.
+
+```scss
+// Import a default theme
+@import "../../../assets/styles/themes/default/default.scss";
+
+.text-xl {
+  // use a CSS variable defined in the theme
+  padding: var(--padding-button-xl-text);
+  font-size: 16px;
+}
+```
+
+### How styleguidist works
+
 ```jsx
 import { makeStyles } from '@material-ui/core/styles';
 
-// makeStyles() returns a hook, normally we call it `useStyles`, which is used to 
-// We use function signature here because we want to access to the default 'theme' provided by Material-UI
+// makeStyles() returns a hook, normally we call it `useStyles`, which is used to get the CSS classes we define
+// We use function signature here because we want to get access to the default 'theme' provided by Material-UI
 // https://material-ui.com/styles/api/#makestyles-styles-options-hook
 // https://material-ui.com/customization/theming/
 const useStyles = makeStyles((theme) => ({
