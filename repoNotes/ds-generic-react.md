@@ -24,11 +24,18 @@
 }
 ```
 
-- In the component, we import a theme and then use the CSS variables defined in the theme.
+- In the project that use design system, we import a theme and then use the CSS variables defined in the theme.
 
 ```scss
-// Import a default theme
-@import "../../../assets/styles/themes/default/default.scss";
+// Alias have been set up in craco.config.js
+
+// Import style from design system
+@import "ds-generic-react-styles";
+// Import a design system theme
+@import "ds-generic-react-theme-light";
+
+// Overwrite Primary color
+$color--primary--main: #3dd459;
 
 .text-xl {
   // use a CSS variable defined in the theme
