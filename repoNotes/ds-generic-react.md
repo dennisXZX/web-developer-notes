@@ -2,9 +2,11 @@
 
 ### How theming works
 
+#### In design system codebase
+
 - We define SCSS variables as the base of our theme in `styles/themes/_variables.scss`. We add `!default` to SCSS variables so that we are allowing the value to be set anywhere higher up the load order and if it does not get set then we apply the default value.
 
-- We define different themes in `styles/themes/themeName`. We define CSS variables in these themes and use SCSS variables as their values.
+- We define different themes in `styles/themes/themeName`. We define CSS variables in these themes and use SCSS variables defined at `styles/themes/_variables.scss` as their values.
 
 ```scss
 // Import SCSS variables so we can use them as values in the CSS variables below
@@ -24,25 +26,55 @@
 }
 ```
 
-- In the project that use design system, we import a theme and then use the CSS variables defined in the theme.
+#### In projects that use design system
+
+- We create a `src/assets/styles/variables.scss` in which we
+  - Import deign system component style
+  - Import design system theme style
+  - Define SCSS mixins
+  - Overwrite CSS variables exposed from design system to change theme
 
 ```scss
 // Alias have been set up in craco.config.js
 
-// Import style from design system
+// Import deign system component style
 @import "ds-generic-react-styles";
-// Import a design system theme
+// Import design system theme style
 @import "ds-generic-react-theme-light";
 
-// Overwrite Primary color
+// Define some mixins
+@mixin content-container {
+  ...code
+}
+
+// Overwrite CSS variables exposed from design system to change theme
+// Defube a new SCSS variable
 $color--primary--main: #3dd459;
 
-.text-xl {
-  // use a CSS variable defined in the theme
-  padding: var(--padding-button-xl-text);
-  font-size: 16px;
+:root {
+  // Overwrite the CSS variable exposed from design system
+  --color--primary--main: #{$color--primary--main};
 }
 ```
+
+- We create a `src/assets/styles/theme.jsx` to define a custom Material-UI theme
+
+```js
+// Import all the variables, which can be used in CSS-in-JS
+import variables from './variables.scss';
+
+// Define a custom Material-UI theme
+const palette = {
+  common: {
+    black: variables.colorCommonBlack,
+    white: variables.colorCommonWhite,
+  },
+}
+
+export { palette };
+```
+
+- Inject the theme into `<ThemeProvider>` at `src/index.jsx`
 
 ### How styleguidist works
 
