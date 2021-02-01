@@ -48,7 +48,7 @@
 }
 
 // Overwrite CSS variables exposed from design system to change theme
-// Defube a new SCSS variable
+// Define a new SCSS variable
 $color--primary--main: #3dd459;
 
 :root {
