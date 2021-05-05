@@ -75,6 +75,10 @@ git cat-file -p 980a0
 
 ### Productive tips
 
+__remove all local branches except for 'develop'__
+
+`git branch | grep -v "develop" | xargs git branch -D`
+
 __use wild card to commit some of the files__
 
 `git add src/app/app.component.*`
